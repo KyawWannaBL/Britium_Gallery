@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Britium Gallery | Luxury Handbags</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <title>Britium | Luxury & Innovation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
         /* --- RESET & VARIABLES --- */
@@ -12,13 +12,13 @@
 
         :root {
             --bg-dark: #1a0f0a; /* Deep Coffee/Black */
-            --bg-cream: #f9f4ef; /* Light Cream */
+            --bg-lighter: #231712;
             --gold-accent: #debb6e; /* Metallic Gold */
             --gold-dark: #b5904b;
             --text-light: #ffffff;
             --text-grey: #a0a0a0;
-            --chat-bg: #231712;
             --border-gold: rgba(222, 187, 110, 0.2);
+            --chat-bg: #231712;
         }
 
         body {
@@ -26,6 +26,7 @@
             background-color: var(--bg-dark);
             color: var(--text-light);
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
@@ -45,10 +46,11 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-gold);
-            background-color: var(--bg-dark);
+            background-color: rgba(26, 15, 10, 0.95);
             position: sticky;
             top: 0;
             z-index: 100;
+            backdrop-filter: blur(5px);
         }
 
         .logo {
@@ -56,12 +58,16 @@
             color: var(--gold-accent);
             font-weight: 700;
             letter-spacing: 1px;
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
         }
+        .logo span { font-size: 0.7rem; color: #fff; letter-spacing: 3px; margin-top: 3px; }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 30px;
         }
 
         nav a {
@@ -69,135 +75,150 @@
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 400;
+            position: relative;
         }
+
+        nav a.active { color: var(--gold-accent); }
 
         .header-actions {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             align-items: center;
-            color: var(--gold-accent);
-            cursor: pointer;
+            color: #fff;
+            font-size: 1.2rem;
         }
 
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (Dual Focus) --- */
         .hero {
+            position: relative;
+            height: 85vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             text-align: center;
-            padding: 100px 20px 60px;
-            background: linear-gradient(180deg, rgba(26,15,10,1) 0%, rgba(40,25,18,1) 100%);
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('images/storefront-gold-bg.jpg'); /* Use your uploaded bg */
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+            z-index: 2;
         }
 
         .hero h1 {
-            font-size: 3.5rem;
+            font-size: 4rem;
             color: var(--gold-accent);
             margin-bottom: 15px;
-            line-height: 1.2;
+            line-height: 1.1;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.5);
         }
 
         .hero p {
-            font-size: 1.2rem;
-            color: #e0e0e0;
+            font-size: 1.3rem;
+            color: #f0f0f0;
             margin-bottom: 40px;
             font-weight: 300;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        .cta-group {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+            min-width: 200px;
         }
 
         .btn-gold {
             background-color: var(--gold-accent);
             color: var(--bg-dark);
-            padding: 15px 40px;
-            font-size: 1rem;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-            transition: 0.3s;
+            border: 2px solid var(--gold-accent);
         }
-
         .btn-gold:hover {
             background-color: var(--gold-dark);
-            transform: translateY(-2px);
+            border-color: var(--gold-dark);
+            transform: translateY(-3px);
         }
 
-        /* --- PRODUCT SHOWCASE --- */
-        .collection {
-            padding: 80px 5%;
+        .btn-outline {
+            background-color: transparent;
+            color: #fff;
+            border: 2px solid #fff;
+        }
+        .btn-outline:hover {
+            background-color: #fff;
+            color: var(--bg-dark);
+            transform: translateY(-3px);
+        }
+
+        /* --- SECTIONS DIVIDER --- */
+        .section-header {
             text-align: center;
+            padding: 80px 20px 40px;
         }
+        .section-header h2 { font-size: 2.5rem; color: var(--gold-accent); }
+        .section-header p { color: var(--text-grey); max-width: 600px; margin: 10px auto; }
 
-        .collection-grid {
+        /* --- FASHION PREVIEW (Shop) --- */
+        .preview-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            margin-top: 40px;
+            padding: 0 5% 80px;
+            max-width: 1400px;
+            margin: 0 auto;
         }
 
-        .product-card {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 20px;
+        .card {
+            background: var(--bg-lighter);
             border: 1px solid var(--border-gold);
             transition: 0.3s;
             cursor: pointer;
+            overflow: hidden;
         }
+        .card:hover { border-color: var(--gold-accent); transform: translateY(-5px); }
 
-        .product-card:hover {
-            border-color: var(--gold-accent);
-            transform: translateY(-5px);
-        }
-
-        .placeholder-img {
+        .card-img {
             width: 100%;
-            height: 250px;
+            height: 300px;
             background-color: #2c241b;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--gold-accent);
-            margin-bottom: 15px;
             font-style: italic;
         }
+        .card-info { padding: 20px; text-align: center; }
+        .card-title { font-size: 1.1rem; color: #fff; margin-bottom: 5px; }
+        .card-sub { font-size: 0.9rem; color: var(--text-grey); }
 
-        .product-title {
-            font-size: 1.1rem;
-            color: var(--gold-accent);
-            margin-bottom: 5px;
-        }
-
-        .product-price {
-            font-size: 0.9rem;
-            color: #ccc;
-        }
-
-        /* --- BRAND SIGNATURE --- */
-        .brand-signature {
-            background-color: var(--bg-cream);
-            color: var(--text-dark);
-            text-align: center;
-            padding: 80px 20px;
-            margin-top: 60px;
-            border-top: 5px solid var(--gold-accent);
-        }
-
-        .brand-signature h2 {
-            font-size: 3rem;
-            color: var(--gold-dark);
-            margin-bottom: 10px;
-        }
-
-        .brand-signature h3 {
-            font-size: 2rem;
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            color: #1a0f0a;
+        /* --- INNOVATION PREVIEW (Ventures) --- */
+        .innovation-section {
+            background-color: #111;
+            padding-bottom: 80px;
+            border-top: 1px solid #333;
         }
 
         /* --- FOOTER --- */
         footer {
             background-color: #0d0705;
             color: #888;
-            padding: 60px 50px 30px;
+            padding: 70px 50px 30px;
             font-size: 0.9rem;
-            border-top: 1px solid #222;
+            border-top: 1px solid var(--gold-dark);
         }
 
         .footer-grid {
@@ -207,24 +228,34 @@
             max-width: 1200px;
             margin: 0 auto;
             border-bottom: 1px solid #222;
-            padding-bottom: 40px;
+            padding-bottom: 50px;
         }
 
         .footer-col h4 {
             color: var(--text-light);
-            margin-bottom: 20px;
-            font-size: 1rem;
+            margin-bottom: 25px;
+            font-size: 1.1rem;
             letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
         }
 
         .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 10px; }
-        .footer-col a:hover { color: var(--gold-accent); text-decoration: underline; }
+        .footer-col li { margin-bottom: 12px; }
+        .footer-col a { color: #aaa; transition: 0.3s; }
+        .footer-col a:hover { color: var(--gold-accent); padding-left: 5px; }
 
-        .copyright {
+        .footer-bottom {
             text-align: center;
             margin-top: 30px;
             font-size: 0.8rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         /* --- CHATBOT WIDGET --- */
@@ -281,10 +312,11 @@
         }
 
         /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
+            header { padding: 15px 20px; }
+            nav ul { display: none; } /* Hide menu for mobile in this demo */
             .hero h1 { font-size: 2.5rem; }
-            .brand-signature h2 { font-size: 2rem; }
-            nav ul { display: none; } /* Simplified for mobile */
+            .hero p { font-size: 1rem; }
             .footer-grid { grid-template-columns: 1fr 1fr; }
             .chat-window { width: 90%; right: 5%; bottom: 100px; }
         }
@@ -293,97 +325,157 @@
 <body>
 
     <header>
-        <div class="logo">BRITIUM GALLERY</div>
+        <a href="index.html" class="logo">
+            BRITIUM
+            <span>GALLERY & VENTURES</span>
+        </a>
         <nav>
             <ul>
-                <li><a href="index.html" style="color: var(--gold-accent);">Home</a></li>
-                <li><a href="shop.html">Shop</a></li>
-                <li><a href="about.html">About</a></li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="shop.html">Fashion Shop</a></li>
+                <li><a href="gallery.html">Business Solutions</a></li>
                 <li><a href="blog.html">Blog</a></li>
-                <li><a href="store_locator.html">Locations</a></li>
+                <li><a href="about.html">About</a></li>
                 <li><a href="contact_us.html">Contact</a></li>
             </ul>
         </nav>
         <div class="header-actions">
-            <span>🔍</span>
-            <span>🛒 (0)</span>
+            <a href="search_results.html" title="Search Products">🔍</a>
+            <a href="login_code.html" title="Customer Login">👤</a>
+            <a href="wishlist.html" title="My Wishlist">♡</a>
+            <a href="shopping_cart.html" title="Shopping Cart">🛒</a>
         </div>
     </header>
 
     <section class="hero">
-        <h1>WELCOME TO<br>BRITIUM GALLERY</h1>
-        <p>Discover the latest in luxury handbags,<br>where elegance meets innovation.</p>
-        <button class="btn-gold" onclick="window.location.href='shop.html'">Shop Collection</button>
-    </section>
-
-    <section class="collection">
-        <h3 style="color: var(--gold-accent); margin-bottom: 20px;">The V Collection</h3>
-        <div class="collection-grid">
-            <div class="product-card" onclick="window.location.href='product.html'">
-                <div class="placeholder-img">[Cream Tote V-Series]</div>
-                <div class="product-title">The Ivory Elegance</div>
-                <div class="product-price">$1,250.00</div>
-            </div>
-            <div class="product-card" onclick="window.location.href='product.html'">
-                <div class="placeholder-img">[Quilted Black Satchel]</div>
-                <div class="product-title">Noir Quilted Classic</div>
-                <div class="product-price">$1,450.00</div>
-            </div>
-            <div class="product-card" onclick="window.location.href='product.html'">
-                <div class="placeholder-img">[Signature Monogram]</div>
-                <div class="product-title">Britium Monogram Tote</div>
-                <div class="product-price">$1,100.00</div>
-            </div>
-            <div class="product-card" onclick="window.location.href='product.html'">
-                <div class="placeholder-img">[Structured Mini]</div>
-                <div class="product-title">The V-Lock Mini</div>
-                <div class="product-price">$980.00</div>
+        <div class="hero-content">
+            <h1>Elegance Meets<br>Innovation</h1>
+            <p>From timeless luxury handbags to cutting-edge business solutions.</p>
+            <div class="cta-group">
+                <a href="shop.html" class="btn btn-gold">Shop Fashion</a>
+                <a href="gallery.html" class="btn btn-outline">Explore Ventures</a>
             </div>
         </div>
     </section>
 
-    <section class="brand-signature">
-        <h2>BRITIUM GALLERY</h2>
-        <h3>Where Style Meets Innovation</h3>
+    <section class="fashion-section">
+        <div class="section-header">
+            <h2>Luxury Collection</h2>
+            <p>Curated elegance for the modern individual.</p>
+        </div>
+        <div class="preview-grid">
+            <div class="card" onclick="window.location.href='product.html'">
+                <div class="card-img">[The Ivory Elegance]</div>
+                <div class="card-info">
+                    <h3 class="card-title">The Ivory Elegance</h3>
+                    <span class="card-sub">$1,250.00</span>
+                </div>
+            </div>
+            <div class="card" onclick="window.location.href='product.html'">
+                <div class="card-img">[Noir Quilted]</div>
+                <div class="card-info">
+                    <h3 class="card-title">Noir Quilted Classic</h3>
+                    <span class="card-sub">$1,450.00</span>
+                </div>
+            </div>
+            <div class="card" onclick="window.location.href='product.html'">
+                <div class="card-img">[Monogram Series]</div>
+                <div class="card-info">
+                    <h3 class="card-title">Britium Monogram</h3>
+                    <span class="card-sub">$1,100.00</span>
+                </div>
+            </div>
+            <div class="card" onclick="window.location.href='product.html'">
+                <div class="card-img">[V-Lock Mini]</div>
+                <div class="card-info">
+                    <h3 class="card-title">The V-Lock Mini</h3>
+                    <span class="card-sub">$980.00</span>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; margin-bottom: 80px;">
+            <a href="shop.html" style="border-bottom: 1px solid var(--gold-accent); color: var(--gold-accent);">VIEW ALL FASHION</a>
+        </div>
+    </section>
+
+    <section class="innovation-section">
+        <div class="section-header">
+            <h2>Business Innovations</h2>
+            <p>Technological and logistical solutions for enterprise growth.</p>
+        </div>
+        <div class="preview-grid">
+            <div class="card" onclick="window.location.href='dual_screen_extender.html'">
+                <div class="card-img">[Dual Screen Tech]</div>
+                <div class="card-info">
+                    <h3 class="card-title">Dual Screen Extenders</h3>
+                    <span class="card-sub">Productivity Boost</span>
+                </div>
+            </div>
+            <div class="card" onclick="window.location.href='flexitank.html'">
+                <div class="card-img">[Flexitank Solutions]</div>
+                <div class="card-info">
+                    <h3 class="card-title">Flexitank Logistics</h3>
+                    <span class="card-sub">Bulk Liquid Transport</span>
+                </div>
+            </div>
+            <div class="card" onclick="window.location.href='promotiongift.html'">
+                <div class="card-img">[Corporate Gifting]</div>
+                <div class="card-info">
+                    <h3 class="card-title">Promotional Gifts</h3>
+                    <span class="card-sub">Corporate Branding</span>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center;">
+            <a href="gallery.html" style="border-bottom: 1px solid var(--gold-accent); color: var(--gold-accent);">VIEW ALL SOLUTIONS</a>
+        </div>
     </section>
 
     <footer>
         <div class="footer-grid">
             <div class="footer-col">
-                <h4>Customer Service</h4>
+                <h4>Customer Care</h4>
                 <ul>
+                    <li><a href="track_order.html">Track Order</a></li>
+                    <li><a href="return_request.html">Return Request</a></li>
+                    <li><a href="shipping_&_returns.html">Shipping Policy</a></li>
                     <li><a href="faq.html">FAQs</a></li>
-                    <li><a href="shipping_policy.html">Shipping & Returns</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Our World</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="careers.html">Careers</a></li>
+                    <li><a href="blog.html">Journal</a></li>
                     <li><a href="store_locator.html">Store Locator</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Company</h4>
+                <h4>Business Solutions</h4>
                 <ul>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="careers.html">Careers</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact_us.html">Contact Us</a></li>
+                    <li><a href="flexitank.html">Logistics</a></li>
+                    <li><a href="promotiongift.html">Corporate Gifts</a></li>
+                    <li><a href="dual_screen_extender.html">Tech Gadgets</a></li>
+                    <li><a href="contact_us.html">B2B Inquiries</a></li>
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Legal</h4>
+                <h4>Legal & Info</h4>
                 <ul>
                     <li><a href="terms_&_conditions.html">Terms & Conditions</a></li>
                     <li><a href="privacy_policy.html">Privacy Policy</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Connect</h4>
-                <ul>
-                    <li>Instagram</li>
-                    <li>Facebook</li>
-                    <li>Twitter</li>
+                    <li style="margin-top: 15px;"><a href="admin_login.html" style="color: #555; font-size: 0.8rem;">🔒 Staff Portal</a></li>
                 </ul>
             </div>
         </div>
-        <div class="copyright">
-            &copy; 2025 Britium Gallery. All Rights Reserved.
+        <div class="footer-bottom">
+            <span>&copy; 2025 Britium Gallery & Ventures. All Rights Reserved.</span>
+            <span>
+                <a href="#">Instagram</a> &nbsp;|&nbsp; 
+                <a href="#">Facebook</a> &nbsp;|&nbsp; 
+                <a href="#">LinkedIn</a>
+            </span>
         </div>
     </footer>
 
@@ -398,64 +490,16 @@
         </div>
         <div class="chat-messages" id="chatMessages">
             <div class="message bot">
-                Welcome to Britium Gallery. How may I assist you with your luxury experience today?
+                Welcome to Britium. Whether you seek luxury fashion or business solutions, I am here to assist. How may I help?
             </div>
         </div>
         <div class="chat-input-area">
-            <input type="text" class="chat-input" id="chatInput" placeholder="Type your inquiry...">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Ask about handbags, tracking, or logistics...">
             <button class="chat-send" id="sendBtn">Send</button>
         </div>
     </div>
 
-    <script>
-        const chatBtn = document.getElementById('chatBtn');
-        const chatWindow = document.getElementById('chatWindow');
-        const closeChat = document.getElementById('closeChat');
-        const sendBtn = document.getElementById('sendBtn');
-        const chatInput = document.getElementById('chatInput');
-        const chatMessages = document.getElementById('chatMessages');
-
-        // Toggle Chat
-        chatBtn.addEventListener('click', () => chatWindow.classList.add('active'));
-        closeChat.addEventListener('click', () => chatWindow.classList.remove('active'));
-
-        // Logic
-        function sendMessage() {
-            const text = chatInput.value.trim();
-            if (text) {
-                addMessage(text, 'user');
-                chatInput.value = '';
-
-                setTimeout(() => {
-                    let response = "Thank you for contacting Britium Gallery. Our concierge team is reviewing your request.";
-                    const lowerText = text.toLowerCase();
-                    
-                    if(lowerText.includes('track') || lowerText.includes('order')) {
-                        response = "To track your order, please visit our Shipping Policy page or provide your Order Number.";
-                    } else if (lowerText.includes('return')) {
-                        response = "Returns are accepted within 30 days. Please check our Shipping & Returns Policy in the footer.";
-                    } else if (lowerText.includes('location') || lowerText.includes('store')) {
-                        response = "Our flagship store is in East Dagon. Use the 'Locations' link in the menu to find us on the map.";
-                    } else if (lowerText.includes('career') || lowerText.includes('job')) {
-                        response = "We are hiring! Please visit the Careers page linked in the footer.";
-                    }
-
-                    addMessage(response, 'bot');
-                }, 800);
-            }
-        }
-
-        function addMessage(text, sender) {
-            const div = document.createElement('div');
-            div.classList.add('message', sender);
-            div.innerText = text;
-            chatMessages.appendChild(div);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        sendBtn.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
-    </script>
+    <script src="chat.js"></script>
 
 </body>
 </html>
