@@ -13,6 +13,8 @@
             --text-light: #f0f0f0;
             --text-grey: #cccccc;
             --accent-gold: #c6a87c;
+            --gold-dark: #b5904b; /* Matches Index Page */
+            --chat-bg: #231712;   /* Matches Index Page */
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -95,7 +97,6 @@
             height: auto;
             margin-bottom: 80px;
             border-radius: 2px;
-            /* Placeholder background if image missing */
             background-color: #222;
             display: block;
         }
@@ -168,6 +169,142 @@
             font-size: 0.9rem;
         }
 
+        /* --- CHATBOT WIDGET CSS --- */
+        .chat-widget-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--accent-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+            z-index: 1000;
+            transition: transform 0.3s;
+            border: 2px solid var(--gold-dark);
+        }
+
+        .chat-widget-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .chat-icon {
+            font-size: 30px;
+            color: var(--bg-dark);
+        }
+
+        .chat-window {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            width: 350px;
+            height: 500px;
+            background-color: var(--chat-bg);
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px;
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .chat-window.active {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .chat-header {
+            background-color: var(--bg-dark);
+            padding: 15px;
+            border-bottom: 1px solid var(--accent-gold);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-header h4 {
+            color: var(--accent-gold);
+            font-family: 'Playfair Display', serif;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .close-chat {
+            cursor: pointer;
+            color: var(--accent-gold);
+            font-size: 1.2rem;
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+
+        .message.bot {
+            background-color: rgba(198, 168, 124, 0.1);
+            color: #eee;
+            border: 1px solid rgba(198, 168, 124, 0.3);
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+
+        .message.user {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+
+        .chat-input-area {
+            padding: 15px;
+            background-color: var(--bg-dark);
+            border-top: 1px solid rgba(198, 168, 124, 0.2);
+            display: flex;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #444;
+            background-color: #111;
+            color: #fff;
+            outline: none;
+            font-family: 'Jost', sans-serif;
+        }
+
+        .chat-send {
+            background-color: var(--accent-gold);
+            color: var(--bg-dark);
+            border: none;
+            padding: 0 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
         /* --- RESPONSIVE --- */
         @media (max-width: 900px) {
             .content-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -175,8 +312,9 @@
         }
         @media (max-width: 600px) {
             header { padding: 20px; }
-            nav ul { display: none; } /* Simplified for mobile */
+            nav ul { display: none; }
             .logo { font-size: 1.1rem; }
+            .chat-window { width: 90%; right: 5%; bottom: 100px; }
         }
     </style>
 </head>
@@ -189,10 +327,10 @@
         </div>
         <nav>
             <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Collections</a></li>
-                <li><a href="#">Contact</a></li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="shop.html">Shop</a></li>
+                <li><a href="shop.html">Collections</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
         <div class="header-icons">
@@ -264,6 +402,85 @@
     <footer>
         &copy; 2025 Britium Gallery. All Rights Reserved.
     </footer>
+
+    <div class="chat-widget-btn" id="chatBtn">
+        <span class="chat-icon">💬</span>
+    </div>
+
+    <div class="chat-window" id="chatWindow">
+        <div class="chat-header">
+            <h4>Britium Concierge</h4>
+            <span class="close-chat" id="closeChat">×</span>
+        </div>
+        <div class="chat-messages" id="chatMessages">
+            <div class="message bot">
+                Welcome to Britium Gallery. How may I assist you with your luxury experience today?
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" class="chat-input" id="chatInput" placeholder="Type your inquiry...">
+            <button class="chat-send" id="sendBtn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const chatBtn = document.getElementById('chatBtn');
+        const chatWindow = document.getElementById('chatWindow');
+        const closeChat = document.getElementById('closeChat');
+        const sendBtn = document.getElementById('sendBtn');
+        const chatInput = document.getElementById('chatInput');
+        const chatMessages = document.getElementById('chatMessages');
+
+        // Toggle Chat Window
+        chatBtn.addEventListener('click', () => {
+            chatWindow.classList.add('active');
+        });
+
+        closeChat.addEventListener('click', () => {
+            chatWindow.classList.remove('active');
+        });
+
+        // Send Message Logic
+        function sendMessage() {
+            const text = chatInput.value.trim();
+            if (text) {
+                // Add User Message
+                addMessage(text, 'user');
+                chatInput.value = '';
+
+                // Simulate Bot Response (Simple Logic)
+                setTimeout(() => {
+                    let botResponse = "Thank you for contacting Britium Gallery. Our concierge team is reviewing your request.";
+                    
+                    const lowerText = text.toLowerCase();
+                    if(lowerText.includes('track') || lowerText.includes('order')) {
+                        botResponse = "To track your order, please provide your Order Number (e.g., #12345). You can check the status on our Tracking Page.";
+                    } else if (lowerText.includes('return')) {
+                        botResponse = "Returns are accepted within 30 days of purchase for unused items. Would you like the link to our Return Request form?";
+                    } else if (lowerText.includes('store') || lowerText.includes('location')) {
+                        botResponse = "Our flagship store is located at No. 277, Anawrahta Road, East Dagon. We also have locations in Yangon and Mandalay.";
+                    } else if (lowerText.includes('hello') || lowerText.includes('hi')) {
+                        botResponse = "Hello! I am the Britium Concierge. Are you looking for a specific handbag or accessory today?";
+                    }
+
+                    addMessage(botResponse, 'bot');
+                }, 800);
+            }
+        }
+
+        function addMessage(text, sender) {
+            const msgDiv = document.createElement('div');
+            msgDiv.classList.add('message', sender);
+            msgDiv.innerText = text;
+            chatMessages.appendChild(msgDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto scroll to bottom
+        }
+
+        sendBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') sendMessage();
+        });
+    </script>
 
 </body>
 </html>
