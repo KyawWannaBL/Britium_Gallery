@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wishlist | Britium Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --bg-white: #ffffff;
+            --text-black: #1a1a1a;
+            --text-grey: #555555;
+            --accent-gold: #c6a87c;
+            --btn-black: #000000;
+            --card-bg: #f9f9f9; /* Light grey bg for product images */
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-black);
+            line-height: 1.5;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        ul { list-style: none; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: #000;
+            color: #fff;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+        .logo span {
+            display: block;
+            font-size: 0.7rem;
+            letter-spacing: 4px;
+            font-weight: 400;
+            margin-top: 3px;
+        }
+        
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #fff;
+            transform: rotate(45deg);
+        }
+
+        nav ul { display: flex; gap: 30px; }
+        nav a { 
+            text-transform: uppercase; 
+            font-size: 0.9rem; 
+            font-weight: 500; 
+            color: #fff; 
+        }
+        nav a:hover { color: #ccc; }
+
+        .header-icons { display: flex; gap: 20px; font-size: 1.2rem; cursor: pointer; }
+
+        /* --- PAGE TITLE --- */
+        .page-title {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .page-title h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+        }
+
+        .page-title p {
+            font-size: 1rem;
+            color: var(--text-grey);
+            font-weight: 300;
+        }
+
+        /* --- WISHLIST GRID --- */
+        .wishlist-container {
+            max-width: 1200px;
+            margin: 0 auto 100px;
+            padding: 0 40px;
+        }
+
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 Columns Layout */
+            gap: 50px;
+        }
+
+        /* Product Card */
+        .product-card {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .pc-image {
+            width: 100%;
+            aspect-ratio: 1; /* Square image container */
+            background-color: var(--card-bg);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .pc-image img {
+            width: 80%;
+            height: auto;
+            object-fit: contain;
+            mix-blend-mode: multiply; /* Blends image bg if needed */
+        }
+
+        .pc-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: var(--text-black);
+        }
+
+        .pc-price {
+            font-family: 'Jost', sans-serif;
+            font-size: 0.95rem;
+            color: var(--text-grey);
+            margin-bottom: 20px;
+        }
+
+        /* Action Buttons Row */
+        .pc-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .btn-add {
+            background-color: var(--btn-black);
+            color: #fff;
+            border: none;
+            padding: 12px 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            flex: 2;
+            text-transform: capitalize;
+        }
+        .btn-add:hover { background-color: #333; }
+
+        .btn-icon {
+            background-color: var(--btn-black);
+            color: #fff;
+            width: 42px;
+            height: 42px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+        .btn-icon:hover { background-color: #333; }
+
+        .btn-delete {
+            background: transparent;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #333;
+            margin-left: 5px;
+        }
+        .btn-delete:hover { color: red; }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .wishlist-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+        }
+        @media (max-width: 600px) {
+            .wishlist-grid { grid-template-columns: 1fr; }
+            .page-title h1 { font-size: 2.5rem; }
+            header { padding: 20px; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <div class="logo-icon"></div>
+            <div>BRITIUM <br><span>GALLERY</span></div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Collections</a></li>
+                <li><a href="#">About</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <span>🔍</span>
+            <span>👤</span>
+        </div>
+    </header>
+
+    <div class="page-title">
+        <h1>Wishlist</h1>
+        <p>Manage your personalized list of products saved for later.</p>
+    </div>
+
+    <div class="wishlist-container">
+        <div class="wishlist-grid">
+
+            <div class="product-card">
+                <div class="pc-image"><img src="images/quilted-shoulder.jpg" alt="Bag"></div>
+                <h3 class="pc-title">Quilted Shoulder Bag</h3>
+                <div class="pc-price">mmk 310,000</div>
+                <div class="pc-actions">
+                    <button class="btn-add">Add to Cart</button>
+                    <button class="btn-icon">▼</button> <button class="btn-delete">🗑</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="pc-image"><img src="images/structured-satchel.jpg" alt="Bag"></div>
+                <h3 class="pc-title">Structured Leather Satchel</h3>
+                <div class="pc-price">mmk 330,000</div>
+                <div class="pc-actions">
+                    <button class="btn-add">Add to Cart</button>
+                    <button class="btn-icon">▼</button>
+                    <button class="btn-delete">🗑</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="pc-image"><img src="images/logo-plaque.jpg" alt="Bag"></div>
+                <h3 class="pc-title">Logo Plaque Bag</h3>
+                <div class="pc-price">mmk 350,000</div>
+                <div class="pc-actions">
+                    <button class="btn-add">Add to Cart</button>
+                    <button class="btn-icon">▼</button>
+                    <button class="btn-delete">🗑</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="pc-image"><img src="images/monogram-tote.jpg" alt="Bag"></div>
+                <h3 class="pc-title">Monogram Tote</h3>
+                <div class="pc-price">mmk 450,000</div>
+                <div class="pc-actions">
+                    <button class="btn-add">Add to Cart</button>
+                    <button class="btn-icon">▼</button>
+                    <button class="btn-delete">🗑</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="pc-image"><img src="images/mini-crossbody.jpg" alt="Bag"></div>
+                <h3 class="pc-title">Mini Crossbody Bag</h3>
+                <div class="pc-price">mmk 420,000</div>
+                <div class="pc-actions">
+                    <button class="btn-add">Add to Cart</button>
+                    <button class="btn-icon">▼</button>
+                    <button class="btn-delete">🗑</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="pc-image"><img src="images/tote-bag.jpg" alt="Bag"></div>
+                <h3 class="pc-title">Tote Bag</h3>
+                <div class="pc-price">mmk 375,000</div>
+                <div class="pc-actions">
+                    <button class="btn-add">Add to Cart</button>
+                    <button class="btn-icon">▼</button>
+                    <button class="btn-delete">🗑</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="pc-image"><img src="images/croc-satchel.jpg" alt="Bag"></div>
+                <h3 class="pc-title">Croc-Embossed Satchel</h3>
+                <div class="pc-price">mmk 480,000</div>
+                <div class="pc-actions">
+                    <button class="btn-add">Add to Cart</button>
+                    <button class="btn-icon">▼</button>
+                    <button class="btn-delete">🗑</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="pc-image"><img src="images/top-handle-brown.jpg" alt="Bag"></div>
+                <h3 class="pc-title">Top Handle Bag</h3>
+                <div class="pc-price">mmk 340,000</div>
+                <div class="pc-actions">
+                    <button class="btn-add">Add to Cart</button>
+                    <button class="btn-icon">▼</button>
+                    <button class="btn-delete">🗑</button>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="pc-image"><img src="images/top-handle-tan.jpg" alt="Bag"></div>
+                <h3 class="pc-title">Top Handle Bag</h3>
+                <div class="pc-price">mmk 340,000</div>
+                <div class="pc-actions">
+                    <button class="btn-add">Add to Cart</button>
+                    <button class="btn-icon">▼</button>
+                    <button class="btn-delete">🗑</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>

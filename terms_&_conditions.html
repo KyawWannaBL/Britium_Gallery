@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms & Conditions | Britium Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --bg-white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-grey: #555555;
+            --btn-orange: #d95d0e; /* Burnt Orange from image */
+            --btn-hover: #b94b0a;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: var(--bg-white);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* --- HEADER --- */
+        header {
+            padding: 30px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #fff;
+        }
+
+        .logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1;
+        }
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid #000;
+            transform: rotate(45deg);
+            margin-bottom: 5px;
+        }
+        .logo-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #002347; /* Deep Navy Logo Color */
+        }
+        .logo-sub {
+            font-size: 0.6rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #002347;
+        }
+
+        nav ul { display: flex; gap: 40px; list-style: none; }
+        nav a { font-size: 0.95rem; color: #333; font-weight: 400; }
+        nav a:hover { color: #000; }
+
+        .header-icons { display: flex; gap: 20px; font-size: 1.2rem; }
+
+        /* --- MAIN CONTENT --- */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 20px 100px;
+        }
+
+        /* Title */
+        .page-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .page-title h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 400;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            color: #1a1a1a;
+        }
+
+        /* Decorative Line */
+        .page-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 2px;
+            background-color: #ff6b6b; /* Accent line color */
+            margin: 0 auto;
+        }
+
+        /* Terms Content */
+        .terms-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-top: 40px;
+            margin-bottom: 15px;
+            color: #1a1a1a;
+            font-weight: 400;
+        }
+
+        .terms-content p {
+            font-size: 1rem;
+            color: var(--text-grey);
+            margin-bottom: 20px;
+            text-align: justify;
+        }
+
+        .terms-list {
+            list-style: none; /* Custom list style */
+            padding-left: 0;
+            margin-bottom: 20px;
+        }
+
+        .terms-list li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+            color: var(--text-grey);
+            font-size: 1rem;
+        }
+
+        /* Custom Bullet Points (a. b. c.) */
+        .terms-list li::before {
+            content: attr(data-index) ".";
+            position: absolute;
+            left: 0;
+            font-weight: 500;
+            color: #1a1a1a;
+        }
+
+        /* Accept Button */
+        .btn-accept {
+            display: block;
+            width: 100%;
+            max-width: 300px;
+            margin: 60px auto 0;
+            background-color: var(--btn-orange);
+            color: #fff;
+            border: none;
+            padding: 15px;
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: 0.3s;
+            text-align: center;
+        }
+        .btn-accept:hover { background-color: var(--btn-hover); }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 20px; padding: 20px; }
+            nav ul { gap: 20px; font-size: 0.9rem; }
+            .page-title h1 { font-size: 2.2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <div class="logo-icon"></div>
+            <span class="logo-text">BRITIUM</span>
+            <span class="logo-sub">GALLERY</span>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <span>🔍</span>
+            <span>👤</span>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <div class="page-title">
+            <h1>TERMS & CONDITIONS</h1>
+        </div>
+
+        <div class="terms-content">
+            
+            <h2>1. Introduction</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. In eget turpis quis sapien venenatis posuere. Aliquam erat volutpat. Aenean varius mauris eget magna placerat, ac posuere fortor semper.
+            </p>
+
+            <h2>2. Use of the Website</h2>
+            <ul class="terms-list">
+                <li data-index="a">Lorem ipsum dolor sit amet constentetur.</li>
+                <li data-index="b">Lorem ipsum dolor sit amet constentetur content mite.</li>
+                <li data-index="c">Lorem ipsum dolor sit amet constentetur.</li>
+            </ul>
+
+            <h2>3. Account Registration</h2>
+            <ul class="terms-list">
+                <li data-index="a">Lorem ipsum dolor sit amet constentetur.</li>
+                <li data-index="b">Lorem ipsum dolor sit amet constentetur account.</li>
+            </ul>
+
+            <h2>4. Product Information and Orders</h2>
+            <ul class="terms-list">
+                <li data-index="a">Lorem ipsum dolor sit amet constentetur.</li>
+                <li data-index="b">Lorem ipsum dolor sit amet constentetur or demay be experly lifed.</li>
+                <li data-index="c">Lorem ipsum dolor sit amet constentetur offers mispfeling adher times on certain.</li>
+            </ul>
+            
+            <ul class="terms-list" style="margin-top: 20px; padding-left: 20px;">
+                <li data-index="a">Lixan ipsum dolor sit amet, consenstetur.</li>
+                <li data-index="b">Lorem ipsum dolor sit amet, constentetur adtention prefirence.</li>
+                <li data-index="c">Lorem ipsum dolor sit amet constentetur risus.</li>
+            </ul>
+
+        </div>
+
+        <button class="btn-accept">ACCEPT TERMS</button>
+
+    </div>
+
+</body>
+</html>

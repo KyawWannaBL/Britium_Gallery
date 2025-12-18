@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Britium Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --bg-dark: #120e0b; /* Deep warm black/brown hue */
+            --text-light: #f0f0f0;
+            --text-grey: #cccccc;
+            --accent-gold: #c6a87c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: #000;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #fff;
+        }
+        
+        .logo-icon {
+            width: 24px; height: 24px; 
+            border: 2px solid #fff; 
+            transform: rotate(45deg);
+        }
+
+        nav ul { display: flex; gap: 40px; list-style: none; }
+        nav a { font-size: 0.9rem; font-weight: 500; color: #ccc; text-transform: uppercase; letter-spacing: 1px;}
+        nav a:hover { color: #fff; }
+
+        .header-icons { display: flex; gap: 20px; font-size: 1.2rem; cursor: pointer; }
+
+        /* --- MAIN CONTAINER --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* --- TOP SECTION --- */
+        .about-intro {
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .about-intro h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
+
+        .about-intro p {
+            font-size: 1.1rem;
+            color: var(--text-grey);
+            line-height: 1.8;
+        }
+
+        /* Showcase Image */
+        .showcase-image {
+            width: 100%;
+            height: auto;
+            margin-bottom: 80px;
+            border-radius: 2px;
+            /* Placeholder background if image missing */
+            background-color: #222;
+            display: block;
+        }
+
+        /* --- CONTENT GRID (Story & Values) --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr; /* Text wider than image */
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* Text Column */
+        .text-column h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .text-column p {
+            font-size: 1rem;
+            color: var(--text-grey);
+            margin-bottom: 30px;
+            text-align: justify;
+        }
+
+        .values-list {
+            margin-top: 40px;
+        }
+
+        .value-item {
+            margin-bottom: 20px;
+        }
+        
+        .value-title {
+            color: #fff;
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        .value-desc {
+            color: var(--text-grey);
+            display: inline;
+        }
+
+        /* Image Column */
+        .image-column {
+            position: relative;
+            height: 100%;
+        }
+
+        .image-column img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 2px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #0a0a0a;
+            color: #666;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 80px;
+            border-top: 1px solid #222;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .content-grid { grid-template-columns: 1fr; gap: 40px; }
+            .about-intro h1 { font-size: 2.5rem; }
+        }
+        @media (max-width: 600px) {
+            header { padding: 20px; }
+            nav ul { display: none; } /* Simplified for mobile */
+            .logo { font-size: 1.1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <div class="logo-icon"></div>
+            BRITIUM GALLERY
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Collections</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <span>🔍</span>
+            <span>👤</span>
+        </div>
+    </header>
+
+    <div class="container">
+        
+        <section class="about-intro">
+            <h1>ABOUT US</h1>
+            <p>
+                At Britium Gallery, we merge timeless elegance with modern sophistication. As a luxury fashion destination, we specialize in curating high-quality handbags, accessories, and lifestyle pieces that speak to a refined aesthetic. Our mission is to deliver an unparalleled shopping experience that blends design, function, and story — whether in-store or online.
+            </p>
+        </section>
+
+        <img src="images/shelf-display.jpg" alt="Luxury Handbag Display" class="showcase-image">
+
+        <div class="content-grid">
+            
+            <div class="text-column">
+                <h3>Our Story</h3>
+                <p>
+                    Britium Gallery was born from a desire to elevate everyday elegance. What began as a boutique concept has evolved into a digital-first brand, bridging traditional craftsmanship with innovative retail experiences. Each piece we feature is handpicked for its artistry, authenticity, and timeless appeal.
+                </p>
+                <p>
+                    Our journey has taken us from intimate showrooms to a scalable eCommerce platform — not to sell more, but to reach further, offering curated luxury to those who appreciate the finer details.
+                </p>
+
+                <div class="values-list">
+                    <h3>Our Values</h3>
+                    
+                    <div class="value-item">
+                        <span class="value-title">Elegance in Simplicity –</span>
+                        <span class="value-desc">We believe true luxury is subtle and refined.</span>
+                    </div>
+
+                    <div class="value-item">
+                        <span class="value-title">Craftsmanship & Authenticity –</span>
+                        <span class="value-desc">Every item we offer reflects intentional design and quality.</span>
+                    </div>
+
+                    <div class="value-item">
+                        <span class="value-title">Customer-Centric –</span>
+                        <span class="value-desc">We exist to inspire confidence and ease through seamless, personalized service.</span>
+                    </div>
+
+                    <div class="value-item">
+                        <span class="value-title">Innovation with Purpose –</span>
+                        <span class="value-desc">From digital design to data-driven retail, we embrace modern tools to enhance our timeless identity.</span>
+                    </div>
+
+                    <div class="value-item">
+                        <span class="value-title">Sustainability & Responsibility –</span>
+                        <span class="value-desc">We aim to curate responsibly, valuing durability, ethics, and meaningful consumption.</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="image-column">
+                <img src="images/balloon-bag-street.jpg" alt="City Street Luxury">
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer>
+        &copy; 2025 Britium Gallery. All Rights Reserved.
+    </footer>
+
+</body>
+</html>

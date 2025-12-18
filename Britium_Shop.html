@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Britium | Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --header-bg: #121212;
+            --gold-accent: #d4af37;
+            --text-black: #000000;
+            --text-gray: #555555;
+            --bg-light: #ffffff;
+            --bg-card: #f9f9f9;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-black);
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--header-bg);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: white;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--gold-accent);
+            letter-spacing: 1px;
+        }
+        
+        /* Simple SVG Placeholder for Logo Icon */
+        .logo-icon {
+            width: 24px;
+            height: 24px;
+            border: 2px solid var(--gold-accent);
+            transform: rotate(45deg);
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #ccc;
+            transition: 0.3s;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--gold-accent);
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .icon { cursor: pointer; font-size: 1.2rem; }
+
+        /* --- PAGE TITLE --- */
+        .page-title {
+            text-align: center;
+            padding: 60px 0 40px;
+        }
+
+        .page-title h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* --- MAIN LAYOUT --- */
+        .container {
+            display: grid;
+            grid-template-columns: 250px 1fr; /* Sidebar fixed width, Grid flexible */
+            gap: 50px;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px 100px;
+        }
+
+        /* --- SIDEBAR FILTERS --- */
+        .filters h3 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .filter-group {
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 500;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+
+        /* Price Slider Simulation */
+        .price-range-slider {
+            width: 100%;
+            height: 2px;
+            background: #ddd;
+            position: relative;
+            margin: 20px 0;
+        }
+        .price-range-slider::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 50%;
+            height: 2px;
+            background: black;
+        }
+        .slider-handle {
+            position: absolute;
+            left: 50%;
+            top: -6px;
+            width: 14px;
+            height: 14px;
+            background: black;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+        .price-label { font-size: 0.9rem; color: #666; }
+
+        /* Color Circles */
+        .color-options {
+            display: flex;
+            gap: 10px;
+        }
+        .color-circle {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 1px solid #ddd;
+        }
+        .c-black { background: #000; }
+        .c-brown { background: #8B4513; }
+        .c-dark { background: #3e2723; }
+        .c-tan { background: #d2a679; }
+        .c-beige { background: #f5f5dc; }
+
+        /* Checkbox List */
+        .checkbox-list label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #444;
+            cursor: pointer;
+        }
+        .checkbox-list input { margin-right: 10px; }
+
+        /* --- PRODUCT GRID --- */
+        .shop-header {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 30px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 Columns exactly like image */
+            gap: 30px;
+        }
+
+        .product-card {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .product-img {
+            background-color: var(--bg-card);
+            width: 100%;
+            aspect-ratio: 1 / 1; /* Square images */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Placeholder graphic for the bag image */
+        .bag-placeholder {
+            width: 60%;
+            height: 60%;
+            border: 2px solid #ddd;
+            border-radius: 10px 10px 0 0;
+            position: relative;
+            background: #e0e0e0;
+        }
+        .bag-placeholder::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            border: 3px solid #bbb;
+            border-radius: 50% 50% 0 0;
+            border-bottom: 0;
+        }
+        
+        .product-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            /* In a real scenario, you put the <img> tag here. 
+               Using placeholders below for the code to work standalone. */
+        }
+
+        .p-title {
+            font-weight: 500;
+            font-size: 1rem;
+            margin-top: 10px;
+        }
+
+        .p-price {
+            color: #333;
+            font-weight: 400;
+            font-size: 0.95rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 992px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .container { grid-template-columns: 1fr; }
+            .filters { display: none; /* Hide filters on mobile for simplicity */ }
+            header { padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <div class="logo-icon"></div>
+            BRITIUM
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#" class="active">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <span class="icon">🔍</span> <span class="icon">👤</span> </div>
+    </header>
+
+    <section class="page-title">
+        <h1>SHOP</h1>
+    </section>
+
+    <div class="container">
+        
+        <aside class="filters">
+            <h3>Filters</h3>
+
+            <div class="filter-group">
+                <div class="filter-header">
+                    <span>Category</span>
+                    <span>⌵</span>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-header">
+                    <span>Brand</span>
+                    <span>⌵</span>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-header"><span>Price</span></div>
+                <div class="price-range-slider">
+                    <div class="slider-handle"></div>
+                </div>
+                <div class="price-label">$500 to $5000</div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-header"><span>Color</span></div>
+                <div class="color-options">
+                    <div class="color-circle c-black"></div>
+                    <div class="color-circle c-tan"></div>
+                    <div class="color-circle c-dark"></div>
+                    <div class="color-circle c-brown"></div>
+                    <div class="color-circle c-beige"></div>
+                </div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-header">
+                    <span>Color</span> <span>^</span>
+                </div>
+                <div class="checkbox-list">
+                    <label><input type="checkbox"> Black</label>
+                    <label><input type="checkbox"> Brown</label>
+                    <label><input type="checkbox"> Beige</label>
+                    <label><input type="checkbox"> Light Brown</label>
+                </div>
+            </div>
+            
+            <div class="filter-group">
+                <div class="filter-header"><span>Price</span></div>
+                <div class="price-label">$500 - $5900</div>
+            </div>
+
+            <div class="filter-group">
+                <div class="filter-header"><span>Color</span> ^</div>
+                <div class="color-options">
+                    <div class="color-circle c-black"></div>
+                    <div class="color-circle c-tan"></div>
+                    <div class="color-circle c-brown"></div>
+                </div>
+            </div>
+
+        </aside>
+
+        <main>
+            <div class="shop-header">
+                <span>SORT BY Price: Low to High</span>
+            </div>
+
+            <div class="product-grid">
+                
+                <div class="product-card">
+                    <div class="product-img">
+                         <div style="background:#ddd; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">[Black Quilted Img]</div>
+                    </div>
+                    <div class="p-title">Quilted Leather Shoulder Bag</div>
+                    <div class="p-price">$2,300</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                        <div style="background:#e5d3b3; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">[Monogram Tote Img]</div>
+                    </div>
+                    <div class="p-title">Monogram Tote Bag</div>
+                    <div class="p-price">$1,800</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                         <div style="background:#ddd; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">[Satchel Bag Img]</div>
+                    </div>
+                    <div class="p-title">Satchel Bag</div>
+                    <div class="p-price">$1,500</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                         <div style="background:#e5d3b3; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">[Canvas Crossbody Img]</div>
+                    </div>
+                    <div class="p-title">Canvas Crossbody Bag</div>
+                    <div class="p-price">$1,200</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                         <div style="background:#ddd; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">[Studded Leather Img]</div>
+                    </div>
+                    <div class="p-title">Studded Leather Shoulder Bag</div>
+                    <div class="p-price">$1,700</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                         <div style="background:#8b5a2b; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">[Quilted Flap Img]</div>
+                    </div>
+                    <div class="p-title">Quilted Flap Bag</div>
+                    <div class="p-price">$2,000</div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-img">
+                         <div style="background:#a0522d; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">[Leather Shoulder Img]</div>
+                    </div>
+                    <div class="p-title">Leather Shoulder Bag</div>
+                    <div class="p-price">$2,100</div>
+                </div>
+
+                 <div class="product-card">
+                    <div class="product-img">
+                         <div style="background:#f5deb3; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">[Quilted Chain Img]</div>
+                    </div>
+                    <div class="p-title">Quilted Chain Wallet</div>
+                    <div class="p-price">$2,400</div>
+                </div>
+
+                 <div class="product-card">
+                    <div class="product-img">
+                         <div style="background:#a0522d; width:100%; height:100%; display:flex; align-items:center; justify-content:center;">[Monogram Satchel Img]</div>
+                    </div>
+                    <div class="p-title">Monogram Canvas Satchel</div>
+                    <div class="p-price">$2,300</div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+</body>
+</html>

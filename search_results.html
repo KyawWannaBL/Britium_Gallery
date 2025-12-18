@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results | Britium Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        :root {
+            --bg-cream: #f9f6f2; /* Light creamy background from image */
+            --text-black: #1a1a1a;
+            --text-grey: #555555;
+            --accent-gold: #bfa060;
+            --border-color: #e5e5e5;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Jost', sans-serif;
+            background-color: var(--bg-cream);
+            color: var(--text-black);
+            line-height: 1.5;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER (Consistent with previous pages) --- */
+        header {
+            background-color: #111; /* Dark header from Image 4 */
+            color: #fff;
+            padding: 20px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            color: #d4af37; /* Gold Logo */
+        }
+        
+        /* Logo Icon Placeholder */
+        .logo-icon {
+            width: 20px;
+            height: 20px;
+            border: 1px solid #d4af37;
+            transform: rotate(45deg);
+        }
+
+        nav ul { display: flex; gap: 30px; }
+        nav a { 
+            text-transform: uppercase; 
+            font-size: 0.85rem; 
+            letter-spacing: 1px; 
+            color: #ccc;
+            transition: 0.3s;
+        }
+        nav a:hover { color: #d4af37; }
+
+        .header-icons { font-size: 1.2rem; display: flex; gap: 20px; cursor: pointer; }
+
+        /* --- SEARCH TITLE SECTION --- */
+        .search-header {
+            text-align: center;
+            padding: 60px 20px 40px;
+        }
+
+        .search-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 400;
+            margin-bottom: 10px;
+            color: #111;
+        }
+
+        .search-header p {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        /* --- CONTROLS (Results Count & Sort) --- */
+        .controls {
+            max-width: 1400px;
+            margin: 0 auto 30px;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--text-grey);
+        }
+
+        .sort-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sort-select {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            background: transparent;
+            font-family: inherit;
+            cursor: pointer;
+        }
+
+        /* --- PRODUCT GRID --- */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr); /* 4 Columns per row */
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto 80px;
+            padding: 0 40px;
+        }
+
+        .product-card {
+            text-align: left;
+            transition: transform 0.3s;
+        }
+        
+        .product-card:hover { transform: translateY(-5px); }
+
+        .pc-image {
+            width: 100%;
+            aspect-ratio: 1 / 1.1;
+            background-color: #f0ebe5; /* Slightly darker cream for image bg */
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .pc-image img {
+            width: 85%;
+            height: auto;
+            mix-blend-mode: multiply;
+        }
+
+        .pc-title {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #111;
+            line-height: 1.3;
+        }
+
+        .pc-brand {
+            font-size: 0.85rem;
+            color: var(--text-grey);
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .pc-price {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #111;
+        }
+
+        /* --- BOTTOM PROMO BANNERS (Split Layout) --- */
+        .promo-section {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            max-width: 100%;
+        }
+
+        .promo-left {
+            background-image: url('showroom-bg.jpg'); /* Placeholder for showroom image */
+            background-color: #4a3b32; /* Fallback dark brown */
+            color: #fff;
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        /* Simulating the "BRITIUM SHOWROOM" text overlay */
+        .promo-left h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            letter-spacing: 5px;
+            color: #f0e6d2;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+        
+        .promo-left h3 {
+            font-family: 'Jost', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #d4af37;
+        }
+
+        /* Simulating the bag display at the bottom of the left banner */
+        .promo-bag-grid {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 50%;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            /* In real implementation, you'd place the bag image collage here */
+        }
+
+        .promo-right {
+            background-color: #bfa060; /* Gold/Mustard background */
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .promo-right h2 {
+            position: absolute;
+            top: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            text-align: center;
+            font-family: 'Jost', sans-serif;
+            font-weight: 700;
+            font-size: 3.5rem;
+            color: rgba(255, 255, 255, 0.4); /* Faded text effect */
+            text-transform: uppercase;
+            line-height: 0.9;
+            z-index: 1;
+        }
+
+        .promo-right img {
+            width: 80%;
+            position: relative;
+            z-index: 2;
+            mix-blend-mode: multiply;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 1024px) {
+            .product-grid { grid-template-columns: repeat(3, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .product-grid { grid-template-columns: repeat(2, 1fr); padding: 0 20px; }
+            .promo-section { grid-template-columns: 1fr; }
+            .search-header h1 { font-size: 2.5rem; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <div class="logo-icon"></div>
+            BRITIUM
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <span>🔍</span>
+            <span>👤</span>
+        </div>
+    </header>
+
+    <section class="search-header">
+        <h1>Search Results</h1>
+        <p>Results for “handbag”</p>
+    </section>
+
+    <div class="controls">
+        <span>37 results</span>
+        <div class="sort-wrapper">
+            <span>Sort by</span>
+            <select class="sort-select">
+                <option>Relevance</option>
+                <option>Price: Low to High</option>
+                <option>Price: High to Low</option>
+                <option>Newest</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="product-grid">
+
+        <div class="product-card">
+            <div class="pc-image"><img src="images/neverfull.jpg" alt="Bag"></div>
+            <div class="pc-title">Louis Vuitton Neverfull MM</div>
+            <div class="pc-price">$1,860</div>
+        </div>
+
+        <div class="product-card">
+            <div class="pc-image"><img src="images/gucci-marmont.jpg" alt="Bag"></div>
+            <div class="pc-title">Gucci GG Marmont</div>
+            <div class="pc-price">$2,250</div>
+        </div>
+
+        <div class="product-card">
+            <div class="pc-image"><img src="images/mk-tote.jpg" alt="Bag"></div>
+            <div class="pc-title">Michael Kors Satchel</div>
+            <div class="pc-price">$350</div>
+        </div>
+
+        <div class="product-card">
+            <div class="pc-image"><img src="images/chanel-flap.jpg" alt="Bag"></div>
+            <div class="pc-title">Chanel Classic Flap</div>
+            <div class="pc-price">$8,800</div>
+        </div>
+
+        <div class="product-card">
+            <div class="pc-image"><img src="images/tory-burch.jpg" alt="Bag"></div>
+            <div class="pc-title">Tory Burch Kira Chevron</div>
+            <div class="pc-price">$498</div>
+        </div>
+
+        <div class="product-card">
+            <div class="pc-image"><img src="images/dior-saddle.jpg" alt="Bag"></div>
+            <div class="pc-title">Dior Saddle Bag</div>
+            <div class="pc-price">$3,350</div>
+        </div>
+
+        <div class="product-card">
+            <div class="pc-image"><img src="images/ysl-loulou.jpg" alt="Bag"></div>
+            <div class="pc-title">YSL LouLou Matelassé</div>
+            <div class="pc-price">$2,590</div>
+        </div>
+
+        <div class="product-card">
+            <div class="pc-image"><img src="images/bottega-jodie.jpg" alt="Bag"></div>
+            <div class="pc-title">Bottega Veneta Jodie</div>
+            <div class="pc-price">$2,650</div>
+        </div>
+
+        <div class="product-card">
+            <div class="pc-image"><img src="images/BVOSBG000001.jpg" alt="Bag"></div>
+            <div class="pc-title">Monogrammed Crossbody (Gold Logo)</div>
+            <div class="pc-price">$90</div>
+        </div>
+
+        <div class="product-card">
+            <div class="pc-image"><img src="images/BVOSBG000002.jpg" alt="Bag"></div>
+            <div class="pc-title">Classic Monogram Saddle Bag</div>
+            <div class="pc-price">$52</div>
+        </div>
+
+        <div class="product-card">
+            <div class="pc-image"><img src="images/BVOSBG000024.jpg" alt="Bag"></div>
+            <div class="pc-title">Luxe Leather Hobo Bag</div>
+            <div class="pc-price">$105</div>
+        </div>
+
+        <div class="product-card">
+            <div class="pc-image"><img src="images/BVOSBG000031.jpg" alt="Bag"></div>
+            <div class="pc-title">Elegant Structured Top Handle</div>
+            <div class="pc-price">$77</div>
+        </div>
+
+    </div>
+
+    <section class="promo-section">
+        <div class="promo-left">
+            <h2>BRITIUM</h2>
+            <h3>SHOWROOM</h3>
+            <div class="promo-bag-grid"></div> 
+        </div>
+
+        <div class="promo-right">
+            <h2>LOUIS<br>VUITTON</h2>
+            <img src="images/lv-feature-bag.png" alt="Louis Vuitton Feature">
+        </div>
+    </section>
+
+</body>
+</html>
