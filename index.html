@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Britium Gallery & Ventures | Luxury & Innovation</title>
+    <title>Britium Gallery | Luxury & Ventures</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     
     <style>
@@ -52,6 +52,7 @@
             backdrop-filter: blur(10px);
         }
 
+        /* Logo acts as Home button */
         .logo {
             font-size: 1.5rem;
             color: var(--gold-accent);
@@ -59,13 +60,14 @@
             display: flex;
             flex-direction: column;
             line-height: 1;
+            cursor: pointer;
         }
         .logo span { font-size: 0.65rem; color: #fff; letter-spacing: 3px; margin-top: 4px; }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 25px;
         }
 
         nav a {
@@ -90,19 +92,18 @@
             align-items: center;
             justify-content: center;
             text-align: center;
-            background: radial-gradient(circle, rgba(35,23,18,1) 0%, rgba(26,15,10,1) 100%);
             overflow: hidden;
         }
 
-        /* Simulated Background Image if file missing */
+        /* Using 'a1.jpg' as the main hero background based on your file list */
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('images/storefront-gold-bg.jpg'); /* Ensure this matches your file */
+            background-image: url('a1.jpg'); 
             background-size: cover;
             background-position: center;
-            opacity: 0.4;
+            opacity: 0.5; /* Darken image for text readability */
             z-index: 0;
         }
 
@@ -136,12 +137,12 @@
         }
 
         .btn-primary { background-color: var(--gold-accent); color: var(--bg-dark); }
-        .btn-primary:hover { background-color: var(--gold-dark); border-color: var(--gold-dark); }
+        .btn-primary:hover { background-color: var(--gold-dark); border-color: var(--gold-dark); transform: translateY(-3px);}
 
         .btn-secondary { background-color: transparent; color: var(--gold-accent); }
-        .btn-secondary:hover { background-color: rgba(222, 187, 110, 0.1); color: #fff; }
+        .btn-secondary:hover { background-color: rgba(222, 187, 110, 0.1); color: #fff; transform: translateY(-3px);}
 
-        /* --- SPLIT CATEGORY SECTION --- */
+        /* --- SPLIT SECTION --- */
         .split-section {
             display: flex;
             flex-wrap: wrap;
@@ -155,20 +156,28 @@
             text-align: center;
             border-right: 1px solid var(--border-gold);
             transition: 0.3s;
+            background-size: cover;
+            background-position: center;
+            position: relative;
         }
+        
+        /* Using specific images for split backgrounds */
+        .split-fashion { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('a3.jpg'); }
+        .split-ventures { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('a4.jpg'); }
+
         .split-col:last-child { border-right: none; }
-        .split-col:hover { background-color: rgba(255,255,255,0.02); }
+        
+        .split-col h2 { font-size: 2rem; color: #fff; margin-bottom: 15px; position: relative; z-index: 2;}
+        .split-col p { color: #ddd; margin-bottom: 30px; position: relative; z-index: 2;}
+        .split-col .btn { position: relative; z-index: 2; }
 
-        .split-col h2 { font-size: 2rem; color: #fff; margin-bottom: 15px; }
-        .split-col p { color: var(--text-grey); margin-bottom: 30px; }
-
-        /* --- FEATURED GRID (Mix of Fashion & Ventures) --- */
+        /* --- FEATURED GRID --- */
         .featured { padding: 80px 5%; text-align: center; }
         .featured h2 { font-size: 2.5rem; color: var(--gold-accent); margin-bottom: 50px; }
 
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
         }
 
@@ -177,23 +186,28 @@
             border: 1px solid var(--border-gold);
             cursor: pointer;
             transition: transform 0.3s;
+            overflow: hidden;
         }
         .card:hover { transform: translateY(-10px); border-color: var(--gold-accent); }
 
         .card-img {
-            height: 250px;
+            height: 300px;
             background-color: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-grey);
-            font-style: italic;
+            overflow: hidden;
         }
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        .card:hover .card-img img { transform: scale(1.05); }
+
         .card-body { padding: 20px; }
         .card-title { font-size: 1.1rem; color: #fff; margin-bottom: 5px; }
         .card-meta { font-size: 0.9rem; color: var(--gold-accent); }
 
-        /* --- FOOTER (The Sitemap) --- */
+        /* --- FOOTER --- */
         footer {
             background-color: #050505;
             padding: 80px 50px 30px;
@@ -211,7 +225,7 @@
         }
 
         .footer-col h4 {
-            color: #fff;
+            color: var(--text-light);
             margin-bottom: 25px;
             letter-spacing: 1px;
             font-size: 1rem;
@@ -298,24 +312,22 @@
 <body>
 
     <header>
-        <div class="logo">
+        <a href="index.html" class="logo">
             BRITIUM
             <span>GALLERY & VENTURES</span>
-        </div>
+        </a>
         <nav>
             <ul>
                 <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="shop.html">Fashion Shop</a></li>
-                <li><a href="gallery.html">Ventures Gallery</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="contact_us.html">Contact</a></li>
+                <li><a href="Britium_Shop.html">Shop</a></li> <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about_us.html">About</a></li> <li><a href="contact_us.html">Contact</a></li>
             </ul>
         </nav>
         <div class="header-icons">
             <a href="search_results.html" title="Search">🔍</a>
-            <a href="customer_login.html" title="Customer Login">👤</a>
-            <a href="wishlist.html" title="Wishlist">♡</a>
-            <a href="shopping_cart.html" title="Cart">🛒</a>
+            <a href="login_code.html" title="Login / Profile">👤</a>
+            <a href="wishlist.html" title="My Wishlist">♡</a>
+            <a href="shopping_cart.html" title="Shopping Cart">🛒</a>
         </div>
     </header>
 
@@ -324,19 +336,19 @@
             <h1>WHERE LUXURY MEETS<br>INNOVATION</h1>
             <p>Explore our exquisite handbags or discover our cutting-edge business solutions.</p>
             <div class="cta-group">
-                <a href="shop.html" class="btn btn-primary">SHOP FASHION</a>
+                <a href="Britium_Shop.html" class="btn btn-primary">SHOP FASHION</a>
                 <a href="gallery.html" class="btn btn-secondary">BUSINESS VENTURES</a>
             </div>
         </div>
     </section>
 
     <section class="split-section">
-        <div class="split-col">
+        <div class="split-col split-fashion">
             <h2>The Gallery</h2>
             <p>Timeless handbags, totes, and accessories crafted for elegance.</p>
-            <a href="shop.html" class="btn btn-secondary">VIEW COLLECTION</a>
+            <a href="Britium_Shop.html" class="btn btn-secondary">VIEW COLLECTION</a>
         </div>
-        <div class="split-col">
+        <div class="split-col split-ventures">
             <h2>The Ventures</h2>
             <p>Flexitanks, Dual Screens, and Corporate Gifting solutions.</p>
             <a href="gallery.html" class="btn btn-secondary">VIEW SOLUTIONS</a>
@@ -347,35 +359,35 @@
         <h2>Trending Now</h2>
         <div class="grid-container">
             
-            <div class="card" onclick="window.location.href='product.html'">
-                <div class="card-img">[The Ivory Elegance]</div>
+            <div class="card" onclick="window.location.href='gallery.html'">
+                <div class="card-img"><img src="a12.jpg" alt="Fashion Item"></div>
                 <div class="card-body">
-                    <div class="card-title">The Ivory Elegance</div>
-                    <div class="card-meta">Luxury Handbag</div>
+                    <div class="card-title">Luxury Handbag Series</div>
+                    <div class="card-meta">View Collection</div>
                 </div>
             </div>
 
-            <div class="card" onclick="window.location.href='dual_screen_extender.html'">
-                <div class="card-img">[Dual Screen Extender]</div>
+            <div class="card" onclick="window.location.href='gallery.html'">
+                <div class="card-img"><img src="48.jpg" alt="Product"></div>
                 <div class="card-body">
-                    <div class="card-title">Dual Screen Extender</div>
-                    <div class="card-meta">Tech Innovation</div>
+                    <div class="card-title">Exclusive Arrivals</div>
+                    <div class="card-meta">New Season</div>
                 </div>
             </div>
 
-            <div class="card" onclick="window.location.href='flexitank.html'">
-                <div class="card-img">[Flexitank Solutions]</div>
+            <div class="card" onclick="window.location.href='gallery.html'">
+                <div class="card-img"><img src="52.jpg" alt="Tech Item"></div>
                 <div class="card-body">
-                    <div class="card-title">Flexitank Logistics</div>
-                    <div class="card-meta">Bulk Transport</div>
+                    <div class="card-title">Modern Innovations</div>
+                    <div class="card-meta">Tech & Gadgets</div>
                 </div>
             </div>
 
-            <div class="card" onclick="window.location.href='promotiongift.html'">
-                <div class="card-img">[Corporate Gifts]</div>
+            <div class="card" onclick="window.location.href='gallery.html'">
+                <div class="card-img"><img src="60.jpg" alt="Corporate Gift"></div>
                 <div class="card-body">
-                    <div class="card-title">Premium Gift Sets</div>
-                    <div class="card-meta">Corporate Branding</div>
+                    <div class="card-title">Corporate Solutions</div>
+                    <div class="card-meta">Business Gifting</div>
                 </div>
             </div>
 
@@ -398,7 +410,7 @@
             <div class="footer-col">
                 <h4>Discover Britium</h4>
                 <ul>
-                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="about_us.html">Our Story</a></li>
                     <li><a href="careers.html">Careers</a></li>
                     <li><a href="blog.html">Journal</a></li>
                     <li><a href="store_locator.html">Find a Store</a></li>
@@ -408,9 +420,9 @@
             <div class="footer-col">
                 <h4>For Business</h4>
                 <ul>
-                    <li><a href="flexitank.html">Flexitank Services</a></li>
-                    <li><a href="promotiongift.html">Corporate Gifting</a></li>
-                    <li><a href="dual_screen_extender.html">Tech Hardware</a></li>
+                    <li><a href="gallery.html">Flexitank Services</a></li>
+                    <li><a href="gallery.html">Corporate Gifting</a></li>
+                    <li><a href="gallery.html">Tech Hardware</a></li>
                     <li><a href="contact_us.html">B2B Contact</a></li>
                 </ul>
             </div>
@@ -481,14 +493,14 @@
                 appendMessage(text, 'user');
                 userMsg.value = '';
 
-                // Bot Logic
+                // Bot Logic with direct links to your files
                 setTimeout(() => {
                     let response = "I am connecting you to our support team.";
                     const lower = text.toLowerCase();
 
                     // Fashion Logic
                     if(lower.includes('bag') || lower.includes('shop') || lower.includes('tote')) {
-                        response = "Explore our latest collection in the <a href='shop.html' style='color:#fff; text-decoration:underline;'>Fashion Shop</a>.";
+                        response = "Explore our latest collection in the <a href='Britium_Shop.html' style='color:#fff; text-decoration:underline;'>Fashion Shop</a>.";
                     }
                     // Business Logic
                     else if(lower.includes('flexitank') || lower.includes('screen') || lower.includes('gift')) {
@@ -505,7 +517,7 @@
                         response = "Find our nearest boutique using the <a href='store_locator.html' style='color:#fff; text-decoration:underline;'>Store Locator</a>.";
                     }
                     else if(lower.includes('login') || lower.includes('account')) {
-                        response = "Please log in to your account <a href='customer_login.html' style='color:#fff; text-decoration:underline;'>here</a>.";
+                        response = "Please log in to your account <a href='login_code.html' style='color:#fff; text-decoration:underline;'>here</a>.";
                     }
 
                     appendMessage(response, 'bot');
