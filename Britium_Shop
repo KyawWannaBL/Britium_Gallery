@@ -149,7 +149,7 @@
         .product-grid {
             flex: 1;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
         }
 
@@ -354,455 +354,455 @@
         <main class="product-grid" id="productGrid">
 
             <div class="product-card" data-category="crossbody" data-price="90000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000001.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000001.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Monogrammed Crossbody Bag with Gold Logo</div>
                 <div class="pc-price">MMK 90,000.00</div>
             </div>
 
             <div class="product-card" data-category="tote" data-price="52500" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000002.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000002.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Classic Monogram Saddle Bag</div>
                 <div class="pc-price">MMK 52,500.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="78000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000003.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000003.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Signature Monogram Crossbody Bag</div>
                 <div class="pc-price">MMK 78,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="80000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000004.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000004.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Signature Monogram Hobo Bag</div>
                 <div class="pc-price">MMK 80,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="83000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000005.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000005.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Elegant Monogram Crossbody Bag</div>
                 <div class="pc-price">MMK 83,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="77000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000006.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000006.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Chic Monogrammed Top Handle Bag</div>
                 <div class="pc-price">MMK 77,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="75000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000007.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000007.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Classic Monogram Flap Shoulder Bag</div>
                 <div class="pc-price">MMK 75,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="82000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000008.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000008.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Vintage Monogram Chain Shoulder Bag</div>
                 <div class="pc-price">MMK 82,000.00</div>
             </div>
 
             <div class="product-card" data-category="clutch" data-price="108000" data-color="black">
-                <div class="pc-img"><img src="images/BVOSBG000009.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000009.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Midnight Glow Signature Clutch</div>
                 <div class="pc-price">MMK 108,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="79000" data-color="white">
-                <div class="pc-img"><img src="images/BVOSBG000010.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000010.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Stylish Stripe Crossbody Bag</div>
                 <div class="pc-price">MMK 79,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="92000" data-color="red">
-                <div class="pc-img"><img src="images/BVOSBG000011.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000011.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Vibrant Stripe Monogram Crossbody</div>
                 <div class="pc-price">MMK 92,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="110000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000012.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000012.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Chic Leather Crossbody Bag with Rabbit</div>
                 <div class="pc-price">MMK 110,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="73000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000013.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000013.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Classic Double Buckle Shoulder Bag</div>
                 <div class="pc-price">MMK 73,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="88000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000014.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000014.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Classic MK Monogram Handbag</div>
                 <div class="pc-price">MMK 88,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="74000" data-color="red">
-                <div class="pc-img"><img src="images/BVOSBG000015.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000015.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Scarlet Elegance Chain Crossbody</div>
                 <div class="pc-price">MMK 74,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="115000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000016.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000016.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Chic Monogram Backpack & Elegant Clutch</div>
                 <div class="pc-price">MMK 115,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="77000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000017.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000017.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Luxe Monogram Flap Shoulder Bag</div>
                 <div class="pc-price">MMK 77,000.00</div>
             </div>
 
             <div class="product-card" data-category="tote" data-price="79000" data-color="white">
-                <div class="pc-img"><img src="images/BVOSBG000018.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000018.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Elegant Color-Block Tote Bag</div>
                 <div class="pc-price">MMK 79,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="66000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000019.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000019.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Trendy Monogram Crossbody</div>
                 <div class="pc-price">MMK 66,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="86000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000020.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000020.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Elegant Monogram Crossbody</div>
                 <div class="pc-price">MMK 86,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="88000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000021.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000021.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Luxe Monogram Structured Top Handle</div>
                 <div class="pc-price">MMK 88,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="93000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000022.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000022.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Classic Monogram Satchel</div>
                 <div class="pc-price">MMK 93,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="70000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000023.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000023.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Modern Leather Monogram Satchel</div>
                 <div class="pc-price">MMK 70,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="105000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000024.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000024.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Luxe Leather Hobo Bag</div>
                 <div class="pc-price">MMK 105,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="87000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000025.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000025.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Heritage-Inspired Monogram Satchel</div>
                 <div class="pc-price">MMK 87,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="74000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000026.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000026.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Signature Monogram Saddle Crossbody Bag</div>
                 <div class="pc-price">MMK 74,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="51000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000027.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000027.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Luxe Leather Hobo Bag</div>
                 <div class="pc-price">MMK 51,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="84000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000028.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000028.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Elegant Monogram Chain Shoulder Bag</div>
                 <div class="pc-price">MMK 84,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="73000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000029.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000029.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Luxe Monogrammed Mini Crossbody Bag</div>
                 <div class="pc-price">MMK 73,000.00</div>
             </div>
 
             <div class="product-card" data-category="tote" data-price="80000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000030.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000030.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Smile Charm Mini Tote Bag</div>
                 <div class="pc-price">MMK 80,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="77000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000031.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000031.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Elegant Structured Top Handle Handbag</div>
                 <div class="pc-price">MMK 77,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="80000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000032.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000032.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Stylish Mini Top Handle Handbag</div>
                 <div class="pc-price">MMK 80,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="78000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000033.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000033.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Luxe Monogram Chain Crossbody Bag</div>
                 <div class="pc-price">MMK 78,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="88500" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000034.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000034.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Classic Elegant Crossbody Bag</div>
                 <div class="pc-price">MMK 88,500.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="88500" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000035.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000035.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Elegant Chain Strap Shoulder Bag</div>
                 <div class="pc-price">MMK 88,500.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="79000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000036.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000036.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Woven Leather Structured Handbag</div>
                 <div class="pc-price">MMK 79,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="78000" data-color="black">
-                <div class="pc-img"><img src="images/BVOSBG000037.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000037.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Sleek Minimalist Hobo Bag</div>
                 <div class="pc-price">MMK 78,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="84000" data-color="white">
-                <div class="pc-img"><img src="images/BVOSBG000038.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000038.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Floral Chain Accent Shoulder Bag</div>
                 <div class="pc-price">MMK 84,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="90000" data-color="black">
-                <div class="pc-img"><img src="images/BVOSBG000039.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000039.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Elegant Gold Chain Quilted Shoulder Bag</div>
                 <div class="pc-price">MMK 90,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="84000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000040.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000040.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Satchel Bag Luxe Monogram Saddle Crossbody</div>
                 <div class="pc-price">MMK 84,000.00</div>
             </div>
 
             <div class="product-card" data-category="tote" data-price="92000" data-color="black">
-                <div class="pc-img"><img src="images/BVOSBG000041.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000041.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Luxe Classic Leather Tote</div>
                 <div class="pc-price">MMK 92,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="80000" data-color="white">
-                <div class="pc-img"><img src="images/BVOSBG000042.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000042.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Luxe Minimalist Leather Flap</div>
                 <div class="pc-price">MMK 80,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="85000" data-color="black">
-                <div class="pc-img"><img src="images/BVOSBG000043.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000043.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Luxe Quilted Leather Chain</div>
                 <div class="pc-price">MMK 85,000.00</div>
             </div>
 
             <div class="product-card" data-category="crossbody" data-price="80000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000044.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000044.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Monogram Vintage Crossbody</div>
                 <div class="pc-price">MMK 80,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="85000" data-color="black">
-                <div class="pc-img"><img src="images/BVOSBG000045.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000045.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Quilted Chain Shoulder Bag</div>
                 <div class="pc-price">MMK 85,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="80000" data-color="black">
-                <div class="pc-img"><img src="images/BVOSBG000046.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000046.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Elegant Mini Top Handle Bag</div>
                 <div class="pc-price">MMK 80,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="80000" data-color="black">
-                <div class="pc-img"><img src="images/BVOSBG000047.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000047.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Chic Leather Bucket Bag</div>
                 <div class="pc-price">MMK 80,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="85000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000048.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000048.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Crocodile-Textured Mini Handbag</div>
                 <div class="pc-price">MMK 85,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="95000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000049.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000049.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Vintage-Inspired Checkered Round Bag</div>
                 <div class="pc-price">MMK 95,000.00</div>
             </div>
 
             <div class="product-card" data-category="tote" data-price="85000" data-color="brown">
-                <div class="pc-img"><img src="images/BVOSBG000050.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVOSBG000050.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Collection</span>
                 <div class="pc-name">Signature Monogram Structured Tote</div>
                 <div class="pc-price">MMK 85,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="225000" data-color="black">
-                <div class="pc-img"><img src="images/BVBCFC-0016.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0016.jpg" alt="Bag"></div>
                 <span class="pc-brand">Dior</span>
                 <div class="pc-name">Lady Dior Style Handbag</div>
                 <div class="pc-price">MMK 225,000.00</div>
             </div>
 
             <div class="product-card" data-category="tote" data-price="225000" data-color="brown">
-                <div class="pc-img"><img src="images/BVBCFC-0012.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0012.jpg" alt="Bag"></div>
                 <span class="pc-brand">Coach</span>
                 <div class="pc-name">Coach Signature City Tote</div>
                 <div class="pc-price">MMK 225,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="285000" data-color="black">
-                <div class="pc-img"><img src="images/BVBCFC-0023.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0023.jpg" alt="Bag"></div>
                 <span class="pc-brand">Dior</span>
                 <div class="pc-name">Dior Signature Handbag</div>
                 <div class="pc-price">MMK 285,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="168000" data-color="white">
-                <div class="pc-img"><img src="images/BVBCFC-0011.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0011.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Gallery</span>
                 <div class="pc-name">Elegant Shoulder Bag</div>
                 <div class="pc-price">MMK 168,000.00</div>
             </div>
 
             <div class="product-card" data-category="tote" data-price="285000" data-color="brown">
-                <div class="pc-img"><img src="images/BVBCFC-0005.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0005.jpg" alt="Bag"></div>
                 <span class="pc-brand">Coach</span>
                 <div class="pc-name">Coach Brown Leather Tote</div>
                 <div class="pc-price">MMK 285,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="168000" data-color="brown">
-                <div class="pc-img"><img src="images/BVBCFC-0018.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0018.jpg" alt="Bag"></div>
                 <span class="pc-brand">Gucci Style</span>
                 <div class="pc-name">Gucci Style Shoulder Bag</div>
                 <div class="pc-price">MMK 168,000.00</div>
             </div>
 
             <div class="product-card" data-category="tote" data-price="168000" data-color="black">
-                <div class="pc-img"><img src="images/BVBCFC-0021.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0021.jpg" alt="Bag"></div>
                 <span class="pc-brand">Prada Style</span>
                 <div class="pc-name">Prada Style Black Tote</div>
                 <div class="pc-price">MMK 168,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="225000" data-color="brown">
-                <div class="pc-img"><img src="images/BVBCFC-0017.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0017.jpg" alt="Bag"></div>
                 <span class="pc-brand">Louis Vuitton</span>
                 <div class="pc-name">Louis Vuitton Metis Bag</div>
                 <div class="pc-price">MMK 225,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="225000" data-color="black">
-                <div class="pc-img"><img src="images/BVBCFC-0014.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0014.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Gallery</span>
                 <div class="pc-name">Elegant Black Handbag</div>
                 <div class="pc-price">MMK 225,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="225000" data-color="brown">
-                <div class="pc-img"><img src="images/BVBCFC-0008.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0008.jpg" alt="Bag"></div>
                 <span class="pc-brand">Gucci Style</span>
                 <div class="pc-name">Gucci Style Flap Bag</div>
                 <div class="pc-price">MMK 225,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="225000" data-color="brown">
-                <div class="pc-img"><img src="images/BVBCFC-0022.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0022.jpg" alt="Bag"></div>
                 <span class="pc-brand">Louis Vuitton</span>
                 <div class="pc-name">Louis Vuitton Capucines</div>
                 <div class="pc-price">MMK 225,000.00</div>
             </div>
 
             <div class="product-card" data-category="tote" data-price="168000" data-color="brown">
-                <div class="pc-img"><img src="images/BVBCFC-0007.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0007.jpg" alt="Bag"></div>
                 <span class="pc-brand">Louis Vuitton</span>
                 <div class="pc-name">Louis Vuitton OnTheGo Style</div>
                 <div class="pc-price">MMK 168,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="225000" data-color="brown">
-                <div class="pc-img"><img src="images/BVBCFC-0006.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0006.jpg" alt="Bag"></div>
                 <span class="pc-brand">Coach</span>
                 <div class="pc-name">Coach Satchel Bag</div>
                 <div class="pc-price">MMK 225,000.00</div>
             </div>
 
             <div class="product-card" data-category="handbag" data-price="225000" data-color="brown">
-                <div class="pc-img"><img src="images/BVBCFC-0010.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0010.jpg" alt="Bag"></div>
                 <span class="pc-brand">Britium Gallery</span>
                 <div class="pc-name">Classic Handbag</div>
                 <div class="pc-price">MMK 225,000.00</div>
             </div>
 
             <div class="product-card" data-category="clutch" data-price="200000" data-color="brown">
-                <div class="pc-img"><img src="images/BVBCFC-0020.jpg" alt="Bag"></div>
+                <div class="pc-img"><img src="BVBCFC-0020.jpg" alt="Bag"></div>
                 <span class="pc-brand">Louis Vuitton</span>
                 <div class="pc-name">Louis Vuitton Pochette</div>
                 <div class="pc-price">MMK 200,000.00</div>
@@ -932,4 +932,3 @@
 
 </body>
 </html>
-
