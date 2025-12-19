@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop | Britium Gallery</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- RESET & VARIABLES --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --bg-dark: #1a0f0a;       /* Deep Coffee/Black */
+            --bg-card: #231712;       /* Lighter panel background */
+            --gold-accent: #debb6e;   /* Metallic Gold */
+            --gold-dark: #b5904b;
+            --text-light: #ffffff;
+            --text-grey: #a0a0a0;
+            --chat-bg: #1a1a1a;
+            --border-gold: rgba(222, 187, 110, 0.2);
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { color: var(--gold-accent); }
+
+        /* --- HEADER --- */
+        header {
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border-gold);
+            background-color: rgba(26, 15, 10, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: var(--gold-accent);
+            font-weight: 700;
+            letter-spacing: 1px;
+            font-family: 'Playfair Display', serif;
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+        .logo span { font-size: 0.65rem; color: #fff; letter-spacing: 3px; margin-top: 4px; }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 400;
+        }
+
+        .header-icons {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+            font-size: 1.2rem;
+        }
+
+        /* --- PAGE HERO --- */
+        .page-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(rgba(26,15,10,0.8), rgba(26,15,10,1)), url('a3.jpg');
+            background-size: cover;
+            background-position: center;
+            border-bottom: 1px solid var(--border-gold);
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+        }
+
+        /* --- SHOP LAYOUT --- */
+        .shop-container {
+            display: flex;
+            padding: 50px 5%;
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Sidebar Filters */
+        .sidebar {
+            width: 250px;
+            flex-shrink: 0;
+            border-right: 1px solid var(--border-gold);
+            padding-right: 30px;
+        }
+
+        .filter-group { margin-bottom: 30px; }
+
+        .filter-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            color: var(--gold-accent);
+            margin-bottom: 15px;
+            border-bottom: 1px solid var(--border-gold);
+            padding-bottom: 5px;
+            display: inline-block;
+        }
+
+        .filter-list { list-style: none; }
+
+        .filter-list li {
+            margin-bottom: 10px;
+            color: var(--text-grey);
+            cursor: pointer;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .filter-list li:hover { color: var(--text-light); }
+
+        /* Custom Checkbox */
+        input[type="checkbox"] {
+            accent-color: var(--gold-accent);
+            cursor: pointer;
+            width: 16px;
+            height: 16px;
+        }
+
+        /* Product Grid */
+        .product-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-gold);
+            transition: 0.3s;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            border-color: var(--gold-accent);
+            transform: translateY(-5px);
+        }
+
+        .pc-img {
+            width: 100%;
+            height: 300px;
+            background-color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-grey);
+            font-style: italic;
+            overflow: hidden;
+        }
+        
+        .pc-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .pc-img img { transform: scale(1.05); }
+
+        .pc-brand {
+            font-size: 0.8rem;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 15px 0 5px;
+            display: block;
+            text-align: center;
+        }
+
+        .pc-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 5px;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .pc-price {
+            font-size: 1rem;
+            color: var(--gold-accent);
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #050505;
+            padding: 60px 50px 30px;
+            border-top: 1px solid #333;
+            color: #888;
+            font-size: 0.9rem;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        /* --- CHATBOT UI --- */
+        .chat-btn {
+            position: fixed; bottom: 30px; right: 30px;
+            width: 60px; height: 60px;
+            background-color: var(--gold-accent);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 28px; cursor: pointer; z-index: 999;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            transition: transform 0.3s;
+        }
+        .chat-btn:hover { transform: scale(1.1); }
+
+        .chat-box {
+            position: fixed; bottom: 100px; right: 30px;
+            width: 350px; height: 500px;
+            background-color: var(--chat-bg);
+            border: 1px solid var(--gold-accent);
+            border-radius: 12px;
+            display: none; flex-direction: column;
+            z-index: 999; overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+        .chat-box.open { display: flex; }
+
+        .chat-header {
+            background: #111; padding: 15px;
+            border-bottom: 1px solid var(--gold-accent);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .chat-header h4 { color: var(--gold-accent); font-size: 1rem; margin: 0; }
+        .close-chat { color: #fff; cursor: pointer; font-size: 1.2rem; }
+
+        .chat-content { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
+        
+        .msg { max-width: 80%; padding: 10px 15px; border-radius: 8px; font-size: 0.9rem; word-wrap: break-word; }
+        .msg.bot { background: rgba(222, 187, 110, 0.15); color: #fff; align-self: flex-start; border-bottom-left-radius: 2px; }
+        .msg.user { background: var(--gold-accent); color: #000; align-self: flex-end; border-bottom-right-radius: 2px; }
+
+        .chat-input-area {
+            padding: 15px; background: #111;
+            border-top: 1px solid #333;
+            display: flex; gap: 10px;
+        }
+        .chat-input {
+            flex: 1; padding: 12px; background: #222; border: 1px solid #444;
+            color: #fff; border-radius: 4px; outline: none;
+        }
+        .send-btn {
+            background: var(--gold-accent); border: none; padding: 0 15px;
+            font-weight: bold; cursor: pointer; border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media(max-width: 900px) {
+            .shop-container { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; margin-bottom: 30px; border-bottom: 1px solid var(--border-gold); padding-bottom: 20px; }
+            nav ul { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">
+            BRITIUM
+            <span>GALLERY</span>
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Britium_Shop.html" class="active" style="color: var(--gold-accent);">Shop</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="about_us.html">About</a></li>
+                <li><a href="contact_us.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div class="header-icons">
+            <a href="search_results.html" title="Search">🔍</a>
+            <a href="login_code.html" title="Login">👤</a>
+            <a href="wishlist.html" title="Wishlist">♡</a>
+            <a href="shopping_cart.html" title="Cart">🛒</a>
+        </div>
+    </header>
+
+    <div class="page-header">
+        <h1>Luxury Collection</h1>
+        <p style="color: var(--text-grey);">Curated accessories for the modern individual.</p>
+    </div>
+
+    <div class="shop-container">
+        
+        <aside class="sidebar">
+            <div class="filter-group">
+                <h4 class="filter-title">Category</h4>
+                <ul class="filter-list">
+                    <li><label><input type="checkbox" class="filter-check" data-filter="handbag"> Handbags</label></li>
+                    <li><label><input type="checkbox" class="filter-check" data-filter="tote"> Totes</label></li>
+                    <li><label><input type="checkbox" class="filter-check" data-filter="crossbody"> Crossbody</label></li>
+                    <li><label><input type="checkbox" class="filter-check" data-filter="clutch"> Clutch</label></li>
+                </ul>
+            </div>
+
+            <div class="filter-group">
+                <h4 class="filter-title">Price Range</h4>
+                <ul class="filter-list">
+                    <li><label><input type="checkbox" class="price-check" data-min="0" data-max="70000"> Under 70,000</label></li>
+                    <li><label><input type="checkbox" class="price-check" data-min="70000" data-max="90000"> 70,000 - 90,000</label></li>
+                    <li><label><input type="checkbox" class="price-check" data-min="90000" data-max="500000"> Above 90,000</label></li>
+                </ul>
+            </div>
+
+            <div class="filter-group">
+                <h4 class="filter-title">Color</h4>
+                <ul class="filter-list">
+                    <li><label><input type="checkbox" class="color-check" data-color="black"> Black</label></li>
+                    <li><label><input type="checkbox" class="color-check" data-color="brown"> Brown/Gold</label></li>
+                    <li><label><input type="checkbox" class="color-check" data-color="red"> Red/Burgundy</label></li>
+                    <li><label><input type="checkbox" class="color-check" data-color="white"> White/Cream</label></li>
+                </ul>
+            </div>
+        </aside>
+
+        <main class="product-grid" id="productGrid">
+
+            <div class="product-card" data-category="crossbody" data-price="90000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000001.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Monogrammed Crossbody Bag with Gold Logo</div>
+                <div class="pc-price">MMK 90,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="tote" data-price="52500" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000002.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Classic Monogram Saddle Bag</div>
+                <div class="pc-price">MMK 52,500.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="78000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000003.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Signature Monogram Crossbody Bag</div>
+                <div class="pc-price">MMK 78,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="80000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000004.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Signature Monogram Hobo Bag</div>
+                <div class="pc-price">MMK 80,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="83000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000005.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Elegant Monogram Crossbody Bag</div>
+                <div class="pc-price">MMK 83,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="77000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000006.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Chic Monogrammed Top Handle Bag</div>
+                <div class="pc-price">MMK 77,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="75000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000007.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Classic Monogram Flap Shoulder Bag</div>
+                <div class="pc-price">MMK 75,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="82000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000008.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Vintage Monogram Chain Shoulder Bag</div>
+                <div class="pc-price">MMK 82,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="clutch" data-price="108000" data-color="black">
+                <div class="pc-img"><img src="BVOSBG000009.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Midnight Glow Signature Clutch</div>
+                <div class="pc-price">MMK 108,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="79000" data-color="white">
+                <div class="pc-img"><img src="BVOSBG000010.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Stylish Stripe Crossbody Bag</div>
+                <div class="pc-price">MMK 79,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="92000" data-color="red">
+                <div class="pc-img"><img src="BVOSBG000011.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Vibrant Stripe Monogram Crossbody</div>
+                <div class="pc-price">MMK 92,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="110000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000012.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Chic Leather Crossbody Bag with Rabbit</div>
+                <div class="pc-price">MMK 110,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="73000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000013.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Classic Double Buckle Shoulder Bag</div>
+                <div class="pc-price">MMK 73,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="88000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000014.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Classic MK Monogram Handbag</div>
+                <div class="pc-price">MMK 88,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="74000" data-color="red">
+                <div class="pc-img"><img src="BVOSBG000015.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Scarlet Elegance Chain Crossbody</div>
+                <div class="pc-price">MMK 74,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="115000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000016.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Chic Monogram Backpack & Elegant Clutch</div>
+                <div class="pc-price">MMK 115,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="77000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000017.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Luxe Monogram Flap Shoulder Bag</div>
+                <div class="pc-price">MMK 77,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="tote" data-price="79000" data-color="white">
+                <div class="pc-img"><img src="BVOSBG000018.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Elegant Color-Block Tote Bag</div>
+                <div class="pc-price">MMK 79,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="66000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000019.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Trendy Monogram Crossbody</div>
+                <div class="pc-price">MMK 66,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="86000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000020.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Elegant Monogram Crossbody</div>
+                <div class="pc-price">MMK 86,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="88000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000021.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Luxe Monogram Structured Top Handle</div>
+                <div class="pc-price">MMK 88,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="93000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000022.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Classic Monogram Satchel</div>
+                <div class="pc-price">MMK 93,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="70000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000023.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Modern Leather Monogram Satchel</div>
+                <div class="pc-price">MMK 70,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="105000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000024.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Luxe Leather Hobo Bag</div>
+                <div class="pc-price">MMK 105,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="87000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000025.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Heritage-Inspired Monogram Satchel</div>
+                <div class="pc-price">MMK 87,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="74000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000026.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Signature Monogram Saddle Crossbody Bag</div>
+                <div class="pc-price">MMK 74,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="51000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000027.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Luxe Leather Hobo Bag</div>
+                <div class="pc-price">MMK 51,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="84000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000028.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Elegant Monogram Chain Shoulder Bag</div>
+                <div class="pc-price">MMK 84,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="73000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000029.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Luxe Monogrammed Mini Crossbody Bag</div>
+                <div class="pc-price">MMK 73,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="tote" data-price="80000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000030.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Smile Charm Mini Tote Bag</div>
+                <div class="pc-price">MMK 80,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="77000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000031.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Elegant Structured Top Handle Handbag</div>
+                <div class="pc-price">MMK 77,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="80000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000032.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Stylish Mini Top Handle Handbag</div>
+                <div class="pc-price">MMK 80,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="78000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000033.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Luxe Monogram Chain Crossbody Bag</div>
+                <div class="pc-price">MMK 78,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="88500" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000034.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Classic Elegant Crossbody Bag</div>
+                <div class="pc-price">MMK 88,500.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="88500" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000035.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Elegant Chain Strap Shoulder Bag</div>
+                <div class="pc-price">MMK 88,500.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="79000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000036.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Woven Leather Structured Handbag</div>
+                <div class="pc-price">MMK 79,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="78000" data-color="black">
+                <div class="pc-img"><img src="BVOSBG000037.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Sleek Minimalist Hobo Bag</div>
+                <div class="pc-price">MMK 78,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="84000" data-color="white">
+                <div class="pc-img"><img src="BVOSBG000038.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Floral Chain Accent Shoulder Bag</div>
+                <div class="pc-price">MMK 84,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="90000" data-color="black">
+                <div class="pc-img"><img src="BVOSBG000039.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Elegant Gold Chain Quilted Shoulder Bag</div>
+                <div class="pc-price">MMK 90,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="84000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000040.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Satchel Bag Luxe Monogram Saddle Crossbody</div>
+                <div class="pc-price">MMK 84,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="tote" data-price="92000" data-color="black">
+                <div class="pc-img"><img src="BVOSBG000041.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Luxe Classic Leather Tote</div>
+                <div class="pc-price">MMK 92,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="80000" data-color="white">
+                <div class="pc-img"><img src="BVOSBG000042.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Luxe Minimalist Leather Flap</div>
+                <div class="pc-price">MMK 80,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="85000" data-color="black">
+                <div class="pc-img"><img src="BVOSBG000043.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Luxe Quilted Leather Chain</div>
+                <div class="pc-price">MMK 85,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="crossbody" data-price="80000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000044.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Monogram Vintage Crossbody</div>
+                <div class="pc-price">MMK 80,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="85000" data-color="black">
+                <div class="pc-img"><img src="BVOSBG000045.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Quilted Chain Shoulder Bag</div>
+                <div class="pc-price">MMK 85,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="80000" data-color="black">
+                <div class="pc-img"><img src="BVOSBG000046.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Elegant Mini Top Handle Bag</div>
+                <div class="pc-price">MMK 80,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="80000" data-color="black">
+                <div class="pc-img"><img src="BVOSBG000047.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Chic Leather Bucket Bag</div>
+                <div class="pc-price">MMK 80,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="85000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000048.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Crocodile-Textured Mini Handbag</div>
+                <div class="pc-price">MMK 85,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="95000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000049.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Vintage-Inspired Checkered Round Bag</div>
+                <div class="pc-price">MMK 95,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="tote" data-price="85000" data-color="brown">
+                <div class="pc-img"><img src="BVOSBG000050.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Collection</span>
+                <div class="pc-name">Signature Monogram Structured Tote</div>
+                <div class="pc-price">MMK 85,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="225000" data-color="black">
+                <div class="pc-img"><img src="BVBCFC-0016.jpg" alt="Bag"></div>
+                <span class="pc-brand">Dior</span>
+                <div class="pc-name">Lady Dior Style Handbag</div>
+                <div class="pc-price">MMK 225,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="tote" data-price="225000" data-color="brown">
+                <div class="pc-img"><img src="BVBCFC-0012.jpg" alt="Bag"></div>
+                <span class="pc-brand">Coach</span>
+                <div class="pc-name">Coach Signature City Tote</div>
+                <div class="pc-price">MMK 225,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="285000" data-color="black">
+                <div class="pc-img"><img src="BVBCFC-0023.jpg" alt="Bag"></div>
+                <span class="pc-brand">Dior</span>
+                <div class="pc-name">Dior Signature Handbag</div>
+                <div class="pc-price">MMK 285,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="168000" data-color="white">
+                <div class="pc-img"><img src="BVBCFC-0011.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Gallery</span>
+                <div class="pc-name">Elegant Shoulder Bag</div>
+                <div class="pc-price">MMK 168,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="tote" data-price="285000" data-color="brown">
+                <div class="pc-img"><img src="BVBCFC-0005.jpg" alt="Bag"></div>
+                <span class="pc-brand">Coach</span>
+                <div class="pc-name">Coach Brown Leather Tote</div>
+                <div class="pc-price">MMK 285,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="168000" data-color="brown">
+                <div class="pc-img"><img src="BVBCFC-0018.jpg" alt="Bag"></div>
+                <span class="pc-brand">Gucci Style</span>
+                <div class="pc-name">Gucci Style Shoulder Bag</div>
+                <div class="pc-price">MMK 168,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="tote" data-price="168000" data-color="black">
+                <div class="pc-img"><img src="BVBCFC-0021.jpg" alt="Bag"></div>
+                <span class="pc-brand">Prada Style</span>
+                <div class="pc-name">Prada Style Black Tote</div>
+                <div class="pc-price">MMK 168,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="225000" data-color="brown">
+                <div class="pc-img"><img src="BVBCFC-0017.jpg" alt="Bag"></div>
+                <span class="pc-brand">Louis Vuitton</span>
+                <div class="pc-name">Louis Vuitton Metis Bag</div>
+                <div class="pc-price">MMK 225,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="225000" data-color="black">
+                <div class="pc-img"><img src="BVBCFC-0014.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Gallery</span>
+                <div class="pc-name">Elegant Black Handbag</div>
+                <div class="pc-price">MMK 225,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="225000" data-color="brown">
+                <div class="pc-img"><img src="BVBCFC-0008.jpg" alt="Bag"></div>
+                <span class="pc-brand">Gucci Style</span>
+                <div class="pc-name">Gucci Style Flap Bag</div>
+                <div class="pc-price">MMK 225,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="225000" data-color="brown">
+                <div class="pc-img"><img src="BVBCFC-0022.jpg" alt="Bag"></div>
+                <span class="pc-brand">Louis Vuitton</span>
+                <div class="pc-name">Louis Vuitton Capucines</div>
+                <div class="pc-price">MMK 225,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="tote" data-price="168000" data-color="brown">
+                <div class="pc-img"><img src="BVBCFC-0007.jpg" alt="Bag"></div>
+                <span class="pc-brand">Louis Vuitton</span>
+                <div class="pc-name">Louis Vuitton OnTheGo Style</div>
+                <div class="pc-price">MMK 168,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="225000" data-color="brown">
+                <div class="pc-img"><img src="BVBCFC-0006.jpg" alt="Bag"></div>
+                <span class="pc-brand">Coach</span>
+                <div class="pc-name">Coach Satchel Bag</div>
+                <div class="pc-price">MMK 225,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="handbag" data-price="225000" data-color="brown">
+                <div class="pc-img"><img src="BVBCFC-0010.jpg" alt="Bag"></div>
+                <span class="pc-brand">Britium Gallery</span>
+                <div class="pc-name">Classic Handbag</div>
+                <div class="pc-price">MMK 225,000.00</div>
+            </div>
+
+            <div class="product-card" data-category="clutch" data-price="200000" data-color="brown">
+                <div class="pc-img"><img src="BVBCFC-0020.jpg" alt="Bag"></div>
+                <span class="pc-brand">Louis Vuitton</span>
+                <div class="pc-name">Louis Vuitton Pochette</div>
+                <div class="pc-price">MMK 200,000.00</div>
+            </div>
+
+        </main>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
+        <p style="margin-top:10px;">
+            <a href="terms_&_conditions.html" style="margin:0 10px;">Terms</a> | 
+            <a href="privacy_policy.html" style="margin:0 10px;">Privacy</a> | 
+            <a href="store_locator.html" style="margin:0 10px;">Locations</a>
+        </p>
+    </footer>
+
+    <div class="chat-btn" id="toggleChat">💬</div>
+
+    <div class="chat-box" id="chatInterface">
+        <div class="chat-header">
+            <h4>Britium Concierge</h4>
+            <span class="close-chat" id="closeChat">×</span>
+        </div>
+        <div class="chat-content" id="chatHistory">
+            <div class="msg bot">
+                Hello. Need help filtering products or finding a specific item?
+            </div>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="userMsg" class="chat-input" placeholder="Type here...">
+            <button id="sendMsg" class="send-btn">Send</button>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- FILTERING LOGIC ---
+            const cards = document.querySelectorAll('.product-card');
+            const categoryChecks = document.querySelectorAll('.filter-check');
+            const priceChecks = document.querySelectorAll('.price-check');
+            const colorChecks = document.querySelectorAll('.color-check');
+
+            function filterProducts() {
+                // Get checked values
+                const selectedCats = Array.from(categoryChecks).filter(c => c.checked).map(c => c.dataset.filter);
+                const selectedColors = Array.from(colorChecks).filter(c => c.checked).map(c => c.dataset.color);
+                
+                cards.forEach(card => {
+                    const cat = card.dataset.category;
+                    const price = parseFloat(card.dataset.price);
+                    const color = card.dataset.color;
+                    
+                    let catMatch = selectedCats.length === 0 || selectedCats.includes(cat);
+                    let colorMatch = selectedColors.length === 0 || selectedColors.includes(color);
+                    
+                    // Price match logic (if any range is checked, card must match at least one)
+                    let priceMatch = true;
+                    const activePriceFilters = Array.from(priceChecks).filter(c => c.checked);
+                    if (activePriceFilters.length > 0) {
+                        priceMatch = activePriceFilters.some(chk => {
+                            const min = parseFloat(chk.dataset.min);
+                            const max = parseFloat(chk.dataset.max);
+                            return price >= min && price <= max;
+                        });
+                    }
+
+                    // Show/Hide
+                    if (catMatch && colorMatch && priceMatch) {
+                        card.style.display = 'flex'; // Restore flex display
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }
+
+            // Attach Listeners
+            categoryChecks.forEach(cb => cb.addEventListener('change', filterProducts));
+            priceChecks.forEach(cb => cb.addEventListener('change', filterProducts));
+            colorChecks.forEach(cb => cb.addEventListener('change', filterProducts));
+
+
+            // --- CHATBOT LOGIC ---
+            const toggleChat = document.getElementById('toggleChat');
+            const closeChat = document.getElementById('closeChat');
+            const chatInterface = document.getElementById('chatInterface');
+            const sendBtn = document.getElementById('sendMsg');
+            const userMsg = document.getElementById('userMsg');
+            const chatHistory = document.getElementById('chatHistory');
+
+            toggleChat.addEventListener('click', () => {
+                chatInterface.classList.add('open');
+                userMsg.focus();
+            });
+            closeChat.addEventListener('click', () => chatInterface.classList.remove('open'));
+
+            function handleSend() {
+                const text = userMsg.value.trim();
+                if(!text) return;
+
+                const divUser = document.createElement('div');
+                divUser.className = 'msg user';
+                divUser.innerHTML = text;
+                chatHistory.appendChild(divUser);
+                userMsg.value = '';
+
+                setTimeout(() => {
+                    let response = "I can help you browse our collection.";
+                    const lower = text.toLowerCase();
+                    if(lower.includes('filter') || lower.includes('find')) response = "You can use the sidebar on the left to filter by Category, Price, or Color.";
+                    else if(lower.includes('bag')) response = "We have excellent Handbags and Totes. Try selecting 'Handbags' in the filter.";
+                    else if(lower.includes('return')) response = "Returns are easy. Visit <a href='return_request.html' style='color:#fff;'>Return Request</a>.";
+                    
+                    const divBot = document.createElement('div');
+                    divBot.className = 'msg bot';
+                    divBot.innerHTML = response;
+                    chatHistory.appendChild(divBot);
+                    chatHistory.scrollTop = chatHistory.scrollHeight;
+                }, 500);
+            }
+
+            sendBtn.addEventListener('click', handleSend);
+            userMsg.addEventListener('keypress', (e) => { if(e.key==='Enter') handleSend(); });
+        });
+    </script>
+</body>
+</html>
