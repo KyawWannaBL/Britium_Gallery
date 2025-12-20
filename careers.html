@@ -4,298 +4,292 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Careers | Britium Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- RESET & VARIABLES --- */
-        :root {
-            --bg-white: #ffffff;
-            --text-black: #000000;
-            --text-dark: #1a1a1a;
-            --text-grey: #555555;
-            --border-color: #e5e5e5;
-            --btn-gold: #cbb079; /* Muted gold from image */
-            --btn-hover: #b0955f;
-        }
 
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        :root {
+            --bg-dark: #1a0f0a;
+            --bg-panel: #231712;
+            --bg-cream: #f9f4ef;
+            --gold-accent: #debb6e;
+            --gold-dark: #b5904b;
+            --text-light: #ffffff;
+            --text-grey: #cfcfcf;
+            --text-dark: #2c241b;
+            --border-gold: rgba(222, 187, 110, 0.2);
+        }
+
         body {
-            font-family: 'Jost', sans-serif;
-            background-color: var(--bg-white);
-            color: var(--text-dark);
-            line-height: 1.6;
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { color: var(--gold-accent); }
 
-        /* --- HEADER --- */
+        /* HEADER */
         header {
-            padding: 25px 60px;
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #fff;
+            border-bottom: 1px solid var(--border-gold);
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
+            color: var(--gold-accent);
             font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #000;
-        }
-        
-        .logo-icon {
-            width: 24px; height: 24px; 
-            border: 2px solid #000; 
-            transform: rotate(45deg);
         }
 
-        nav ul { display: flex; gap: 40px; list-style: none; }
-        nav a { font-size: 0.9rem; font-weight: 500; text-transform: uppercase; color: #000; letter-spacing: 1px; }
-        nav a:hover { color: #666; }
-
-        .header-icons { display: flex; gap: 20px; font-size: 1.2rem; cursor: pointer; }
-
-        /* --- MAIN CONTAINER --- */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 20px 100px;
-        }
-
-        /* --- INTRO SECTION --- */
-        .intro-section {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .intro-section h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 400;
-            margin-bottom: 25px;
-            color: #000;
-        }
-
-        .intro-section p {
-            font-size: 1.05rem;
-            color: var(--text-dark);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* --- SEARCH BAR --- */
-        .search-container {
+        nav ul {
             display: flex;
-            gap: 15px;
-            margin-bottom: 60px;
+            list-style: none;
+            gap: 30px;
         }
 
-        .search-input {
-            flex: 1;
-            padding: 15px;
-            border: 1px solid #777; /* Darker border as per image */
-            border-radius: 0; /* Sharp corners */
-            font-family: 'Jost', sans-serif;
-            font-size: 1rem;
-            outline: none;
-            color: #333;
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 90px 20px 60px;
+            background: linear-gradient(180deg, rgba(26,15,10,1) 0%, rgba(40,25,18,1) 100%);
         }
-        .search-input::placeholder { color: #777; }
 
-        .btn-filter {
-            background-color: var(--btn-gold);
-            color: #000;
-            border: none;
-            padding: 0 40px;
-            font-size: 1rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            cursor: pointer;
+        .hero h1 {
+            font-size: 3.2rem;
+            color: var(--gold-accent);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            font-weight: 300;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        /* CONTENT */
+        .content {
+            padding: 80px 8%;
+        }
+
+        .section {
+            max-width: 1100px;
+            margin: 0 auto 70px;
+            text-align: center;
+        }
+
+        .section h2 {
+            color: var(--gold-accent);
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            color: var(--text-grey);
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+
+        /* JOB LISTINGS */
+        .jobs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .job-card {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-gold);
+            padding: 30px;
+            text-align: left;
             transition: 0.3s;
         }
-        .btn-filter:hover { background-color: var(--btn-hover); }
 
-        /* --- JOB OPENINGS LIST --- */
-        .job-list-header {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.2rem;
-            font-weight: 400;
-            margin-bottom: 30px;
-            color: #000;
+        .job-card:hover {
+            border-color: var(--gold-accent);
+            transform: translateY(-4px);
         }
 
-        .job-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 25px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-        .job-item:first-of-type { border-top: 1px solid var(--border-color); }
-
-        .job-info h3 {
-            font-family: 'Jost', sans-serif;
+        .job-title {
+            color: var(--gold-accent);
             font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: #000;
+            margin-bottom: 10px;
         }
 
         .job-meta {
-            font-size: 0.95rem;
-            color: var(--text-dark);
+            font-size: 0.85rem;
+            color: #aaa;
+            margin-bottom: 15px;
         }
 
-        .btn-view {
-            background-color: transparent;
-            border: 1px solid #000;
-            padding: 10px 20px;
+        .job-desc {
+            font-size: 0.95rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .apply-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            border: 1px solid var(--gold-accent);
+            color: var(--gold-accent);
             font-size: 0.85rem;
-            font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 1px;
-            cursor: pointer;
             transition: 0.3s;
-            white-space: nowrap;
-        }
-        .btn-view:hover {
-            background-color: #000;
-            color: #fff;
         }
 
-        /* --- JOIN TEAM FOOTER --- */
-        .join-footer {
-            margin-top: 60px;
+        .apply-btn:hover {
+            background-color: var(--gold-accent);
+            color: var(--bg-dark);
         }
 
-        .join-footer h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem;
-            font-weight: 400;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            color: #000;
-        }
-
-        .join-footer p {
-            font-size: 1.1rem;
+        /* BRAND SIGNATURE */
+        .brand-signature {
+            background-color: var(--bg-cream);
             color: var(--text-dark);
+            text-align: center;
+            padding: 80px 20px;
+            margin-top: 80px;
+            border-top: 5px solid var(--gold-accent);
         }
 
-        .join-footer a {
-            font-weight: 600;
-            color: #000;
+        .brand-signature h2 {
+            font-size: 3rem;
+            color: var(--gold-dark);
         }
-        .join-footer a:hover { text-decoration: underline; }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            header { padding: 20px; }
+        .brand-signature h3 {
+            font-size: 2rem;
+            font-style: italic;
+        }
+
+        footer {
+            background-color: #0d0705;
+            color: #666;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.8rem;
+        }
+
+        @media(max-width:768px) {
             nav ul { display: none; }
-            .intro-section h1 { font-size: 2.5rem; }
-            .job-item { flex-direction: column; align-items: flex-start; gap: 15px; }
-            .btn-view { width: 100%; text-align: center; }
-            .search-container { flex-direction: column; }
+            .hero h1 { font-size: 2.4rem; }
         }
     </style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">
-            <div class="logo-icon"></div>
-            BRITIUM <br><span style="font-size: 0.6em; display:block; margin-top:-5px; font-weight:400;">GALLERY</span>
-        </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="header-icons">
-            <span>🔍</span>
-            <span>🛒</span>
-        </div>
-    </header>
+<header>
+    <div class="logo">BRITIUM GALLERY</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="new-arrivals.html">New Arrivals</a></li>
+            <li><a href="luxury-handbags.html">Handbags</a></li>
+            <li><a href="product-gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="careers.html" style="color:var(--gold-accent)">Careers</a></li>
+        </ul>
+    </nav>
+    <div style="color:var(--gold-accent)">🛒 (0)</div>
+</header>
 
-    <div class="container">
-        
-        <section class="intro-section">
-            <h1>Careers</h1>
-            <p>
-                Welcome to BRITIUM GALLERY! Join our team and be part of an innovative and fashion-forward retail environment. Explore our current job openings.
-            </p>
-        </section>
+<section class="hero">
+    <h1>CAREERS AT BRITIUM</h1>
+    <p>
+        Join a team driven by creativity, craftsmanship, and a shared passion
+        for building a world-class luxury brand.
+    </p>
+</section>
 
-        <div class="search-container">
-            <input type="text" class="search-input" placeholder="Search job openings...">
-            <button class="btn-filter">FILTER</button>
-        </div>
+<section class="content">
 
-        <h2 class="job-list-header">Job Openings</h2>
-        
-        <div class="job-list">
-            
-            <div class="job-item">
-                <div class="job-info">
-                    <h3>Store Manager</h3>
-                    <div class="job-meta">New York, NY • Full-Time</div>
-                </div>
-                <button class="btn-view">VIEW DETAILS</button>
-            </div>
-
-            <div class="job-item">
-                <div class="job-info">
-                    <h3>Sales Associate</h3>
-                    <div class="job-meta">Los Angeles, CA • Part-Time</div>
-                </div>
-                <button class="btn-view">VIEW DETAILS</button>
-            </div>
-
-            <div class="job-item">
-                <div class="job-info">
-                    <h3>E-Commerce Specialist</h3>
-                    <div class="job-meta">Remote • Full-Time</div>
-                </div>
-                <button class="btn-view">VIEW DETAILS</button>
-            </div>
-
-            <div class="job-item">
-                <div class="job-info">
-                    <h3>Merchandise Planner</h3>
-                    <div class="job-meta">Miami, FL • Full-Time</div>
-                </div>
-                <button class="btn-view">VIEW DETAILS</button>
-            </div>
-
-            <div class="job-item">
-                <div class="job-info">
-                    <h3>Graphic Designer</h3>
-                    <div class="job-meta">Chicago, IL • Full-Time</div>
-                </div>
-                <button class="btn-view">VIEW DETAILS</button>
-            </div>
-
-        </div>
-
-        <section class="join-footer">
-            <h2>JOIN OUR TEAM</h2>
-            <p>
-                Don't see the right position for you? Send us your resume at <a href="mailto:careers@britiumgallery.com">careers@britiumgallery.com</a>
-            </p>
-        </section>
-
+    <div class="section">
+        <h2>Why Work With Us</h2>
+        <p>
+            At Britium Gallery, we foster a culture of excellence, innovation,
+            and respect for craftsmanship. We believe in empowering talent,
+            encouraging growth, and creating meaningful careers.
+        </p>
+        <p>
+            Whether in design, retail, operations, or corporate strategy,
+            every role contributes to our vision of timeless luxury.
+        </p>
     </div>
+
+    <div class="section">
+        <h2>Open Positions</h2>
+
+        <div class="jobs">
+
+            <div class="job-card">
+                <div class="job-title">Retail Sales Associate</div>
+                <div class="job-meta">Yangon · Full-Time</div>
+                <div class="job-desc">
+                    Deliver exceptional customer experiences, represent the
+                    Britium brand, and assist clients in discovering luxury products.
+                </div>
+                <a href="contact_us.html" class="apply-btn">Apply Now</a>
+            </div>
+
+            <div class="job-card">
+                <div class="job-title">Visual Merchandiser</div>
+                <div class="job-meta">Yangon · Full-Time</div>
+                <div class="job-desc">
+                    Design and maintain visual displays that reflect Britium’s
+                    luxury identity and seasonal collections.
+                </div>
+                <a href="contact_us.html" class="apply-btn">Apply Now</a>
+            </div>
+
+            <div class="job-card">
+                <div class="job-title">Digital Marketing Executive</div>
+                <div class="job-meta">Remote / Hybrid · Full-Time</div>
+                <div class="job-desc">
+                    Manage online campaigns, social media presence, and digital
+                    storytelling across platforms.
+                </div>
+                <a href="contact_us.html" class="apply-btn">Apply Now</a>
+            </div>
+
+            <div class="job-card">
+                <div class="job-title">Operations Coordinator</div>
+                <div class="job-meta">Head Office · Full-Time</div>
+                <div class="job-desc">
+                    Support logistics, inventory management, and cross-department
+                    coordination to ensure operational excellence.
+                </div>
+                <a href="contact_us.html" class="apply-btn">Apply Now</a>
+            </div>
+
+        </div>
+    </div>
+
+</section>
+
+<section class="brand-signature">
+    <h2>BRITIUM GALLERY</h2>
+    <h3>Crafting Careers With Purpose</h3>
+</section>
+
+<footer>
+    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>
