@@ -1,582 +1,270 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | Britium Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- RESET & VARIABLES --- */
-        :root {
-            --bg-dark: #120e0b; /* Deep warm black/brown hue */
-            --text-light: #f0f0f0;
-            --text-grey: #cccccc;
-            --accent-gold: #c6a87c;
-            --gold-dark: #b5904b; /* Matches Index Page */
-            --chat-bg: #231712;   /* Matches Index Page */
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us | Britium Gallery</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Jost', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-
-        /* --- HEADER --- */
-        header {
-            background-color: #000;
-            padding: 20px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.3rem;
-            font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #fff;
-        }
-        
-        .logo-icon {
-            width: 24px; height: 24px; 
-            border: 2px solid #fff; 
-            transform: rotate(45deg);
-        }
-
-        nav ul { display: flex; gap: 40px; list-style: none; }
-        nav a { font-size: 0.9rem; font-weight: 500; color: #ccc; text-transform: uppercase; letter-spacing: 1px;}
-        nav a:hover { color: #fff; }
-
-        .header-icons { display: flex; gap: 20px; font-size: 1.2rem; cursor: pointer; }
-
-        /* --- MAIN CONTAINER --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        /* --- TOP SECTION --- */
-        .about-intro {
-            text-align: center;
-            margin-bottom: 50px;
-            max-width: 900px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .about-intro h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 400;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
-
-        .about-intro p {
-            font-size: 1.1rem;
-            color: var(--text-grey);
-            line-height: 1.8;
-        }
-
-        /* Showcase Image */
-        .showcase-image {
-            width: 100%;
-            height: auto;
-            margin-bottom: 80px;
-            border-radius: 2px;
-            background-color: #222;
-            display: block;
-        }
-
-        /* --- CONTENT GRID (Story & Values) --- */
-        .content-grid {
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr; /* Text wider than image */
-            gap: 60px;
-            align-items: start;
-        }
-
-        /* Text Column */
-        .text-column h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .text-column p {
-            font-size: 1rem;
-            color: var(--text-grey);
-            margin-bottom: 30px;
-            text-align: justify;
-        }
-
-        .values-list {
-            margin-top: 40px;
-        }
-
-        .value-item {
-            margin-bottom: 20px;
-        }
-        
-        .value-title {
-            color: #fff;
-            font-weight: 600;
-            font-size: 1.05rem;
-            margin-bottom: 5px;
-            display: inline-block;
-        }
-
-        .value-desc {
-            color: var(--text-grey);
-            display: inline;
-        }
-
-        /* Image Column */
-        .image-column {
-            position: relative;
-            height: 100%;
-        }
-
-        .image-column img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            border-radius: 2px;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: #0a0a0a;
-            color: #666;
-            text-align: center;
-            padding: 40px 0;
-            margin-top: 80px;
-            border-top: 1px solid #222;
-            font-size: 0.9rem;
-        }
-
-        /* --- CHATBOT WIDGET CSS --- */
-        .chat-widget-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: var(--accent-gold);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            z-index: 1000;
-            transition: transform 0.3s;
-            border: 2px solid var(--gold-dark);
-        }
-
-        .chat-widget-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .chat-icon {
-            font-size: 30px;
-            color: var(--bg-dark);
-        }
-
-        .chat-window {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            height: 500px;
-            background-color: var(--chat-bg);
-            border: 1px solid var(--accent-gold);
-            border-radius: 12px;
-            display: none; /* Hidden by default */
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            z-index: 1000;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s, transform 0.3s;
-        }
-
-        .chat-window.active {
-            display: flex;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .chat-header {
-            background-color: var(--bg-dark);
-            padding: 15px;
-            border-bottom: 1px solid var(--accent-gold);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-header h4 {
-            color: var(--accent-gold);
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            letter-spacing: 1px;
-        }
-
-        .close-chat {
-            cursor: pointer;
-            color: var(--accent-gold);
-            font-size: 1.2rem;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .message.bot {
-            background-color: rgba(198, 168, 124, 0.1);
-            color: #eee;
-            border: 1px solid rgba(198, 168, 124, 0.3);
-            align-self: flex-start;
-            border-bottom-left-radius: 2px;
-        }
-
-        .message.user {
-            background-color: var(--accent-gold);
-            color: var(--bg-dark);
-            align-self: flex-end;
-            border-bottom-right-radius: 2px;
-        }
-
-        .chat-input-area {
-            padding: 15px;
-            background-color: var(--bg-dark);
-            border-top: 1px solid rgba(198, 168, 124, 0.2);
-            display: flex;
-            gap: 10px;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #444;
-            background-color: #111;
-            color: #fff;
-            outline: none;
-            font-family: 'Jost', sans-serif;
-        }
-
-        .chat-send {
-            background-color: var(--accent-gold);
-            color: var(--bg-dark);
-            border: none;
-            padding: 0 15px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .content-grid { grid-template-columns: 1fr; gap: 40px; }
-            .about-intro h1 { font-size: 2.5rem; }
-        }
-        @media (max-width: 600px) {
-            header { padding: 20px; }
-            nav ul { display: none; }
-            .logo { font-size: 1.1rem; }
-            .chat-window { width: 90%; right: 5%; bottom: 100px; }
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo">
-            <div class="logo-icon"></div>
-            BRITIUM GALLERY
-        </div>
-        // nav.js
-(function () {
-  const page = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-
-  function isActive(file) {
-    return page === file.toLowerCase() ? "active" : "";
-  }
-
-  const headerHTML = `
   <style>
-    :root{
-      --bg-dark:#1a0f0a; --gold:#debb6e; --border:rgba(222,187,110,.20);
+    :root {
+      --bg-dark:#120e0b;
+      --text-light:#f0f0f0;
+      --text-grey:#cccccc;
+      --accent-gold:#c6a87c;
+      --gold-dark:#b5904b;
+      --chat-bg:#231712;
     }
-    header.site-header{
-      padding:18px 50px;
-      display:flex;justify-content:space-between;align-items:center;
-      border-bottom:1px solid var(--border);
-      background:rgba(26,15,10,.92);
-      position:sticky;top:0;z-index:200;
-      backdrop-filter: blur(10px);
-      font-family: 'Lato', sans-serif;
+
+    *{margin:0;padding:0;box-sizing:border-box}
+
+    body{
+      font-family:'Jost',sans-serif;
+      background:var(--bg-dark);
+      color:var(--text-light);
+      line-height:1.6;
     }
-    .site-logo{
+
+    a{text-decoration:none;color:inherit}
+
+    /* CONTENT */
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      padding:60px 20px;
+    }
+
+    .about-intro{
+      text-align:center;
+      max-width:900px;
+      margin:0 auto 60px;
+    }
+
+    .about-intro h1{
       font-family:'Playfair Display',serif;
-      font-size:1.55rem;
-      font-weight:700;
-      color:var(--gold);
-      line-height:1;
-      display:flex;
-      flex-direction:column;
-      text-decoration:none;
+      font-size:3.5rem;
+      margin-bottom:20px;
     }
-    .site-logo span{
-      font-size:.65rem;
-      letter-spacing:3px;
-      margin-top:4px;
+
+    .about-intro p{
+      font-size:1.1rem;
+      color:var(--text-grey);
+      line-height:1.8;
+    }
+
+    .showcase-image{
+      width:100%;
+      margin-bottom:80px;
+      background:#222;
+    }
+
+    .content-grid{
+      display:grid;
+      grid-template-columns:1.2fr .8fr;
+      gap:60px;
+    }
+
+    .text-column h3{
+      font-family:'Playfair Display',serif;
+      font-size:1.8rem;
+      margin-bottom:20px;
+    }
+
+    .text-column p{
+      color:var(--text-grey);
+      margin-bottom:30px;
+      text-align:justify;
+    }
+
+    .value-item{
+      margin-bottom:18px;
+    }
+
+    .value-title{
+      font-weight:600;
       color:#fff;
     }
-    nav.site-nav ul{display:flex;list-style:none;gap:18px;flex-wrap:wrap;justify-content:center}
-    nav.site-nav a{
-      text-decoration:none;color:#e6e6e6;
-      font-size:.82rem;text-transform:uppercase;letter-spacing:1px;
-      padding:8px 10px;border-radius:6px;transition:.25s
+
+    .value-desc{
+      color:var(--text-grey);
     }
-    nav.site-nav a:hover{color:var(--gold)}
-    nav.site-nav a.active{color:#1a0f0a;background:var(--gold);font-weight:700}
-    .site-icons{display:flex;gap:14px;align-items:center;color:var(--gold);font-size:1.1rem}
-    .site-icons a{text-decoration:none;color:inherit}
-    .site-icons a:hover{color:var(--gold)}
-    @media(max-width:980px){
-      nav.site-nav ul{display:none}
-      header.site-header{padding:18px 18px}
+
+    .image-column img{
+      width:100%;
+      object-fit:cover;
+    }
+
+    footer{
+      background:#0a0a0a;
+      color:#666;
+      text-align:center;
+      padding:40px 0;
+      border-top:1px solid #222;
+      font-size:.9rem;
+    }
+
+    /* CHATBOT */
+    .chat-widget-btn{
+      position:fixed;
+      bottom:30px;
+      right:30px;
+      width:60px;
+      height:60px;
+      background:var(--accent-gold);
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      cursor:pointer;
+      border:2px solid var(--gold-dark);
+      z-index:1000;
+    }
+
+    .chat-window{
+      position:fixed;
+      bottom:100px;
+      right:30px;
+      width:350px;
+      height:500px;
+      background:var(--chat-bg);
+      border:1px solid var(--accent-gold);
+      border-radius:12px;
+      display:none;
+      flex-direction:column;
+      z-index:1000;
+    }
+
+    .chat-window.active{display:flex}
+
+    .chat-header{
+      padding:15px;
+      border-bottom:1px solid var(--accent-gold);
+      display:flex;
+      justify-content:space-between;
+    }
+
+    .chat-messages{
+      flex:1;
+      padding:20px;
+      overflow-y:auto;
+    }
+
+    .message{
+      padding:10px 14px;
+      border-radius:10px;
+      margin-bottom:12px;
+      font-size:.9rem;
+      max-width:80%;
+    }
+
+    .bot{
+      background:rgba(198,168,124,.1);
+      color:#eee;
+    }
+
+    .user{
+      background:var(--accent-gold);
+      color:var(--bg-dark);
+      align-self:flex-end;
+    }
+
+    .chat-input-area{
+      padding:15px;
+      display:flex;
+      gap:10px;
+    }
+
+    .chat-input{
+      flex:1;
+      padding:10px;
+      background:#111;
+      border:1px solid #444;
+      color:#fff;
+    }
+
+    .chat-send{
+      background:var(--accent-gold);
+      border:none;
+      padding:0 16px;
+      cursor:pointer;
+      font-weight:700;
+    }
+
+    @media(max-width:900px){
+      .content-grid{grid-template-columns:1fr}
+      .about-intro h1{font-size:2.5rem}
     }
   </style>
+</head>
 
-  <header class="site-header">
-    <a class="site-logo" href="index.html">BRITIUM <span>GALLERY</span></a>
+<body>
 
-    <nav class="site-nav">
-      <ul>
-        <li><a class="${isActive("index.html")}" href="index.html">Home</a></li>
-        <li><a class="${isActive("shop.html")}" href="shop.html">Shop</a></li>
-        <li><a class="${isActive("new-arrivals.html")}" href="new-arrivals.html">New Arrivals</a></li>
-        <li><a class="${isActive("luxury-handbags.html")}" href="luxury-handbags.html">Luxury Handbags</a></li>
-        <li><a class="${isActive("product-gallery.html")}" href="product-gallery.html">Gallery</a></li>
-        <li><a class="${isActive("about.html")}" href="about.html">About</a></li>
-        <li><a class="${isActive("blog.html")}" href="blog.html">Blog</a></li>
-        <li><a class="${isActive("faq.html")}" href="faq.html">FAQ</a></li>
-        <li><a class="${isActive("contact.html")}" href="contact.html">Contact</a></li>
-        <li><a class="${isActive("login.html")}" href="login.html">Login</a></li>
-      </ul>
-    </nav>
+  <!-- STANDARD NAV -->
+  <div id="siteHeader"></div>
 
-    <div class="site-icons" title="Quick Links">
-      <a href="search.html" aria-label="Search">🔍</a>
-      <a href="login.html" aria-label="Account">👤</a>
-      <a href="wishlist.html" aria-label="Wishlist">♡</a>
-      <a href="cart.html" aria-label="Cart">🛒</a>
-    </div>
-  </header>
-  `;
+  <div class="container">
 
-  const footerHTML = `
-  <footer style="
-    background:#0d0705;color:#777;text-align:center;padding:34px 20px;
-    font-size:.8rem;border-top:1px solid rgba(255,255,255,.08);
-    font-family:'Lato',sans-serif;">
-    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
-    <p style="margin-top:10px;">
-      <a href="terms.html" style="color:#aaa;text-decoration:none">Terms</a> |
-      <a href="privacy.html" style="color:#aaa;text-decoration:none">Privacy</a> |
-      <a href="store-locator.html" style="color:#aaa;text-decoration:none">Locations</a>
-    </p>
-  </footer>
-  `;
+    <section class="about-intro">
+      <h1>ABOUT US</h1>
+      <p>
+        At Britium Gallery, we merge timeless elegance with modern sophistication.
+        We curate luxury handbags and accessories that balance design, function, and story.
+      </p>
+    </section>
 
-  const headerTarget = document.getElementById("siteHeader");
-  const footerTarget = document.getElementById("siteFooter");
+    <img src="images/shelf-display.jpg" alt="Luxury Display" class="showcase-image">
 
-  if (headerTarget) headerTarget.innerHTML = headerHTML;
-  if (footerTarget) footerTarget.innerHTML = footerHTML;
-})();
-        <div class="header-icons">
-            <span>🔍</span>
-            <span>👤</span>
+    <div class="content-grid">
+
+      <div class="text-column">
+        <h3>Our Story</h3>
+        <p>
+          Britium Gallery began as a boutique concept and evolved into a digital-first luxury destination.
+          Every piece is curated for authenticity, artistry, and longevity.
+        </p>
+
+        <h3>Our Values</h3>
+
+        <div class="value-item">
+          <span class="value-title">Elegance in Simplicity — </span>
+          <span class="value-desc">True luxury is subtle.</span>
         </div>
-    </header>
 
-    <div class="container">
-        
-        <section class="about-intro">
-            <h1>ABOUT US</h1>
-            <p>
-                At Britium Gallery, we merge timeless elegance with modern sophistication. As a luxury fashion destination, we specialize in curating high-quality handbags, accessories, and lifestyle pieces that speak to a refined aesthetic. Our mission is to deliver an unparalleled shopping experience that blends design, function, and story — whether in-store or online.
-            </p>
-        </section>
-
-        <img src="images/shelf-display.jpg" alt="Luxury Handbag Display" class="showcase-image">
-
-        <div class="content-grid">
-            
-            <div class="text-column">
-                <h3>Our Story</h3>
-                <p>
-                    Britium Gallery was born from a desire to elevate everyday elegance. What began as a boutique concept has evolved into a digital-first brand, bridging traditional craftsmanship with innovative retail experiences. Each piece we feature is handpicked for its artistry, authenticity, and timeless appeal.
-                </p>
-                <p>
-                    Our journey has taken us from intimate showrooms to a scalable eCommerce platform — not to sell more, but to reach further, offering curated luxury to those who appreciate the finer details.
-                </p>
-
-                <div class="values-list">
-                    <h3>Our Values</h3>
-                    
-                    <div class="value-item">
-                        <span class="value-title">Elegance in Simplicity –</span>
-                        <span class="value-desc">We believe true luxury is subtle and refined.</span>
-                    </div>
-
-                    <div class="value-item">
-                        <span class="value-title">Craftsmanship & Authenticity –</span>
-                        <span class="value-desc">Every item we offer reflects intentional design and quality.</span>
-                    </div>
-
-                    <div class="value-item">
-                        <span class="value-title">Customer-Centric –</span>
-                        <span class="value-desc">We exist to inspire confidence and ease through seamless, personalized service.</span>
-                    </div>
-
-                    <div class="value-item">
-                        <span class="value-title">Innovation with Purpose –</span>
-                        <span class="value-desc">From digital design to data-driven retail, we embrace modern tools to enhance our timeless identity.</span>
-                    </div>
-
-                    <div class="value-item">
-                        <span class="value-title">Sustainability & Responsibility –</span>
-                        <span class="value-desc">We aim to curate responsibly, valuing durability, ethics, and meaningful consumption.</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="image-column">
-                <img src="images/balloon-bag-street.jpg" alt="City Street Luxury">
-            </div>
-
+        <div class="value-item">
+          <span class="value-title">Craftsmanship — </span>
+          <span class="value-desc">Intentional design and quality.</span>
         </div>
+
+        <div class="value-item">
+          <span class="value-title">Customer-Centric — </span>
+          <span class="value-desc">Personalized, seamless experience.</span>
+        </div>
+
+        <div class="value-item">
+          <span class="value-title">Innovation — </span>
+          <span class="value-desc">Modern tools with timeless identity.</span>
+        </div>
+
+        <div class="value-item">
+          <span class="value-title">Sustainability — </span>
+          <span class="value-desc">Responsible, durable curation.</span>
+        </div>
+      </div>
+
+      <div class="image-column">
+        <img src="images/balloon-bag-street.jpg" alt="Urban Luxury">
+      </div>
 
     </div>
+  </div>
 
-    <footer>
-        &copy; 2025 Britium Gallery. All Rights Reserved.
-    </footer>
+  <!-- FOOTER -->
+  <div id="siteFooter"></div>
 
-    <div class="chat-widget-btn" id="chatBtn">
-        <span class="chat-icon">💬</span>
-    </div>
+  <!-- NAV SCRIPT -->
+  <script src="nav.js"></script>
 
-    <div class="chat-window" id="chatWindow">
-        <div class="chat-header">
-            <h4>Britium Concierge</h4>
-            <span class="close-chat" id="closeChat">×</span>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="message bot">
-                Welcome to Britium Gallery. How may I assist you with your luxury experience today?
-            </div>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" class="chat-input" id="chatInput" placeholder="Type your inquiry...">
-            <button class="chat-send" id="sendBtn">Send</button>
-        </div>
-    </div>
-
-    <script>
-        const chatBtn = document.getElementById('chatBtn');
-        const chatWindow = document.getElementById('chatWindow');
-        const closeChat = document.getElementById('closeChat');
-        const sendBtn = document.getElementById('sendBtn');
-        const chatInput = document.getElementById('chatInput');
-        const chatMessages = document.getElementById('chatMessages');
-
-        // Toggle Chat Window
-        chatBtn.addEventListener('click', () => {
-            chatWindow.classList.add('active');
-        });
-
-        closeChat.addEventListener('click', () => {
-            chatWindow.classList.remove('active');
-        });
-
-        // Send Message Logic
-        function sendMessage() {
-            const text = chatInput.value.trim();
-            if (text) {
-                // Add User Message
-                addMessage(text, 'user');
-                chatInput.value = '';
-
-                // Simulate Bot Response (Simple Logic)
-                setTimeout(() => {
-                    let botResponse = "Thank you for contacting Britium Gallery. Our concierge team is reviewing your request.";
-                    
-                    const lowerText = text.toLowerCase();
-                    if(lowerText.includes('track') || lowerText.includes('order')) {
-                        botResponse = "To track your order, please provide your Order Number (e.g., #12345). You can check the status on our Tracking Page.";
-                    } else if (lowerText.includes('return')) {
-                        botResponse = "Returns are accepted within 30 days of purchase for unused items. Would you like the link to our Return Request form?";
-                    } else if (lowerText.includes('store') || lowerText.includes('location')) {
-                        botResponse = "Our flagship store is located at No. 277, Anawrahta Road, East Dagon. We also have locations in Yangon and Mandalay.";
-                    } else if (lowerText.includes('hello') || lowerText.includes('hi')) {
-                        botResponse = "Hello! I am the Britium Concierge. Are you looking for a specific handbag or accessory today?";
-                    }
-
-                    addMessage(botResponse, 'bot');
-                }, 800);
-            }
-        }
-
-        function addMessage(text, sender) {
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('message', sender);
-            msgDiv.innerText = text;
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto scroll to bottom
-        }
-
-        sendBtn.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-    </script>
-
+  <!-- CHATBOT SCRIPT (unchanged logic can remain here) -->
 </body>
 </html>
-
-
