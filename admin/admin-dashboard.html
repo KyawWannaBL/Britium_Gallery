@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | Britium</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-main: #0b0b0b;
+      --bg-panel: #141414;
+      --gold: #c6a87c;
+      --border: rgba(255,255,255,0.1);
+      --text-main: #ffffff;
+      --text-muted: #9a9a9a;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+    }
+
+    /* SIDEBAR */
+    .sidebar {
+      width: 260px;
+      background-color: #080808;
+      border-right: 1px solid var(--border);
+      padding: 30px 20px;
+    }
+
+    .brand {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: var(--gold);
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .nav-links a {
+      display: block;
+      padding: 12px 15px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background-color: rgba(198,168,124,0.15);
+      color: var(--gold);
+    }
+
+    /* MAIN CONTENT */
+    .main {
+      flex: 1;
+      padding: 40px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+    }
+
+    .header h1 {
+      font-size: 1.8rem;
+      font-weight: 500;
+    }
+
+    .admin-info {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* STATS */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 25px;
+      margin-bottom: 40px;
+    }
+
+    .stat-card {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border);
+      padding: 25px;
+      border-radius: 10px;
+    }
+
+    .stat-card h3 {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .stat-card span {
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    /* WELCOME PANEL */
+    .welcome {
+      background-color: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 30px;
+    }
+
+    .welcome h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    .welcome p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      max-width: 700px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">Britium Admin</div>
+
+    <nav class="nav-links">
+      <a href="admin-dashboard.html" class="active">Dashboard</a>
+      <a href="admin-orders.html">Orders</a>
+      <a href="admin-products.html">Products</a>
+      <a href="admin-customers.html">Customers</a>
+      <a href="admin-staff.html">Staff</a>
+      <a href="admin-settings.html">Settings</a>
+      <a href="../index.html">Logout</a>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="header">
+      <h1>Dashboard</h1>
+      <div class="admin-info">Logged in as Admin</div>
+    </div>
+
+    <section class="stats">
+      <div class="stat-card">
+        <h3>Total Orders</h3>
+        <span>1,284</span>
+      </div>
+      <div class="stat-card">
+        <h3>Total Revenue</h3>
+        <span>MMK 385M</span>
+      </div>
+      <div class="stat-card">
+        <h3>Products</h3>
+        <span>412</span>
+      </div>
+      <div class="stat-card">
+        <h3>Customers</h3>
+        <span>3,976</span>
+      </div>
+    </section>
+
+    <section class="welcome">
+      <h2>Welcome back</h2>
+      <p>
+        This is the Britium administrative control panel. From here you can manage products, track orders,
+        monitor customer activity, and configure system settings. All actions are logged for security and audit purposes.
+      </p>
+    </section>
+  </main>
+
+</body>
+</html>
