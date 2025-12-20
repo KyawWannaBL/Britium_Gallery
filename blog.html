@@ -4,53 +4,280 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog | Britium Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- RESET & VARIABLES --- */
-        :root {
-            --bg-white: #ffffff;
-            --bg-light: #fafafa;
-            --text-dark: #111;
-            --text-grey: #666;
-            --text-date: #888;
-        }
 
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        :root {
+            --bg-dark: #1a0f0a;
+            --bg-panel: #231712;
+            --bg-cream: #f9f4ef;
+            --gold-accent: #debb6e;
+            --gold-dark: #b5904b;
+            --text-light: #ffffff;
+            --text-grey: #cfcfcf;
+            --text-dark: #2c241b;
+            --border-gold: rgba(222, 187, 110, 0.2);
+        }
+
         body {
-            font-family: 'Jost', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { color: var(--gold-accent); }
 
-        /* --- HEADER --- */
+        /* HEADER */
         header {
-            background-color: #000; /* Dark header base */
-            padding: 20px 60px;
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border-gold);
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
+            color: var(--gold-accent);
             font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #fff;
-        }
-        .logo-icon {
-            width: 24px; height: 24px; 
-            border: 2px solid #fff; 
-            transform: rotate(45deg);
         }
 
-        nav ul { display: flex; gap: 40px; list-style: none; }
-        nav a { font-size: 0.9rem; font-weight: 500; color: #
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 90px 20px 60px;
+            background: linear-gradient(180deg, rgba(26,15,10,1) 0%, rgba(40,25,18,1) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            color: var(--gold-accent);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            font-weight: 300;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        /* BLOG GRID */
+        .content {
+            padding: 80px 8%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .blog-card {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-gold);
+            transition: 0.3s;
+            overflow: hidden;
+        }
+
+        .blog-card:hover {
+            border-color: var(--gold-accent);
+            transform: translateY(-4px);
+        }
+
+        .blog-image {
+            height: 220px;
+            background-color: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-grey);
+            font-style: italic;
+        }
+
+        .blog-body {
+            padding: 25px;
+        }
+
+        .blog-date {
+            font-size: 0.8rem;
+            color: #aaa;
+            margin-bottom: 8px;
+        }
+
+        .blog-title {
+            font-size: 1.2rem;
+            color: var(--gold-accent);
+            margin-bottom: 12px;
+        }
+
+        .blog-excerpt {
+            font-size: 0.95rem;
+            color: #ddd;
+            margin-bottom: 20px;
+        }
+
+        .read-more {
+            font-size: 0.85rem;
+            color: var(--gold-accent);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        .read-more:hover {
+            border-bottom: 1px solid var(--gold-accent);
+        }
+
+        /* BRAND SIGNATURE */
+        .brand-signature {
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 80px 20px;
+            margin-top: 80px;
+            border-top: 5px solid var(--gold-accent);
+        }
+
+        .brand-signature h2 {
+            font-size: 3rem;
+            color: var(--gold-dark);
+        }
+
+        .brand-signature h3 {
+            font-size: 2rem;
+            font-style: italic;
+        }
+
+        footer {
+            background-color: #0d0705;
+            color: #666;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.8rem;
+        }
+
+        @media(max-width:768px) {
+            nav ul { display: none; }
+            .hero h1 { font-size: 2.4rem; }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">BRITIUM GALLERY</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="new-arrivals.html">New Arrivals</a></li>
+            <li><a href="luxury-handbags.html">Handbags</a></li>
+            <li><a href="product-gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog.html" style="color:var(--gold-accent)">Blog</a></li>
+        </ul>
+    </nav>
+    <div style="color:var(--gold-accent)">🛒 (0)</div>
+</header>
+
+<section class="hero">
+    <h1>THE BRITIUM JOURNAL</h1>
+    <p>
+        Stories of craftsmanship, fashion insights, and the world of luxury —
+        curated by Britium Gallery.
+    </p>
+</section>
+
+<section class="content">
+
+    <div class="blog-grid">
+
+        <div class="blog-card">
+            <div class="blog-image">[Behind the Craft]</div>
+            <div class="blog-body">
+                <div class="blog-date">March 12, 2025</div>
+                <div class="blog-title">The Art of Crafting Luxury Handbags</div>
+                <div class="blog-excerpt">
+                    Discover how meticulous craftsmanship, premium materials,
+                    and timeless design come together in every Britium piece.
+                </div>
+                <a href="#" class="read-more">Read Article</a>
+            </div>
+        </div>
+
+        <div class="blog-card">
+            <div class="blog-image">[Style Guide]</div>
+            <div class="blog-body">
+                <div class="blog-date">February 28, 2025</div>
+                <div class="blog-title">How to Style Luxury Bags for Every Occasion</div>
+                <div class="blog-excerpt">
+                    From boardrooms to evening events, learn how to elevate
+                    your look with the right luxury accessory.
+                </div>
+                <a href="#" class="read-more">Read Article</a>
+            </div>
+        </div>
+
+        <div class="blog-card">
+            <div class="blog-image">[Brand Story]</div>
+            <div class="blog-body">
+                <div class="blog-date">February 10, 2025</div>
+                <div class="blog-title">The Vision Behind Britium Gallery</div>
+                <div class="blog-excerpt">
+                    A closer look at the inspiration, values, and future vision
+                    shaping the Britium brand.
+                </div>
+                <a href="#" class="read-more">Read Article</a>
+            </div>
+        </div>
+
+        <div class="blog-card">
+            <div class="blog-image">[Trends]</div>
+            <div class="blog-body">
+                <div class="blog-date">January 22, 2025</div>
+                <div class="blog-title">Luxury Handbag Trends to Watch This Year</div>
+                <div class="blog-excerpt">
+                    Explore the silhouettes, textures, and tones defining
+                    the new era of luxury fashion.
+                </div>
+                <a href="#" class="read-more">Read Article</a>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+<section class="brand-signature">
+    <h2>BRITIUM GALLERY</h2>
+    <h3>Stories Crafted With Elegance</h3>
+</section>
+
+<footer>
+    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
+</footer>
+
+</body>
+</html>
