@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Britium Gallery | New Arrivals</title>
+    <title>Britium Gallery | Luxury Handbags</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
@@ -60,7 +60,7 @@
         /* HERO */
         .hero {
             text-align: center;
-            padding: 80px 20px 40px;
+            padding: 90px 20px 50px;
             background: linear-gradient(180deg, rgba(26,15,10,1) 0%, rgba(40,25,18,1) 100%);
         }
 
@@ -68,6 +68,7 @@
             font-size: 3.5rem;
             color: var(--gold-accent);
             margin-bottom: 10px;
+            line-height: 1.2;
         }
 
         .hero p {
@@ -86,7 +87,7 @@
             cursor: pointer;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-top: 30px;
+            margin-top: 35px;
             transition: 0.3s;
         }
 
@@ -99,6 +100,11 @@
         .collection {
             padding: 60px 5%;
             text-align: center;
+        }
+
+        .collection h3 {
+            color: var(--gold-accent);
+            margin-bottom: 10px;
         }
 
         .collection-grid {
@@ -121,7 +127,7 @@
 
         .placeholder-img {
             width: 100%;
-            height: 250px;
+            height: 260px;
             background-color: #2c241b;
             display: flex;
             align-items: center;
@@ -170,76 +176,6 @@
             font-size: 0.8rem;
         }
 
-        /* CHAT */
-        .chat-widget-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: var(--gold-accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 1000;
-        }
-
-        .chat-window {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            height: 500px;
-            background-color: var(--chat-bg);
-            border: 1px solid var(--gold-accent);
-            border-radius: 12px;
-            display: none;
-            flex-direction: column;
-            overflow: hidden;
-            z-index: 1000;
-        }
-
-        .chat-window.active { display: flex; }
-
-        .chat-header {
-            background-color: var(--bg-dark);
-            padding: 15px;
-            border-bottom: 1px solid var(--gold-accent);
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-        }
-
-        .chat-input-area {
-            padding: 15px;
-            display: flex;
-            gap: 10px;
-            border-top: 1px solid #333;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 10px;
-            background: #111;
-            color: #fff;
-            border: 1px solid #444;
-        }
-
-        .chat-send {
-            background: var(--gold-accent);
-            border: none;
-            padding: 0 15px;
-            font-weight: bold;
-            cursor: pointer;
-        }
-
         @media(max-width:768px) {
             nav ul { display: none; }
             .hero h1 { font-size: 2.5rem; }
@@ -254,8 +190,8 @@
     <nav>
         <ul>
             <li><a href="index.html">Home</a></li>
-            <li><a href="new-arrivals.html" style="color:var(--gold-accent)">New Arrivals</a></li>
-            <li><a href="luxury-handbags.html">Handbags</a></li>
+            <li><a href="new-arrivals.html">New Arrivals</a></li>
+            <li><a href="luxury-handbags.html" style="color:var(--gold-accent)">Handbags</a></li>
             <li><a href="about.html">About Us</a></li>
         </ul>
     </nav>
@@ -263,37 +199,50 @@
 </header>
 
 <section class="hero">
-    <h1>NEW ARRIVALS</h1>
-    <p>Fresh arrivals crafted for modern luxury and timeless elegance.</p>
-    <button class="btn-gold" onclick="location.href='shop.html'">Shop Collection</button>
+    <h1>LUXURY HANDBAGS</h1>
+    <p>Crafted icons of elegance, precision, and enduring luxury.</p>
+    <button class="btn-gold" onclick="location.href='shop.html'">Explore Collection</button>
 </section>
 
 <section class="collection">
-    <h3 style="color:var(--gold-accent)">Latest Editions</h3>
+    <h3>The Signature Edit</h3>
+
     <div class="collection-grid">
 
         <div class="product-card">
-            <div class="placeholder-img">[New Tote]</div>
-            <div class="product-title">Ivory Signature Tote</div>
-            <div class="product-price">MMK 92,000.00</div>
+            <div class="placeholder-img">[Ivory Tote]</div>
+            <div class="product-title">Ivory Elegance Tote</div>
+            <div class="product-price">MMK 125,000.00</div>
         </div>
 
         <div class="product-card">
-            <div class="placeholder-img">[Chain Shoulder]</div>
-            <div class="product-title">Quilted Chain Shoulder</div>
+            <div class="placeholder-img">[Quilted Satchel]</div>
+            <div class="product-title">Noir Quilted Satchel</div>
+            <div class="product-price">MMK 145,000.00</div>
+        </div>
+
+        <div class="product-card">
+            <div class="placeholder-img">[Monogram Handbag]</div>
+            <div class="product-title">Signature Monogram Handbag</div>
+            <div class="product-price">MMK 110,000.00</div>
+        </div>
+
+        <div class="product-card">
+            <div class="placeholder-img">[Structured Mini]</div>
+            <div class="product-title">V-Lock Structured Mini</div>
             <div class="product-price">MMK 98,000.00</div>
         </div>
 
         <div class="product-card">
-            <div class="placeholder-img">[Mini Crossbody]</div>
-            <div class="product-title">Elegant Mini Crossbody</div>
-            <div class="product-price">MMK 78,000.00</div>
+            <div class="placeholder-img">[Chain Shoulder]</div>
+            <div class="product-title">Gold Chain Shoulder Bag</div>
+            <div class="product-price">MMK 135,000.00</div>
         </div>
 
         <div class="product-card">
-            <div class="placeholder-img">[Structured Satchel]</div>
-            <div class="product-title">Midnight Structured Satchel</div>
-            <div class="product-price">MMK 88,000.00</div>
+            <div class="placeholder-img">[Classic Satchel]</div>
+            <div class="product-title">Heritage Leather Satchel</div>
+            <div class="product-price">MMK 120,000.00</div>
         </div>
 
     </div>
