@@ -1,546 +1,254 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Britium | Luxury & Innovation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- RESET & VARIABLES --- */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Britium Gallery | Luxury Handbags & Accessories</title>
 
-        :root {
-            --bg-dark: #1a0f0a;       /* Deep Coffee/Black */
-            --bg-panel: #231712;      /* Lighter panel background */
-            --gold-accent: #debb6e;   /* Metallic Gold */
-            --gold-dark: #b5904b;
-            --text-light: #ffffff;
-            --text-grey: #a0a0a0;
-            --chat-bg: #1a1a1a;
-            --border-gold: rgba(222, 187, 110, 0.2);
-        }
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
+  <style>
+    :root {
+      --bg-dark: #1a0f0a;
+      --bg-light: #f9f4ef;
+      --gold: #debb6e;
+      --gold-dark: #b5904b;
+      --text-light: #ffffff;
+      --text-muted: #d0d0d0;
+      --text-dark: #2c241b;
+    }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        a:hover { color: var(--gold-accent); }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.6;
+    }
 
-        /* --- HEADER & NAVIGATION --- */
-        header {
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-gold);
-            background-color: rgba(26, 15, 10, 0.95);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-        }
+    a { text-decoration: none; color: inherit; }
 
-        .logo {
-            font-size: 1.5rem;
-            color: var(--gold-accent);
-            font-weight: 700;
-            display: flex;
-            flex-direction: column;
-            line-height: 1;
-            cursor: pointer;
-        }
-        .logo span { font-size: 0.65rem; color: #fff; letter-spacing: 3px; margin-top: 4px; }
+    /* HEADER */
+    header {
+      padding: 22px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(222,187,110,0.2);
+    }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--gold);
+      font-weight: 700;
+    }
 
-        nav a {
-            font-size: 0.9rem;
-            text-transform: uppercase;
-            font-weight: 400;
-            letter-spacing: 1px;
-        }
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 30px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
 
-        .header-icons {
-            display: flex;
-            gap: 20px;
-            align-items: center;
-            font-size: 1.2rem;
-        }
+    nav a:hover {
+      color: var(--gold);
+    }
 
-        /* --- HERO SECTION --- */
-        .hero {
-            position: relative;
-            height: 90vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            background: radial-gradient(circle, rgba(35,23,18,1) 0%, rgba(26,15,10,1) 100%);
-            overflow: hidden;
-        }
+    /* HERO */
+    .hero {
+      text-align: center;
+      padding: 90px 20px 70px;
+      background: linear-gradient(180deg, #1a0f0a 0%, #281912 100%);
+    }
 
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-image: url('a1.jpg'); 
-            background-size: cover;
-            background-position: center;
-            opacity: 0.5;
-            z-index: 0;
-        }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.6rem;
+      color: var(--gold);
+      margin-bottom: 15px;
+    }
 
-        .hero-content { z-index: 2; max-width: 800px; padding: 20px; }
+    .hero p {
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
 
-        .hero h1 {
-            font-size: 4.5rem;
-            color: var(--gold-accent);
-            margin-bottom: 20px;
-            line-height: 1.1;
-        }
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: #e0e0e0;
-            margin-bottom: 40px;
-            font-weight: 300;
-        }
+    .btn-primary,
+    .btn-secondary {
+      padding: 15px 40px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: 0.3s;
+    }
 
-        .btn {
-            padding: 15px 40px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            cursor: pointer;
-            transition: 0.3s;
-            border: 1px solid var(--gold-accent);
-            display: inline-block;
-            margin: 0 10px;
-        }
+    .btn-primary {
+      background-color: var(--gold);
+      color: #000;
+    }
 
-        .btn-primary { background-color: var(--gold-accent); color: var(--bg-dark); }
-        .btn-primary:hover { background-color: var(--gold-dark); border-color: var(--gold-dark); transform: translateY(-3px);}
+    .btn-primary:hover {
+      background-color: var(--gold-dark);
+    }
 
-        .btn-secondary { background-color: transparent; color: var(--gold-accent); }
-        .btn-secondary:hover { background-color: rgba(222, 187, 110, 0.1); color: #fff; transform: translateY(-3px);}
+    .btn-secondary {
+      background-color: transparent;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+    }
 
-        /* --- SPLIT SECTION (Direct Access) --- */
-        .split-section {
-            display: flex;
-            flex-wrap: wrap;
-            border-top: 1px solid var(--border-gold);
-        }
+    .btn-secondary:hover {
+      background-color: var(--gold);
+      color: #000;
+    }
 
-        .split-col {
-            flex: 1;
-            min-width: 300px;
-            padding: 80px 40px;
-            text-align: center;
-            border-right: 1px solid var(--border-gold);
-            transition: 0.3s;
-            background-size: cover;
-            background-position: center;
-            position: relative;
-        }
-        
-        .split-fashion { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('a3.jpg'); }
-        .split-ventures { background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('a4.jpg'); }
+    /* FEATURE SECTIONS */
+    .section {
+      padding: 80px 8%;
+      text-align: center;
+    }
 
-        .split-col:last-child { border-right: none; }
-        
-        .split-col h2 { font-size: 2rem; color: #fff; margin-bottom: 15px; position: relative; z-index: 2;}
-        .split-col p { color: #ddd; margin-bottom: 30px; position: relative; z-index: 2;}
-        .split-col .btn { position: relative; z-index: 2; }
+    .section.light {
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+    }
 
-        /* --- FEATURED GRID --- */
-        .featured { padding: 80px 5%; text-align: center; }
-        .featured h2 { font-size: 2.5rem; color: var(--gold-accent); margin-bottom: 50px; }
+    .section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.8rem;
+      margin-bottom: 20px;
+    }
 
-        .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-        }
+    .section p {
+      max-width: 700px;
+      margin: 0 auto 50px;
+      font-size: 1.05rem;
+      color: #555;
+    }
 
-        .card {
-            background-color: var(--bg-panel);
-            border: 1px solid var(--border-gold);
-            cursor: pointer;
-            transition: transform 0.3s;
-            overflow: hidden;
-        }
-        .card:hover { transform: translateY(-10px); border-color: var(--gold-accent); }
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
 
-        .card-img {
-            height: 300px;
-            background-color: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-grey);
-            font-style: italic;
-            overflow: hidden;
-        }
-        
-        .card-img img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s;
-        }
-        .card:hover .card-img img { transform: scale(1.05); }
+    .card {
+      padding: 40px 30px;
+      border: 1px solid rgba(0,0,0,0.08);
+      transition: 0.3s;
+      background-color: #fff;
+    }
 
-        .card-body { padding: 20px; }
-        .card-title { font-size: 1.1rem; color: #fff; margin-bottom: 5px; }
-        .card-meta { font-size: 0.9rem; color: var(--gold-accent); }
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: var(--gold);
+    }
 
-        /* --- FOOTER --- */
-        footer {
-            background-color: #050505;
-            padding: 80px 50px 30px;
-            border-top: 1px solid #333;
-            color: #888;
-            font-size: 0.9rem;
-        }
+    .card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+    }
 
-        .footer-cols {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            max-width: 1400px;
-            margin: 0 auto 60px;
-        }
+    .card a {
+      display: inline-block;
+      margin-top: 15px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--gold-dark);
+    }
 
-        .footer-col h4 {
-            color: var(--text-light);
-            margin-bottom: 25px;
-            letter-spacing: 1px;
-            font-size: 1rem;
-        }
+    /* FOOTER */
+    footer {
+      background-color: #0d0705;
+      text-align: center;
+      padding: 35px 20px;
+      font-size: 0.85rem;
+      color: #777;
+    }
 
-        .footer-col ul { list-style: none; }
-        .footer-col li { margin-bottom: 12px; }
-        .footer-col a:hover { color: var(--gold-accent); text-decoration: underline; }
-
-        .footer-bottom {
-            text-align: center;
-            padding-top: 30px;
-            border-top: 1px solid #222;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        /* --- CHATBOT UI --- */
-        .chat-btn {
-            position: fixed; bottom: 30px; right: 30px;
-            width: 60px; height: 60px;
-            background-color: var(--gold-accent);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 28px; cursor: pointer; z-index: 999;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.5);
-            transition: transform 0.3s;
-        }
-        .chat-btn:hover { transform: scale(1.1); }
-
-        .chat-box {
-            position: fixed; bottom: 100px; right: 30px;
-            width: 350px; height: 500px;
-            background-color: var(--chat-bg);
-            border: 1px solid var(--gold-accent);
-            border-radius: 12px;
-            display: none; flex-direction: column;
-            z-index: 999; overflow: hidden;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
-        }
-        .chat-box.open { display: flex; }
-
-        .chat-header {
-            background: #111; padding: 15px;
-            border-bottom: 1px solid var(--gold-accent);
-            display: flex; justify-content: space-between; align-items: center;
-        }
-        .chat-header h4 { color: var(--gold-accent); font-size: 1rem; margin: 0; }
-        .close-chat { color: #fff; cursor: pointer; font-size: 1.2rem; }
-
-        .chat-content { flex: 1; padding: 20px; overflow-y: auto; display: flex; flex-direction: column; gap: 15px; }
-        
-        .msg { max-width: 80%; padding: 10px 15px; border-radius: 8px; font-size: 0.9rem; word-wrap: break-word; }
-        .msg.bot { background: rgba(222, 187, 110, 0.15); color: #fff; align-self: flex-start; border-bottom-left-radius: 2px; }
-        .msg.user { background: var(--gold-accent); color: #000; align-self: flex-end; border-bottom-right-radius: 2px; }
-
-        .chat-input-area {
-            padding: 15px; background: #111;
-            border-top: 1px solid #333;
-            display: flex; gap: 10px;
-        }
-        .chat-input {
-            flex: 1; padding: 12px; background: #222; border: 1px solid #444;
-            color: #fff; border-radius: 4px; outline: none;
-        }
-        .send-btn {
-            background: var(--gold-accent); border: none; padding: 0 15px;
-            font-weight: bold; cursor: pointer; border-radius: 4px;
-        }
-
-        /* Responsive */
-        @media(max-width: 768px) {
-            header { padding: 15px 20px; }
-            nav ul { display: none; }
-            .hero h1 { font-size: 3rem; }
-            .split-section { flex-direction: column; }
-            .split-col { border-right: none; border-bottom: 1px solid var(--border-gold); }
-            .chat-box { width: 90%; right: 5%; }
-        }
-    </style>
+    @media (max-width: 768px) {
+      header { padding: 20px; }
+      nav ul { display: none; }
+      .hero h1 { font-size: 2.6rem; }
+    }
+  </style>
 </head>
+
 <body>
 
-    <header>
-        <a href="index.html" class="logo">
-            BRITIUM
-            <span>GALLERY & VENTURES</span>
-        </a>
-        <nav>
-            <ul>
-                <li><a href="index.html" class="active">Home</a></li>
-                <li><a href="Britium_Shop.html">Shop</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="about_us.html">About</a></li>
-                <li><a href="contact_us.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="header-icons">
-            <a href="search_results.html" title="Search">🔍</a>
-            <a href="login_code.html" title="Login / Profile">👤</a>
-            <a href="wishlist.html" title="My Wishlist">♡</a>
-            <a href="shopping_cart.html" title="Shopping Cart">🛒</a>
-        </div>
-    </header>
+  <header>
+    <div class="logo">Britium Gallery</div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="new-arrivals.html">New Arrivals</a></li>
+        <li><a href="luxury-handbags.html">Luxury Handbags</a></li>
+        <li><a href="product-gallery.html">Gallery</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="faq.html">FAQ</a></li>
+        <li><a href="careers.html">Careers</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
 
-    <section class="hero">
-        <div class="hero-content">
-            <h1>WHERE LUXURY MEETS<br>INNOVATION</h1>
-            <p>Explore our exquisite handbags or discover our cutting-edge business solutions.</p>
-            <div class="cta-group">
-                <a href="Britium_Shop.html" class="btn btn-primary">SHOP FASHION</a>
-                <a href="gallery.html" class="btn btn-secondary">BUSINESS VENTURES</a>
-            </div>
-        </div>
-    </section>
-
-    <section class="split-section">
-        <div class="split-col split-fashion">
-            <h2>The Gallery</h2>
-            <p>Timeless handbags, totes, and accessories crafted for elegance.</p>
-            <a href="Britium_Shop.html" class="btn btn-secondary">VIEW COLLECTION</a>
-        </div>
-        <div class="split-col split-ventures">
-            <h2>The Ventures</h2>
-            <p>Flexitanks, Dual Screens, and Corporate Gifting solutions.</p>
-            <a href="gallery.html" class="btn btn-secondary">VIEW SOLUTIONS</a>
-        </div>
-    </section>
-
-    <section class="featured">
-        <h2>Trending Now</h2>
-        <div class="grid-container">
-            
-            <div class="card" onclick="window.location.href='Britium_Shop.html'">
-                <div class="card-img"><img src="a12.jpg" alt="Fashion Item"></div>
-                <div class="card-body">
-                    <div class="card-title">Luxury Handbag Series</div>
-                    <div class="card-meta">View Collection</div>
-                </div>
-            </div>
-
-            <div class="card" onclick="window.location.href='Britium_Shop.html'">
-                <div class="card-img"><img src="48.jpg" alt="Product"></div>
-                <div class="card-body">
-                    <div class="card-title">Exclusive Arrivals</div>
-                    <div class="card-meta">New Season</div>
-                </div>
-            </div>
-
-            <div class="card" onclick="window.location.href='gallery.html'">
-                <div class="card-img"><img src="52.jpg" alt="Tech Item"></div>
-                <div class="card-body">
-                    <div class="card-title">Modern Innovations</div>
-                    <div class="card-meta">Tech & Gadgets</div>
-                </div>
-            </div>
-
-            <div class="card" onclick="window.location.href='gallery.html'">
-                <div class="card-img"><img src="60.jpg" alt="Corporate Gift"></div>
-                <div class="card-body">
-                    <div class="card-title">Corporate Solutions</div>
-                    <div class="card-meta">Business Gifting</div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <footer>
-        <div class="footer-cols">
-            
-            <div class="footer-col">
-                <h4>Customer Care</h4>
-                <ul>
-                    <li><a href="track_order.html">Track My Order</a></li>
-                    <li><a href="return_request.html">Start a Return</a></li>
-                    <li><a href="shipping_&_returns.html">Shipping Policy</a></li>
-                    <li><a href="faq.html">FAQs</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Discover Britium</h4>
-                <ul>
-                    <li><a href="about_us.html">Our Story</a></li>
-                    <li><a href="careers.html">Careers</a></li>
-                    <li><a href="blog.html">Journal</a></li>
-                    <li><a href="store_locator.html">Find a Store</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>For Business</h4>
-                <ul>
-                    <li><a href="gallery.html">Flexitank Services</a></li>
-                    <li><a href="gallery.html">Corporate Gifting</a></li>
-                    <li><a href="gallery.html">Tech Hardware</a></li>
-                    <li><a href="contact_us.html">B2B Contact</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-col">
-                <h4>Legal & Staff</h4>
-                <ul>
-                    <li><a href="terms_&_conditions.html">Terms & Conditions</a></li>
-                    <li><a href="privacy_policy.html">Privacy Policy</a></li>
-                    <li style="margin-top: 20px; padding-top:10px; border-top:1px solid #333;">
-                        <a href="admin_login.html" style="color: #666; font-size: 0.8rem;">🔒 Staff Portal</a>
-                    </li>
-                </ul>
-            </div>
-
-        </div>
-
-        <div class="footer-bottom">
-            <span>&copy; 2025 Britium Gallery & Ventures. All Rights Reserved.</span>
-            <div class="socials">
-                <a href="#">Instagram</a> &nbsp; | &nbsp; 
-                <a href="#">Facebook</a> &nbsp; | &nbsp; 
-                <a href="#">LinkedIn</a>
-            </div>
-        </div>
-    </footer>
-
-    <div class="chat-btn" id="toggleChat">💬</div>
-
-    <div class="chat-box" id="chatInterface">
-        <div class="chat-header">
-            <h4>Britium Concierge</h4>
-            <span class="close-chat" id="closeChat">×</span>
-        </div>
-        <div class="chat-content" id="chatHistory">
-            <div class="msg bot">
-                Welcome to Britium. I can assist with Luxury Fashion orders or Business Venture inquiries. How can I help you today?
-            </div>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" id="userMsg" class="chat-input" placeholder="Type your question...">
-            <button id="sendMsg" class="send-btn">Send</button>
-        </div>
+  <section class="hero">
+    <h1>Luxury, Redefined</h1>
+    <p>Discover curated luxury handbags and accessories crafted for elegance, confidence, and timeless style.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="location.href='shop.html'">Shop Collection</button>
+      <button class="btn-secondary" onclick="location.href='new-arrivals.html'">New Arrivals</button>
     </div>
+  </section>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const toggleChat = document.getElementById('toggleChat');
-            const closeChat = document.getElementById('closeChat');
-            const chatInterface = document.getElementById('chatInterface');
-            const sendBtn = document.getElementById('sendMsg');
-            const userMsg = document.getElementById('userMsg');
-            const chatHistory = document.getElementById('chatHistory');
+  <section class="section light">
+    <h2>Explore Britium Gallery</h2>
+    <p>Each collection is carefully selected to reflect refinement, quality, and modern luxury.</p>
 
-            // Open/Close
-            toggleChat.addEventListener('click', () => {
-                chatInterface.classList.add('open');
-                userMsg.focus();
-            });
-            closeChat.addEventListener('click', () => chatInterface.classList.remove('open'));
+    <div class="card-grid">
+      <div class="card">
+        <h3>Luxury Handbags</h3>
+        <p>Signature designs that blend function with prestige.</p>
+        <a href="luxury-handbags.html">Explore</a>
+      </div>
 
-            // Send Logic
-            function handleSend() {
-                const text = userMsg.value.trim();
-                if(!text) return;
+      <div class="card">
+        <h3>New Arrivals</h3>
+        <p>Discover the latest additions to our exclusive range.</p>
+        <a href="new-arrivals.html">View New</a>
+      </div>
 
-                // User Msg
-                appendMessage(text, 'user');
-                userMsg.value = '';
+      <div class="card">
+        <h3>Product Gallery</h3>
+        <p>An immersive look at our curated luxury pieces.</p>
+        <a href="product-gallery.html">View Gallery</a>
+      </div>
+    </div>
+  </section>
 
-                // Bot Logic
-                setTimeout(() => {
-                    let response = "I am connecting you to our support team.";
-                    const lower = text.toLowerCase();
-
-                    if(lower.includes('bag') || lower.includes('shop') || lower.includes('tote')) {
-                        response = "Explore our latest collection in the <a href='Britium_Shop.html' style='color:#fff; text-decoration:underline;'>Fashion Shop</a>.";
-                    }
-                    else if(lower.includes('flexitank') || lower.includes('screen') || lower.includes('gift')) {
-                        response = "For business solutions, please visit our <a href='gallery.html' style='color:#fff; text-decoration:underline;'>Ventures Gallery</a>.";
-                    }
-                    else if(lower.includes('track') || lower.includes('order')) {
-                        response = "You can track your shipment here: <a href='track_order.html' style='color:#fff; text-decoration:underline;'>Track Order</a>.";
-                    }
-                    else if(lower.includes('return') || lower.includes('refund')) {
-                        response = "To start a return, visit our <a href='return_request.html' style='color:#fff; text-decoration:underline;'>Return Center</a>.";
-                    }
-                    else if(lower.includes('location') || lower.includes('store')) {
-                        response = "Find our nearest boutique using the <a href='store_locator.html' style='color:#fff; text-decoration:underline;'>Store Locator</a>.";
-                    }
-                    else if(lower.includes('login') || lower.includes('account')) {
-                        response = "Please log in to your account <a href='login_code.html' style='color:#fff; text-decoration:underline;'>here</a>.";
-                    }
-
-                    appendMessage(response, 'bot');
-                }, 600);
-            }
-
-            function appendMessage(txt, sender) {
-                const div = document.createElement('div');
-                div.className = `msg ${sender}`;
-                div.innerHTML = txt;
-                chatHistory.appendChild(div);
-                chatHistory.scrollTop = chatHistory.scrollHeight;
-            }
-
-            sendBtn.addEventListener('click', handleSend);
-            userMsg.addEventListener('keypress', (e) => {
-                if(e.key === 'Enter') handleSend();
-            });
-        });
-    </script>
+  <footer>
+    &copy; 2025 Britium Gallery. All Rights Reserved.
+  </footer>
 
 </body>
 </html>
