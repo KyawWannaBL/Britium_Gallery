@@ -3,301 +3,258 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FAQs | Britium Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- RESET & VARIABLES --- */
-        :root {
-            --bg-dark: #0f0f0f; /* Header Background */
-            --bg-body: #ffffff;
-            --text-dark: #111;
-            --text-grey: #666;
-            --border-color: #f0f0f0;
-        }
+    <title>FAQ | Britium Gallery</title>
 
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        :root {
+            --bg-dark: #1a0f0a;
+            --bg-panel: #231712;
+            --bg-cream: #f9f4ef;
+            --gold-accent: #debb6e;
+            --gold-dark: #b5904b;
+            --text-light: #ffffff;
+            --text-grey: #cfcfcf;
+            --text-dark: #2c241b;
+            --border-gold: rgba(222, 187, 110, 0.2);
+        }
+
         body {
-            font-family: 'Jost', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-dark);
-            line-height: 1.6;
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { color: var(--gold-accent); }
 
-        /* --- HEADER --- */
+        /* HEADER */
         header {
-            background-color: var(--bg-dark);
-            padding: 20px 60px;
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border-gold);
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
+            color: var(--gold-accent);
             font-weight: 700;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: #fff;
-        }
-        .logo-icon {
-            width: 24px; height: 24px; 
-            border: 2px solid #fff; 
-            transform: rotate(45deg);
         }
 
-        nav ul { display: flex; gap: 40px; list-style: none; }
-        nav a { font-size: 0.9rem; font-weight: 500; color: #ccc; }
-        nav a:hover { color: #fff; }
-
-        .search-icon { font-size: 1.2rem; cursor: pointer; color: #fff; }
-
-        /* --- MAIN CONTENT --- */
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 60px 20px 100px;
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
         }
 
-        /* Title Section */
-        .page-header {
+        /* HERO */
+        .hero {
             text-align: center;
-            margin-bottom: 60px;
+            padding: 90px 20px 60px;
+            background: linear-gradient(180deg, rgba(26,15,10,1) 0%, rgba(40,25,18,1) 100%);
         }
 
-        .page-header h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3rem;
-            font-weight: 400;
+        .hero h1 {
+            font-size: 3.2rem;
+            color: var(--gold-accent);
             margin-bottom: 15px;
         }
 
-        .page-header p {
-            font-size: 1rem;
-            color: var(--text-grey);
-            max-width: 600px;
+        .hero p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            font-weight: 300;
+            max-width: 850px;
             margin: 0 auto;
-            line-height: 1.6;
         }
 
-        /* FAQ Section Wrapper */
-        .faq-section {
-            margin-bottom: 50px;
+        /* FAQ CONTENT */
+        .content {
+            padding: 80px 8%;
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-        }
-
-        /* Accordion Items */
-        .accordion-item {
-            border: 1px solid var(--border-color);
-            margin-bottom: 10px;
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .accordion-header {
-            background-color: #fff;
-            padding: 20px;
+        .faq-item {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-gold);
+            padding: 25px 30px;
+            margin-bottom: 25px;
             cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .faq-item:hover {
+            border-color: var(--gold-accent);
+        }
+
+        .faq-question {
+            font-size: 1.15rem;
+            color: var(--gold-accent);
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-weight: 500;
-            font-size: 1rem;
-            transition: background 0.3s;
         }
-        .accordion-header:hover { background-color: #fafafa; }
 
-        .icon { font-size: 1.2rem; font-weight: 300; transition: transform 0.3s; }
-        
-        /* Active State */
-        .accordion-item.active .icon { transform: rotate(45deg); }
-        .accordion-item.active .accordion-content { display: block; }
-
-        .accordion-content {
-            display: none; /* Hidden by default */
-            padding: 0 20px 20px;
-            background-color: #fff;
+        .faq-answer {
+            margin-top: 15px;
             color: var(--text-grey);
             font-size: 0.95rem;
-            line-height: 1.6;
-            border-top: 1px solid transparent;
-        }
-        
-        /* Show content when active */
-        .accordion-item.active .accordion-content {
-            display: block;
-            border-top-color: #f9f9f9;
+            display: none;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            header { padding: 20px; }
+        .faq-item.active .faq-answer {
+            display: block;
+        }
+
+        .faq-toggle {
+            font-size: 1.4rem;
+            color: var(--gold-accent);
+        }
+
+        /* BRAND SIGNATURE */
+        .brand-signature {
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 80px 20px;
+            margin-top: 80px;
+            border-top: 5px solid var(--gold-accent);
+        }
+
+        .brand-signature h2 {
+            font-size: 3rem;
+            color: var(--gold-dark);
+        }
+
+        .brand-signature h3 {
+            font-size: 2rem;
+            font-style: italic;
+        }
+
+        footer {
+            background-color: #0d0705;
+            color: #666;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.8rem;
+        }
+
+        @media(max-width:768px) {
             nav ul { display: none; }
-            .page-header h1 { font-size: 2.5rem; }
+            .hero h1 { font-size: 2.4rem; }
         }
     </style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">
-            <div class="logo-icon"></div>
-            BRITIUM GALLERY
+<header>
+    <div class="logo">BRITIUM GALLERY</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="new-arrivals.html">New Arrivals</a></li>
+            <li><a href="luxury-handbags.html">Handbags</a></li>
+            <li><a href="product-gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="faq.html" style="color:var(--gold-accent)">FAQ</a></li>
+        </ul>
+    </nav>
+    <div style="color:var(--gold-accent)">🛒 (0)</div>
+</header>
+
+<section class="hero">
+    <h1>FREQUENTLY ASKED QUESTIONS</h1>
+    <p>
+        Everything you need to know about our products, orders, and services.
+    </p>
+</section>
+
+<section class="content">
+
+    <div class="faq-item">
+        <div class="faq-question">
+            Are Britium products authentic?
+            <span class="faq-toggle">+</span>
         </div>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="search-icon">🔍</div>
-    </header>
-
-    <div class="container">
-        
-        <div class="page-header">
-            <h1>FAQs</h1>
-            <p>Welcome to our Frequently Asked Questions page. Here you'll find answers to common queries about our products, orders, shipping, and more.</p>
+        <div class="faq-answer">
+            Yes. All Britium Gallery products are carefully curated and sourced.
+            Each item undergoes strict quality checks to ensure authenticity and craftsmanship.
         </div>
-
-        <div class="faq-section">
-            <h2 class="section-title">Orders</h2>
-            
-            <div class="accordion-item active">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    How do I place an order?
-                    <span class="icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    You can order a product by adding items to cart and completing the checkout process.
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    Can I modify or cancel my order?
-                    <span class="icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    Yes, you can modify or cancel your order within 24 hours of placing it by contacting customer support.
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    What payment methods do you accept?
-                    <span class="icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    We accept Visa, MasterCard, American Express, PayPal, and Apple Pay.
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-section">
-            <h2 class="section-title">Products</h2>
-            
-            <div class="accordion-item active"> <div class="accordion-header" onclick="toggleAccordion(this)">
-                    Are the products authentic?
-                    <span class="icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    All products are guaranteed to be 100% authentic.
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    How do I care for my handbag?
-                    <span class="icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    Keep your bag in a dust bag when not in use and avoid prolonged exposure to direct sunlight.
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    Will sold-out items be restocked?
-                    <span class="icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    We restock popular items periodically. You can sign up for notifications on the product page.
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-section">
-            <h2 class="section-title">Shipping</h2>
-            
-            <div class="accordion-item active">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    What are the shipping options?
-                    <span class="icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    We offer a variety of domestic and international shipping options including standard and express delivery.
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    Do you ship internationally?
-                    <span class="icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    Yes, we ship to over 50 countries worldwide.
-                </div>
-            </div>
-
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    How can I track my order?
-                    <span class="icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    Once your order ships, you will receive a tracking number via email.
-                </div>
-            </div>
-        </div>
-
-        <div class="faq-section">
-            <h2 class="section-title">Returns</h2>
-            
-            <div class="accordion-item">
-                <div class="accordion-header" onclick="toggleAccordion(this)">
-                    What is your return policy?
-                    <span class="icon">+</span>
-                </div>
-                <div class="accordion-content">
-                    We accept returns within 30 days of purchase for items in their original condition.
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <script>
-        function toggleAccordion(element) {
-            const item = element.parentElement;
+    <div class="faq-item">
+        <div class="faq-question">
+            Do you offer international shipping?
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            Currently, we ship within Myanmar. International shipping options will be announced soon.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            What is your return policy?
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            Returns are accepted within 30 days of purchase for unused items in original condition.
+            Please contact our support team to initiate a return.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            How can I track my order?
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            Once your order is shipped, you will receive a tracking number via email or SMS.
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question">
+            How do I contact customer support?
+            <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-answer">
+            You can reach us via the Contact page or through our concierge chat available on the website.
+        </div>
+    </div>
+
+</section>
+
+<section class="brand-signature">
+    <h2>BRITIUM GALLERY</h2>
+    <h3>Luxury Made Effortless</h3>
+</section>
+
+<footer>
+    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
+</footer>
+
+<script>
+    document.querySelectorAll('.faq-item').forEach(item => {
+        item.addEventListener('click', () => {
             item.classList.toggle('active');
-        }
-    </script>
+        });
+    });
+</script>
 
 </body>
 </html>
