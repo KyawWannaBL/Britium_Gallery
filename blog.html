@@ -1,288 +1,246 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog | Britium Gallery</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | Britium Gallery</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <style>
+    :root{
+      --bg-dark:#1a0f0a;
+      --bg-panel:#231712;
+      --bg-cream:#f9f4ef;
+      --gold:#debb6e;
+      --gold-dark:#b5904b;
+      --text:#ffffff;
+      --muted:#cfcfcf;
+      --border:rgba(222,187,110,.20);
+    }
 
-        :root {
-            --bg-dark: #1a0f0a;
-            --bg-panel: #231712;
-            --bg-cream: #f9f4ef;
-            --gold-accent: #debb6e;
-            --gold-dark: #b5904b;
-            --text-light: #ffffff;
-            --text-grey: #cfcfcf;
-            --text-dark: #2c241b;
-            --border-gold: rgba(222, 187, 110, 0.2);
-        }
+    body{
+      margin:0;
+      font-family:'Lato',sans-serif;
+      background:var(--bg-dark);
+      color:var(--text);
+      line-height:1.7;
+    }
 
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.7;
-        }
+    h1,h2,h3{
+      font-family:'Playfair Display',serif;
+      text-transform:uppercase;
+      letter-spacing:2px;
+    }
 
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
+    /* HERO */
+    .hero{
+      text-align:center;
+      padding:90px 20px 60px;
+      background:
+        radial-gradient(900px 320px at 50% 0%, rgba(222,187,110,.12), transparent 60%),
+        linear-gradient(180deg,#1a0f0a,#25170f);
+      border-bottom:1px solid var(--border);
+    }
 
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        a:hover { color: var(--gold-accent); }
+    .hero h1{
+      font-size:3.1rem;
+      color:var(--gold);
+      margin-bottom:15px;
+    }
 
-        /* HEADER */
-        header {
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border-gold);
-        }
+    .hero p{
+      max-width:850px;
+      margin:0 auto;
+      font-size:1.05rem;
+      color:#e0e0e0;
+      font-weight:300;
+    }
 
-        .logo {
-            font-size: 1.5rem;
-            color: var(--gold-accent);
-            font-weight: 700;
-        }
+    /* CONTENT */
+    .content{
+      max-width:1300px;
+      margin:0 auto;
+      padding:80px 6%;
+    }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
+    .blog-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:40px;
+    }
 
-        /* HERO */
-        .hero {
-            text-align: center;
-            padding: 90px 20px 60px;
-            background: linear-gradient(180deg, rgba(26,15,10,1) 0%, rgba(40,25,18,1) 100%);
-        }
+    .blog-card{
+      background:var(--bg-panel);
+      border:1px solid var(--border);
+      transition:.25s;
+      overflow:hidden;
+    }
 
-        .hero h1 {
-            font-size: 3.2rem;
-            color: var(--gold-accent);
-            margin-bottom: 15px;
-        }
+    .blog-card:hover{
+      border-color:var(--gold);
+      transform:translateY(-4px);
+    }
 
-        .hero p {
-            font-size: 1.1rem;
-            color: #e0e0e0;
-            font-weight: 300;
-            max-width: 850px;
-            margin: 0 auto;
-        }
+    .blog-image{
+      height:220px;
+      background:#111;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#888;
+      font-style:italic;
+    }
 
-        /* BLOG GRID */
-        .content {
-            padding: 80px 8%;
-            max-width: 1300px;
-            margin: 0 auto;
-        }
+    .blog-body{
+      padding:26px;
+    }
 
-        .blog-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
+    .blog-date{
+      font-size:.78rem;
+      color:#aaa;
+      margin-bottom:8px;
+      letter-spacing:1px;
+      text-transform:uppercase;
+    }
 
-        .blog-card {
-            background-color: var(--bg-panel);
-            border: 1px solid var(--border-gold);
-            transition: 0.3s;
-            overflow: hidden;
-        }
+    .blog-title{
+      font-size:1.2rem;
+      color:var(--gold);
+      margin-bottom:12px;
+    }
 
-        .blog-card:hover {
-            border-color: var(--gold-accent);
-            transform: translateY(-4px);
-        }
+    .blog-excerpt{
+      font-size:.95rem;
+      color:#ddd;
+      margin-bottom:20px;
+    }
 
-        .blog-image {
-            height: 220px;
-            background-color: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-grey);
-            font-style: italic;
-        }
+    .read-more{
+      font-size:.8rem;
+      color:var(--gold);
+      text-transform:uppercase;
+      letter-spacing:1px;
+      border-bottom:1px solid transparent;
+      transition:.25s;
+      text-decoration:none;
+    }
 
-        .blog-body {
-            padding: 25px;
-        }
+    .read-more:hover{
+      border-bottom:1px solid var(--gold);
+    }
 
-        .blog-date {
-            font-size: 0.8rem;
-            color: #aaa;
-            margin-bottom: 8px;
-        }
+    /* BRAND SIGNATURE */
+    .brand-signature{
+      background:var(--bg-cream);
+      color:#2c241b;
+      text-align:center;
+      padding:80px 20px;
+      margin-top:80px;
+      border-top:5px solid var(--gold);
+    }
 
-        .blog-title {
-            font-size: 1.2rem;
-            color: var(--gold-accent);
-            margin-bottom: 12px;
-        }
+    .brand-signature h2{
+      font-size:3rem;
+      color:var(--gold-dark);
+    }
 
-        .blog-excerpt {
-            font-size: 0.95rem;
-            color: #ddd;
-            margin-bottom: 20px;
-        }
+    .brand-signature h3{
+      font-size:2rem;
+      font-style:italic;
+    }
 
-        .read-more {
-            font-size: 0.85rem;
-            color: var(--gold-accent);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-bottom: 1px solid transparent;
-            transition: 0.3s;
-        }
-
-        .read-more:hover {
-            border-bottom: 1px solid var(--gold-accent);
-        }
-
-        /* BRAND SIGNATURE */
-        .brand-signature {
-            background-color: var(--bg-cream);
-            color: var(--text-dark);
-            text-align: center;
-            padding: 80px 20px;
-            margin-top: 80px;
-            border-top: 5px solid var(--gold-accent);
-        }
-
-        .brand-signature h2 {
-            font-size: 3rem;
-            color: var(--gold-dark);
-        }
-
-        .brand-signature h3 {
-            font-size: 2rem;
-            font-style: italic;
-        }
-
-        footer {
-            background-color: #0d0705;
-            color: #666;
-            text-align: center;
-            padding: 30px;
-            font-size: 0.8rem;
-        }
-
-        @media(max-width:768px) {
-            nav ul { display: none; }
-            .hero h1 { font-size: 2.4rem; }
-        }
-    </style>
+    @media(max-width:768px){
+      .hero h1{font-size:2.3rem;}
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-    <div class="logo">BRITIUM GALLERY</div>
-   <nav>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="shop.html">Shop</a></li>
-    <li><a href="new-arrivals.html">New Arrivals</a></li>
-    <li><a href="luxury-handbags.html">Luxury Handbags</a></li>
-    <li><a href="product-gallery.html">Gallery</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="login.html">Login</a></li>
-  </ul>
-</nav>
-    <div style="color:var(--gold-accent)">🛒 (0)</div>
-</header>
+  <!-- STANDARD NAV -->
+  <div id="siteHeader"></div>
 
-<section class="hero">
-    <h1>THE BRITIUM JOURNAL</h1>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>The Britium Journal</h1>
     <p>
-        Stories of craftsmanship, fashion insights, and the world of luxury —
-        curated by Britium Gallery.
+      Stories of craftsmanship, fashion insights, and the evolving world of luxury —
+      curated by Britium Gallery.
     </p>
-</section>
+  </section>
 
-<section class="content">
-
+  <!-- BLOG CONTENT -->
+  <section class="content">
     <div class="blog-grid">
 
-        <div class="blog-card">
-            <div class="blog-image">[Behind the Craft]</div>
-            <div class="blog-body">
-                <div class="blog-date">March 12, 2025</div>
-                <div class="blog-title">The Art of Crafting Luxury Handbags</div>
-                <div class="blog-excerpt">
-                    Discover how meticulous craftsmanship, premium materials,
-                    and timeless design come together in every Britium piece.
-                </div>
-                <a href="#" class="read-more">Read Article</a>
-            </div>
+      <div class="blog-card">
+        <div class="blog-image">[Behind the Craft]</div>
+        <div class="blog-body">
+          <div class="blog-date">March 12, 2025</div>
+          <div class="blog-title">The Art of Crafting Luxury Handbags</div>
+          <div class="blog-excerpt">
+            Discover how meticulous craftsmanship, premium materials,
+            and timeless design come together in every Britium piece.
+          </div>
+          <a href="#" class="read-more">Read Article</a>
         </div>
+      </div>
 
-        <div class="blog-card">
-            <div class="blog-image">[Style Guide]</div>
-            <div class="blog-body">
-                <div class="blog-date">February 28, 2025</div>
-                <div class="blog-title">How to Style Luxury Bags for Every Occasion</div>
-                <div class="blog-excerpt">
-                    From boardrooms to evening events, learn how to elevate
-                    your look with the right luxury accessory.
-                </div>
-                <a href="#" class="read-more">Read Article</a>
-            </div>
+      <div class="blog-card">
+        <div class="blog-image">[Style Guide]</div>
+        <div class="blog-body">
+          <div class="blog-date">February 28, 2025</div>
+          <div class="blog-title">How to Style Luxury Bags for Every Occasion</div>
+          <div class="blog-excerpt">
+            From boardrooms to evening events, learn how to elevate
+            your look with the right luxury accessory.
+          </div>
+          <a href="#" class="read-more">Read Article</a>
         </div>
+      </div>
 
-        <div class="blog-card">
-            <div class="blog-image">[Brand Story]</div>
-            <div class="blog-body">
-                <div class="blog-date">February 10, 2025</div>
-                <div class="blog-title">The Vision Behind Britium Gallery</div>
-                <div class="blog-excerpt">
-                    A closer look at the inspiration, values, and future vision
-                    shaping the Britium brand.
-                </div>
-                <a href="#" class="read-more">Read Article</a>
-            </div>
+      <div class="blog-card">
+        <div class="blog-image">[Brand Story]</div>
+        <div class="blog-body">
+          <div class="blog-date">February 10, 2025</div>
+          <div class="blog-title">The Vision Behind Britium Gallery</div>
+          <div class="blog-excerpt">
+            A closer look at the inspiration, values, and future vision
+            shaping the Britium brand.
+          </div>
+          <a href="#" class="read-more">Read Article</a>
         </div>
+      </div>
 
-        <div class="blog-card">
-            <div class="blog-image">[Trends]</div>
-            <div class="blog-body">
-                <div class="blog-date">January 22, 2025</div>
-                <div class="blog-title">Luxury Handbag Trends to Watch This Year</div>
-                <div class="blog-excerpt">
-                    Explore the silhouettes, textures, and tones defining
-                    the new era of luxury fashion.
-                </div>
-                <a href="#" class="read-more">Read Article</a>
-            </div>
+      <div class="blog-card">
+        <div class="blog-image">[Trends]</div>
+        <div class="blog-body">
+          <div class="blog-date">January 22, 2025</div>
+          <div class="blog-title">Luxury Handbag Trends to Watch This Year</div>
+          <div class="blog-excerpt">
+            Explore the silhouettes, textures, and tones defining
+            the new era of luxury fashion.
+          </div>
+          <a href="#" class="read-more">Read Article</a>
         </div>
+      </div>
 
     </div>
+  </section>
 
-</section>
-
-<section class="brand-signature">
-    <h2>BRITIUM GALLERY</h2>
+  <!-- BRAND SIGNATURE -->
+  <section class="brand-signature">
+    <h2>Britium Gallery</h2>
     <h3>Stories Crafted With Elegance</h3>
-</section>
+  </section>
 
-<footer>
-    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
-</footer>
+  <!-- STANDARD FOOTER -->
+  <div id="siteFooter"></div>
+
+  <!-- NAV SCRIPT -->
+  <script src="nav.js"></script>
 
 </body>
 </html>
-
