@@ -194,18 +194,20 @@
         BRITIUM
         <span>GALLERY</span>
     </a>
-
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="shop.html">Shop</a></li>
-            <li><a href="new-arrivals.html" style="color:var(--gold-accent)">New Arrivals</a></li>
-            <li><a href="luxury-handbags.html">Luxury Handbags</a></li>
-            <li><a href="product-gallery.html">Gallery</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="contact.html">Contact</a></li>
-        </ul>
-    </nav>
+ <nav>
+  <ul>
+    <li><a href="index.html">Home</a></li>
+    <li><a href="shop.html">Shop</a></li>
+    <li><a href="new-arrivals.html">New Arrivals</a></li>
+    <li><a href="luxury-handbags.html">Luxury Handbags</a></li>
+    <li><a href="product-gallery.html">Gallery</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="faq.html">FAQ</a></li>
+    <li><a href="contact.html">Contact</a></li>
+    <li><a href="login.html">Login</a></li>
+  </ul>
+</nav>
 
     <div class="header-icons">
         <a href="search.html">🔍</a>
