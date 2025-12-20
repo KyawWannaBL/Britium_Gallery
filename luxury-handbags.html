@@ -513,12 +513,7 @@
 
 <body>
 
-  <!-- HEADER -->
-  <header>
-    <a href="index.html" class="logo">BRITIUM <span>GALLERY</span></a>
-
-    <!-- COMPLETE NAVIGATION -->
-    // nav.js
+ // nav.js
 (function () {
   const page = (location.pathname.split("/").pop() || "index.html").toLowerCase();
 
@@ -590,6 +585,36 @@
         <li><a class="${isActive("login.html")}" href="login.html">Login</a></li>
       </ul>
     </nav>
+
+    <div class="site-icons" title="Quick Links">
+      <a href="search.html" aria-label="Search">🔍</a>
+      <a href="login.html" aria-label="Account">👤</a>
+      <a href="wishlist.html" aria-label="Wishlist">♡</a>
+      <a href="cart.html" aria-label="Cart">🛒</a>
+    </div>
+  </header>
+  `;
+
+  const footerHTML = `
+  <footer style="
+    background:#0d0705;color:#777;text-align:center;padding:34px 20px;
+    font-size:.8rem;border-top:1px solid rgba(255,255,255,.08);
+    font-family:'Lato',sans-serif;">
+    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
+    <p style="margin-top:10px;">
+      <a href="terms.html" style="color:#aaa;text-decoration:none">Terms</a> |
+      <a href="privacy.html" style="color:#aaa;text-decoration:none">Privacy</a> |
+      <a href="store-locator.html" style="color:#aaa;text-decoration:none">Locations</a>
+    </p>
+  </footer>
+  `;
+
+  const headerTarget = document.getElementById("siteHeader");
+  const footerTarget = document.getElementById("siteFooter");
+
+  if (headerTarget) headerTarget.innerHTML = headerHTML;
+  if (footerTarget) footerTarget.innerHTML = footerHTML;
+})();
 
     <div class="site-icons" title="Quick Links">
       <a href="search.html" aria-label="Search">🔍</a>
