@@ -32,66 +32,6 @@
     a{ text-decoration:none; color:inherit; transition:.25s; }
     a:hover{ color:var(--gold); }
 
-    /* HEADER / NAV */
-    header{
-      padding: 18px 50px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      border-bottom:1px solid var(--border);
-      background:rgba(26,15,10,.92);
-      position:sticky;
-      top:0;
-      z-index:200;
-      backdrop-filter: blur(10px);
-    }
-
-    .logo{
-      font-family:'Playfair Display',serif;
-      font-size:1.55rem;
-      font-weight:700;
-      color:var(--gold);
-      line-height:1;
-      display:flex;
-      flex-direction:column;
-    }
-    .logo span{
-      font-size:.65rem;
-      letter-spacing:3px;
-      margin-top:4px;
-      color:#fff;
-    }
-
-    nav ul{
-      display:flex;
-      list-style:none;
-      gap:18px;
-      flex-wrap:wrap;
-      justify-content:center;
-    }
-    nav a{
-      font-size:.82rem;
-      text-transform:uppercase;
-      letter-spacing:1px;
-      color:#e6e6e6;
-      padding:8px 10px;
-      border-radius:6px;
-    }
-    nav a.active{
-      color:var(--bg-dark);
-      background:var(--gold);
-      font-weight:700;
-    }
-    nav a.active:hover{ color:var(--bg-dark); }
-
-    .header-icons{
-      display:flex;
-      gap:14px;
-      align-items:center;
-      color:var(--gold);
-      font-size:1.1rem;
-    }
-
     /* HERO */
     .hero{
       text-align:center;
@@ -235,19 +175,47 @@
     .info{
       padding: 16px 16px 18px;
     }
+
+    .name-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom: 6px;
+    }
+
     .name{
       font-family:'Playfair Display',serif;
       font-size: 1.15rem;
       color: var(--gold);
-      margin-bottom: 6px;
       letter-spacing:.4px;
+      line-height:1.15;
     }
+
+    .details-link{
+      font-size:.72rem;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      color:#e8e8e8;
+      padding:6px 8px;
+      border-radius:8px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      white-space:nowrap;
+    }
+    .details-link:hover{
+      color: var(--bg-dark);
+      background: var(--gold);
+      border-color: rgba(0,0,0,.10);
+    }
+
     .desc{
       color: var(--muted);
       font-size: .86rem;
       margin-bottom: 12px;
       min-height: 40px;
     }
+
     .row{
       display:flex;
       justify-content:space-between;
@@ -367,6 +335,7 @@
       color: var(--gold);
       font-size: 1.4rem;
       padding: 0 10px;
+      user-select:none;
     }
 
     /* IMAGE MODAL */
@@ -428,6 +397,7 @@
       border:1px solid rgba(255,255,255,.08);
       background: rgba(255,255,255,.03);
       transition:.2s;
+      user-select:none;
     }
     .trash:hover{ color:#ffb1b1; border-color: rgba(255,120,120,.35); }
 
@@ -487,24 +457,12 @@
       background: rgba(222,187,110,.10);
       transition:.2s;
       white-space:nowrap;
+      user-select:none;
     }
     .mini-actions .small:hover{ background: rgba(222,187,110,.18); }
 
-    /* FOOTER */
-    footer{
-      background:#0d0705;
-      color:#777;
-      text-align:center;
-      padding: 34px 20px;
-      font-size:.8rem;
-      border-top: 1px solid rgba(255,255,255,.08);
-    }
-    footer a{ color:#aaa; }
-    footer a:hover{ color:var(--gold); }
-
+    /* FOOTER (rendered by nav.js) */
     @media(max-width: 980px){
-      nav ul{ display:none; }
-      header{ padding: 18px 18px; }
       .hero h1{ font-size: 2.4rem; }
       .inquiry-body{ grid-template-columns:1fr; }
     }
@@ -513,151 +471,13 @@
 
 <body>
 
- // nav.js
-(function () {
-  const page = (location.pathname.split("/").pop() || "index.html").toLowerCase();
-
-  function isActive(file) {
-    return page === file.toLowerCase() ? "active" : "";
-  }
-
-  const headerHTML = `
-  <style>
-    :root{
-      --bg-dark:#1a0f0a; --gold:#debb6e; --border:rgba(222,187,110,.20);
-    }
-    header.site-header{
-      padding:18px 50px;
-      display:flex;justify-content:space-between;align-items:center;
-      border-bottom:1px solid var(--border);
-      background:rgba(26,15,10,.92);
-      position:sticky;top:0;z-index:200;
-      backdrop-filter: blur(10px);
-      font-family: 'Lato', sans-serif;
-    }
-    .site-logo{
-      font-family:'Playfair Display',serif;
-      font-size:1.55rem;
-      font-weight:700;
-      color:var(--gold);
-      line-height:1;
-      display:flex;
-      flex-direction:column;
-      text-decoration:none;
-    }
-    .site-logo span{
-      font-size:.65rem;
-      letter-spacing:3px;
-      margin-top:4px;
-      color:#fff;
-    }
-    nav.site-nav ul{display:flex;list-style:none;gap:18px;flex-wrap:wrap;justify-content:center}
-    nav.site-nav a{
-      text-decoration:none;color:#e6e6e6;
-      font-size:.82rem;text-transform:uppercase;letter-spacing:1px;
-      padding:8px 10px;border-radius:6px;transition:.25s
-    }
-    nav.site-nav a:hover{color:var(--gold)}
-    nav.site-nav a.active{color:#1a0f0a;background:var(--gold);font-weight:700}
-    .site-icons{display:flex;gap:14px;align-items:center;color:var(--gold);font-size:1.1rem}
-    .site-icons a{text-decoration:none;color:inherit}
-    .site-icons a:hover{color:var(--gold)}
-    @media(max-width:980px){
-      nav.site-nav ul{display:none}
-      header.site-header{padding:18px 18px}
-    }
-  </style>
-
-  <header class="site-header">
-    <a class="site-logo" href="index.html">BRITIUM <span>GALLERY</span></a>
-
-    <nav class="site-nav">
-      <ul>
-        <li><a class="${isActive("index.html")}" href="index.html">Home</a></li>
-        <li><a class="${isActive("shop.html")}" href="shop.html">Shop</a></li>
-        <li><a class="${isActive("new-arrivals.html")}" href="new-arrivals.html">New Arrivals</a></li>
-        <li><a class="${isActive("luxury-handbags.html")}" href="luxury-handbags.html">Luxury Handbags</a></li>
-        <li><a class="${isActive("product-gallery.html")}" href="product-gallery.html">Gallery</a></li>
-        <li><a class="${isActive("about.html")}" href="about.html">About</a></li>
-        <li><a class="${isActive("blog.html")}" href="blog.html">Blog</a></li>
-        <li><a class="${isActive("faq.html")}" href="faq.html">FAQ</a></li>
-        <li><a class="${isActive("contact.html")}" href="contact.html">Contact</a></li>
-        <li><a class="${isActive("login.html")}" href="login.html">Login</a></li>
-      </ul>
-    </nav>
-
-    <div class="site-icons" title="Quick Links">
-      <a href="search.html" aria-label="Search">🔍</a>
-      <a href="login.html" aria-label="Account">👤</a>
-      <a href="wishlist.html" aria-label="Wishlist">♡</a>
-      <a href="cart.html" aria-label="Cart">🛒</a>
-    </div>
-  </header>
-  `;
-
-  const footerHTML = `
-  <footer style="
-    background:#0d0705;color:#777;text-align:center;padding:34px 20px;
-    font-size:.8rem;border-top:1px solid rgba(255,255,255,.08);
-    font-family:'Lato',sans-serif;">
-    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
-    <p style="margin-top:10px;">
-      <a href="terms.html" style="color:#aaa;text-decoration:none">Terms</a> |
-      <a href="privacy.html" style="color:#aaa;text-decoration:none">Privacy</a> |
-      <a href="store-locator.html" style="color:#aaa;text-decoration:none">Locations</a>
-    </p>
-  </footer>
-  `;
-
-  const headerTarget = document.getElementById("siteHeader");
-  const footerTarget = document.getElementById("siteFooter");
-
-  if (headerTarget) headerTarget.innerHTML = headerHTML;
-  if (footerTarget) footerTarget.innerHTML = footerHTML;
-})();
-
-    <div class="site-icons" title="Quick Links">
-      <a href="search.html" aria-label="Search">🔍</a>
-      <a href="login.html" aria-label="Account">👤</a>
-      <a href="wishlist.html" aria-label="Wishlist">♡</a>
-      <a href="cart.html" aria-label="Cart">🛒</a>
-    </div>
-  </header>
-  `;
-
-  const footerHTML = `
-  <footer style="
-    background:#0d0705;color:#777;text-align:center;padding:34px 20px;
-    font-size:.8rem;border-top:1px solid rgba(255,255,255,.08);
-    font-family:'Lato',sans-serif;">
-    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
-    <p style="margin-top:10px;">
-      <a href="terms.html" style="color:#aaa;text-decoration:none">Terms</a> |
-      <a href="privacy.html" style="color:#aaa;text-decoration:none">Privacy</a> |
-      <a href="store-locator.html" style="color:#aaa;text-decoration:none">Locations</a>
-    </p>
-  </footer>
-  `;
-
-  const headerTarget = document.getElementById("siteHeader");
-  const footerTarget = document.getElementById("siteFooter");
-
-  if (headerTarget) headerTarget.innerHTML = headerHTML;
-  if (footerTarget) footerTarget.innerHTML = footerHTML;
-})();
-
-    <div class="header-icons" title="Quick Links">
-      <a href="search.html" aria-label="Search">🔍</a>
-      <a href="login.html" aria-label="Account">👤</a>
-      <a href="wishlist.html" aria-label="Wishlist">♡</a>
-      <a href="cart.html" aria-label="Cart">🛒</a>
-    </div>
-  </header>
+  <!-- STANDARDIZED NAV (nav.js injects header/footer) -->
+  <div id="siteHeader"></div>
 
   <!-- HERO -->
   <section class="hero">
     <h1>Luxury Handbags</h1>
-    <p>Explore our complete premium collection. Click any image to zoom. Add items to your Inquiry List to request quotation.</p>
+    <p>Explore our complete premium collection. Click any image to zoom. Add items to your Inquiry List to request quotation. Use “Details” to open product.html?id=SKU.</p>
   </section>
 
   <!-- TOOLBAR -->
@@ -665,8 +485,8 @@
     <div class="count" id="countText">Showing 0 products</div>
     <div class="search">
       <input id="searchInput" type="text" placeholder="Search by name, SKU, size, or price..." />
-      <button class="btn" id="clearBtn">Clear</button>
-      <button class="btn" id="openInquiryBtn">Inquiry List</button>
+      <button class="btn" id="clearBtn" type="button">Clear</button>
+      <button class="btn" id="openInquiryBtn" type="button">Inquiry List</button>
     </div>
   </section>
 
@@ -676,17 +496,17 @@
   </section>
 
   <!-- FLOATING INQUIRY BUTTON -->
-  <div class="floating" id="floatingInquiry">
+  <div class="floating" id="floatingInquiry" role="button" aria-label="Open Inquiry List">
     <div style="font-weight:900; letter-spacing:.6px;">Inquiry List</div>
     <div class="badge" id="inquiryCount">0</div>
   </div>
 
   <!-- IMAGE MODAL -->
-  <div class="modal-backdrop" id="imageModal">
-    <div class="modal">
+  <div class="modal-backdrop" id="imageModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Image preview">
       <div class="modal-head">
         <h3 id="imageTitle">Preview</h3>
-        <div class="close" id="closeImage">×</div>
+        <div class="close" id="closeImage" aria-label="Close">×</div>
       </div>
       <div class="image-wrap">
         <img id="modalImg" src="" alt="Product Preview" />
@@ -695,11 +515,11 @@
   </div>
 
   <!-- INQUIRY MODAL -->
-  <div class="modal-backdrop" id="inquiryModal">
-    <div class="modal">
+  <div class="modal-backdrop" id="inquiryModal" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Inquiry list and request form">
       <div class="modal-head">
         <h3>Request Quotation</h3>
-        <div class="close" id="closeInquiry">×</div>
+        <div class="close" id="closeInquiry" aria-label="Close">×</div>
       </div>
 
       <div class="inquiry-body">
@@ -734,18 +554,15 @@
     </div>
   </div>
 
-  <footer>
-    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
-    <p style="margin-top:10px;">
-      <a href="terms.html">Terms</a> |
-      <a href="privacy.html">Privacy</a> |
-      <a href="store-locator.html">Locations</a>
-    </p>
-  </footer>
+  <!-- STANDARD FOOTER -->
+  <div id="siteFooter"></div>
+
+  <!-- NAV LOADER (standardized across all pages) -->
+  <script src="nav.js"></script>
 
   <script>
     // =========================
-    // FULL PRODUCT LIST (ALL)
+    // FULL PRODUCT LIST (ALL) — EXACTLY AS PROVIDED (NO CUTS)
     // =========================
     const products = [
       // BVOSBG series
@@ -825,91 +642,19 @@
     let filtered = [...products];
 
     // =========================
-    // RENDER PRODUCTS
+    // ELEMENTS
     // =========================
     const grid = document.getElementById("productGrid");
     const countText = document.getElementById("countText");
 
-    function escapeHtml(str){
-      return String(str)
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
-    }
-
-    function renderProducts(){
-      countText.textContent = `Showing ${filtered.length} products`;
-      grid.innerHTML = filtered.map((p, idx) => `
-        <div class="card">
-          <div class="sku-badge">${escapeHtml(p.sku)}</div>
-          <div class="img" onclick="openImage('${escapeHtml(p.img)}', '${escapeHtml(p.name)}')">
-            <img src="${escapeHtml(p.img)}" alt="${escapeHtml(p.name)}" onerror="this.style.display='none'; this.parentElement.style.cursor='default'; this.parentElement.innerHTML='<div style=\\'color:#999;font-style:italic\\'>Image missing: ${escapeHtml(p.img)}</div>';">
-          </div>
-          <div class="info">
-            <div class="name">${escapeHtml(p.name)}</div>
-            <div class="desc">${escapeHtml(p.desc)}</div>
-            <div class="row">
-              <div class="price">
-                <small>Retail Price</small>
-                ${escapeHtml(p.price)}
-              </div>
-              <div class="add" title="Add to Inquiry" onclick="addToInquiry(event,'${escapeHtml(p.name)}','${escapeHtml(p.sku)}')">+</div>
-            </div>
-          </div>
-        </div>
-      `).join("");
-    }
-
-    // =========================
-    // SEARCH
-    // =========================
     const searchInput = document.getElementById("searchInput");
     const clearBtn = document.getElementById("clearBtn");
 
-    function applySearch(){
-      const q = searchInput.value.trim().toLowerCase();
-      filtered = products.filter(p => {
-        const blob = `${p.name} ${p.sku} ${p.desc} ${p.price}`.toLowerCase();
-        return blob.includes(q);
-      });
-      renderProducts();
-    }
-
-    searchInput.addEventListener("input", applySearch);
-    clearBtn.addEventListener("click", () => {
-      searchInput.value = "";
-      filtered = [...products];
-      renderProducts();
-    });
-
-    // =========================
-    // IMAGE MODAL
-    // =========================
     const imageModal = document.getElementById("imageModal");
     const modalImg = document.getElementById("modalImg");
     const imageTitle = document.getElementById("imageTitle");
     const closeImage = document.getElementById("closeImage");
 
-    function openImage(src, title){
-      modalImg.src = src;
-      imageTitle.textContent = title;
-      imageModal.classList.add("active");
-      document.body.style.overflow = "hidden";
-    }
-    function closeImageModal(){
-      imageModal.classList.remove("active");
-      document.body.style.overflow = "auto";
-    }
-    closeImage.addEventListener("click", closeImageModal);
-    imageModal.addEventListener("click", (e) => {
-      if(e.target === imageModal) closeImageModal();
-    });
-
-    // =========================
-    // INQUIRY LOGIC
-    // =========================
     const inquiryModal = document.getElementById("inquiryModal");
     const inquiryList = document.getElementById("inquiryList");
     const inquiryCount = document.getElementById("inquiryCount");
@@ -921,6 +666,114 @@
     const clearInquiry = document.getElementById("clearInquiry");
     const copyInquiry = document.getElementById("copyInquiry");
 
+    // =========================
+    // HELPERS
+    // =========================
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    function productUrlBySku(sku){
+      return `product.html?id=${encodeURIComponent(sku)}`;
+    }
+
+    // =========================
+    // RENDER PRODUCTS
+    // =========================
+    function renderProducts(){
+      countText.textContent = `Showing ${filtered.length} products`;
+
+      grid.innerHTML = filtered.map((p) => {
+        const safeImg = escapeHtml(p.img);
+        const safeName = escapeHtml(p.name);
+        const safeSku = escapeHtml(p.sku);
+        const safeDesc = escapeHtml(p.desc);
+        const safePrice = escapeHtml(p.price);
+        const detailsUrl = productUrlBySku(p.sku);
+
+        return `
+          <div class="card">
+            <div class="sku-badge">${safeSku}</div>
+
+            <div class="img" onclick="openImage('${safeImg}','${safeName}')">
+              <img src="${safeImg}" alt="${safeName}"
+                onerror="this.style.display='none'; this.parentElement.style.cursor='default'; this.parentElement.innerHTML='<div style=\\'color:#999;font-style:italic;padding:18px;\\'>Image missing: ${safeImg}</div>';">
+            </div>
+
+            <div class="info">
+              <div class="name-row">
+                <div class="name">${safeName}</div>
+                <a class="details-link" href="${detailsUrl}" title="Open product details">Details</a>
+              </div>
+
+              <div class="desc">${safeDesc}</div>
+
+              <div class="row">
+                <div class="price">
+                  <small>Retail Price</small>
+                  ${safePrice}
+                </div>
+
+                <div class="add" title="Add to Inquiry"
+                  onclick="addToInquiry(event,'${safeName}','${safeSku}')">+</div>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join("");
+    }
+
+    // =========================
+    // SEARCH
+    // =========================
+    function applySearch(){
+      const q = searchInput.value.trim().toLowerCase();
+      filtered = products.filter(p => {
+        const blob = `${p.name} ${p.sku} ${p.desc} ${p.price}`.toLowerCase();
+        return blob.includes(q);
+      });
+      renderProducts();
+    }
+
+    searchInput.addEventListener("input", applySearch);
+
+    clearBtn.addEventListener("click", () => {
+      searchInput.value = "";
+      filtered = [...products];
+      renderProducts();
+    });
+
+    // =========================
+    // IMAGE MODAL
+    // =========================
+    function openImage(src, title){
+      modalImg.src = src;
+      imageTitle.textContent = title;
+      imageModal.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeImageModal(){
+      imageModal.classList.remove("active");
+      document.body.style.overflow = "auto";
+    }
+
+    closeImage.addEventListener("click", closeImageModal);
+    imageModal.addEventListener("click", (e) => {
+      if(e.target === imageModal) closeImageModal();
+    });
+
+    // Make openImage accessible from inline onclick
+    window.openImage = openImage;
+
+    // =========================
+    // INQUIRY LOGIC
+    // =========================
     function addToInquiry(ev, name, sku){
       ev.stopPropagation();
       const exists = inquiry.some(x => x.name === name && x.sku === sku);
@@ -963,6 +816,7 @@
       inquiryModal.classList.add("active");
       document.body.style.overflow = "hidden";
     }
+
     function closeInquiryModal(){
       inquiryModal.classList.remove("active");
       document.body.style.overflow = "auto";
@@ -1002,6 +856,11 @@
       }
       return true;
     }
+
+    // expose for inline onclick
+    window.addToInquiry = addToInquiry;
+    window.removeInquiry = removeInquiry;
+    window.validateInquiryForm = validateInquiryForm;
 
     // INITIAL RENDER
     filtered = [...products];
