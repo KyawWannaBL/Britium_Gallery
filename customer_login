@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Login | Britium Gallery</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-cream: #fbf6f1;
+      --text-black: #111;
+      --text-grey: #666;
+      --border: rgba(0,0,0,0.15);
+      --btn-black: #000;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-black);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ---------- HEADER ---------- */
+    header {
+      padding: 25px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 400;
+      letter-spacing: 4px;
+      margin-top: 3px;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 40px;
+      list-style: none;
+    }
+
+    nav a {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* ---------- LOGIN CONTAINER ---------- */
+    .login-wrapper {
+      max-width: 420px;
+      margin: 80px auto;
+      padding: 40px 30px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+    }
+
+    .login-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .login-header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .login-header p {
+      font-size: 0.95rem;
+      color: var(--text-grey);
+    }
+
+    /* ---------- FORM ---------- */
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    label {
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-family: inherit;
+      font-size: 1rem;
+      background: #fff;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: #000;
+    }
+
+    .form-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+
+    .form-row a {
+      text-decoration: underline;
+      color: var(--text-grey);
+    }
+
+    .btn-login {
+      background-color: var(--btn-black);
+      color: #fff;
+      border: none;
+      padding: 15px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .btn-login:hover {
+      background-color: #333;
+    }
+
+    .divider {
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--text-grey);
+      margin: 10px 0;
+    }
+
+    .btn-google {
+      border: 1px solid var(--border);
+      background: transparent;
+      padding: 14px;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      cursor: pointer;
+    }
+
+    .register-link {
+      text-align: center;
+      font-size: 0.9rem;
+      margin-top: 20px;
+    }
+
+    .register-link a {
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
+    /* ---------- FOOTER ---------- */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 768px) {
+      header {
+        padding: 20px;
+      }
+      nav ul {
+        display: none;
+      }
+      .login-wrapper {
+        margin: 50px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="logo">
+      BRITIUM
+      <span>GALLERY</span>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="login-wrapper">
+    <div class="login-header">
+      <h1>Customer Login</h1>
+      <p>Sign in to access your account</p>
+    </div>
+
+    <form action="#" method="POST">
+      <div>
+        <label>Email Address</label>
+        <input type="email" placeholder="you@example.com" required>
+      </div>
+
+      <div>
+        <label>Password</label>
+        <input type="password" placeholder="••••••••" required>
+      </div>
+
+      <div class="form-row">
+        <span>
+          <input type="checkbox"> Remember me
+        </span>
+        <a href="forgot-password.html">Forgot password?</a>
+      </div>
+
+      <button type="submit" class="btn-login">Login</button>
+
+      <div class="divider">or</div>
+
+      <button type="button" class="btn-google">Continue with Google</button>
+
+      <div class="register-link">
+        Don’t have an account?
+        <a href="customer-register.html">Create one</a>
+      </div>
+    </form>
+  </main>
+
+  <footer>
+    © 2025 Britium Gallery. All Rights Reserved.
+  </footer>
+
+</body>
+</html>
