@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Login | Britium</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #0d0d0d;
+      --bg-panel: #141414;
+      --gold: #c6a87c;
+      --border: rgba(255,255,255,0.12);
+      --text-light: #fff;
+      --text-muted: #aaa;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: radial-gradient(circle at top, #1a1a1a, #000);
+      color: var(--text-light);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-box {
+      width: 420px;
+      background: var(--bg-panel);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 45px 40px;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.9);
+    }
+
+    .login-box h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 8px;
+      color: var(--gold);
+    }
+
+    .login-box p {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-bottom: 35px;
+    }
+
+    label {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+      display: block;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: #0a0a0a;
+      color: var(--text-light);
+      font-size: 1rem;
+      margin-bottom: 20px;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .btn-login {
+      width: 100%;
+      padding: 14px;
+      background: var(--gold);
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      cursor: pointer;
+      transition: 0.3s;
+      color: #000;
+    }
+
+    .btn-login:hover {
+      background: #b89b6c;
+    }
+
+    .footer-note {
+      text-align: center;
+      font-size: 0.75rem;
+      color: #777;
+      margin-top: 25px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="login-box">
+    <h1>Britium Admin</h1>
+    <p>Authorized personnel only</p>
+
+    <form action="#" method="POST">
+      <label>Email</label>
+      <input type="email" required placeholder="admin@britium.com">
+
+      <label>Password</label>
+      <input type="password" required placeholder="••••••••">
+
+      <button type="submit" class="btn-login">Login</button>
+    </form>
+
+    <div class="footer-note">
+      Internal system — access logged
+    </div>
+  </div>
+
+</body>
+</html>
