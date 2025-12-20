@@ -4,273 +4,271 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Track Order | Britium Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- RESET & VARIABLES --- */
-        :root {
-            --bg-gradient: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%); /* Soft light gradient */
-            --text-dark: #333;
-            --text-grey: #666;
-            --btn-gold: #e2c792;
-            --accent-gold-dark: #cba363;
-        }
 
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
+        :root {
+            --bg-dark: #1a0f0a;
+            --bg-panel: #231712;
+            --bg-cream: #f9f4ef;
+            --gold-accent: #debb6e;
+            --gold-dark: #b5904b;
+            --text-light: #ffffff;
+            --text-grey: #cfcfcf;
+            --text-dark: #2c241b;
+            --border-gold: rgba(222, 187, 110, 0.2);
+        }
+
         body {
-            font-family: 'Jost', sans-serif;
-            background: var(--bg-gradient);
-            color: var(--text-dark);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { color: var(--gold-accent); }
 
-        /* --- HEADER --- */
+        /* HEADER */
         header {
-            padding: 30px 60px;
+            padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: transparent;
+            border-bottom: 1px solid var(--border-gold);
         }
 
         .logo {
-            font-size: 1.4rem;
+            font-size: 1.5rem;
+            color: var(--gold-accent);
             font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #444;
         }
 
-        nav ul { display: flex; gap: 40px; list-style: none; }
-        nav a { font-size: 0.95rem; color: #555; }
-        nav a:hover { color: #000; }
-
-        .header-icons { display: flex; gap: 20px; font-size: 1.1rem; color: #555; }
-
-        /* --- MAIN CONTENT --- */
-        .track-container {
-            flex: 1;
+        nav ul {
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            width: 100%;
+            list-style: none;
+            gap: 30px;
         }
 
-        h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.8rem;
-            color: #4a4a4a;
-            margin-bottom: 15px;
-            font-weight: 400;
-        }
-
-        .subtitle {
-            font-size: 1rem;
-            color: var(--text-grey);
-            margin-bottom: 40px;
+        /* HERO */
+        .hero {
             text-align: center;
+            padding: 80px 20px 50px;
+            background: linear-gradient(180deg, rgba(26,15,10,1) 0%, rgba(40,25,18,1) 100%);
         }
 
-        /* --- TRACK FORM --- */
+        .hero h1 {
+            font-size: 3rem;
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            color: #e0e0e0;
+            font-weight: 300;
+        }
+
+        /* CONTENT */
+        .content {
+            padding: 70px 8%;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .track-panel {
+            background-color: var(--bg-panel);
+            border: 1px solid var(--border-gold);
+            padding: 40px;
+        }
+
+        .track-panel h2 {
+            color: var(--gold-accent);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .track-panel p {
+            color: var(--text-grey);
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+
         .track-form {
-            display: flex;
-            gap: 15px;
-            width: 100%;
-            max-width: 600px;
-            margin-bottom: 50px;
+            display: grid;
+            gap: 20px;
         }
 
-        .input-field {
-            flex: 1;
-            padding: 15px 20px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            background-color: #f9f9f9;
-            font-size: 1rem;
-            color: #333;
+        .track-form label {
+            font-size: 0.9rem;
+            color: var(--text-grey);
+        }
+
+        .track-form input {
+            padding: 14px;
+            background-color: #111;
+            border: 1px solid #444;
+            color: #fff;
+            font-size: 0.95rem;
             outline: none;
         }
-        .input-field::placeholder { color: #bbb; }
+
+        .track-form input:focus {
+            border-color: var(--gold-accent);
+        }
 
         .btn-track {
-            padding: 15px 40px;
-            background-color: var(--btn-gold);
-            color: #4a3b2a; /* Darker text for contrast on gold */
+            background-color: var(--gold-accent);
+            color: var(--bg-dark);
+            padding: 14px;
             border: none;
-            border-radius: 4px;
-            font-weight: 600;
+            font-weight: bold;
             letter-spacing: 1px;
-            text-transform: uppercase;
             cursor: pointer;
+            text-transform: uppercase;
             transition: 0.3s;
         }
-        .btn-track:hover { background-color: var(--accent-gold-dark); }
 
-        /* --- TRACKING INFO CARD --- */
-        .tracking-info {
-            width: 100%;
-            max-width: 600px;
-            background-color: rgba(255, 255, 255, 0.6);
-            border: 1px solid rgba(0,0,0,0.05);
-            border-radius: 8px;
+        .btn-track:hover {
+            background-color: var(--gold-dark);
+        }
+
+        /* RESULT (Placeholder) */
+        .result-box {
+            margin-top: 40px;
+            padding: 25px;
+            border: 1px dashed var(--border-gold);
+            display: none;
+        }
+
+        .result-box.active {
+            display: block;
+        }
+
+        .result-box h3 {
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+        }
+
+        .result-box p {
+            color: var(--text-grey);
+            font-size: 0.95rem;
+        }
+
+        /* BRAND SIGNATURE */
+        .brand-signature {
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 80px 20px;
+            margin-top: 80px;
+            border-top: 5px solid var(--gold-accent);
+        }
+
+        .brand-signature h2 {
+            font-size: 3rem;
+            color: var(--gold-dark);
+        }
+
+        .brand-signature h3 {
+            font-size: 2rem;
+            font-style: italic;
+        }
+
+        footer {
+            background-color: #0d0705;
+            color: #666;
+            text-align: center;
             padding: 30px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            font-size: 0.8rem;
         }
 
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            color: #555;
-            margin-bottom: 20px;
-            font-weight: 400;
-        }
-
-        .order-details {
-            background-color: #f4f4f4;
-            padding: 15px;
-            border-radius: 6px;
-            margin-bottom: 30px;
-        }
-        .order-num { font-weight: 600; font-size: 1.1rem; display: block; margin-bottom: 5px; }
-        .est-delivery { font-size: 0.9rem; color: var(--text-grey); }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 20px;
-            border-left: 2px solid #ddd;
-            margin-left: 10px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 25px;
-        }
-        .timeline-item:last-child { margin-bottom: 0; }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -26px; /* Adjust dot position */
-            top: 5px;
-            width: 10px;
-            height: 10px;
-            background-color: #bbb; /* Default inactive color */
-            border-radius: 50%;
-            border: 2px solid #fff;
-            box-shadow: 0 0 0 1px #bbb;
-        }
-
-        /* Active State Styles */
-        .timeline-item.active::before {
-            background-color: #444; /* Active dot color */
-            box-shadow: 0 0 0 1px #444;
-        }
-        .timeline-item.active span {
-            color: #333;
-            font-weight: 600;
-        }
-
-        .timeline-item span {
-            font-size: 1rem;
-            color: #888;
-        }
-
-        /* --- BOTTOM ILLUSTRATION --- */
-        .bottom-illustration {
-            width: 100%;
-            height: 350px;
-            /* Placeholder background colors matching image split */
-            background: linear-gradient(to right, #6a4c9c 50%, #89cff0 50%); 
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bottom-illustration img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            /* In real use, use the actual 3D render image */
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            .track-form { flex-direction: column; }
-            .btn-track { width: 100%; }
-            h1 { font-size: 2rem; }
-            header { padding: 20px; flex-direction: column; gap: 15px; }
-            nav ul { gap: 20px; }
+        @media(max-width:768px) {
+            nav ul { display: none; }
+            .hero h1 { font-size: 2.3rem; }
+            .track-panel { padding: 30px 20px; }
         }
     </style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">BRITIUM</div>
-        <nav>
-            <ul>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">New Arrivals</a></li>
-                <li><a href="#">Contact</a></li>
-            </ul>
-        </nav>
-        <div class="header-icons">
-            <a href="#">♡</a>
-            <a href="#">🛒</a>
-        </div>
-    </header>
+<header>
+    <div class="logo">BRITIUM GALLERY</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="customer-dashboard.html">Dashboard</a></li>
+            <li><a href="track-order.html" style="color:var(--gold-accent)">Track Order</a></li>
+        </ul>
+    </nav>
+    <div style="color:var(--gold-accent)">👤</div>
+</header>
 
-    <div class="track-container">
-        <h1>TRACK ORDER</h1>
-        <p class="subtitle">Enter your order number to track the status of your shipment.</p>
+<section class="hero">
+    <h1>TRACK YOUR ORDER</h1>
+    <p>
+        Enter your order details below to check the latest delivery status.
+    </p>
+</section>
 
-        <div class="track-form">
-            <input type="text" class="input-field" placeholder="Order Number">
-            <button class="btn-track">Track</button>
-        </div>
+<section class="content">
 
-        <div class="tracking-info">
-            <h2>Tracking Information</h2>
-            
-            <div class="order-details">
-                <span class="order-num">123456789</span>
-                <span class="est-delivery">Estimated Delivery: May 24, 2024</span>
+    <div class="track-panel">
+        <h2>Order Tracking</h2>
+        <p>
+            Please enter your Order ID and the email address used during checkout.
+        </p>
+
+        <form class="track-form" onsubmit="event.preventDefault(); showResult();">
+            <div>
+                <label for="orderId">Order ID</label>
+                <input type="text" id="orderId" placeholder="e.g. BG-ORD-2025-00123" required>
             </div>
 
-            <div class="timeline">
-                <div class="timeline-item active">
-                    <span>Order Placed</span>
-                </div>
-                <div class="timeline-item active">
-                    <span>Processing</span>
-                </div>
-                <div class="timeline-item active">
-                    <span>Shipped</span>
-                </div>
-                <div class="timeline-item">
-                    <span>Out for Delivery</span>
-                </div>
-                <div class="timeline-item">
-                    <span>Delivered</span>
-                </div>
+            <div>
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="you@example.com" required>
             </div>
+
+            <button class="btn-track" type="submit">Track Order</button>
+        </form>
+
+        <div class="result-box" id="resultBox">
+            <h3>Order Status: In Transit</h3>
+            <p>
+                Your order has been dispatched and is currently on its way.
+                Estimated delivery: <strong>3–5 business days</strong>.
+            </p>
         </div>
     </div>
 
-    <div class="bottom-illustration">
-        <img src="images/logistics-3d-render.jpg" alt="Delivery Illustration">
-    </div>
+</section>
+
+<section class="brand-signature">
+    <h2>BRITIUM GALLERY</h2>
+    <h3>Luxury Delivered With Care</h3>
+</section>
+
+<footer>
+    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
+</footer>
+
+<script>
+    function showResult() {
+        document.getElementById('resultBox').classList.add('active');
+    }
+</script>
 
 </body>
 </html>
