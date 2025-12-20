@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Details | Britium Gallery</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-cream: #fbf6f1;
+      --bg-white: #ffffff;
+      --text-black: #111;
+      --text-grey: #666;
+      --border: rgba(0,0,0,0.12);
+      --gold: #c6a87c;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--bg-cream);
+      color: var(--text-black);
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Header */
+    header {
+      padding: 25px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .logo span {
+      display: block;
+      font-size: 0.8rem;
+      letter-spacing: 4px;
+      font-weight: 400;
+    }
+
+    .logout {
+      font-size: 0.9rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    /* Layout */
+    .dashboard {
+      max-width: 1200px;
+      margin: 50px auto;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 40px;
+      padding: 0 20px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 30px;
+    }
+
+    .sidebar h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      margin-bottom: 25px;
+    }
+
+    .menu {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .menu a {
+      font-size: 0.95rem;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      display: block;
+    }
+
+    .menu a.active {
+      font-weight: 600;
+      color: var(--gold);
+    }
+
+    /* Content */
+    .content {
+      background: var(--bg-white);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 40px;
+    }
+
+    .content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 25px;
+    }
+
+    form {
+      max-width: 600px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    form .full {
+      grid-column: span 2;
+    }
+
+    label {
+      font-size: 0.85rem;
+      margin-bottom: 6px;
+      display: block;
+      color: var(--text-grey);
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      font-family: inherit;
+    }
+
+    input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .btn-save {
+      grid-column: span 2;
+      background: var(--gold);
+      border: none;
+      padding: 14px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 1px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .btn-save:hover {
+      background: #b89b6c;
+    }
+
+    @media (max-width: 900px) {
+      .dashboard {
+        grid-template-columns: 1fr;
+      }
+      form {
+        grid-template-columns: 1fr;
+      }
+      form .full {
+        grid-column: span 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">
+    BRITIUM
+    <span>GALLERY</span>
+  </div>
+  <a href="customer-login.html" class="logout">Logout</a>
+</header>
+
+<main class="dashboard">
+
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <h3>My Account</h3>
+    <ul class="menu">
+      <li><a href="customer-dashboard.html">Dashboard</a></li>
+      <li><a href="customer-orders.html">My Orders</a></li>
+      <li><a href="customer-profile.html" class="active">Profile Details</a></li>
+      <li><a href="customer-addresses.html">Saved Addresses</a></li>
+      <li><a href="wishlist.html">Wishlist</a></li>
+    </ul>
+  </aside>
+
+  <!-- Profile Content -->
+  <section class="content">
+    <h1>Profile Details</h1>
+
+    <form>
+      <div>
+        <label>First Name</label>
+        <input type="text" value="John">
+      </div>
+
+      <div>
+        <label>Last Name</label>
+        <input type="text" value="Doe">
+      </div>
+
+      <div class="full">
+        <label>Email Address</label>
+        <input type="email" value="john@example.com">
+      </div>
+
+      <div class="full">
+        <label>Phone Number</label>
+        <input type="tel" placeholder="+95">
+      </div>
+
+      <button type="submit" class="btn-save">Save Changes</button>
+    </form>
+  </section>
+
+</main>
+
+</body>
+</html>
