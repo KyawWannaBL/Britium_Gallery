@@ -4,24 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Arrivals | Britium Gallery</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    
+
     <style>
-        /* --- RESET & VARIABLES --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-dark: #1a0f0a; /* Deep Coffee/Black */
+            --bg-dark: #1a0f0a;
             --bg-card: #231712;
-            --gold-accent: #debb6e; /* Metallic Gold */
+            --gold-accent: #debb6e;
             --gold-dark: #b5904b;
             --text-light: #ffffff;
             --text-grey: #a0a0a0;
-            --chat-bg: #231712;
+            --border-gold: rgba(222, 187, 110, 0.2);
         }
 
         body {
@@ -32,50 +28,69 @@
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { color: var(--gold-accent); }
 
-        /* --- TYPOGRAPHY --- */
-        h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* --- HEADER --- */
+        /* HEADER */
         header {
             padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(222, 187, 110, 0.2);
+            border-bottom: 1px solid var(--border-gold);
+            background-color: rgba(26, 15, 10, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
         }
 
         .logo {
+            font-family: 'Playfair Display', serif;
             font-size: 1.5rem;
             color: var(--gold-accent);
             font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+
+        .logo span {
+            font-size: 0.65rem;
+            letter-spacing: 3px;
+            color: #fff;
+            margin-top: 4px;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 25px;
         }
 
-        nav a:hover, nav a.active {
-            color: var(--gold-accent);
+        nav a {
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        /* --- PAGE HEADER HERO --- */
+        .header-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 1.2rem;
+        }
+
+        /* PAGE HEADER */
         .page-header {
             text-align: center;
-            padding: 60px 20px;
-            background: linear-gradient(rgba(26,15,10,0.8), rgba(26,15,10,1)), url('images/shelf-display.jpg');
+            padding: 70px 20px;
+            background: linear-gradient(rgba(26,15,10,0.85), rgba(26,15,10,1)), url('a3.jpg');
             background-size: cover;
             background-position: center;
-            border-bottom: 1px solid rgba(222, 187, 110, 0.1);
+            border-bottom: 1px solid var(--border-gold);
         }
 
         .page-header h1 {
+            font-family: 'Playfair Display', serif;
             font-size: 3rem;
             color: var(--gold-accent);
             margin-bottom: 10px;
@@ -83,524 +98,172 @@
 
         .page-header p {
             color: var(--text-grey);
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
 
-        /* --- SHOP LAYOUT --- */
-        .shop-container {
-            display: flex;
-            padding: 50px 5%;
-            gap: 40px;
+        /* GRID */
+        .arrival-container {
             max-width: 1400px;
             margin: 0 auto;
-        }
-
-        /* Sidebar Filters */
-        .sidebar {
-            width: 250px;
-            flex-shrink: 0;
-            border-right: 1px solid rgba(222, 187, 110, 0.1);
-            padding-right: 30px;
-        }
-
-        .filter-group {
-            margin-bottom: 30px;
-        }
-
-        .filter-title {
-            font-size: 1.1rem;
-            color: var(--gold-accent);
-            margin-bottom: 15px;
-            border-bottom: 1px solid rgba(222, 187, 110, 0.3);
-            padding-bottom: 5px;
-            display: inline-block;
-        }
-
-        .filter-list {
-            list-style: none;
-        }
-
-        .filter-list li {
-            margin-bottom: 10px;
-            color: var(--text-grey);
-            cursor: pointer;
-            font-size: 0.95rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .filter-list li:hover {
-            color: var(--text-light);
-        }
-
-        .checkbox {
-            width: 14px;
-            height: 14px;
-            border: 1px solid var(--text-grey);
-            display: inline-block;
-        }
-
-        /* Product Grid */
-        .product-grid {
-            flex: 1;
+            padding: 60px 5%;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 30px;
         }
 
-        .product-card {
+        .arrival-card {
             background-color: var(--bg-card);
-            border: 1px solid rgba(222, 187, 110, 0.1);
+            border: 1px solid var(--border-gold);
             transition: 0.3s;
             position: relative;
             overflow: hidden;
         }
 
-        .product-card:hover {
+        .arrival-card:hover {
             border-color: var(--gold-accent);
-            transform: translateY(-5px);
+            transform: translateY(-6px);
         }
 
-        .card-img {
-            width: 100%;
-            height: 300px;
-            background-color: #2c241b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold-accent);
-            font-style: italic;
-            position: relative;
-        }
-
-        .new-badge {
+        .badge {
             position: absolute;
-            top: 10px;
-            left: 10px;
+            top: 15px;
+            right: 15px;
             background-color: var(--gold-accent);
-            color: var(--bg-dark);
-            padding: 4px 8px;
-            font-size: 0.75rem;
-            font-weight: bold;
+            color: #000;
+            font-size: 0.7rem;
+            padding: 6px 10px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-        }
-
-        .card-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .product-name {
-            font-size: 1.1rem;
-            color: var(--text-light);
-            margin-bottom: 5px;
-        }
-
-        .product-cat {
-            font-size: 0.85rem;
-            color: var(--text-grey);
-            margin-bottom: 10px;
-            text-transform: uppercase;
-        }
-
-        .product-price {
-            font-size: 1.1rem;
-            color: var(--gold-accent);
             font-weight: bold;
         }
 
-        .btn-add-cart {
-            display: block;
-            width: 100%;
-            padding: 12px;
-            margin-top: 15px;
-            background-color: transparent;
-            border: 1px solid var(--gold-accent);
-            color: var(--gold-accent);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .btn-add-cart:hover {
-            background-color: var(--gold-accent);
-            color: var(--bg-dark);
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: #0d0705;
-            color: #666;
-            text-align: center;
-            padding: 30px;
-            font-size: 0.8rem;
-            margin-top: 50px;
-            border-top: 1px solid #222;
-        }
-
-        /* --- CHATBOT WIDGET STYLES --- */
-        .chat-widget-btn {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 60px;
-            height: 60px;
-            background-color: var(--gold-accent);
-            border-radius: 50%;
+        .arrival-img {
+            height: 300px;
+            background: #111;
             display: flex;
             align-items: center;
             justify-content: center;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
-            z-index: 1000;
-            transition: transform 0.3s;
-            border: 2px solid var(--gold-dark);
+            color: var(--text-grey);
+            font-style: italic;
         }
 
-        .chat-widget-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .chat-icon {
-            font-size: 30px;
-            color: var(--bg-dark);
-        }
-
-        .chat-window {
-            position: fixed;
-            bottom: 100px;
-            right: 30px;
-            width: 350px;
-            height: 500px;
-            background-color: var(--chat-bg);
-            border: 1px solid var(--gold-accent);
-            border-radius: 12px;
-            display: none; /* Hidden by default */
-            flex-direction: column;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-            z-index: 1000;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s, transform 0.3s;
-        }
-
-        .chat-window.active {
-            display: flex;
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .chat-header {
-            background-color: var(--bg-dark);
-            padding: 15px;
-            border-bottom: 1px solid var(--gold-accent);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-header h4 {
+        .arrival-brand {
+            text-align: center;
+            font-size: 0.8rem;
             color: var(--gold-accent);
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
+            margin-top: 14px;
+            text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .close-chat {
-            cursor: pointer;
+        .arrival-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            text-align: center;
+            margin: 6px 10px;
+        }
+
+        .arrival-price {
+            text-align: center;
             color: var(--gold-accent);
-            font-size: 1.2rem;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 20px;
-            overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .message.bot {
-            background-color: rgba(222, 187, 110, 0.1);
-            color: #eee;
-            border: 1px solid rgba(222, 187, 110, 0.3);
-            align-self: flex-start;
-            border-bottom-left-radius: 2px;
-        }
-
-        .message.user {
-            background-color: var(--gold-accent);
-            color: var(--bg-dark);
-            align-self: flex-end;
-            border-bottom-right-radius: 2px;
-        }
-
-        .chat-input-area {
-            padding: 15px;
-            background-color: var(--bg-dark);
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
-            display: flex;
-            gap: 10px;
-        }
-
-        .chat-input {
-            flex: 1;
-            padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #444;
-            background-color: #111;
-            color: #fff;
-            outline: none;
-            font-family: 'Lato', sans-serif;
-        }
-
-        .chat-send {
-            background-color: var(--gold-accent);
-            color: var(--bg-dark);
-            border: none;
-            padding: 0 15px;
-            border-radius: 4px;
-            cursor: pointer;
             font-weight: bold;
+            margin-bottom: 20px;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .shop-container { flex-direction: column; }
-            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #333; padding-bottom: 20px; }
+        footer {
+            background-color: #050505;
+            padding: 60px 30px 30px;
+            border-top: 1px solid #333;
+            text-align: center;
+            color: #888;
+            margin-top: 80px;
+        }
+
+        @media(max-width: 900px) {
             nav ul { display: none; }
-            .chat-window { width: 90%; right: 5%; bottom: 100px; }
+            header { padding: 20px; }
+            .page-header h1 { font-size: 2.4rem; }
         }
     </style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">BRITIUM GALLERY</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html" class="active">New Arrivals</a></li>
-                <li><a href="shop.html">Handbags</a></li>
-                <li><a href="about.html">About Us</a></li>
-            </ul>
-        </nav>
-        <div style="color: var(--gold-accent);">🛒 (0)</div>
-    </header>
+<header>
+    <a href="index.html" class="logo">
+        BRITIUM
+        <span>GALLERY</span>
+    </a>
 
-    <div class="page-header">
-        <h1>New Arrivals</h1>
-        <p>Explore the latest additions to our luxury collection.</p>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="new-arrivals.html" style="color:var(--gold-accent)">New Arrivals</a></li>
+            <li><a href="luxury-handbags.html">Luxury Handbags</a></li>
+            <li><a href="product-gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="header-icons">
+        <a href="search.html">🔍</a>
+        <a href="login.html">👤</a>
+        <a href="wishlist.html">♡</a>
+        <a href="cart.html">🛒</a>
+    </div>
+</header>
+
+<section class="page-header">
+    <h1>New Arrivals</h1>
+    <p>Discover the latest additions to the Britium luxury collection.</p>
+</section>
+
+<section class="arrival-container">
+
+    <div class="arrival-card">
+        <span class="badge">New</span>
+        <div class="arrival-img">[New Tote]</div>
+        <div class="arrival-brand">Britium Collection</div>
+        <div class="arrival-name">Signature Gold-Trim Tote</div>
+        <div class="arrival-price">MMK 92,000.00</div>
     </div>
 
-    <div class="shop-container">
-        
-        <aside class="sidebar">
-            <div class="filter-group">
-                <h4 class="filter-title">Categories</h4>
-                <ul class="filter-list">
-                    <li><span class="checkbox"></span> Handbags</li>
-                    <li><span class="checkbox"></span> Totes</li>
-                    <li><span class="checkbox"></span> Clutches</li>
-                    <li><span class="checkbox"></span> Accessories</li>
-                    <li><span class="checkbox"></span> Shoes</li>
-                </ul>
-            </div>
-
-            <div class="filter-group">
-                <h4 class="filter-title">Price Range</h4>
-                <ul class="filter-list">
-                    <li><span class="checkbox"></span> $500 - $1,000</li>
-                    <li><span class="checkbox"></span> $1,000 - $2,000</li>
-                    <li><span class="checkbox"></span> $2,000+</li>
-                </ul>
-            </div>
-
-            <div class="filter-group">
-                <h4 class="filter-title">Color</h4>
-                <ul class="filter-list">
-                    <li><span class="checkbox"></span> Black</li>
-                    <li><span class="checkbox"></span> Cream/Ivory</li>
-                    <li><span class="checkbox"></span> Gold</li>
-                    <li><span class="checkbox"></span> Brown</li>
-                </ul>
-            </div>
-        </aside>
-
-        <main class="product-grid">
-            
-            <div class="product-card">
-                <div class="card-img">
-                    <span class="new-badge">NEW</span>
-                    [Ivory Elegance Tote]
-                </div>
-                <div class="card-info">
-                    <div class="product-cat">Totes</div>
-                    <h3 class="product-name">The Ivory Elegance</h3>
-                    <div class="product-price">$1,250.00</div>
-                    <button class="btn-add-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="card-img">
-                    <span class="new-badge">NEW</span>
-                    [Noir Quilted Classic]
-                </div>
-                <div class="card-info">
-                    <div class="product-cat">Handbags</div>
-                    <h3 class="product-name">Noir Quilted Classic</h3>
-                    <div class="product-price">$1,450.00</div>
-                    <button class="btn-add-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="card-img">
-                    [Britium Monogram]
-                </div>
-                <div class="card-info">
-                    <div class="product-cat">Totes</div>
-                    <h3 class="product-name">Britium Monogram Tote</h3>
-                    <div class="product-price">$1,100.00</div>
-                    <button class="btn-add-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="card-img">
-                    <span class="new-badge">NEW</span>
-                    [V-Lock Mini]
-                </div>
-                <div class="card-info">
-                    <div class="product-cat">Mini Bags</div>
-                    <h3 class="product-name">The V-Lock Mini</h3>
-                    <div class="product-price">$980.00</div>
-                    <button class="btn-add-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="card-img">
-                    [Suede Ankle Boots]
-                </div>
-                <div class="card-info">
-                    <div class="product-cat">Shoes</div>
-                    <h3 class="product-name">Suede Ankle Boots</h3>
-                    <div class="product-price">$9,200.00</div>
-                    <button class="btn-add-cart">Add to Cart</button>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="card-img">
-                    [Leather Tote Bag]
-                </div>
-                <div class="card-info">
-                    <div class="product-cat">Totes</div>
-                    <h3 class="product-name">Leather Tote Bag</h3>
-                    <div class="product-price">$7,620.00</div>
-                    <button class="btn-add-cart">Add to Cart</button>
-                </div>
-            </div>
-
-        </main>
+    <div class="arrival-card">
+        <span class="badge">New</span>
+        <div class="arrival-img">[New Satchel]</div>
+        <div class="arrival-brand">Britium Collection</div>
+        <div class="arrival-name">Midnight Structured Satchel</div>
+        <div class="arrival-price">MMK 88,000.00</div>
     </div>
 
-    <footer>
-        <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
-    </footer>
-
-    <div class="chat-widget-btn" id="chatBtn">
-        <span class="chat-icon">💬</span>
+    <div class="arrival-card">
+        <span class="badge">New</span>
+        <div class="arrival-img">[Chain Shoulder]</div>
+        <div class="arrival-brand">Britium Collection</div>
+        <div class="arrival-name">Quilted Chain Shoulder Bag</div>
+        <div class="arrival-price">MMK 95,000.00</div>
     </div>
 
-    <div class="chat-window" id="chatWindow">
-        <div class="chat-header">
-            <h4>Britium Concierge</h4>
-            <span class="close-chat" id="closeChat">×</span>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="message bot">
-                Welcome to Britium Gallery. How may I assist you with your luxury experience today?
-            </div>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" class="chat-input" id="chatInput" placeholder="Type your inquiry...">
-            <button class="chat-send" id="sendBtn">Send</button>
-        </div>
+    <div class="arrival-card">
+        <span class="badge">New</span>
+        <div class="arrival-img">[Mini Crossbody]</div>
+        <div class="arrival-brand">Britium Collection</div>
+        <div class="arrival-name">Elegant Mini Crossbody</div>
+        <div class="arrival-price">MMK 78,000.00</div>
     </div>
 
-    <script>
-        const chatBtn = document.getElementById('chatBtn');
-        const chatWindow = document.getElementById('chatWindow');
-        const closeChat = document.getElementById('closeChat');
-        const sendBtn = document.getElementById('sendBtn');
-        const chatInput = document.getElementById('chatInput');
-        const chatMessages = document.getElementById('chatMessages');
+</section>
 
-        // Toggle Chat Window
-        chatBtn.addEventListener('click', () => {
-            chatWindow.classList.add('active');
-        });
-
-        closeChat.addEventListener('click', () => {
-            chatWindow.classList.remove('active');
-        });
-
-        // Send Message Logic
-        function sendMessage() {
-            const text = chatInput.value.trim();
-            if (text) {
-                // Add User Message
-                addMessage(text, 'user');
-                chatInput.value = '';
-
-                // Simulate Bot Response (Simple Logic)
-                setTimeout(() => {
-                    let botResponse = "Thank you for contacting Britium Gallery. Our concierge team is reviewing your request.";
-                    
-                    const lowerText = text.toLowerCase();
-                    if(lowerText.includes('track') || lowerText.includes('order')) {
-                        botResponse = "To track your order, please provide your Order Number (e.g., #12345). You can check the status on our Tracking Page.";
-                    } else if (lowerText.includes('return')) {
-                        botResponse = "Returns are accepted within 30 days of purchase for unused items. Would you like the link to our Return Request form?";
-                    } else if (lowerText.includes('store') || lowerText.includes('location')) {
-                        botResponse = "Our flagship store is located at No. 277, Anawrahta Road, East Dagon. We also have locations in Yangon and Mandalay.";
-                    } else if (lowerText.includes('hello') || lowerText.includes('hi')) {
-                        botResponse = "Hello! I am the Britium Concierge. Are you looking for a specific handbag or accessory today?";
-                    }
-
-                    addMessage(botResponse, 'bot');
-                }, 800);
-            }
-        }
-
-        function addMessage(text, sender) {
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('message', sender);
-            msgDiv.innerText = text;
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto scroll to bottom
-        }
-
-        sendBtn.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-    </script>
+<footer>
+    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
+    <p style="margin-top:10px;">
+        <a href="terms.html">Terms</a> |
+        <a href="privacy.html">Privacy</a> |
+        <a href="store-locator.html">Locations</a>
+    </p>
+</footer>
 
 </body>
 </html>
