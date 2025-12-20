@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details | Britium Gallery</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    :root{
+      --bg-dark:#1a0f0a; --bg-card:#231712; --gold:#debb6e; --gold-dark:#b5904b;
+      --text:#fff; --muted:#a0a0a0; --border:rgba(222,187,110,.2);
+      --shadow:0 12px 30px rgba(0,0,0,.45);
+    }
+    body{font-family:'Lato',sans-serif;background:var(--bg-dark);color:var(--text);line-height:1.6}
+    a{text-decoration:none;color:inherit;transition:.25s}
+    a:hover{color:var(--gold)}
+    main{max-width:1200px;margin:0 auto;padding:34px 5% 70px}
+    .crumbs{color:var(--muted);font-size:.9rem;margin-bottom:16px}
+    .crumbs a{color:#ddd}
+    .wrap{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+    .card{background:var(--bg-card);border:1px solid var(--border);box-shadow:0 10px 24px rgba(0,0,0,.18);overflow:hidden}
+    .img{height:520px;background:#120a07;display:flex;align-items:center;justify-content:center}
+    .img img{width:100%;height:100%;object-fit:cover;display:block}
+    .info{padding:22px}
+    h1{font-family:'Playfair Display',serif;color:var(--gold);letter-spacing:1px;font-size:2.15rem;line-height:1.15}
+    .sku{margin-top:8px;color:#ddd;font-size:.9rem}
+    .meta{margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);color:var(--muted)}
+    .price{margin-top:18px;font-size:1.35rem;font-weight:900}
+    .price small{display:block;font-weight:400;color:#888;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;margin-bottom:4px}
+    .actions{display:flex;gap:12px;margin-top:18px;flex-wrap:wrap}
+    .btn{
+      padding:12px 14px;border-radius:10px;cursor:pointer;font-weight:900;
+      letter-spacing:.6px;text-transform:uppercase;font-size:.78rem;transition:.25s
+    }
+    .btn-gold{border:none;background:var(--gold);color:var(--bg-dark)}
+    .btn-gold:hover{background:#f0d27f;transform:translateY(-1px)}
+    .btn-outline{border:1px solid rgba(222,187,110,.45);background:rgba(222,187,110,.10);color:var(--gold)}
+    .btn-outline:hover{background:rgba(222,187,110,.18);transform:translateY(-1px)}
+    .note{margin-top:14px;color:#a9a9a9;font-size:.9rem}
+    .notfound{padding:22px;color:#ddd}
+    @media(max-width: 980px){
+      .wrap{grid-template-columns:1fr}
+      .img{height:420px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Shared navigation injected by nav.js -->
+  <div id="siteHeader"></div>
+
+  <main>
+    <div class="crumbs">
+      <a href="index.html">Home</a> / <a href="shop.html">Shop</a> / <span id="crumbName">Product</span>
+    </div>
+
+    <div class="wrap">
+      <div class="card">
+        <div class="img" id="imgBox">
+          <div style="color:#999;font-style:italic">Loading image…</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="info" id="detailBox">
+          <div style="color:#999;font-style:italic">Loading product…</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="siteFooter"></div>
+
+  <!-- 1) Shared navigation (same on every page) -->
+  <script src="nav.js"></script>
+
+  <!-- 2) Product data + detail renderer -->
+  <script src="products.js"></script>
+  <script>
+    function getParam(name){
+      const url = new URL(window.location.href);
+      return url.searchParams.get(name);
+    }
+
+    function escapeHtml(str){
+      return String(str)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+    }
+
+    const id = getParam("id");
+    const product = (window.PRODUCTS || []).find(p => p.sku === id);
+
+    const crumbName = document.getElementById("crumbName");
+    const imgBox = document.getElementById("imgBox");
+    const detailBox = document.getElementById("detailBox");
+
+    if(!id || !product){
+      crumbName.textContent = "Not Found";
+      imgBox.innerHTML = `<div class="notfound">Image unavailable.</div>`;
+      detailBox.innerHTML = `
+        <div class="notfound">
+          <h1 style="margin-bottom:10px;color:var(--gold)">Product Not Found</h1>
+          <p style="color:var(--muted)">No product matches this id: <strong>${escapeHtml(id || "")}</strong></p>
+          <div class="actions" style="margin-top:16px">
+            <a class="btn btn-outline" href="shop.html">Back to Shop</a>
+            <a class="btn btn-gold" href="luxury-handbags.html">Luxury Handbags</a>
+          </div>
+        </div>
+      `;
+    } else {
+      crumbName.textContent = product.name;
+
+      imgBox.innerHTML = `
+        <img src="${escapeHtml(product.img)}" alt="${escapeHtml(product.name)}"
+          onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'notfound\\'>Image missing: ${escapeHtml(product.img)}</div>';">
+      `;
+
+      detailBox.innerHTML = `
+        <h1>${escapeHtml(product.name)}</h1>
+        <div class="sku">SKU: <strong>${escapeHtml(product.sku)}</strong></div>
+
+        <div class="price">
+          <small>Retail Price</small>
+          ${escapeHtml(product.price)}
+        </div>
+
+        <div class="meta">
+          <div><strong>Details:</strong> ${escapeHtml(product.desc)}</div>
+          ${product.category ? `<div style="margin-top:8px;"><strong>Category:</strong> ${escapeHtml(product.category)}</div>` : ``}
+        </div>
+
+        <div class="actions">
+          <a class="btn btn-gold" href="contact.html">Request Quote</a>
+          <a class="btn btn-outline" href="shop.html">Back to Shop</a>
+        </div>
+
+        <div class="note">
+          Tip: You can link directly to this item from any page using:
+          <span style="color:#ddd">product.html?id=${escapeHtml(product.sku)}</span>
+        </div>
+      `;
+    }
+  </script>
+</body>
+</html>
