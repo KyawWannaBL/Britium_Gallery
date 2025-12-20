@@ -3,21 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Britium Gallery | Luxury Handbags</title>
+    <title>Britium Gallery | New Arrivals</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-    
+
     <style>
-        /* --- RESET & VARIABLES --- */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         :root {
-            --bg-dark: #1a0f0a; /* Deep Coffee/Black */
-            --bg-cream: #f9f4ef; /* Light Cream */
-            --gold-accent: #debb6e; /* Metallic Gold */
+            --bg-dark: #1a0f0a;
+            --bg-cream: #f9f4ef;
+            --gold-accent: #debb6e;
             --gold-dark: #b5904b;
             --text-light: #ffffff;
             --text-dark: #2c241b;
@@ -31,7 +27,6 @@
             line-height: 1.6;
         }
 
-        /* --- TYPOGRAPHY --- */
         h1, h2, h3 {
             font-family: 'Playfair Display', serif;
             text-transform: uppercase;
@@ -39,14 +34,15 @@
         }
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { color: var(--gold-accent); }
 
-        /* --- NAVIGATION --- */
+        /* HEADER */
         header {
             padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: 1px solid rgba(212,175,55,0.2);
         }
 
         .logo {
@@ -61,11 +57,7 @@
             gap: 30px;
         }
 
-        nav a:hover {
-            color: var(--gold-accent);
-        }
-
-        /* --- HERO SECTION --- */
+        /* HERO */
         .hero {
             text-align: center;
             padding: 80px 20px 40px;
@@ -76,13 +68,11 @@
             font-size: 3.5rem;
             color: var(--gold-accent);
             margin-bottom: 10px;
-            line-height: 1.2;
         }
 
         .hero p {
             font-size: 1.2rem;
             color: #e0e0e0;
-            margin-bottom: 40px;
             font-weight: 300;
         }
 
@@ -96,7 +86,7 @@
             cursor: pointer;
             letter-spacing: 1px;
             text-transform: uppercase;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            margin-top: 30px;
             transition: 0.3s;
         }
 
@@ -105,7 +95,7 @@
             transform: translateY(-2px);
         }
 
-        /* --- PRODUCT SHOWCASE (The Bags) --- */
+        /* COLLECTION */
         .collection {
             padding: 60px 5%;
             text-align: center;
@@ -119,9 +109,9 @@
         }
 
         .product-card {
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255,255,255,0.05);
             padding: 20px;
-            border: 1px solid rgba(212, 175, 55, 0.1);
+            border: 1px solid rgba(212,175,55,0.1);
             transition: 0.3s;
         }
 
@@ -152,7 +142,7 @@
             color: #ccc;
         }
 
-        /* --- BRAND SIGNATURE (Bottom Light Section) --- */
+        /* BRAND SIGNATURE */
         .brand-signature {
             background-color: var(--bg-cream);
             color: var(--text-dark);
@@ -165,18 +155,13 @@
         .brand-signature h2 {
             font-size: 3rem;
             color: var(--gold-dark);
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
-            margin-bottom: 10px;
         }
 
         .brand-signature h3 {
             font-size: 2rem;
-            font-family: 'Playfair Display', serif;
             font-style: italic;
-            color: #1a0f0a;
         }
 
-        /* --- FOOTER --- */
         footer {
             background-color: #0d0705;
             color: #666;
@@ -185,7 +170,7 @@
             font-size: 0.8rem;
         }
 
-        /* --- CHATBOT WIDGET CSS --- */
+        /* CHAT */
         .chat-widget-btn {
             position: fixed;
             bottom: 30px;
@@ -198,19 +183,7 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.4);
             z-index: 1000;
-            transition: transform 0.3s;
-            border: 2px solid var(--gold-dark);
-        }
-
-        .chat-widget-btn:hover {
-            transform: scale(1.1);
-        }
-
-        .chat-icon {
-            font-size: 30px;
-            color: var(--bg-dark);
         }
 
         .chat-window {
@@ -222,21 +195,13 @@
             background-color: var(--chat-bg);
             border: 1px solid var(--gold-accent);
             border-radius: 12px;
-            display: none; /* Hidden by default */
+            display: none;
             flex-direction: column;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             z-index: 1000;
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s, transform 0.3s;
         }
 
-        .chat-window.active {
-            display: flex;
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .chat-window.active { display: flex; }
 
         .chat-header {
             background-color: var(--bg-dark);
@@ -244,231 +209,104 @@
             border-bottom: 1px solid var(--gold-accent);
             display: flex;
             justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-header h4 {
-            color: var(--gold-accent);
-            font-family: 'Playfair Display', serif;
-            font-size: 1rem;
-            letter-spacing: 1px;
-        }
-
-        .close-chat {
-            cursor: pointer;
-            color: var(--gold-accent);
-            font-size: 1.2rem;
         }
 
         .chat-messages {
             flex: 1;
             padding: 20px;
             overflow-y: auto;
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .message {
-            max-width: 80%;
-            padding: 10px 15px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            line-height: 1.4;
-        }
-
-        .message.bot {
-            background-color: rgba(222, 187, 110, 0.1);
-            color: #eee;
-            border: 1px solid rgba(222, 187, 110, 0.3);
-            align-self: flex-start;
-            border-bottom-left-radius: 2px;
-        }
-
-        .message.user {
-            background-color: var(--gold-accent);
-            color: var(--bg-dark);
-            align-self: flex-end;
-            border-bottom-right-radius: 2px;
         }
 
         .chat-input-area {
             padding: 15px;
-            background-color: var(--bg-dark);
-            border-top: 1px solid rgba(212, 175, 55, 0.2);
             display: flex;
             gap: 10px;
+            border-top: 1px solid #333;
         }
 
         .chat-input {
             flex: 1;
             padding: 10px;
-            border-radius: 4px;
-            border: 1px solid #444;
-            background-color: #111;
+            background: #111;
             color: #fff;
-            outline: none;
-            font-family: 'Lato', sans-serif;
+            border: 1px solid #444;
         }
 
         .chat-send {
-            background-color: var(--gold-accent);
-            color: var(--bg-dark);
+            background: var(--gold-accent);
             border: none;
             padding: 0 15px;
-            border-radius: 4px;
-            cursor: pointer;
             font-weight: bold;
+            cursor: pointer;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
+        @media(max-width:768px) {
+            nav ul { display: none; }
             .hero h1 { font-size: 2.5rem; }
-            .brand-signature h2 { font-size: 2rem; }
-            nav ul { display: none; } /* Simplified for mobile demo */
-            
-            .chat-window {
-                width: 90%;
-                right: 5%;
-                bottom: 100px;
-            }
         }
     </style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">BRITIUM GALLERY</div>
-        <nav>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="shop.html">New Arrivals</a></li>
-                <li><a href="shop.html">Handbags</a></li>
-                <li><a href="about.html">About Us</a></li>
-            </ul>
-        </nav>
-        <div style="color: var(--gold-accent);">🛒 (0)</div>
-    </header>
+<header>
+    <div class="logo">BRITIUM GALLERY</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="new-arrivals.html" style="color:var(--gold-accent)">New Arrivals</a></li>
+            <li><a href="luxury-handbags.html">Handbags</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
+    </nav>
+    <div style="color:var(--gold-accent)">🛒 (0)</div>
+</header>
 
-    <section class="hero">
-        <h1>WELCOME TO<br>BRITIUM GALLERY</h1>
-        <p>Discover the latest in luxury handbags,<br>where elegance meets innovation.</p>
-        <button class="btn-gold" onclick="window.location.href='shop.html'">Shop Now</button>
-    </section>
+<section class="hero">
+    <h1>NEW ARRIVALS</h1>
+    <p>Fresh arrivals crafted for modern luxury and timeless elegance.</p>
+    <button class="btn-gold" onclick="location.href='shop.html'">Shop Collection</button>
+</section>
 
-    <section class="collection">
-        <h3 style="color: var(--gold-accent); margin-bottom: 20px;">The V Collection</h3>
-        <div class="collection-grid">
-            <div class="product-card">
-                <div class="placeholder-img">[Cream Tote V-Series]</div>
-                <div class="product-title">The Ivory Elegance</div>
-                <div class="product-price">$1,250.00</div>
-            </div>
-            <div class="product-card">
-                <div class="placeholder-img">[Quilted Black Satchel]</div>
-                <div class="product-title">Noir Quilted Classic</div>
-                <div class="product-price">$1,450.00</div>
-            </div>
-            <div class="product-card">
-                <div class="placeholder-img">[Signature Monogram]</div>
-                <div class="product-title">Britium Monogram Tote</div>
-                <div class="product-price">$1,100.00</div>
-            </div>
-            <div class="product-card">
-                <div class="placeholder-img">[Structured Mini]</div>
-                <div class="product-title">The V-Lock Mini</div>
-                <div class="product-price">$980.00</div>
-            </div>
+<section class="collection">
+    <h3 style="color:var(--gold-accent)">Latest Editions</h3>
+    <div class="collection-grid">
+
+        <div class="product-card">
+            <div class="placeholder-img">[New Tote]</div>
+            <div class="product-title">Ivory Signature Tote</div>
+            <div class="product-price">MMK 92,000.00</div>
         </div>
-    </section>
 
-    <section class="brand-signature">
-        <h2>BRITIUM GALLERY</h2>
-        <h3>Where Style Meets Innovation</h3>
-    </section>
+        <div class="product-card">
+            <div class="placeholder-img">[Chain Shoulder]</div>
+            <div class="product-title">Quilted Chain Shoulder</div>
+            <div class="product-price">MMK 98,000.00</div>
+        </div>
 
-    <footer>
-        <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
-    </footer>
+        <div class="product-card">
+            <div class="placeholder-img">[Mini Crossbody]</div>
+            <div class="product-title">Elegant Mini Crossbody</div>
+            <div class="product-price">MMK 78,000.00</div>
+        </div>
 
-    <div class="chat-widget-btn" id="chatBtn">
-        <span class="chat-icon">💬</span>
+        <div class="product-card">
+            <div class="placeholder-img">[Structured Satchel]</div>
+            <div class="product-title">Midnight Structured Satchel</div>
+            <div class="product-price">MMK 88,000.00</div>
+        </div>
+
     </div>
+</section>
 
-    <div class="chat-window" id="chatWindow">
-        <div class="chat-header">
-            <h4>Britium Concierge</h4>
-            <span class="close-chat" id="closeChat">×</span>
-        </div>
-        <div class="chat-messages" id="chatMessages">
-            <div class="message bot">
-                Welcome to Britium Gallery. How may I assist you with your luxury experience today?
-            </div>
-        </div>
-        <div class="chat-input-area">
-            <input type="text" class="chat-input" id="chatInput" placeholder="Type your inquiry...">
-            <button class="chat-send" id="sendBtn">Send</button>
-        </div>
-    </div>
+<section class="brand-signature">
+    <h2>BRITIUM GALLERY</h2>
+    <h3>Where Style Meets Innovation</h3>
+</section>
 
-    <script>
-        const chatBtn = document.getElementById('chatBtn');
-        const chatWindow = document.getElementById('chatWindow');
-        const closeChat = document.getElementById('closeChat');
-        const sendBtn = document.getElementById('sendBtn');
-        const chatInput = document.getElementById('chatInput');
-        const chatMessages = document.getElementById('chatMessages');
-
-        // Toggle Chat Window
-        chatBtn.addEventListener('click', () => {
-            chatWindow.classList.add('active');
-        });
-
-        closeChat.addEventListener('click', () => {
-            chatWindow.classList.remove('active');
-        });
-
-        // Send Message Logic
-        function sendMessage() {
-            const text = chatInput.value.trim();
-            if (text) {
-                // Add User Message
-                addMessage(text, 'user');
-                chatInput.value = '';
-
-                // Simulate Bot Response (Simple Logic)
-                setTimeout(() => {
-                    let botResponse = "Thank you for contacting Britium Gallery. Our concierge team is reviewing your request.";
-                    
-                    const lowerText = text.toLowerCase();
-                    if(lowerText.includes('track') || lowerText.includes('order')) {
-                        botResponse = "To track your order, please provide your Order Number (e.g., #12345). You can check the status on our Tracking Page.";
-                    } else if (lowerText.includes('return')) {
-                        botResponse = "Returns are accepted within 30 days of purchase for unused items. Would you like the link to our Return Request form?";
-                    } else if (lowerText.includes('store') || lowerText.includes('location')) {
-                        botResponse = "Our flagship store is located at No. 277, Anawrahta Road, East Dagon. We also have locations in Yangon and Mandalay.";
-                    } else if (lowerText.includes('hello') || lowerText.includes('hi')) {
-                        botResponse = "Hello! I am the Britium Concierge. Are you looking for a specific handbag or accessory today?";
-                    }
-
-                    addMessage(botResponse, 'bot');
-                }, 800);
-            }
-        }
-
-        function addMessage(text, sender) {
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('message', sender);
-            msgDiv.innerText = text;
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight; // Auto scroll to bottom
-        }
-
-        sendBtn.addEventListener('click', sendMessage);
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') sendMessage();
-        });
-    </script>
+<footer>
+    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
+</footer>
 
 </body>
 </html>
