@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>New Arrivals | Britium Gallery</title>
 
-  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
   <style>
@@ -74,6 +73,7 @@
       border:1px solid var(--border);
       overflow:hidden;
       transition:.25s;
+      position:relative; /* FIX */
     }
 
     .card:hover{
@@ -103,7 +103,6 @@
       justify-content:center;
       font-style:italic;
       color:#777;
-      position:relative;
     }
 
     .info{
@@ -145,7 +144,6 @@
       padding:10px 22px;
       border:1px solid var(--gold);
       color:var(--gold);
-      text-decoration:none;
       font-size:.75rem;
       letter-spacing:1px;
       text-transform:uppercase;
@@ -183,7 +181,6 @@
       background:var(--gold);
       color:var(--bg-dark);
       font-weight:700;
-      text-decoration:none;
       letter-spacing:1px;
       text-transform:uppercase;
       border-radius:30px;
@@ -206,7 +203,6 @@
   <!-- STANDARD NAV -->
   <div id="siteHeader"></div>
 
-  <!-- HERO -->
   <section class="hero">
     <h1>New Arrivals</h1>
     <p>
@@ -215,7 +211,6 @@
     </p>
   </section>
 
-  <!-- PRODUCTS -->
   <section class="section">
     <div class="grid">
 
@@ -225,12 +220,9 @@
         <div class="info">
           <div class="brand">Britium Collection</div>
           <div class="name">Signature Monogram Crossbody</div>
-          <div class="price">
-            <span>Starting from</span>
-            MMK 90,000
-          </div>
+          <div class="price"><span>Starting from</span>MMK 90,000</div>
           <div class="actions">
-            <a href="product.html?id=BVOSBG-001">View Details</a>
+            <a href="product.html?id=BVOSBG-001" aria-label="View Signature Monogram Crossbody">View Details</a>
           </div>
         </div>
       </div>
@@ -241,12 +233,9 @@
         <div class="info">
           <div class="brand">Britium Collection</div>
           <div class="name">Elegant Chain Shoulder Bag</div>
-          <div class="price">
-            <span>Starting from</span>
-            MMK 84,000
-          </div>
+          <div class="price"><span>Starting from</span>MMK 84,000</div>
           <div class="actions">
-            <a href="product.html?id=BVOSBG-028">View Details</a>
+            <a href="product.html?id=BVOSBG-028" aria-label="View Elegant Chain Shoulder Bag">View Details</a>
           </div>
         </div>
       </div>
@@ -257,12 +246,9 @@
         <div class="info">
           <div class="brand">Britium Collection</div>
           <div class="name">Structured Top Handle Satchel</div>
-          <div class="price">
-            <span>Starting from</span>
-            MMK 77,000
-          </div>
+          <div class="price"><span>Starting from</span>MMK 77,000</div>
           <div class="actions">
-            <a href="product.html?id=BVOSBG-031">View Details</a>
+            <a href="product.html?id=BVOSBG-031" aria-label="View Structured Top Handle Satchel">View Details</a>
           </div>
         </div>
       </div>
@@ -273,12 +259,9 @@
         <div class="info">
           <div class="brand">Britium Collection</div>
           <div class="name">Luxe Quilted Chain Crossbody</div>
-          <div class="price">
-            <span>Starting from</span>
-            MMK 90,000
-          </div>
+          <div class="price"><span>Starting from</span>MMK 90,000</div>
           <div class="actions">
-            <a href="product.html?id=BVOSBG-039">View Details</a>
+            <a href="product.html?id=BVOSBG-039" aria-label="View Luxe Quilted Chain Crossbody">View Details</a>
           </div>
         </div>
       </div>
@@ -286,17 +269,14 @@
     </div>
   </section>
 
-  <!-- CTA -->
   <section class="cta">
     <h2>Explore the Full Collection</h2>
     <p>Browse all luxury handbags and accessories curated by Britium Gallery.</p>
     <a href="shop.html">Go to Shop</a>
   </section>
 
-  <!-- STANDARD FOOTER -->
   <div id="siteFooter"></div>
 
-  <!-- NAV SCRIPT -->
   <script src="nav.js"></script>
 
 </body>
