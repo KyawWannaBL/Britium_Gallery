@@ -17,7 +17,7 @@
             --gold-dark: #b5904b;
             --text-light: #ffffff;
             --text-grey: #a0a0a0;
-            --border-gold: rgba(222, 187, 110, 0.2);
+            --border-gold: rgba(222, 187, 110, 0.25);
         }
 
         body {
@@ -37,53 +37,43 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid var(--border-gold);
-            background-color: rgba(26, 15, 10, 0.95);
+            background-color: rgba(26,15,10,0.95);
             position: sticky;
             top: 0;
             z-index: 100;
-            backdrop-filter: blur(10px);
         }
 
         .logo {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--gold-accent);
             font-weight: 700;
-            display: flex;
-            flex-direction: column;
             line-height: 1;
-        }
-
-        .logo span {
-            font-size: 0.65rem;
-            letter-spacing: 3px;
-            color: #fff;
-            margin-top: 4px;
         }
 
         nav ul {
             display: flex;
             list-style: none;
-            gap: 25px;
+            gap: 24px;
         }
 
         nav a {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
         .header-icons {
             display: flex;
-            gap: 20px;
-            font-size: 1.2rem;
+            gap: 18px;
+            font-size: 1.1rem;
         }
 
-        /* PAGE HEADER */
+        /* HERO */
         .page-header {
             text-align: center;
-            padding: 70px 20px;
-            background: linear-gradient(rgba(26,15,10,0.85), rgba(26,15,10,1)), url('a3.jpg');
+            padding: 90px 20px;
+            background: linear-gradient(rgba(26,15,10,0.85), rgba(26,15,10,1)), url("a6.jpg");
             background-size: cover;
             background-position: center;
             border-bottom: 1px solid var(--border-gold);
@@ -93,7 +83,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 3rem;
             color: var(--gold-accent);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
 
         .page-header p {
@@ -104,79 +94,82 @@
         /* GRID */
         .arrival-container {
             max-width: 1400px;
-            margin: 0 auto;
-            padding: 60px 5%;
+            margin: auto;
+            padding: 70px 5%;
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 35px;
         }
 
         .arrival-card {
             background-color: var(--bg-card);
             border: 1px solid var(--border-gold);
-            transition: 0.3s;
-            position: relative;
+            transition: 0.35s;
             overflow: hidden;
         }
 
         .arrival-card:hover {
-            border-color: var(--gold-accent);
             transform: translateY(-6px);
+            border-color: var(--gold-accent);
         }
 
         .badge {
             position: absolute;
-            top: 15px;
-            right: 15px;
+            margin: 15px;
             background-color: var(--gold-accent);
             color: #000;
             font-size: 0.7rem;
-            padding: 6px 10px;
+            padding: 6px 12px;
             letter-spacing: 1px;
-            text-transform: uppercase;
             font-weight: bold;
+            text-transform: uppercase;
         }
 
-        .arrival-img {
+        .arrival-img img {
+            width: 100%;
             height: 300px;
-            background: #111;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-grey);
-            font-style: italic;
+            object-fit: cover;
+            display: block;
+        }
+
+        .arrival-info {
+            padding: 20px;
+            text-align: center;
         }
 
         .arrival-brand {
-            text-align: center;
-            font-size: 0.8rem;
-            color: var(--gold-accent);
-            margin-top: 14px;
-            text-transform: uppercase;
+            font-size: 0.75rem;
             letter-spacing: 1px;
+            color: var(--gold-accent);
+            text-transform: uppercase;
         }
 
         .arrival-name {
             font-family: 'Playfair Display', serif;
             font-size: 1.1rem;
-            text-align: center;
-            margin: 6px 10px;
+            margin: 6px 0;
+        }
+
+        .arrival-desc {
+            font-size: 0.85rem;
+            color: var(--text-grey);
+            margin-bottom: 12px;
         }
 
         .arrival-price {
-            text-align: center;
             color: var(--gold-accent);
             font-weight: bold;
-            margin-bottom: 20px;
+            font-size: 0.95rem;
         }
 
         footer {
             background-color: #050505;
-            padding: 60px 30px 30px;
+            padding: 60px 20px 30px;
             border-top: 1px solid #333;
             text-align: center;
             color: #888;
-            margin-top: 80px;
+            margin-top: 90px;
+            font-size: 0.85rem;
         }
 
         @media(max-width: 900px) {
@@ -190,28 +183,24 @@
 <body>
 
 <header>
-    <a href="index.html" class="logo">
-        BRITIUM
-        <span>GALLERY</span>
-    </a>
- <nav>
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="shop.html">Shop</a></li>
-    <li><a href="new-arrivals.html">New Arrivals</a></li>
-    <li><a href="luxury-handbags.html">Luxury Handbags</a></li>
-    <li><a href="product-gallery.html">Gallery</a></li>
-    <li><a href="about.html">About</a></li>
-    <li><a href="blog.html">Blog</a></li>
-    <li><a href="faq.html">FAQ</a></li>
-    <li><a href="contact.html">Contact</a></li>
-    <li><a href="login.html">Login</a></li>
-  </ul>
-</nav>
+    <a href="index.html" class="logo">BRITIUM</a>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="new-arrivals.html">New Arrivals</a></li>
+            <li><a href="luxury-handbags.html">Luxury Handbags</a></li>
+            <li><a href="product-gallery.html">Gallery</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+            <li><a href="login.html">Login</a></li>
+        </ul>
+    </nav>
 
     <div class="header-icons">
         <a href="search.html">🔍</a>
-        <a href="login.html">👤</a>
         <a href="wishlist.html">♡</a>
         <a href="cart.html">🛒</a>
     </div>
@@ -219,41 +208,61 @@
 
 <section class="page-header">
     <h1>New Arrivals</h1>
-    <p>Discover the latest additions to the Britium luxury collection.</p>
+    <p>Fresh expressions of luxury, crafted for the modern connoisseur.</p>
 </section>
 
 <section class="arrival-container">
 
     <div class="arrival-card">
         <span class="badge">New</span>
-        <div class="arrival-img">[New Tote]</div>
-        <div class="arrival-brand">Britium Collection</div>
-        <div class="arrival-name">Signature Gold-Trim Tote</div>
-        <div class="arrival-price">MMK 92,000.00</div>
+        <div class="arrival-img">
+            <img src="a7.jpg" alt="Monogram Chain Shoulder Bag">
+        </div>
+        <div class="arrival-info">
+            <div class="arrival-brand">Luxury Collection</div>
+            <div class="arrival-name">Monogram Chain Shoulder</div>
+            <div class="arrival-desc">Iconic monogram canvas with antique gold chain detailing.</div>
+            <div class="arrival-price">MMK 98,000</div>
+        </div>
     </div>
 
     <div class="arrival-card">
         <span class="badge">New</span>
-        <div class="arrival-img">[New Satchel]</div>
-        <div class="arrival-brand">Britium Collection</div>
-        <div class="arrival-name">Midnight Structured Satchel</div>
-        <div class="arrival-price">MMK 88,000.00</div>
+        <div class="arrival-img">
+            <img src="a9.jpg" alt="Structured Leather Tote">
+        </div>
+        <div class="arrival-info">
+            <div class="arrival-brand">Signature Series</div>
+            <div class="arrival-name">Structured Leather Tote</div>
+            <div class="arrival-desc">Elegant silhouette designed for everyday sophistication.</div>
+            <div class="arrival-price">MMK 105,000</div>
+        </div>
     </div>
 
     <div class="arrival-card">
         <span class="badge">New</span>
-        <div class="arrival-img">[Chain Shoulder]</div>
-        <div class="arrival-brand">Britium Collection</div>
-        <div class="arrival-name">Quilted Chain Shoulder Bag</div>
-        <div class="arrival-price">MMK 95,000.00</div>
+        <div class="arrival-img">
+            <img src="a12.jpg" alt="Ivory Embossed Handbag">
+        </div>
+        <div class="arrival-info">
+            <div class="arrival-brand">Limited Edition</div>
+            <div class="arrival-name">Ivory Embossed Handbag</div>
+            <div class="arrival-desc">Soft leather with embossed detailing and refined gold accents.</div>
+            <div class="arrival-price">MMK 112,000</div>
+        </div>
     </div>
 
     <div class="arrival-card">
         <span class="badge">New</span>
-        <div class="arrival-img">[Mini Crossbody]</div>
-        <div class="arrival-brand">Britium Collection</div>
-        <div class="arrival-name">Elegant Mini Crossbody</div>
-        <div class="arrival-price">MMK 78,000.00</div>
+        <div class="arrival-img">
+            <img src="a18.jpg" alt="Classic Quilted Shoulder Bag">
+        </div>
+        <div class="arrival-info">
+            <div class="arrival-brand">Heritage Line</div>
+            <div class="arrival-name">Classic Quilted Shoulder</div>
+            <div class="arrival-desc">Timeless quilted design with signature clasp closure.</div>
+            <div class="arrival-price">MMK 118,000</div>
+        </div>
     </div>
 
 </section>
@@ -263,7 +272,7 @@
     <p style="margin-top:10px;">
         <a href="terms.html">Terms</a> |
         <a href="privacy.html">Privacy</a> |
-        <a href="store-locator.html">Locations</a>
+        <a href="store-locator.html">Store Locator</a>
     </p>
 </footer>
 
