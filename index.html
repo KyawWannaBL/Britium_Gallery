@@ -7,196 +7,7 @@
 
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg-dark: #1a0f0a;
-      --bg-light: #f9f4ef;
-      --gold: #debb6e;
-      --gold-dark: #b5904b;
-      --text-light: #ffffff;
-      --text-muted: #d0d0d0;
-      --text-dark: #2c241b;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Jost', sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-light);
-      line-height: 1.6;
-    }
-
-    a { text-decoration: none; color: inherit; }
-
-    /* HEADER */
-    header {
-      padding: 22px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(222,187,110,0.2);
-    }
-
-    .logo {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.6rem;
-      color: var(--gold);
-      font-weight: 700;
-    }
-
-    nav ul {
-      display: flex;
-      list-style: none;
-      gap: 30px;
-      font-size: 0.9rem;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-
-    nav a:hover {
-      color: var(--gold);
-    }
-
-    /* HERO */
-    .hero {
-      text-align: center;
-      padding: 90px 20px 70px;
-      background: linear-gradient(180deg, #1a0f0a 0%, #281912 100%);
-    }
-
-    .hero h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 3.6rem;
-      color: var(--gold);
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin: 0 auto 40px;
-    }
-
-    .hero-actions {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    .btn-primary,
-    .btn-secondary {
-      padding: 15px 40px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      border: none;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .btn-primary {
-      background-color: var(--gold);
-      color: #000;
-    }
-
-    .btn-primary:hover {
-      background-color: var(--gold-dark);
-    }
-
-    .btn-secondary {
-      background-color: transparent;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-    }
-
-    .btn-secondary:hover {
-      background-color: var(--gold);
-      color: #000;
-    }
-
-    /* FEATURE SECTIONS */
-    .section {
-      padding: 80px 8%;
-      text-align: center;
-    }
-
-    .section.light {
-      background-color: var(--bg-light);
-      color: var(--text-dark);
-    }
-
-    .section h2 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.8rem;
-      margin-bottom: 20px;
-    }
-
-    .section p {
-      max-width: 700px;
-      margin: 0 auto 50px;
-      font-size: 1.05rem;
-      color: #555;
-    }
-
-    .card-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 30px;
-    }
-
-    .card {
-      padding: 40px 30px;
-      border: 1px solid rgba(0,0,0,0.08);
-      transition: 0.3s;
-      background-color: #fff;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      border-color: var(--gold);
-    }
-
-    .card h3 {
-      font-size: 1.3rem;
-      margin-bottom: 10px;
-    }
-
-    .card a {
-      display: inline-block;
-      margin-top: 15px;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--gold-dark);
-    }
-
-    /* FOOTER */
-    footer {
-      background-color: #0d0705;
-      text-align: center;
-      padding: 35px 20px;
-      font-size: 0.85rem;
-      color: #777;
-    }
-
-    @media (max-width: 768px) {
-      header { padding: 20px; }
-      nav ul { display: none; }
-      .hero h1 { font-size: 2.6rem; }
-    }
-  </style>
-</head>
-
-<body>
-
-  <header>
-    <div class="logo">Britium Gallery</div>
-    // nav.js
+// nav.js
 (function () {
   const page = (location.pathname.split("/").pop() || "index.html").toLowerCase();
 
@@ -298,7 +109,6 @@
   if (headerTarget) headerTarget.innerHTML = headerHTML;
   if (footerTarget) footerTarget.innerHTML = footerHTML;
 })();
-
   </header>
 
   <section class="hero">
@@ -341,5 +151,6 @@
 
 </body>
 </html>
+
 
 
