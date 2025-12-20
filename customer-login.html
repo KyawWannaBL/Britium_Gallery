@@ -28,7 +28,7 @@
       line-height: 1.6;
     }
 
-    a { color: inherit; text-decoration: none; }
+    a { text-decoration: none; color: inherit; }
 
     /* ---------- HEADER ---------- */
     header {
@@ -68,8 +68,8 @@
     /* ---------- LOGIN CONTAINER ---------- */
     .login-wrapper {
       max-width: 420px;
-      margin: 80px auto;
-      padding: 40px 30px;
+      margin: 90px auto;
+      padding: 45px 35px;
       background: rgba(255,255,255,0.75);
       border: 1px solid var(--border);
       border-radius: 10px;
@@ -122,16 +122,13 @@
       border-color: #000;
     }
 
-    .form-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .forgot {
+      text-align: right;
       font-size: 0.85rem;
     }
 
-    .form-row a {
+    .forgot a {
       text-decoration: underline;
-      color: var(--text-grey);
     }
 
     .btn-login {
@@ -145,6 +142,7 @@
       text-transform: uppercase;
       cursor: pointer;
       transition: 0.3s;
+      margin-top: 5px;
     }
 
     .btn-login:hover {
@@ -195,7 +193,7 @@
         display: none;
       }
       .login-wrapper {
-        margin: 50px 20px;
+        margin: 60px 20px;
       }
     }
   </style>
@@ -220,11 +218,12 @@
 
   <main class="login-wrapper">
     <div class="login-header">
-      <h1>Customer Login</h1>
-      <p>Sign in to access your account</p>
+      <h1>Welcome Back</h1>
+      <p>Sign in to your Britium Gallery account</p>
     </div>
 
     <form action="#" method="POST">
+
       <div>
         <label>Email Address</label>
         <input type="email" placeholder="you@example.com" required>
@@ -232,13 +231,10 @@
 
       <div>
         <label>Password</label>
-        <input type="password" placeholder="••••••••" required>
+        <input type="password" placeholder="Enter your password" required>
       </div>
 
-      <div class="form-row">
-        <span>
-          <input type="checkbox"> Remember me
-        </span>
+      <div class="forgot">
         <a href="forgot-password.html">Forgot password?</a>
       </div>
 
@@ -252,6 +248,7 @@
         Don’t have an account?
         <a href="customer-register.html">Create one</a>
       </div>
+
     </form>
   </main>
 
