@@ -1,198 +1,252 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Product Gallery — BRITIUM VENTURES</title>
-  <meta name="description" content="Explore our latest innovations in tech, corporate gifting, and logistics." />
-  <meta name="theme-color" content="#020617" />
-  <link rel="icon" href="https://cdn1.site-media.eu/images/0/19084582/LOGO.PNG-9iXCvFfz1_iDnJ1k8_JD5g.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Britium Gallery | Product Gallery</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-  <style>
-    body {
-      background-color: #020617;
-      color: #e2e8f0;
-      font-family: 'Poppins', sans-serif;
-    }
-    .font-garamond { font-family: 'Cormorant Garamond', serif; }
-    
-    /* Glass Effect */
-    .glass {
-      background: rgba(11, 21, 39, 0.65);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      transition: all 0.3s ease;
-    }
-    .glass:hover {
-      border-color: #FFC700;
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px -10px rgba(255, 199, 0, 0.2);
-    }
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-    /* Card Media */
-    .card-media {
-      height: 250px;
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-      border-radius: 0.5rem 0.5rem 0 0;
-    }
-    .card-video {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s ease;
-    }
-    .glass:hover .card-video {
-      transform: scale(1.05);
-    }
-  </style>
+        :root {
+            --bg-dark: #1a0f0a;
+            --bg-cream: #f9f4ef;
+            --gold-accent: #debb6e;
+            --gold-dark: #b5904b;
+            --text-light: #ffffff;
+            --text-dark: #2c241b;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        a { text-decoration: none; color: inherit; transition: 0.3s; }
+        a:hover { color: var(--gold-accent); }
+
+        /* HEADER */
+        header {
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(212,175,55,0.2);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            color: var(--gold-accent);
+            font-weight: 700;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 90px 20px 50px;
+            background: linear-gradient(180deg, rgba(26,15,10,1) 0%, rgba(40,25,18,1) 100%);
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            color: var(--gold-accent);
+            margin-bottom: 15px;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            font-weight: 300;
+        }
+
+        /* GALLERY */
+        .gallery {
+            padding: 70px 5%;
+            text-align: center;
+        }
+
+        .gallery h3 {
+            color: var(--gold-accent);
+            margin-bottom: 10px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 35px;
+            margin-top: 50px;
+        }
+
+        .gallery-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(212,175,55,0.12);
+            padding: 20px;
+            transition: 0.3s;
+        }
+
+        .gallery-card:hover {
+            border-color: var(--gold-accent);
+            transform: translateY(-4px);
+        }
+
+        .gallery-img {
+            height: 280px;
+            background-color: #2c241b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold-accent);
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+
+        .gallery-title {
+            font-size: 1.1rem;
+            color: var(--gold-accent);
+            margin-bottom: 5px;
+        }
+
+        .gallery-meta {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        /* BRAND SIGNATURE */
+        .brand-signature {
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            text-align: center;
+            padding: 80px 20px;
+            margin-top: 70px;
+            border-top: 5px solid var(--gold-accent);
+        }
+
+        .brand-signature h2 {
+            font-size: 3rem;
+            color: var(--gold-dark);
+        }
+
+        .brand-signature h3 {
+            font-size: 2rem;
+            font-style: italic;
+        }
+
+        footer {
+            background-color: #0d0705;
+            color: #666;
+            text-align: center;
+            padding: 30px;
+            font-size: 0.8rem;
+        }
+
+        @media(max-width:768px) {
+            nav ul { display: none; }
+            .hero h1 { font-size: 2.4rem; }
+        }
+    </style>
 </head>
 
-<body class="antialiased overflow-x-hidden">
-  <div id="particles-js"></div>
+<body>
 
-  <header class="fixed inset-x-0 top-0 z-50 bg-black/30 backdrop-blur-md">
-    <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3">
-        <img src="https://cdn1.site-media.eu/images/0/19084582/LOGO.PNG-9iXCvFfz1_iDnJ1k8_JD5g.png" alt="Britium Logo" class="h-9 w-9">
-        <span class="font-garamond text-xl font-bold text-white"> BRITIUM <span class="text-[#FFC700]">VENTURES</span></span>
-      </a>
-      <nav class="hidden md:flex gap-6 text-sm font-semibold text-slate-200">
-        <a href="index.html" class="hover:text-[#FFC700]">Home</a>
-        <a href="about.html" class="hover:text-[#FFC700]">About</a>
-        <a href="products.html" class="hover:text-[#FFC700]">Products</a>
-        <a href="gallery.html" class="text-[#FFC700]">Gallery</a>
-        <a href="contact.html" class="hover:text-[#FFC700]">Contact</a>
-        <a href="chat.html" class="px-4 py-2 rounded-md bg-[#FFC700]/10 text-[#FFC700] border border-[#FFC700]/20 hover:bg-[#FFC700]/20">AI Chat</a>
-      </nav>
-      <button id="mobile-toggle" class="md:hidden text-white text-3xl" aria-label="Toggle Menu">☰</button>
-    </div>
-  </header>
-
-  <div id="mobile-menu-container" class="fixed inset-0 z-40 md:hidden hidden">
-    <div id="mobile-menu-overlay" class="absolute inset-0 bg-slate-950/70"></div>
-    <nav id="mobile-menu" class="fixed top-0 right-0 h-full w-64 bg-slate-900/90 p-8 transform translate-x-full transition-transform">
-      <div class="flex flex-col gap-y-6 mt-16 text-lg text-white mobile-links">
-        <a href="index.html">Home</a>
-        <a href="products.html">Products</a>
-        <a href="gallery.html" class="text-[#FFC700]">Gallery</a>
-        <a href="contact.html">Contact</a>
-      </div>
+<header>
+    <div class="logo">BRITIUM GALLERY</div>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="new-arrivals.html">New Arrivals</a></li>
+            <li><a href="luxury-handbags.html">Handbags</a></li>
+            <li><a href="product-gallery.html" style="color:var(--gold-accent)">Gallery</a></li>
+            <li><a href="about.html">About Us</a></li>
+        </ul>
     </nav>
-  </div>
+    <div style="color:var(--gold-accent)">🛒 (0)</div>
+</header>
 
-  <main class="pt-32 pb-20">
-    <div class="text-center px-6 mb-16">
-      <h1 class="font-garamond text-5xl font-bold text-white">Product <span class="text-[#FFC700]">Gallery</span></h1>
-      <p class="mt-4 text-slate-400 max-w-2xl mx-auto">Explore our diverse portfolio of technological innovations, corporate solutions, and logistics efficiency.</p>
+<section class="hero">
+    <h1>PRODUCT GALLERY</h1>
+    <p>An immersive view into our world of luxury craftsmanship.</p>
+</section>
+
+<section class="gallery">
+    <h3>Curated Visual Collection</h3>
+
+    <div class="gallery-grid">
+
+        <div class="gallery-card">
+            <div class="gallery-img">[Signature Tote]</div>
+            <div class="gallery-title">Signature Leather Tote</div>
+            <div class="gallery-meta">Handcrafted Series</div>
+        </div>
+
+        <div class="gallery-card">
+            <div class="gallery-img">[Quilted Shoulder]</div>
+            <div class="gallery-title">Quilted Shoulder Bag</div>
+            <div class="gallery-meta">Classic Collection</div>
+        </div>
+
+        <div class="gallery-card">
+            <div class="gallery-img">[Mini Structured]</div>
+            <div class="gallery-title">Structured Mini Bag</div>
+            <div class="gallery-meta">V-Series</div>
+        </div>
+
+        <div class="gallery-card">
+            <div class="gallery-img">[Monogram Crossbody]</div>
+            <div class="gallery-title">Monogram Crossbody</div>
+            <div class="gallery-meta">Everyday Luxury</div>
+        </div>
+
+        <div class="gallery-card">
+            <div class="gallery-img">[Gold Chain]</div>
+            <div class="gallery-title">Gold Chain Shoulder</div>
+            <div class="gallery-meta">Evening Edit</div>
+        </div>
+
+        <div class="gallery-card">
+            <div class="gallery-img">[Heritage Satchel]</div>
+            <div class="gallery-title">Heritage Satchel</div>
+            <div class="gallery-meta">Timeless Design</div>
+        </div>
+
+        <div class="gallery-card">
+            <div class="gallery-img">[Bucket Bag]</div>
+            <div class="gallery-title">Leather Bucket Bag</div>
+            <div class="gallery-meta">Modern Classic</div>
+        </div>
+
+        <div class="gallery-card">
+            <div class="gallery-img">[Top Handle]</div>
+            <div class="gallery-title">Elegant Top Handle</div>
+            <div class="gallery-meta">Executive Line</div>
+        </div>
+
     </div>
+</section>
 
-    <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-8">
+<section class="brand-signature">
+    <h2>BRITIUM GALLERY</h2>
+    <h3>Where Style Meets Innovation</h3>
+</section>
 
-      <a href="dual_screen_extender.html" class="glass rounded-xl block group">
-        <div class="card-media">
-          <video autoplay muted loop playsinline class="card-video">
-            <source src="https://cdn1.site-media.eu/images/0/19097721/dualscreenextenderBV-Rw51CuNZMKlpAx1kawNYaA.mp4" type="video/mp4">
-          </video>
-          <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
-        </div>
-        <div class="p-6">
-          <h3 class="font-garamond text-2xl font-bold text-white group-hover:text-[#FFC700] transition-colors">Dual Screen Extender</h3>
-          <p class="mt-2 text-slate-300 text-sm">Boost productivity with our portable triple-screen extender featuring 1080p displays.</p>
-          <div class="mt-4 flex items-center text-[#FFC700] font-semibold text-sm">
-            View Product <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-          </div>
-        </div>
-      </a>
+<footer>
+    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
+</footer>
 
-      <a href="promotiongift.html" class="glass rounded-xl block group">
-        <div class="card-media">
-          <video autoplay muted loop playsinline class="card-video">
-            <source src="https://cdn1.site-media.eu/images/0/19098157/souvenirset-xjSXUa2AGIj6cQFlj3RDKQ.mp4" type="video/mp4">
-          </video>
-          <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
-        </div>
-        <div class="p-6">
-          <h3 class="font-garamond text-2xl font-bold text-white group-hover:text-[#FFC700] transition-colors">Promotional Gifts</h3>
-          <p class="mt-2 text-slate-300 text-sm">Curated corporate gift sets including pens, notebooks, and tech accessories.</p>
-          <div class="mt-4 flex items-center text-[#FFC700] font-semibold text-sm">
-            View Collection <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-          </div>
-        </div>
-      </a>
-
-      <a href="flexitank.html" class="glass rounded-xl block group">
-        <div class="card-media">
-          <video autoplay muted loop playsinline class="card-video">
-            <source src="https://cdn1.site-media.eu/images/0/19098154/OTKI9888-pvjSLcgJ8pJUDRce0_SRdA.MP4" type="video/mp4">
-          </video>
-          <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
-        </div>
-        <div class="p-6">
-          <h3 class="font-garamond text-2xl font-bold text-white group-hover:text-[#FFC700] transition-colors">Flexitanks</h3>
-          <p class="mt-2 text-slate-300 text-sm">Certified bulk liquid transport solutions for oils, juices, and industrial fluids.</p>
-          <div class="mt-4 flex items-center text-[#FFC700] font-semibold text-sm">
-            View Solutions <span class="ml-2 group-hover:translate-x-1 transition-transform">→</span>
-          </div>
-        </div>
-      </a>
-
-    </div>
-  </main>
-
-  <footer class="py-12 bg-slate-950/50 text-slate-400 border-t border-slate-800">
-    <div class="max-w-7xl mx-auto px-6 text-center">
-      <p>&copy; <span id="yr"></span> BRITIUM VENTURES CO., LTD. All Rights Reserved.</p>
-    </div>
-  </footer>
-
-  <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      document.getElementById('yr').textContent = new Date().getFullYear();
-
-      // Particle Effect
-      particlesJS("particles-js", {
-        particles: {
-          number: { value: 30 },
-          color: { value: "#ffffff" },
-          shape: { type: "circle" },
-          opacity: { value: 0.2, random: true },
-          size: { value: 2, random: true },
-          line_linked: { enable: false },
-          move: { enable: true, speed: 1, direction: "none", random: true, out_mode: "out" }
-        },
-        interactivity: { detect_on: "canvas", events: { onhover: { enable: false } } }
-      });
-
-      // Mobile Menu Logic
-      const toggle = document.getElementById("mobile-toggle");
-      const menuContainer = document.getElementById("mobile-menu-container");
-      const menu = document.getElementById("mobile-menu");
-      const overlay = document.getElementById("mobile-menu-overlay");
-
-      if (toggle && menuContainer && menu && overlay) {
-        const toggleMenu = () => {
-          const isHidden = menuContainer.classList.contains("hidden");
-          if (isHidden) {
-            menuContainer.classList.remove("hidden");
-            setTimeout(() => menu.classList.remove("translate-x-full"), 20);
-          } else {
-            menu.classList.add("translate-x-full");
-            setTimeout(() => menuContainer.classList.add("hidden"), 300);
-          }
-        };
-
-        toggle.addEventListener("click", toggleMenu);
-        overlay.addEventListener("click", toggleMenu);
-      }
-    });
-  </script>
 </body>
 </html>
