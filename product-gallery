@@ -7,166 +7,7 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        :root {
-            --bg-dark: #1a0f0a;
-            --bg-cream: #f9f4ef;
-            --gold-accent: #debb6e;
-            --gold-dark: #b5904b;
-            --text-light: #ffffff;
-            --text-dark: #2c241b;
-        }
-
-        body {
-            font-family: 'Lato', sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-light);
-            line-height: 1.6;
-        }
-
-        h1, h2, h3 {
-            font-family: 'Playfair Display', serif;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        a { text-decoration: none; color: inherit; transition: 0.3s; }
-        a:hover { color: var(--gold-accent); }
-
-        /* HEADER */
-        header {
-            padding: 20px 50px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid rgba(212,175,55,0.2);
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            color: var(--gold-accent);
-            font-weight: 700;
-        }
-
-        nav ul {
-            display: flex;
-            list-style: none;
-            gap: 30px;
-        }
-
-        /* HERO */
-        .hero {
-            text-align: center;
-            padding: 90px 20px 50px;
-            background: linear-gradient(180deg, rgba(26,15,10,1) 0%, rgba(40,25,18,1) 100%);
-        }
-
-        .hero h1 {
-            font-size: 3.2rem;
-            color: var(--gold-accent);
-            margin-bottom: 15px;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: #e0e0e0;
-            font-weight: 300;
-        }
-
-        /* GALLERY */
-        .gallery {
-            padding: 70px 5%;
-            text-align: center;
-        }
-
-        .gallery h3 {
-            color: var(--gold-accent);
-            margin-bottom: 10px;
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 35px;
-            margin-top: 50px;
-        }
-
-        .gallery-card {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(212,175,55,0.12);
-            padding: 20px;
-            transition: 0.3s;
-        }
-
-        .gallery-card:hover {
-            border-color: var(--gold-accent);
-            transform: translateY(-4px);
-        }
-
-        .gallery-img {
-            height: 280px;
-            background-color: #2c241b;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold-accent);
-            font-style: italic;
-            margin-bottom: 15px;
-        }
-
-        .gallery-title {
-            font-size: 1.1rem;
-            color: var(--gold-accent);
-            margin-bottom: 5px;
-        }
-
-        .gallery-meta {
-            font-size: 0.9rem;
-            color: #ccc;
-        }
-
-        /* BRAND SIGNATURE */
-        .brand-signature {
-            background-color: var(--bg-cream);
-            color: var(--text-dark);
-            text-align: center;
-            padding: 80px 20px;
-            margin-top: 70px;
-            border-top: 5px solid var(--gold-accent);
-        }
-
-        .brand-signature h2 {
-            font-size: 3rem;
-            color: var(--gold-dark);
-        }
-
-        .brand-signature h3 {
-            font-size: 2rem;
-            font-style: italic;
-        }
-
-        footer {
-            background-color: #0d0705;
-            color: #666;
-            text-align: center;
-            padding: 30px;
-            font-size: 0.8rem;
-        }
-
-        @media(max-width:768px) {
-            nav ul { display: none; }
-            .hero h1 { font-size: 2.4rem; }
-        }
-    </style>
-</head>
-
-<body>
-
-<header>
-    <div class="logo">BRITIUM GALLERY</div>
- // nav.js
+   // nav.js
 (function () {
   const page = (location.pathname.split("/").pop() || "index.html").toLowerCase();
 
@@ -238,6 +79,36 @@
         <li><a class="${isActive("login.html")}" href="login.html">Login</a></li>
       </ul>
     </nav>
+
+    <div class="site-icons" title="Quick Links">
+      <a href="search.html" aria-label="Search">🔍</a>
+      <a href="login.html" aria-label="Account">👤</a>
+      <a href="wishlist.html" aria-label="Wishlist">♡</a>
+      <a href="cart.html" aria-label="Cart">🛒</a>
+    </div>
+  </header>
+  `;
+
+  const footerHTML = `
+  <footer style="
+    background:#0d0705;color:#777;text-align:center;padding:34px 20px;
+    font-size:.8rem;border-top:1px solid rgba(255,255,255,.08);
+    font-family:'Lato',sans-serif;">
+    <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
+    <p style="margin-top:10px;">
+      <a href="terms.html" style="color:#aaa;text-decoration:none">Terms</a> |
+      <a href="privacy.html" style="color:#aaa;text-decoration:none">Privacy</a> |
+      <a href="store-locator.html" style="color:#aaa;text-decoration:none">Locations</a>
+    </p>
+  </footer>
+  `;
+
+  const headerTarget = document.getElementById("siteHeader");
+  const footerTarget = document.getElementById("siteFooter");
+
+  if (headerTarget) headerTarget.innerHTML = headerHTML;
+  if (footerTarget) footerTarget.innerHTML = footerHTML;
+})();
 
     <div class="site-icons" title="Quick Links">
       <a href="search.html" aria-label="Search">🔍</a>
