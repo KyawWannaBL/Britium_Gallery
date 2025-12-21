@@ -1,270 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About Us | Britium Gallery</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg-dark:#120e0b;
-      --text-light:#f0f0f0;
-      --text-grey:#cccccc;
-      --accent-gold:#c6a87c;
-      --gold-dark:#b5904b;
-      --chat-bg:#231712;
-    }
-
-    *{margin:0;padding:0;box-sizing:border-box}
-
-    body{
-      font-family:'Jost',sans-serif;
-      background:var(--bg-dark);
-      color:var(--text-light);
-      line-height:1.6;
-    }
-
-    a{text-decoration:none;color:inherit}
-
-    /* CONTENT */
-    .container{
-      max-width:1200px;
-      margin:0 auto;
-      padding:60px 20px;
-    }
-
-    .about-intro{
-      text-align:center;
-      max-width:900px;
-      margin:0 auto 60px;
-    }
-
-    .about-intro h1{
-      font-family:'Playfair Display',serif;
-      font-size:3.5rem;
-      margin-bottom:20px;
-    }
-
-    .about-intro p{
-      font-size:1.1rem;
-      color:var(--text-grey);
-      line-height:1.8;
-    }
-
-    .showcase-image{
-      width:100%;
-      margin-bottom:80px;
-      background:#222;
-    }
-
-    .content-grid{
-      display:grid;
-      grid-template-columns:1.2fr .8fr;
-      gap:60px;
-    }
-
-    .text-column h3{
-      font-family:'Playfair Display',serif;
-      font-size:1.8rem;
-      margin-bottom:20px;
-    }
-
-    .text-column p{
-      color:var(--text-grey);
-      margin-bottom:30px;
-      text-align:justify;
-    }
-
-    .value-item{
-      margin-bottom:18px;
-    }
-
-    .value-title{
-      font-weight:600;
-      color:#fff;
-    }
-
-    .value-desc{
-      color:var(--text-grey);
-    }
-
-    .image-column img{
-      width:100%;
-      object-fit:cover;
-    }
-
-    footer{
-      background:#0a0a0a;
-      color:#666;
-      text-align:center;
-      padding:40px 0;
-      border-top:1px solid #222;
-      font-size:.9rem;
-    }
-
-    /* CHATBOT */
-    .chat-widget-btn{
-      position:fixed;
-      bottom:30px;
-      right:30px;
-      width:60px;
-      height:60px;
-      background:var(--accent-gold);
-      border-radius:50%;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      cursor:pointer;
-      border:2px solid var(--gold-dark);
-      z-index:1000;
-    }
-
-    .chat-window{
-      position:fixed;
-      bottom:100px;
-      right:30px;
-      width:350px;
-      height:500px;
-      background:var(--chat-bg);
-      border:1px solid var(--accent-gold);
-      border-radius:12px;
-      display:none;
-      flex-direction:column;
-      z-index:1000;
-    }
-
-    .chat-window.active{display:flex}
-
-    .chat-header{
-      padding:15px;
-      border-bottom:1px solid var(--accent-gold);
-      display:flex;
-      justify-content:space-between;
-    }
-
-    .chat-messages{
-      flex:1;
-      padding:20px;
-      overflow-y:auto;
-    }
-
-    .message{
-      padding:10px 14px;
-      border-radius:10px;
-      margin-bottom:12px;
-      font-size:.9rem;
-      max-width:80%;
-    }
-
-    .bot{
-      background:rgba(198,168,124,.1);
-      color:#eee;
-    }
-
-    .user{
-      background:var(--accent-gold);
-      color:var(--bg-dark);
-      align-self:flex-end;
-    }
-
-    .chat-input-area{
-      padding:15px;
-      display:flex;
-      gap:10px;
-    }
-
-    .chat-input{
-      flex:1;
-      padding:10px;
-      background:#111;
-      border:1px solid #444;
-      color:#fff;
-    }
-
-    .chat-send{
-      background:var(--accent-gold);
-      border:none;
-      padding:0 16px;
-      cursor:pointer;
-      font-weight:700;
-    }
-
-    @media(max-width:900px){
-      .content-grid{grid-template-columns:1fr}
-      .about-intro h1{font-size:2.5rem}
-    }
-  </style>
+<meta charset="UTF-8">
+<title>About | Britium Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#120e0b;color:#eee;font-family:Jost}
+header{padding:25px 60px;display:flex;justify-content:space-between}
+nav a{color:#fff;margin:0 20px;text-transform:uppercase}
+.container{max-width:900px;margin:80px auto;text-align:center}
+h1{font-family:Playfair Display;font-size:3rem}
+p{color:#ccc;line-height:1.8}
+</style>
 </head>
 
 <body>
 
-  <!-- STANDARD NAV -->
-  <div id="siteHeader"></div>
+<header>
+  <strong>BRITIUM<br><small>GALLERY</small></strong>
+  <nav>
+    <a href="gallery.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="login.html">Account</a>
+  </nav>
+</header>
 
-  <div class="container">
+<section class="container">
+  <h1>About Britium Gallery</h1>
+  <p>
+    Britium Gallery curates luxury handbags that merge timeless design
+    with modern sophistication. Every piece reflects craftsmanship,
+    authenticity, and purpose.
+  </p>
+</section>
 
-    <section class="about-intro">
-      <h1>ABOUT US</h1>
-      <p>
-        At Britium Gallery, we merge timeless elegance with modern sophistication.
-        We curate luxury handbags and accessories that balance design, function, and story.
-      </p>
-    </section>
-
-    <img src="images/shelf-display.jpg" alt="Luxury Display" class="showcase-image">
-
-    <div class="content-grid">
-
-      <div class="text-column">
-        <h3>Our Story</h3>
-        <p>
-          Britium Gallery began as a boutique concept and evolved into a digital-first luxury destination.
-          Every piece is curated for authenticity, artistry, and longevity.
-        </p>
-
-        <h3>Our Values</h3>
-
-        <div class="value-item">
-          <span class="value-title">Elegance in Simplicity — </span>
-          <span class="value-desc">True luxury is subtle.</span>
-        </div>
-
-        <div class="value-item">
-          <span class="value-title">Craftsmanship — </span>
-          <span class="value-desc">Intentional design and quality.</span>
-        </div>
-
-        <div class="value-item">
-          <span class="value-title">Customer-Centric — </span>
-          <span class="value-desc">Personalized, seamless experience.</span>
-        </div>
-
-        <div class="value-item">
-          <span class="value-title">Innovation — </span>
-          <span class="value-desc">Modern tools with timeless identity.</span>
-        </div>
-
-        <div class="value-item">
-          <span class="value-title">Sustainability — </span>
-          <span class="value-desc">Responsible, durable curation.</span>
-        </div>
-      </div>
-
-      <div class="image-column">
-        <img src="images/balloon-bag-street.jpg" alt="Urban Luxury">
-      </div>
-
-    </div>
-  </div>
-
-  <!-- FOOTER -->
-  <div id="siteFooter"></div>
-
-  <!-- NAV SCRIPT -->
-  <script src="nav.js"></script>
-
-  <!-- CHATBOT SCRIPT (unchanged logic can remain here) -->
 </body>
 </html>
