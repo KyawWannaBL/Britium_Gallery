@@ -1,419 +1,328 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Settings | Britium Admin</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- RESET & VARIABLES --- */
-        :root {
-            --bg-body: #050505;       /* Deepest Black */
-            --bg-sidebar: #0a0a0a;    /* Slightly lighter black */
-            --bg-input: #121212;      /* Input fields background */
-            --border-color: #262626;  /* Subtle borders */
-            --text-white: #ffffff;
-            --text-grey: #a1a1aa;
-            --accent-blue: #3b82f6;   /* Toggle/Button Blue */
-            --accent-hover: #2563eb;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Settings | Britium Admin</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+  <!-- ADMIN ONLY PAGE -->
+  <!-- Global system configuration – do not expose publicly -->
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-white);
-            height: 100vh;
-            display: flex;
-            overflow: hidden;
-        }
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        /* --- SIDEBAR --- */
-        .sidebar {
-            width: 260px;
-            background-color: var(--bg-sidebar);
-            border-right: 1px solid var(--border-color);
-            display: flex;
-            flex-direction: column;
-            padding: 30px 20px;
-            flex-shrink: 0;
-        }
+  <style>
+    :root {
+      --bg-body:#050505;
+      --bg-sidebar:#0a0a0a;
+      --bg-input:#121212;
+      --border:#262626;
+      --text:#ffffff;
+      --muted:#a1a1aa;
+      --blue:#3b82f6;
+      --blue-hover:#2563eb;
+    }
 
-        .brand-title {
-            font-size: 1.2rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            margin-bottom: 40px;
-            text-transform: uppercase;
-            padding-left: 15px;
-        }
+    *{margin:0;padding:0;box-sizing:border-box}
 
-        .nav-menu {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
+    body{
+      font-family:'Inter',sans-serif;
+      background:var(--bg-body);
+      color:var(--text);
+      height:100vh;
+      display:flex;
+      overflow:hidden;
+    }
 
-        .nav-item {
-            display: flex;
-            align-items: center;
-            padding: 12px 15px;
-            color: var(--text-grey);
-            text-decoration: none;
-            font-size: 0.95rem;
-            border-radius: 6px;
-            transition: 0.2s;
-        }
+    /* SIDEBAR */
+    .sidebar{
+      width:260px;
+      background:var(--bg-sidebar);
+      border-right:1px solid var(--border);
+      padding:30px 20px;
+    }
 
-        .nav-item:hover {
-            background-color: rgba(255,255,255,0.05);
-            color: var(--text-white);
-        }
+    .brand{
+      font-weight:700;
+      letter-spacing:1px;
+      margin-bottom:40px;
+      text-transform:uppercase;
+    }
 
-        .nav-item.active {
-            background-color: #1a1a1a;
-            color: var(--text-white);
-        }
+    .menu a{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      padding:12px 14px;
+      color:var(--muted);
+      text-decoration:none;
+      border-radius:6px;
+      font-size:.95rem;
+      margin-bottom:6px;
+    }
 
-        .nav-icon { margin-right: 15px; width: 18px; text-align: center; }
+    .menu a:hover,
+    .menu a.active{
+      background:#1a1a1a;
+      color:#fff;
+    }
 
-        /* --- MAIN CONTENT AREA --- */
-        .main-wrapper {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
-            overflow: hidden;
-        }
+    /* MAIN */
+    .main{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+    }
 
-        /* Header */
-        header {
-            height: 70px;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 40px;
-            background-color: var(--bg-body);
-        }
+    header{
+      height:70px;
+      border-bottom:1px solid var(--border);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:0 40px;
+    }
 
-        .top-nav {
-            display: flex;
-            gap: 30px;
-        }
-        .top-nav a {
-            color: var(--text-grey);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-        .top-nav a:hover { color: var(--text-white); }
+    header nav a{
+      color:var(--muted);
+      text-decoration:none;
+      margin-right:30px;
+      font-size:.9rem;
+    }
 
-        .admin-profile {
-            font-size: 0.9rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
+    header nav a:hover{color:#fff}
 
-        /* Content Scroll Area */
-        .content-scroll {
-            flex: 1;
-            overflow-y: auto;
-            padding: 40px 60px 100px; /* Extra bottom padding for button space */
-        }
+    .content{
+      flex:1;
+      overflow-y:auto;
+      padding:40px 60px 120px;
+    }
 
-        h2 {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin-bottom: 25px;
-            margin-top: 10px;
-        }
+    h2{
+      font-size:1.4rem;
+      margin-bottom:25px;
+    }
 
-        /* --- FORMS --- */
-        .form-section {
-            margin-bottom: 50px;
-        }
+    .section{
+      margin-bottom:50px;
+    }
 
-        .section-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--text-white);
-        }
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:25px;
+    }
 
-        .form-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-        }
+    .full{grid-column:span 2}
 
-        .form-group {
-            display: flex;
-            flex-direction: column;
-        }
+    label{
+      font-size:.85rem;
+      color:var(--muted);
+      margin-bottom:8px;
+      display:block;
+    }
 
-        /* Full width items */
-        .form-group.full-width {
-            grid-column: span 2;
-        }
+    input,select{
+      width:100%;
+      background:var(--bg-input);
+      border:1px solid var(--border);
+      color:#fff;
+      padding:12px 14px;
+      border-radius:6px;
+      font-family:inherit;
+    }
 
-        label {
-            font-size: 0.85rem;
-            color: var(--text-grey);
-            margin-bottom: 8px;
-        }
+    /* TOGGLE */
+    .toggle-row{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      margin-top:10px;
+    }
 
-        input[type="text"], 
-        input[type="email"], 
-        select {
-            background-color: var(--bg-input);
-            border: 1px solid var(--border-color);
-            color: var(--text-white);
-            padding: 12px 15px;
-            border-radius: 6px;
-            font-size: 0.95rem;
-            outline: none;
-            width: 100%;
-            font-family: inherit;
-        }
+    .switch{
+      position:relative;
+      width:44px;
+      height:24px;
+    }
 
-        input:focus, select:focus {
-            border-color: #444;
-        }
+    .switch input{opacity:0}
 
-        /* Custom Toggle Switch Layout */
-        .toggle-row {
-            display: flex;
-            justify-content: flex-end; /* Align right like image */
-            align-items: center;
-            gap: 15px;
-            margin-top: 10px;
-        }
-        
-        .toggle-label {
-            font-size: 0.9rem;
-            color: var(--text-grey);
-        }
+    .slider{
+      position:absolute;
+      inset:0;
+      background:#333;
+      border-radius:24px;
+      cursor:pointer;
+    }
 
-        /* The Switch */
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 44px;
-            height: 24px;
-        }
-        .switch input { opacity: 0; width: 0; height: 0; }
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0; left: 0; right: 0; bottom: 0;
-            background-color: #333;
-            transition: .4s;
-            border-radius: 24px;
-        }
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 18px;
-            width: 18px;
-            left: 3px;
-            bottom: 3px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        input:checked + .slider { background-color: var(--accent-blue); }
-        input:checked + .slider:before { transform: translateX(20px); }
+    .slider:before{
+      content:"";
+      position:absolute;
+      width:18px;
+      height:18px;
+      left:3px;
+      bottom:3px;
+      background:#fff;
+      border-radius:50%;
+      transition:.3s;
+    }
 
-        /* Save Button */
-        .btn-save {
-            position: fixed;
-            bottom: 30px;
-            right: 40px;
-            background-color: var(--accent-blue);
-            color: #fff;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 6px;
-            font-weight: 500;
-            font-size: 0.95rem;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            z-index: 10;
-        }
-        .btn-save:hover { background-color: var(--accent-hover); }
+    input:checked + .slider{
+      background:var(--blue);
+    }
 
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .sidebar { width: 70px; padding: 20px 10px; }
-            .brand-title, .nav-item span { display: none; }
-            .nav-item { justify-content: center; }
-            .nav-icon { margin: 0; }
-            .content-scroll { padding: 30px; }
-        }
-        @media (max-width: 768px) {
-            .form-grid { grid-template-columns: 1fr; }
-            .form-group.full-width { grid-column: span 1; }
-            header { display: none; } /* Hide top header on small screens */
-        }
-    </style>
+    input:checked + .slider:before{
+      transform:translateX(20px);
+    }
+
+    /* SAVE */
+    .save{
+      position:fixed;
+      bottom:30px;
+      right:40px;
+      background:var(--blue);
+      border:none;
+      color:#fff;
+      padding:12px 32px;
+      border-radius:6px;
+      cursor:pointer;
+      font-size:.95rem;
+    }
+
+    .save:hover{background:var(--blue-hover)}
+
+    @media(max-width:1024px){
+      .sidebar{width:70px}
+      .menu span{display:none}
+      .content{padding:30px}
+    }
+  </style>
 </head>
+
 <body>
 
-    <aside class="sidebar">
-        <div class="brand-title">SETTINGS</div>
-        
-        <nav class="nav-menu">
-            <a href="#" class="nav-item"><span class="nav-icon">🏠</span> <span>Dashboard</span></a>
-            <a href="#" class="nav-item"><span class="nav-icon">📦</span> <span>Products</span></a>
-            <a href="#" class="nav-item"><span class="nav-icon">📄</span> <span>Orders</span></a>
-            <a href="#" class="nav-item"><span class="nav-icon">👤</span> <span>Users</span></a>
-            <a href="#" class="nav-item"><span class="nav-icon">🏷️</span> <span>Coupons</span></a>
-            <a href="#" class="nav-item"><span class="nav-icon">📊</span> <span>Reports</span></a>
-            <a href="#" class="nav-item"><span class="nav-icon">↩️</span> <span>Returns</span></a>
-            <a href="#" class="nav-item active"><span class="nav-icon">⚙️</span> <span>Settings</span></a>
-        </nav>
-    </aside>
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">Settings</div>
+    <div class="menu">
+      <a href="admin-dashboard.html">🏠 <span>Dashboard</span></a>
+      <a href="admin-product-management.html">👜 <span>Products</span></a>
+      <a href="admin-orders.html">📦 <span>Orders</span></a>
+      <a href="admin-users.html">👤 <span>Users</span></a>
+      <a href="admin-coupons.html">🏷 <span>Coupons</span></a>
+      <a href="admin-reports.html">📊 <span>Reports</span></a>
+      <a href="admin-returns.html">↩ <span>Returns</span></a>
+      <a href="admin-settings.html" class="active">⚙ <span>Settings</span></a>
+    </div>
+  </aside>
 
-    <div class="main-wrapper">
-        
-        <header>
-            <nav class="top-nav">
-                <a href="#">Products</a>
-                <a href="#">Orders</a>
-                <a href="#">Users</a>
-                <a href="#">Reports</a>
-            </nav>
-            <div class="admin-profile">
-                Admin ▾
-            </div>
-        </header>
+  <!-- MAIN -->
+  <div class="main">
 
-        <div class="content-scroll">
-            
-            <div class="form-section">
-                <h2 class="section-title">Store Information</h2>
-                <div class="form-grid">
-                    <div class="form-group full-width">
-                        <label>Store Name</label>
-                        <input type="text" value="Britium Gallery">
-                    </div>
-                    <div class="form-group">
-                        <label>Store Email</label>
-                        <input type="email" value="info@britiumgallery.com">
-                    </div>
-                    <div class="form-group">
-                        <label>Store Address</label>
-                        <input type="text" placeholder="Enter address...">
-                    </div>
-                    <div class="form-group full-width">
-                        <label>Store Currency</label>
-                        <select>
-                            <option selected>USD ($)</option>
-                            <option>EUR (€)</option>
-                            <option>MMK (K)</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+    <header>
+      <nav>
+        <a href="admin-product-management.html">Products</a>
+        <a href="admin-orders.html">Orders</a>
+        <a href="admin-users.html">Users</a>
+        <a href="admin-reports.html">Reports</a>
+      </nav>
+      <div>Admin ▾</div>
+    </header>
 
-            <div class="form-section">
-                <h2 class="section-title">Localization</h2>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Default Language</label>
-                        <select>
-                            <option selected>English</option>
-                            <option>Spanish</option>
-                            <option>French</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Time Zone</label>
-                        <select>
-                            <option selected>(UTC-05:00) Eastern Time</option>
-                            <option>(UTC+00:00) UTC</option>
-                        </select>
-                    </div>
-                    <div class="form-group full-width">
-                        <label>Date & Time Format</label>
-                        <select>
-                            <option selected>MM/DD/YYYY, HH:MM AMPM</option>
-                            <option>DD/MM/YYYY, HH:MM</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+    <div class="content">
 
-            <div class="form-section">
-                <div class="form-grid">
-                    <div></div> 
-                    <div class="form-group">
-                        <div class="toggle-row">
-                            <span class="toggle-label">Enable Stripe</span>
-                            <label class="switch">
-                                <input type="checkbox" checked>
-                                <span class="slider"></span>
-                            </label>
-                        </div>
-                        <input type="text" value="ABCDEFGH10P" style="margin-top: 10px; text-align: right;">
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-section">
-                <h2 class="section-title">Shipping</h2>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <div class="toggle-row" style="justify-content: flex-start;">
-                            <span class="toggle-label" style="min-width: 100px;">Enable Shipping</span>
-                            <label class="switch">
-                                <input type="checkbox" checked>
-                                <span class="slider"></span>
-                            </label>
-                        </div>
-                        <input type="text" placeholder="Shipping Origin" style="margin-top: 10px;">
-                    </div>
-                    
-                    <div class="form-group">
-                         <label>Shipping Origin</label>
-                         <input type="text">
-                    </div>
-
-                    <div class="form-group full-width">
-                        <label>Shipping Zones</label>
-                        <select>
-                            <option>International</option>
-                            <option>Domestic</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-section">
-                <h2 class="section-title">Email</h2>
-                <div class="form-grid">
-                    <div class="form-group">
-                        <label>Sender Email</label>
-                        <input type="email" value="noreply@britiumgallery.com">
-                    </div>
-                    <div class="form-group">
-                        <label>SMTP Port</label>
-                        <input type="text" value="587">
-                    </div>
-                </div>
-            </div>
-
+      <!-- STORE -->
+      <div class="section">
+        <h2>Store Information</h2>
+        <div class="grid">
+          <div class="full">
+            <label>Store Name</label>
+            <input type="text" value="Britium Gallery">
+          </div>
+          <div>
+            <label>Store Email</label>
+            <input type="email" value="info@britiumgallery.com">
+          </div>
+          <div>
+            <label>Store Address</label>
+            <input type="text">
+          </div>
+          <div class="full">
+            <label>Currency</label>
+            <select>
+              <option>USD ($)</option>
+              <option>MMK (K)</option>
+              <option>EUR (€)</option>
+            </select>
+          </div>
         </div>
+      </div>
 
-        <button class="btn-save">Save</button>
+      <!-- LOCALIZATION -->
+      <div class="section">
+        <h2>Localization</h2>
+        <div class="grid">
+          <div>
+            <label>Language</label>
+            <select><option>English</option></select>
+          </div>
+          <div>
+            <label>Time Zone</label>
+            <select><option>UTC</option></select>
+          </div>
+          <div class="full">
+            <label>Date Format</label>
+            <select><option>MM/DD/YYYY</option></select>
+          </div>
+        </div>
+      </div>
+
+      <!-- PAYMENTS -->
+      <div class="section">
+        <h2>Payments</h2>
+        <div class="toggle-row">
+          <span>Enable Stripe</span>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <input type="text" value="STRIPE_KEY_XXXX" style="margin-top:15px">
+      </div>
+
+      <!-- SHIPPING -->
+      <div class="section">
+        <h2>Shipping</h2>
+        <div class="toggle-row">
+          <span>Enable Shipping</span>
+          <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider"></span>
+          </label>
+        </div>
+        <input type="text" placeholder="Shipping Origin" style="margin-top:15px">
+      </div>
+
+      <!-- EMAIL -->
+      <div class="section">
+        <h2>Email</h2>
+        <div class="grid">
+          <div>
+            <label>Sender Email</label>
+            <input type="email" value="noreply@britiumgallery.com">
+          </div>
+          <div>
+            <label>SMTP Port</label>
+            <input type="text" value="587">
+          </div>
+        </div>
+      </div>
 
     </div>
+
+    <button class="save">Save Settings</button>
+
+  </div>
 
 </body>
 </html>
