@@ -1,262 +1,163 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Return Request | Britium Gallery</title>
-    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-    
-    <style>
-        /* --- RESET & VARIABLES --- */
-        :root {
-            --header-bg: #f4ece2; /* Darker beige from header */
-            --body-bg: #fffbf8;   /* Lighter cream from body */
-            --text-dark: #1a1a1a;
-            --input-border: #888;
-            --btn-gold: #c69c59;  /* Gold button color */
-            --btn-hover: #b08848;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Return Request | Britium Gallery</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 
-        body {
-            font-family: 'Jost', sans-serif;
-            background-color: var(--body-bg);
-            color: var(--text-dark);
-            line-height: 1.5;
-        }
+<style>
+:root{
+  --bg:#fffbf8;
+  --text:#1a1a1a;
+  --border:#999;
+  --gold:#c69c59;
+}
 
-        /* --- HEADER --- */
-        header {
-            background-color: var(--header-bg);
-            padding: 25px 60px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+body{
+  margin:0;
+  font-family:'Jost',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 1.4rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: #000;
-        }
-        
-        .logo-icon {
-            width: 24px;
-            height: 24px;
-            border: 2px solid #000;
-            transform: rotate(45deg);
-        }
+/* Page wrapper to avoid nav overlap */
+.page-wrap{padding-top:40px}
 
-        nav ul { display: flex; gap: 40px; list-style: none; }
-        nav a { 
-            text-decoration: none; 
-            color: #000; 
-            font-size: 0.9rem; 
-            font-weight: 500; 
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
+/* Title */
+.title{
+  text-align:center;
+  margin:70px 0 50px;
+}
+.title h1{
+  font-family:'Playfair Display',serif;
+  font-size:3.2rem;
+  font-weight:400;
+}
+.title:after{
+  content:'';
+  width:60px;
+  height:1px;
+  background:#ccc;
+  display:block;
+  margin:15px auto 0;
+}
 
-        .header-icons { display: flex; gap: 20px; font-size: 1.2rem; cursor: pointer; }
+/* Layout */
+.container{
+  max-width:720px;
+  margin:0 auto 120px;
+  padding:0 20px;
+}
 
-        /* --- MAIN FORM CONTAINER --- */
-        .form-container {
-            max-width: 600px;
-            margin: 60px auto 100px;
-            padding: 0 20px;
-        }
+/* Form */
+.group{margin-bottom:25px}
+label{
+  display:block;
+  margin-bottom:8px;
+}
+input,select,textarea{
+  width:100%;
+  padding:14px;
+  border:1px solid var(--border);
+  background:transparent;
+  font-family:inherit;
+}
+textarea{height:120px}
 
-        /* Title */
-        .page-title {
-            text-align: center;
-            margin-bottom: 50px;
-        }
+/* Upload */
+.upload{
+  border:1px dashed var(--border);
+  padding:40px;
+  text-align:center;
+  cursor:pointer;
+}
+.upload input{display:none}
 
-        .page-title h1 {
-            font-family: 'Playfair Display', serif;
-            font-size: 3.5rem;
-            font-weight: 400;
-            margin-bottom: 10px;
-        }
+/* Button */
+.submit{
+  display:block;
+  margin:50px auto 0;
+  background:var(--gold);
+  color:#fff;
+  border:none;
+  padding:16px 50px;
+  font-size:.9rem;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  cursor:pointer;
+}
+.submit:hover{opacity:.9}
 
-        /* Small decorative line under title */
-        .page-title::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 1px;
-            background-color: #ccc;
-            margin: 0 auto;
-        }
-
-        /* --- FORM ELEMENTS --- */
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            font-size: 1rem;
-            margin-bottom: 8px;
-            color: #1a1a1a;
-            font-weight: 400;
-        }
-
-        input[type="text"],
-        input[type="email"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 12px 15px;
-            background-color: transparent;
-            border: 1px solid var(--input-border);
-            border-radius: 4px;
-            font-size: 1rem;
-            font-family: 'Jost', sans-serif;
-            color: #333;
-            outline: none;
-        }
-
-        textarea {
-            resize: vertical;
-            height: 120px;
-        }
-
-        /* File Upload Box */
-        .upload-box {
-            border: 1px dashed var(--input-border);
-            border-radius: 6px;
-            padding: 40px;
-            text-align: center;
-            cursor: pointer;
-            background-color: transparent;
-            transition: 0.3s;
-            position: relative;
-        }
-        .upload-box:hover { background-color: rgba(0,0,0,0.02); }
-
-        .upload-icon {
-            font-size: 2rem;
-            color: #555;
-            margin-bottom: 10px;
-            display: block;
-        }
-        
-        .upload-text {
-            font-size: 0.95rem;
-            color: #333;
-        }
-
-        /* Hide the actual file input */
-        #file-input { display: none; }
-
-        /* Submit Button */
-        .btn-submit {
-            display: block;
-            width: 100%;
-            max-width: 300px;
-            margin: 40px auto 0;
-            background-color: var(--btn-gold);
-            color: #fff;
-            border: none;
-            padding: 15px;
-            font-size: 1rem;
-            font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .btn-submit:hover { background-color: var(--btn-hover); }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 768px) {
-            header { padding: 20px; }
-            nav ul { display: none; } /* Hide nav on mobile for this layout */
-            .page-title h1 { font-size: 2.5rem; }
-            .btn-submit { width: 100%; max-width: 100%; }
-        }
-    </style>
+@media(max-width:768px){
+  .title h1{font-size:2.4rem}
+}
+</style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">
-            <div class="logo-icon"></div>
-            BRITIUM
-        </div>
-        <nav>
-  <ul>
-    <li><a href="customer-dashboard.html">Dashboard</a></li>
-    <li><a href="orders.html">Orders</a></li>
-    <li><a href="track-order.html">Track Order</a></li>
-    <li><a href="return-request.html">Return Request</a></li>
-    <li><a href="profile.html">Profile</a></li>
-    <li><a href="logout.html">Logout</a></li>
-  </ul>
-</nav>
-        <div class="header-icons">
-            <span>👤</span>
-            <span>🛒</span>
-        </div>
-    </header>
+<!-- STANDARD NAV -->
+<div id="siteHeader"></div>
 
-    <div class="form-container">
-        
-        <div class="page-title">
-            <h1>Return Request</h1>
-        </div>
+<div class="page-wrap">
 
-        <form action="#" method="POST">
-            
-            <div class="form-group">
-                <label for="order-num">Order Number</label>
-                <input type="text" id="order-num" name="order_number" required>
-            </div>
+<section class="title">
+  <h1>Return Request</h1>
+</section>
 
-            <div class="form-group">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
-            </div>
+<section class="container">
 
-            <div class="form-group">
-                <label for="reason">Reason for Return</label>
-                <select id="reason" name="reason">
-                    <option value="" disabled selected>Select a reason</option>
-                    <option value="defective">Defective / Damaged</option>
-                    <option value="wrong-item">Received Wrong Item</option>
-                    <option value="size">Size / Fit Issue</option>
-                    <option value="changed-mind">Changed Mind</option>
-                </select>
-            </div>
+<form>
 
-            <div class="form-group">
-                <label for="details">Return Details</label>
-                <textarea id="details" name="details"></textarea>
-            </div>
+  <div class="group">
+    <label>Order Number</label>
+    <input type="text" required>
+  </div>
 
-            <div class="form-group">
-                <label>Upload Image(s)</label>
-                <label for="file-input" class="upload-box">
-                    <span class="upload-icon">📤</span>
-                    <span class="upload-text">Choose file to upload</span>
-                </label>
-                <input type="file" id="file-input" name="images" multiple>
-            </div>
+  <div class="group">
+    <label>Email Address</label>
+    <input type="email" required>
+  </div>
 
-            <button type="submit" class="btn-submit">Submit Request</button>
+  <div class="group">
+    <label>Reason for Return</label>
+    <select required>
+      <option value="">Select a reason</option>
+      <option>Defective / Damaged</option>
+      <option>Wrong Item Received</option>
+      <option>Size / Fit Issue</option>
+      <option>Changed Mind</option>
+    </select>
+  </div>
 
-        </form>
+  <div class="group">
+    <label>Return Details</label>
+    <textarea></textarea>
+  </div>
 
-    </div>
+  <div class="group">
+    <label>Upload Images</label>
+    <label class="upload">
+      📤 Click to upload images
+      <input type="file" multiple>
+    </label>
+  </div>
+
+  <button class="submit">Submit Request</button>
+
+</form>
+
+</section>
+
+</div>
+
+<!-- STANDARD FOOTER -->
+<div id="siteFooter"></div>
+<script src="nav.js"></script>
 
 </body>
-
 </html>
