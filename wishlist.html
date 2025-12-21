@@ -1,237 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Wishlist | Britium Gallery</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Wishlist | Britium Gallery</title>
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg-cream: #fbf6f1;
-      --bg-white: #ffffff;
-      --text-black: #111;
-      --text-grey: #666;
-      --border: rgba(0,0,0,0.12);
-      --gold: #c6a87c;
-    }
+<style>
+:root{
+  --bg-cream:#fbf6f1;
+  --bg-white:#fff;
+  --text:#111;
+  --muted:#666;
+  --border:rgba(0,0,0,.12);
+  --gold:#c6a87c;
+}
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+*{margin:0;padding:0;box-sizing:border-box}
 
-    body {
-      font-family: 'Jost', sans-serif;
-      background-color: var(--bg-cream);
-      color: var(--text-black);
-    }
+body{
+  font-family:'Jost',sans-serif;
+  background:var(--bg-cream);
+  color:var(--text);
+}
 
-    a { text-decoration: none; color: inherit; }
+a{text-decoration:none;color:inherit}
 
-    /* Header */
-    header {
-      padding: 25px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
+/* Layout */
+.dashboard{
+  max-width:1200px;
+  margin:60px auto;
+  padding:0 20px;
+  display:grid;
+  grid-template-columns:260px 1fr;
+  gap:40px;
+}
 
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
+/* Sidebar */
+.sidebar{
+  background:var(--bg-white);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:30px;
+  height:fit-content;
+}
 
-    .logo span {
-      display: block;
-      font-size: 0.8rem;
-      letter-spacing: 4px;
-      font-weight: 400;
-    }
+.sidebar h3{
+  font-family:'Playfair Display',serif;
+  font-size:1.4rem;
+  margin-bottom:25px;
+}
 
-    .logout {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
+.menu{
+  list-style:none;
+  display:flex;
+  flex-direction:column;
+  gap:15px;
+}
 
-    /* Layout */
-    .dashboard {
-      max-width: 1200px;
-      margin: 50px auto;
-      display: grid;
-      grid-template-columns: 260px 1fr;
-      gap: 40px;
-      padding: 0 20px;
-    }
+.menu a{
+  font-size:.95rem;
+  padding:10px 0;
+  border-bottom:1px solid var(--border);
+  display:block;
+}
 
-    /* Sidebar */
-    .sidebar {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 30px;
-    }
+.menu a.active{
+  font-weight:600;
+  color:var(--gold);
+}
 
-    .sidebar h3 {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      margin-bottom: 25px;
-    }
+/* Content */
+.content{
+  background:var(--bg-white);
+  border:1px solid var(--border);
+  border-radius:10px;
+  padding:40px;
+}
 
-    .menu {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-    }
+.content h1{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+  margin-bottom:30px;
+}
 
-    .menu a {
-      font-size: 0.95rem;
-      padding: 10px 0;
-      border-bottom: 1px solid var(--border);
-      display: block;
-    }
+/* Wishlist Grid */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:30px;
+}
 
-    .menu a.active {
-      font-weight: 600;
-      color: var(--gold);
-    }
+.card{
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+  background:#fff;
+}
 
-    /* Content */
-    .content {
-      background: var(--bg-white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 40px;
-    }
+.card-img{
+  height:260px;
+  background:#eee;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:.85rem;
+  color:var(--muted);
+}
 
-    .content h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2rem;
-      margin-bottom: 25px;
-    }
+.card-body{
+  padding:18px;
+  text-align:center;
+}
 
-    /* Wishlist Grid */
-    .wishlist-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 30px;
-    }
+.card-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.05rem;
+  margin-bottom:8px;
+}
 
-    .wish-card {
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      overflow: hidden;
-      background: #fff;
-    }
+.card-price{
+  color:var(--gold);
+  font-weight:600;
+  margin-bottom:14px;
+}
 
-    .wish-img {
-      height: 260px;
-      background: #eee;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.85rem;
-      color: var(--text-grey);
-    }
+.actions{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+}
 
-    .wish-body {
-      padding: 18px;
-      text-align: center;
-    }
+.btn{
+  font-size:.75rem;
+  text-transform:uppercase;
+  padding:8px 14px;
+  border:1px solid var(--border);
+  background:transparent;
+  cursor:pointer;
+}
 
-    .wish-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      margin-bottom: 8px;
-    }
+.btn:hover{
+  border-color:var(--gold);
+  color:var(--gold);
+}
 
-    .wish-price {
-      color: var(--gold);
-      font-weight: 600;
-      margin-bottom: 12px;
-    }
-
-    .wish-actions {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-    }
-
-    .btn {
-      font-size: 0.75rem;
-      text-transform: uppercase;
-      padding: 8px 14px;
-      border: 1px solid var(--border);
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .btn:hover {
-      border-color: var(--gold);
-      color: var(--gold);
-    }
-
-    @media (max-width: 900px) {
-      .dashboard {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+@media(max-width:900px){
+  .dashboard{grid-template-columns:1fr}
+}
+</style>
 </head>
 
 <body>
 
-<header>
-  <div class="logo">
-    BRITIUM
-    <span>GALLERY</span>
-  </div>
-  <a href="customer-login.html" class="logout">Logout</a>
-</header>
+<!-- STANDARD GLOBAL NAV -->
+<div id="siteHeader"></div>
 
 <main class="dashboard">
 
-  <!-- Sidebar -->
+  <!-- CUSTOMER SIDEBAR -->
   <aside class="sidebar">
     <h3>My Account</h3>
     <ul class="menu">
       <li><a href="customer-dashboard.html">Dashboard</a></li>
       <li><a href="customer-orders.html">My Orders</a></li>
-      <li><a href="customer-profile.html">Profile Details</a></li>
-      <li><a href="customer-addresses.html">Saved Addresses</a></li>
+      <li><a href="track_order.html">Track Order</a></li>
+      <li><a href="return_request.html">Return Request</a></li>
+      <li><a href="customer-profile.html">Profile</a></li>
       <li><a href="wishlist.html" class="active">Wishlist</a></li>
+      <li><a href="customer-logout.html">Logout</a></li>
     </ul>
   </aside>
 
-  <!-- Wishlist Content -->
+  <!-- WISHLIST CONTENT -->
   <section class="content">
     <h1>My Wishlist</h1>
 
-    <div class="wishlist-grid">
+    <div class="grid">
 
-      <div class="wish-card">
-        <div class="wish-img">Product Image</div>
-        <div class="wish-body">
-          <div class="wish-name">Signature Monogram Handbag</div>
-          <div class="wish-price">MMK 88,000</div>
-          <div class="wish-actions">
+      <div class="card">
+        <div class="card-img">Product Image</div>
+        <div class="card-body">
+          <div class="card-name">Signature Monogram Handbag</div>
+          <div class="card-price">MMK 88,000</div>
+          <div class="actions">
             <button class="btn">Add to Cart</button>
             <button class="btn">Remove</button>
           </div>
         </div>
       </div>
 
-      <div class="wish-card">
-        <div class="wish-img">Product Image</div>
-        <div class="wish-body">
-          <div class="wish-name">Elegant Chain Shoulder Bag</div>
-          <div class="wish-price">MMK 92,000</div>
-          <div class="wish-actions">
+      <div class="card">
+        <div class="card-img">Product Image</div>
+        <div class="card-body">
+          <div class="card-name">Elegant Chain Shoulder Bag</div>
+          <div class="card-price">MMK 92,000</div>
+          <div class="actions">
             <button class="btn">Add to Cart</button>
             <button class="btn">Remove</button>
           </div>
@@ -242,6 +209,10 @@
   </section>
 
 </main>
+
+<!-- STANDARD FOOTER -->
+<div id="siteFooter"></div>
+<script src="nav.js"></script>
 
 </body>
 </html>
