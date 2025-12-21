@@ -1,194 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Customer Login | Britium Gallery</title>
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-
-  <style>
-    :root {
-      --bg-cream:#fbf6f1;
-      --text-dark:#111;
-      --text-grey:#666;
-      --border:rgba(0,0,0,.15);
-      --btn-black:#000;
-    }
-
-    *{margin:0;padding:0;box-sizing:border-box;}
-
-    body{
-      font-family:'Jost',sans-serif;
-      background:var(--bg-cream);
-      color:var(--text-dark);
-      line-height:1.6;
-    }
-
-    /* LOGIN WRAPPER */
-    .login-wrapper{
-      max-width:420px;
-      margin:100px auto;
-      padding:45px 35px;
-      background:rgba(255,255,255,.75);
-      border:1px solid var(--border);
-      border-radius:10px;
-      backdrop-filter:blur(10px);
-      box-shadow:0 20px 50px rgba(0,0,0,.08);
-    }
-
-    .login-header{
-      text-align:center;
-      margin-bottom:30px;
-    }
-
-    .login-header h1{
-      font-family:'Playfair Display',serif;
-      font-size:2.2rem;
-      font-weight:600;
-      margin-bottom:10px;
-    }
-
-    .login-header p{
-      font-size:.95rem;
-      color:var(--text-grey);
-    }
-
-    form{
-      display:flex;
-      flex-direction:column;
-      gap:18px;
-    }
-
-    label{
-      font-size:.9rem;
-      margin-bottom:6px;
-      display:block;
-    }
-
-    input{
-      width:100%;
-      padding:14px;
-      border-radius:6px;
-      border:1px solid var(--border);
-      font-family:inherit;
-      font-size:1rem;
-      background:#fff;
-    }
-
-    input:focus{
-      outline:none;
-      border-color:#000;
-    }
-
-    .forgot{
-      text-align:right;
-      font-size:.85rem;
-    }
-
-    .forgot a{
-      text-decoration:underline;
-    }
-
-    .btn-login{
-      background:var(--btn-black);
-      color:#fff;
-      border:none;
-      padding:15px;
-      font-size:.9rem;
-      font-weight:600;
-      letter-spacing:1px;
-      text-transform:uppercase;
-      cursor:pointer;
-      transition:.3s;
-      margin-top:6px;
-    }
-
-    .btn-login:hover{background:#333;}
-
-    .divider{
-      text-align:center;
-      font-size:.85rem;
-      color:var(--text-grey);
-      margin:8px 0;
-    }
-
-    .btn-google{
-      border:1px solid var(--border);
-      background:transparent;
-      padding:14px;
-      font-size:.85rem;
-      text-transform:uppercase;
-      cursor:pointer;
-    }
-
-    .register-link{
-      text-align:center;
-      font-size:.9rem;
-      margin-top:18px;
-    }
-
-    .register-link a{
-      text-decoration:underline;
-      font-weight:500;
-    }
-
-    @media(max-width:768px){
-      .login-wrapper{
-        margin:70px 20px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<title>Login | Britium Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#fbf6f1;font-family:Jost}
+header{padding:25px 60px;display:flex;justify-content:space-between}
+nav a{text-transform:uppercase;margin:0 20px}
+.form{max-width:400px;margin:100px auto;background:#fff;padding:40px}
+input,button{width:100%;padding:12px;margin-top:15px}
+button{background:#000;color:#fff;border:none}
+</style>
 </head>
 
 <body>
 
-  <!-- STANDARD NAV -->
-  <div id="siteHeader"></div>
+<header>
+  <strong>BRITIUM<br><small>GALLERY</small></strong>
+  <nav>
+    <a href="gallery.html">Shop</a>
+    <a href="about.html">About</a>
+    <a href="login.html">Account</a>
+  </nav>
+</header>
 
-  <!-- LOGIN -->
-  <main class="login-wrapper">
-    <div class="login-header">
-      <h1>Welcome Back</h1>
-      <p>Sign in to your Britium Gallery account</p>
-    </div>
-
-    <form action="login_code.html" method="POST">
-
-      <div>
-        <label>Email Address</label>
-        <input type="email" name="email" placeholder="you@example.com" required>
-      </div>
-
-      <div>
-        <label>Password</label>
-        <input type="password" name="password" placeholder="Enter your password" required>
-      </div>
-
-      <div class="forgot">
-        <a href="forgot-password.html">Forgot password?</a>
-      </div>
-
-      <button type="submit" class="btn-login">Login</button>
-
-      <div class="divider">or</div>
-
-      <button type="button" class="btn-google">Continue with Google</button>
-
-      <div class="register-link">
-        Don’t have an account?
-        <a href="customer-register.html">Create one</a>
-      </div>
-
-    </form>
-  </main>
-
-  <!-- STANDARD FOOTER -->
-  <div id="siteFooter"></div>
-
-  <!-- NAV SCRIPT -->
-  <script src="nav.js"></script>
+<div class="form">
+  <h2>Customer Login</h2>
+  <input type="email" placeholder="Email">
+  <input type="password" placeholder="Password">
+  <button>Login</button>
+  <p style="margin-top:15px;font-size:.85rem">
+    New customer? <a href="#">Create account</a>
+  </p>
+</div>
 
 </body>
 </html>
