@@ -20,9 +20,10 @@
       --text-muted: #aaa;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    * { box-sizing: border-box; }
 
     body {
+      margin: 0;
       font-family: 'Jost', sans-serif;
       background: radial-gradient(circle at top, #1a1a1a, #000);
       color: var(--text-light);
@@ -41,15 +42,15 @@
       box-shadow: 0 30px 80px rgba(0,0,0,0.9);
     }
 
-    .login-box h1 {
+    h1 {
       font-family: 'Playfair Display', serif;
       font-size: 2rem;
       text-align: center;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: var(--gold);
     }
 
-    .login-box p {
+    p {
       text-align: center;
       font-size: 0.9rem;
       color: var(--text-muted);
@@ -89,7 +90,6 @@
       text-transform: uppercase;
       letter-spacing: 1px;
       cursor: pointer;
-      transition: 0.3s;
       color: #000;
     }
 
@@ -110,22 +110,58 @@
 
   <div class="login-box">
     <h1>Britium Admin</h1>
-    <p>Authorized personnel only</p>
+    <p>Secure administration access</p>
 
-    <form action="#" method="POST">
+    <form id="loginForm">
       <label>Email</label>
-      <input type="email" required placeholder="admin@britium.com">
+      <input type="email" id="emailInput" required>
 
       <label>Password</label>
-      <input type="password" required placeholder="••••••••">
+      <input type="password" id="passwordInput" required>
 
       <button type="submit" class="btn-login">Login</button>
     </form>
 
     <div class="footer-note">
-      Internal system — access logged
+      Authorized staff only
     </div>
   </div>
+
+  <script>
+    const USERS = {
+      "admin@britium.com":   { password: "admin123", role: "admin" },
+      "manager@britium.com": { password: "manager123", role: "manager" },
+      "staff@britium.com":   { password: "staff123", role: "staff" }
+    };
+
+    // Redirect if already logged in
+    const existing = JSON.parse(localStorage.getItem("adminSession"));
+    if (existing && existing.expires > Date.now()) {
+      location.href = "/admin/dashboard/";
+    }
+
+    document.getElementById("loginForm").addEventListener("submit", e => {
+      e.preventDefault();
+
+      const email = document.getElementById("emailInput").value.trim();
+      const password = document.getElementById("passwordInput").value.trim();
+
+      const user = USERS[email];
+
+      if (!user || user.password !== password) {
+        alert("Invalid credentials");
+        return;
+      }
+
+      localStorage.setItem("adminSession", JSON.stringify({
+        email,
+        role: user.role,
+        expires: Date.now() + (60 * 60 * 1000) // 1 hour
+      }));
+
+      location.href = "/admin/dashboard/";
+    });
+  </script>
 
 </body>
 </html>
