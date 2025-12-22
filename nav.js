@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <li><a class="${isActive("shop.html")}" href="shop.html">Shop</a></li>
         <li><a class="${isActive("new-arrivals.html")}" href="new-arrivals.html">New Arrivals</a></li>
         <li><a class="${isActive("luxury-handbags.html")}" href="luxury-handbags.html">Luxury Handbags</a></li>
-        <li><a class="${isActive("product-gallery.html")}" href="product-gallery.html">Gallery</a></li>
+        <li><a class="${isActive("gallery.html")}" href="gallery.html">Gallery</a></li>
         <li><a class="${isActive("about.html")}" href="about.html">About</a></li>
         <li><a class="${isActive("blog.html")}" href="blog.html">Blog</a></li>
         <li><a class="${isActive("faq.html")}" href="faq.html">FAQ</a></li>
