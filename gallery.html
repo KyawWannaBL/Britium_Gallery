@@ -1,88 +1,688 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Gallery | Britium Gallery</title>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-body{font-family:Jost,sans-serif;background:#fbf6f1;margin:0}
-header{padding:25px 60px;display:flex;justify-content:space-between}
-nav a{text-transform:uppercase;margin:0 20px;font-size:.9rem}
-.grid{max-width:1200px;margin:60px auto;display:grid;grid-template-columns:repeat(4,1fr);gap:30px}
-.card{text-align:center}
-.card img{width:100%;background:#fff}
-.card p{margin:10px 0}
-@media(max-width:768px){.grid{grid-template-columns:1fr 1fr}}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Gallery | Britium Gallery</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --bg:#120e0b;
+      --panel:#1a120d;
+      --panel2:#231712;
+      --text:#f0f0f0;
+      --muted:#b8b8b8;
+      --muted2:#8c8c8c;
+      --gold:#c6a87c;
+      --gold2:#b5904b;
+      --border:rgba(255,255,255,.10);
+      --shadow: 0 20px 60px rgba(0,0,0,.45);
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{
+      font-family:'Jost',sans-serif;
+      background:var(--bg);
+      color:var(--text);
+      line-height:1.6;
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    /* Page layout */
+    .page-wrap{min-height:100vh}
+    .container{
+      max-width:1200px;
+      margin:0 auto;
+      padding:56px 20px 80px;
+    }
+
+    /* Hero */
+    .hero{
+      background:
+        radial-gradient(1200px 500px at 20% 0%, rgba(198,168,124,.18), transparent 55%),
+        radial-gradient(900px 500px at 80% 0%, rgba(198,168,124,.10), transparent 55%),
+        linear-gradient(180deg, rgba(0,0,0,.40), rgba(0,0,0,.15));
+      border-bottom:1px solid var(--border);
+      padding:70px 0 45px;
+    }
+    .hero h1{
+      font-family:'Playfair Display',serif;
+      font-size:3rem;
+      letter-spacing:.5px;
+      margin-bottom:10px;
+    }
+    .hero p{
+      max-width:760px;
+      color:var(--muted);
+      font-size:1.05rem;
+    }
+    .hero .meta{
+      display:flex;
+      gap:16px;
+      flex-wrap:wrap;
+      margin-top:18px;
+    }
+    .pill{
+      border:1px solid rgba(198,168,124,.25);
+      background:rgba(198,168,124,.10);
+      color:#f4e7d2;
+      padding:7px 12px;
+      border-radius:999px;
+      font-size:.9rem;
+      letter-spacing:.2px;
+    }
+
+    /* Controls */
+    .controls{
+      margin-top:28px;
+      display:grid;
+      grid-template-columns: 1.4fr .8fr .8fr;
+      gap:12px;
+      align-items:end;
+    }
+    .field label{
+      display:block;
+      font-size:.85rem;
+      color:var(--muted2);
+      margin-bottom:6px;
+      letter-spacing:.2px;
+    }
+    .input, .select{
+      width:100%;
+      padding:12px 12px;
+      border-radius:10px;
+      background:rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.10);
+      color:var(--text);
+      outline:none;
+    }
+    .input::placeholder{color:rgba(240,240,240,.35)}
+    .select{cursor:pointer}
+    .toolbar{
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      gap:12px;
+      margin-top:18px;
+      padding:14px 16px;
+      border:1px solid var(--border);
+      border-radius:14px;
+      background:rgba(255,255,255,.03);
+    }
+    .count{color:var(--muted);font-size:.95rem}
+    .btn{
+      border:1px solid rgba(198,168,124,.30);
+      background:rgba(198,168,124,.14);
+      color:#f4e7d2;
+      padding:10px 14px;
+      border-radius:10px;
+      cursor:pointer;
+      transition:.2s;
+      font-weight:600;
+      letter-spacing:.2px;
+    }
+    .btn:hover{background:rgba(198,168,124,.22)}
+    .btn.secondary{
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.06);
+      color:var(--text);
+    }
+
+    /* Grid */
+    .grid{
+      margin-top:20px;
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:16px;
+    }
+    @media(max-width:1050px){ .grid{grid-template-columns: repeat(3, 1fr);} }
+    @media(max-width:780px){
+      .controls{grid-template-columns:1fr; }
+      .grid{grid-template-columns: repeat(2, 1fr);}
+      .hero h1{font-size:2.3rem}
+    }
+    @media(max-width:520px){ .grid{grid-template-columns:1fr;} }
+
+    /* Cards */
+    .card{
+      border:1px solid rgba(255,255,255,.10);
+      background:rgba(255,255,255,.03);
+      border-radius:16px;
+      overflow:hidden;
+      transition:.2s;
+      position:relative;
+    }
+    .card:hover{
+      transform:translateY(-3px);
+      border-color:rgba(198,168,124,.35);
+      box-shadow: 0 18px 55px rgba(0,0,0,.35);
+    }
+    .card .media{
+      aspect-ratio: 1 / 1;
+      background:linear-gradient(180deg, rgba(0,0,0,.15), rgba(0,0,0,.35));
+      position:relative;
+      cursor:pointer;
+    }
+    .badge{
+      position:absolute;
+      top:12px;
+      left:12px;
+      background:rgba(0,0,0,.55);
+      border:1px solid rgba(255,255,255,.16);
+      color:#fff;
+      font-size:.75rem;
+      padding:6px 10px;
+      border-radius:999px;
+      letter-spacing:.5px;
+    }
+    .card .body{padding:14px 14px 16px}
+    .title{
+      font-size:1.05rem;
+      font-weight:600;
+      margin-bottom:6px;
+      line-height:1.25;
+    }
+    .sub{
+      color:var(--muted);
+      font-size:.88rem;
+      margin-bottom:10px;
+    }
+    .row{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-end;
+      gap:12px;
+    }
+    .price{
+      font-size:1.15rem;
+      font-weight:700;
+      color:var(--gold);
+      letter-spacing:.3px;
+    }
+    .tiny{
+      color:var(--muted2);
+      font-size:.78rem;
+      margin-bottom:2px;
+      text-transform:uppercase;
+      letter-spacing:.8px;
+    }
+    .card .actions{
+      display:flex;
+      gap:8px;
+    }
+    .icon-btn{
+      width:42px;height:42px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.06);
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      transition:.2s;
+      font-size:1.05rem;
+    }
+    .icon-btn:hover{
+      border-color:rgba(198,168,124,.35);
+      background:rgba(198,168,124,.14);
+    }
+
+    /* Modal */
+    .modal-backdrop{
+      position:fixed; inset:0;
+      background:rgba(0,0,0,.65);
+      display:none;
+      align-items:center;
+      justify-content:center;
+      z-index:2000;
+      padding:18px;
+    }
+    .modal-backdrop.active{display:flex}
+    .modal{
+      width:min(980px, 100%);
+      background:linear-gradient(180deg, rgba(35,23,18,.98), rgba(26,18,13,.98));
+      border:1px solid rgba(198,168,124,.25);
+      border-radius:18px;
+      box-shadow:var(--shadow);
+      overflow:hidden;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+    }
+    .modal .m-media{
+      background:rgba(0,0,0,.25);
+      min-height:420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+    .modal .m-media img{max-height:520px; width:auto; object-fit:contain}
+    .modal .m-body{padding:20px 20px 18px}
+    .modal .m-top{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:12px;
+      margin-bottom:10px;
+    }
+    .modal h2{
+      font-family:'Playfair Display',serif;
+      font-size:1.9rem;
+      line-height:1.15;
+    }
+    .close{
+      cursor:pointer;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.06);
+      color:#fff;
+      width:42px;height:42px;
+      border-radius:12px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:1.25rem;
+    }
+    .m-meta{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin:10px 0 16px;
+    }
+    .m-desc{
+      color:var(--muted);
+      margin-bottom:16px;
+    }
+    .m-actions{
+      display:flex;
+      gap:10px;
+      margin-top:10px;
+      flex-wrap:wrap;
+    }
+
+    @media(max-width:900px){
+      .modal{grid-template-columns:1fr}
+      .modal .m-media{min-height:320px}
+    }
+
+    /* Sticky inquiry chip (optional) */
+    .inquiry-chip{
+      position:fixed;
+      right:18px;
+      bottom:18px;
+      z-index:1500;
+      display:flex;
+      gap:10px;
+      align-items:center;
+      padding:12px 14px;
+      border-radius:999px;
+      border:1px solid rgba(198,168,124,.30);
+      background:rgba(198,168,124,.14);
+      cursor:pointer;
+      user-select:none;
+    }
+    .inquiry-chip .num{
+      background:rgba(0,0,0,.45);
+      border:1px solid rgba(255,255,255,.16);
+      width:28px;height:28px;border-radius:999px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:800;
+    }
+  </style>
 </head>
 
 <body>
+  <div class="page-wrap">
+    <!-- STANDARD NAV -->
+    <div id="siteHeader"></div>
 
-<header>
-  <strong>BRITIUM<br><small>GALLERY</small></strong>
-   <nav class="hidden xl:flex gap-6 text-sm font-semibold text-slate-200 items-center">
-      <a href="index.html" class="text-[#FFC700]">Home</a>
-      <a href="express.html" class="hover:text-[#FFC700] transition">Britium Express</a>
-      <a href="about.html" class="hover:text-[#FFC700] transition">About</a>
-      <a href="team.html" class="hover:text-[#FFC700] transition">Team</a>
-      <a href="careers.html" class="hover:text-[#FFC700] transition">Careers</a>
-      <a href="capabilities.html" class="hover:text-[#FFC700] transition">Capabilities</a>
-      <a href="solutions.html" class="hover:text-[#FFC700] transition">Solutions</a>
-      <a href="products.html" class="hover:text-[#FFC700] transition">Products</a>
-      <a href="markets.html" class="hover:text-[#FFC700] transition">Markets</a>
-      <a href="gallery.html" class="hover:text-[#FFC700] transition">Gallery</a>
-      <a href="contact.html" class="hover:text-[#FFC700] transition">Contact</a>
-      <a href="chat.html" class="px-4 py-2 rounded-md bg-[#FFC700]/10 text-[#FFC700] border border-[#FFC700]/20 hover:bg-[#FFC700]/20 transition">Ask AI</a>
-    </nav>
-    <button id="mobile-toggle" class="xl:hidden text-white text-3xl">☰</button>
+    <section class="hero">
+      <div class="container">
+        <h1>Gallery</h1>
+        <p>
+          Explore our curated bag catalog. Search by name or SKU, open Quick View for details,
+          and add items to your Inquiry list for follow-up.
+        </p>
+        <div class="meta">
+          <span class="pill">Curated Selection</span>
+          <span class="pill">Quick View Modal</span>
+          <span class="pill">Inquiry List</span>
+        </div>
+
+        <div class="controls">
+          <div class="field">
+            <label for="q">Search (name / SKU)</label>
+            <input id="q" class="input" type="text" placeholder="e.g., Monogram, BVOSBG-010..." />
+          </div>
+
+          <div class="field">
+            <label for="sort">Sort</label>
+            <select id="sort" class="select">
+              <option value="featured">Featured</option>
+              <option value="price-asc">Price: Low → High</option>
+              <option value="price-desc">Price: High → Low</option>
+              <option value="name-asc">Name: A → Z</option>
+              <option value="name-desc">Name: Z → A</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="perPage">Items per page</label>
+            <select id="perPage" class="select">
+              <option value="12">12</option>
+              <option value="16" selected>16</option>
+              <option value="24">24</option>
+              <option value="999">All</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <div class="count"><span id="count">0</span> items</div>
+          <div style="display:flex; gap:10px; flex-wrap:wrap;">
+            <button class="btn secondary" id="resetBtn" type="button">Reset</button>
+            <button class="btn" id="viewInquiryBtn" type="button">View Inquiry</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main class="container">
+      <div id="grid" class="grid"></div>
+    </main>
+
+    <!-- STANDARD FOOTER -->
+    <div id="siteFooter"></div>
   </div>
-</header>
 
-<div id="mobile-menu-container" class="fixed inset-0 z-40 xl:hidden hidden">
-  <div id="mobile-menu-overlay" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
-  <nav id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-[#0a192f] p-8 border-l border-[#FFC700]/30 transform translate-x-full transition-transform duration-300 overflow-y-auto">
-    <button id="mobile-menu-close" class="absolute top-4 right-4 text-white text-3xl">×</button>
-    <div class="flex flex-col gap-y-6 mt-16 text-lg text-white font-medium">
-      <a href="index.html" class="text-[#FFC700]">Home</a>
-      <a href="express.html">Britium Express</a>
-      <a href="about.html">About</a>
-      <a href="team.html">Team</a>
-      <a href="careers.html">Careers</a>
-      <a href="capabilities.html">Capabilities</a>
-      <a href="solutions.html">Solutions</a>
-      <a href="products.html">Products</a>
-      <a href="markets.html">Markets</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-      <a href="chat.html" class="bg-[#FFC700] text-black text-center py-2 rounded font-bold">Chat with AI</a>
+  <!-- Quick View Modal -->
+  <div id="modalBackdrop" class="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-label="Product quick view">
+      <div class="m-media">
+        <img id="mImg" src="" alt="Product image"/>
+      </div>
+      <div class="m-body">
+        <div class="m-top">
+          <div>
+            <h2 id="mTitle"></h2>
+            <div class="m-meta" id="mMeta"></div>
+          </div>
+          <div class="close" id="mClose" title="Close">×</div>
+        </div>
+
+        <div class="m-desc" id="mDesc"></div>
+
+        <div class="row" style="align-items:center;">
+          <div>
+            <div class="tiny">Retail Price</div>
+            <div class="price" id="mPrice"></div>
+          </div>
+          <div class="m-actions">
+            <button class="btn" id="mAddInquiry" type="button">Add to Inquiry</button>
+            <button class="btn secondary" id="mCopySku" type="button">Copy SKU</button>
+          </div>
+        </div>
+      </div>
     </div>
-  </nav>
-</div>
-</header>
+  </div>
 
-<section class="grid">
-  <div class="card">
-    <img src="images/BVOSBG000001.jpg">
-    <p>Monogram Crossbody</p>
-    <strong>MMK 90,000</strong>
+  <!-- Inquiry chip -->
+  <div id="inquiryChip" class="inquiry-chip" title="Open Inquiry" style="display:none;">
+    <strong>Inquiry</strong>
+    <div class="num" id="inqCount">0</div>
   </div>
-  <div class="card">
-    <img src="images/BVOSBG000002.jpg">
-    <p>Classic Saddle Bag</p>
-    <strong>MMK 52,500</strong>
-  </div>
-  <div class="card">
-    <img src="images/BVOSBG000003.jpg">
-    <p>Signature Tote</p>
-    <strong>MMK 78,000</strong>
-  </div>
-  <div class="card">
-    <img src="images/BVOSBG000004.jpg">
-    <p>Structured Handbag</p>
-    <strong>MMK 80,000</strong>
-  </div>
-</section>
 
+  <!-- NAV SCRIPT -->
+  <script src="nav.js"></script>
+
+  <script>
+    // Products sourced from your Fashion Bags collection file:
+    // Example items: BVOSBG-001 to BVOSBG-033 shown there with price + dimensions. 
+    // (You can continue adding more from the same pattern.)
+    const PRODUCTS = [
+      { sku:"BVOSBG-001", name:"Monogrammed Crossbody", size:"22cm x 14cm x 5cm", priceMMK:90000,  img:"2.jpg",
+        desc:"A compact crossbody designed for daily essentials, balancing clean silhouette with practical storage." },
+      { sku:"BVOSBG-002", name:"Classic Saddle Bag", size:"22cm x 16cm x 6.5cm", priceMMK:52500, img:"3.jpg",
+        desc:"Classic saddle profile with structured form—ideal for day-to-evening transitions." },
+      { sku:"BVOSBG-003", name:"Signature Crossbody", size:"25cm x 15cm x 10cm", priceMMK:78000, img:"4.jpg",
+        desc:"A signature everyday crossbody with a slightly wider base for extra carry capacity." },
+      { sku:"BVOSBG-004", name:"Signature Hobo Bag", size:"26cm x 23cm x 9cm", priceMMK:80000, img:"5.jpg",
+        desc:"Soft hobo structure with comfortable shoulder carry and a roomy interior." },
+      { sku:"BVOSBG-005", name:"Elegant Monogram Crossbody", size:"25cm x 17cm x 8cm", priceMMK:83000, img:"6.jpg",
+        desc:"Elegant monogram styling with a balanced size for phone, wallet, and extras." },
+      { sku:"BVOSBG-006", name:"Chic Monogram Top Handle", size:"22cm x 16cm x 7cm", priceMMK:77000, img:"7.jpg",
+        desc:"Top-handle silhouette that reads polished—excellent for office and formal outings." },
+      { sku:"BVOSBG-007", name:"Classic Flap Shoulder Bag", size:"28cm x 15cm x 8cm", priceMMK:75000, img:"8.jpg",
+        desc:"Flap closure shoulder bag with a classic proportion and versatile styling." },
+      { sku:"BVOSBG-008", name:"Vintage Chain Shoulder Bag", size:"30cm x 20cm x 9cm", priceMMK:82000, img:"9.jpg",
+        desc:"Vintage-inspired form with chain accents—ideal for statement styling." },
+      { sku:"BVOSBG-009", name:"Midnight Glow Clutch", size:"23cm x 16cm x 8cm", priceMMK:108000, img:"10.jpg",
+        desc:"A refined clutch for evening looks, with enough structure to keep essentials organized." },
+      { sku:"BVOSBG-010", name:"Stylish Stripe Crossbody", size:"22cm x 16cm x 9cm", priceMMK:79000, img:"11.jpg",
+        desc:"Stripe detail adds a modern edge; practical everyday shape and capacity." },
+      { sku:"BVOSBG-011", name:"Vibrant Stripe Monogram", size:"22cm x 16cm x 9cm", priceMMK:92000, img:"12.jpg",
+        desc:"Vibrant stripe + monogram pairing for standout casual looks." },
+      { sku:"BVOSBG-012", name:"Chic Leather (Rabbit)", size:"25cm x 20cm x 10cm", priceMMK:110000, img:"13.jpg",
+        desc:"Chic leather feel with playful accent—great for style-forward outfits." },
+      { sku:"BVOSBG-013", name:"Classic Double Buckle", size:"25cm x 10cm x 20cm", priceMMK:73000, img:"14.jpg",
+        desc:"Double-buckle detailing with structured profile for a more tailored look." },
+      { sku:"BVOSBG-014", name:"Classic MK Handbag", size:"26cm x 20cm x 12cm", priceMMK:88000, img:"15.jpg",
+        desc:"Classic handbag proportions—clean, structured, and everyday-ready." },
+      { sku:"BVOSBG-015", name:"Scarlet Elegance Chain", size:"20cm x 15cm x 7cm", priceMMK:74000, img:"16.jpg",
+        desc:"A compact chain bag with a bold tone—ideal for dinner or events." },
+      { sku:"BVOSBG-016", name:"Monogram Backpack Set", size:"27.5cm x 31cm", priceMMK:115000, img:"17.jpg",
+        desc:"Backpack + set styling for travel days and hands-free carry." }
+    ];
+
+    // Basic inquiry list (localStorage)
+    const LS_KEY = "britium_inquiry";
+    const getInquiry = () => {
+      try { return JSON.parse(localStorage.getItem(LS_KEY) || "[]"); }
+      catch { return []; }
+    };
+    const setInquiry = (items) => localStorage.setItem(LS_KEY, JSON.stringify(items));
+
+    const fmtMMK = (n) => n.toLocaleString("en-US") + " MMK";
+
+    // DOM
+    const grid = document.getElementById("grid");
+    const q = document.getElementById("q");
+    const sort = document.getElementById("sort");
+    const perPage = document.getElementById("perPage");
+    const countEl = document.getElementById("count");
+    const resetBtn = document.getElementById("resetBtn");
+    const viewInquiryBtn = document.getElementById("viewInquiryBtn");
+
+    // Modal
+    const modalBackdrop = document.getElementById("modalBackdrop");
+    const mClose = document.getElementById("mClose");
+    const mImg = document.getElementById("mImg");
+    const mTitle = document.getElementById("mTitle");
+    const mMeta = document.getElementById("mMeta");
+    const mDesc = document.getElementById("mDesc");
+    const mPrice = document.getElementById("mPrice");
+    const mAddInquiry = document.getElementById("mAddInquiry");
+    const mCopySku = document.getElementById("mCopySku");
+
+    // Inquiry chip
+    const inquiryChip = document.getElementById("inquiryChip");
+    const inqCount = document.getElementById("inqCount");
+
+    let currentModalProduct = null;
+
+    function updateInquiryUI(){
+      const items = getInquiry();
+      const n = items.length;
+      inqCount.textContent = n;
+      inquiryChip.style.display = n > 0 ? "flex" : "none";
+    }
+
+    function addToInquiry(product){
+      const items = getInquiry();
+      const exists = items.some(x => x.sku === product.sku);
+      if (!exists){
+        items.push({ sku: product.sku, name: product.name });
+        setInquiry(items);
+        updateInquiryUI();
+        alert("Added to Inquiry: " + product.sku);
+      } else {
+        alert("Already in Inquiry: " + product.sku);
+      }
+    }
+
+    function openModal(product){
+      currentModalProduct = product;
+      mImg.src = product.img;
+      mImg.alt = product.name;
+      mTitle.textContent = product.name;
+
+      mMeta.innerHTML = `
+        <span class="pill">${product.sku}</span>
+        <span class="pill">${product.size}</span>
+      `;
+
+      mDesc.textContent = product.desc || "A curated selection from Britium Gallery.";
+      mPrice.textContent = fmtMMK(product.priceMMK);
+
+      modalBackdrop.classList.add("active");
+      modalBackdrop.setAttribute("aria-hidden","false");
+    }
+
+    function closeModal(){
+      modalBackdrop.classList.remove("active");
+      modalBackdrop.setAttribute("aria-hidden","true");
+      currentModalProduct = null;
+    }
+
+    function applySort(items){
+      const v = sort.value;
+      const copy = [...items];
+      if (v === "price-asc") copy.sort((a,b)=>a.priceMMK-b.priceMMK);
+      else if (v === "price-desc") copy.sort((a,b)=>b.priceMMK-a.priceMMK);
+      else if (v === "name-asc") copy.sort((a,b)=>a.name.localeCompare(b.name));
+      else if (v === "name-desc") copy.sort((a,b)=>b.name.localeCompare(a.name));
+      return copy;
+    }
+
+    function filterItems(){
+      const term = (q.value || "").trim().toLowerCase();
+      let items = PRODUCTS.filter(p=>{
+        const hay = (p.name + " " + p.sku).toLowerCase();
+        return hay.includes(term);
+      });
+      items = applySort(items);
+      return items;
+    }
+
+    function render(){
+      const items = filterItems();
+      countEl.textContent = items.length;
+
+      const n = parseInt(perPage.value, 10);
+      const shown = (n === 999) ? items : items.slice(0, n);
+
+      grid.innerHTML = shown.map(p => `
+        <article class="card">
+          <div class="media" data-sku="${p.sku}">
+            <span class="badge">${p.sku}</span>
+            <img src="${p.img}" alt="${p.name}" style="width:100%;height:100%;object-fit:cover;opacity:.92;">
+          </div>
+
+          <div class="body">
+            <div class="title">${p.name}</div>
+            <div class="sub">${p.size}</div>
+
+            <div class="row">
+              <div>
+                <div class="tiny">Retail Price</div>
+                <div class="price">${fmtMMK(p.priceMMK)}</div>
+              </div>
+              <div class="actions">
+                <button class="icon-btn" title="Quick view" data-view="${p.sku}">👁</button>
+                <button class="icon-btn" title="Add to inquiry" data-add="${p.sku}">＋</button>
+              </div>
+            </div>
+          </div>
+        </article>
+      `).join("");
+
+      // Bind card events
+      grid.querySelectorAll("[data-sku]").forEach(el=>{
+        el.addEventListener("click", ()=>{
+          const sku = el.getAttribute("data-sku");
+          const p = PRODUCTS.find(x=>x.sku===sku);
+          if (p) openModal(p);
+        });
+      });
+
+      grid.querySelectorAll("[data-view]").forEach(btn=>{
+        btn.addEventListener("click", (e)=>{
+          e.stopPropagation();
+          const sku = btn.getAttribute("data-view");
+          const p = PRODUCTS.find(x=>x.sku===sku);
+          if (p) openModal(p);
+        });
+      });
+
+      grid.querySelectorAll("[data-add]").forEach(btn=>{
+        btn.addEventListener("click", (e)=>{
+          e.stopPropagation();
+          const sku = btn.getAttribute("data-add");
+          const p = PRODUCTS.find(x=>x.sku===sku);
+          if (p) addToInquiry(p);
+        });
+      });
+    }
+
+    // Events
+    q.addEventListener("input", render);
+    sort.addEventListener("change", render);
+    perPage.addEventListener("change", render);
+    resetBtn.addEventListener("click", ()=>{
+      q.value = "";
+      sort.value = "featured";
+      perPage.value = "16";
+      render();
+    });
+
+    viewInquiryBtn.addEventListener("click", ()=>{
+      const items = getInquiry();
+      if (!items.length) return alert("Inquiry is empty.");
+      const list = items.map(x => `• ${x.sku} — ${x.name}`).join("\n");
+      alert("Inquiry Items:\n\n" + list);
+    });
+
+    inquiryChip.addEventListener("click", ()=>{
+      viewInquiryBtn.click();
+    });
+
+    mClose.addEventListener("click", closeModal);
+    modalBackdrop.addEventListener("click", (e)=>{
+      if (e.target === modalBackdrop) closeModal();
+    });
+    document.addEventListener("keydown", (e)=>{
+      if (e.key === "Escape") closeModal();
+    });
+
+    mAddInquiry.addEventListener("click", ()=>{
+      if (currentModalProduct) addToInquiry(currentModalProduct);
+    });
+    mCopySku.addEventListener("click", async ()=>{
+      if (!currentModalProduct) return;
+      try{
+        await navigator.clipboard.writeText(currentModalProduct.sku);
+        alert("Copied: " + currentModalProduct.sku);
+      }catch{
+        alert("Copy failed. SKU: " + currentModalProduct.sku);
+      }
+    });
+
+    // Initial
+    updateInquiryUI();
+    render();
+  </script>
 </body>
 </html>
-
