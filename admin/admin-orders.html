@@ -2,171 +2,133 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Orders Management | Britium Admin</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Orders | Britium Admin</title>
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --bg-main: #0b0b0b;
-      --bg-panel: #141414;
-      --gold: #c6a87c;
-      --border: rgba(255,255,255,0.1);
-      --text-main: #ffffff;
-      --text-muted: #9a9a9a;
+    body{
+      margin:0;
+      font-family:Inter, sans-serif;
+      background:#f8fafc;
+      color:#0f172a;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Jost', sans-serif;
-      background-color: var(--bg-main);
-      color: var(--text-main);
-      display: flex;
-      min-height: 100vh;
+    main{
+      margin-left:240px;
+      padding:110px 40px 40px;
     }
 
-    /* SIDEBAR */
-    .sidebar {
-      width: 260px;
-      background-color: #080808;
-      border-right: 1px solid var(--border);
-      padding: 30px 20px;
+    h1{
+      font-size:1.8rem;
+      margin-bottom:8px;
     }
 
-    .brand {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
-      color: var(--gold);
-      margin-bottom: 40px;
-      text-align: center;
+    .muted{
+      color:#64748b;
+      margin-bottom:30px;
     }
 
-    .nav-links a {
-      display: block;
-      padding: 12px 15px;
-      color: var(--text-muted);
-      text-decoration: none;
-      font-size: 0.95rem;
-      border-radius: 6px;
-      margin-bottom: 10px;
-      transition: 0.3s;
+    /* FILTER BAR */
+    .filters{
+      display:flex;
+      gap:16px;
+      margin-bottom:25px;
+      flex-wrap:wrap;
     }
 
-    .nav-links a:hover,
-    .nav-links a.active {
-      background-color: rgba(198,168,124,0.15);
-      color: var(--gold);
-    }
-
-    /* MAIN */
-    .main {
-      flex: 1;
-      padding: 40px;
-    }
-
-    .header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 30px;
-    }
-
-    .header h1 {
-      font-size: 1.7rem;
-      font-weight: 500;
+    .filters input,
+    .filters select{
+      padding:10px 12px;
+      border-radius:8px;
+      border:1px solid #e5e7eb;
+      font-size:.9rem;
+      outline:none;
     }
 
     /* TABLE */
-    .table-wrapper {
-      background-color: var(--bg-panel);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      overflow-x: auto;
+    .panel{
+      background:#fff;
+      border-radius:14px;
+      border:1px solid #e5e7eb;
+      overflow:hidden;
     }
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
+    table{
+      width:100%;
+      border-collapse:collapse;
+      font-size:.95rem;
     }
 
-    th, td {
-      padding: 15px;
-      text-align: left;
-      font-size: 0.9rem;
-      border-bottom: 1px solid var(--border);
+    th, td{
+      padding:14px 14px;
+      border-bottom:1px solid #e5e7eb;
+      text-align:left;
     }
 
-    th {
-      color: var(--gold);
-      text-transform: uppercase;
-      font-size: 0.8rem;
-      letter-spacing: 1px;
+    th{
+      text-transform:uppercase;
+      font-size:.75rem;
+      letter-spacing:.08em;
+      color:#64748b;
     }
 
-    td {
-      color: var(--text-muted);
+    tr:hover td{
+      background:#f9fafb;
     }
 
-    tr:hover td {
-      background-color: rgba(198,168,124,0.05);
+    .status{
+      padding:4px 10px;
+      border-radius:999px;
+      font-size:.75rem;
+      font-weight:600;
     }
 
-    .status {
-      padding: 4px 10px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 500;
-      display: inline-block;
+    .completed{ background:#dcfce7; color:#166534; }
+    .pending{ background:#fef3c7; color:#92400e; }
+    .cancelled{ background:#fee2e2; color:#991b1b; }
+
+    .btn-view{
+      border:1px solid #cbd5e1;
+      background:#fff;
+      padding:6px 12px;
+      border-radius:6px;
+      font-size:.8rem;
+      cursor:pointer;
     }
 
-    .pending { background-color: rgba(255,193,7,0.15); color: #ffc107; }
-    .completed { background-color: rgba(40,167,69,0.15); color: #28a745; }
-    .cancelled { background-color: rgba(220,53,69,0.15); color: #dc3545; }
-
-    .view-btn {
-      border: 1px solid var(--gold);
-      background: transparent;
-      color: var(--gold);
-      padding: 6px 12px;
-      font-size: 0.75rem;
-      cursor: pointer;
-      border-radius: 4px;
-      transition: 0.3s;
-    }
-
-    .view-btn:hover {
-      background-color: var(--gold);
-      color: #000;
+    .btn-view:hover{
+      background:#f1f5f9;
     }
   </style>
 </head>
 
 <body>
 
-  <!-- SIDEBAR -->
-  <aside class="sidebar">
-    <div class="brand">Britium Admin</div>
-    <nav class="nav-links">
-      <a href="admin-dashboard.html">Dashboard</a>
-      <a href="admin-orders.html" class="active">Orders</a>
-      <a href="admin-products.html">Products</a>
-      <a href="admin-customers.html">Customers</a>
-      <a href="admin-staff.html">Staff</a>
-      <a href="admin-settings.html">Settings</a>
-      <a href="../index.html">Logout</a>
-    </nav>
-  </aside>
+  <!-- ADMIN NAV (AUTO-INJECTED) -->
+  <div id="adminHeader"></div>
+  <div id="adminSidebar"></div>
 
-  <!-- MAIN -->
-  <main class="main">
-    <div class="header">
-      <h1>Orders Management</h1>
+  <main>
+    <h1>Orders</h1>
+    <p class="muted">View and manage all customer orders</p>
+
+    <div class="filters">
+      <input type="text" placeholder="Search Order ID / Customer">
+      <select>
+        <option value="">All Status</option>
+        <option>Completed</option>
+        <option>Pending</option>
+        <option>Cancelled</option>
+      </select>
+      <select>
+        <option>Newest First</option>
+        <option>Oldest First</option>
+      </select>
     </div>
 
-    <div class="table-wrapper">
+    <section class="panel">
       <table>
         <thead>
           <tr>
@@ -175,17 +137,17 @@
             <th>Date</th>
             <th>Total</th>
             <th>Status</th>
-            <th>Action</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>#BG10234</td>
-            <td>Kyaw Wanna</td>
-            <td>12 Jan 2025</td>
-            <td>MMK 485,000</td>
-            <td><span class="status completed">Completed</span></td>
-            <td><button class="view-btn">View</button></td>
+            <td>#BG10236</td>
+            <td>Min Thu</td>
+            <td>14 Jan 2025</td>
+            <td>MMK 168,000</td>
+            <td><span class="status cancelled">Cancelled</span></td>
+            <td><button class="btn-view">View</button></td>
           </tr>
           <tr>
             <td>#BG10235</td>
@@ -193,20 +155,23 @@
             <td>13 Jan 2025</td>
             <td>MMK 225,000</td>
             <td><span class="status pending">Pending</span></td>
-            <td><button class="view-btn">View</button></td>
+            <td><button class="btn-view">View</button></td>
           </tr>
           <tr>
-            <td>#BG10236</td>
-            <td>Min Thu</td>
-            <td>14 Jan 2025</td>
-            <td>MMK 168,000</td>
-            <td><span class="status cancelled">Cancelled</span></td>
-            <td><button class="view-btn">View</button></td>
+            <td>#BG10234</td>
+            <td>Kyaw Wanna</td>
+            <td>12 Jan 2025</td>
+            <td>MMK 485,000</td>
+            <td><span class="status completed">Completed</span></td>
+            <td><button class="btn-view">View</button></td>
           </tr>
         </tbody>
       </table>
-    </div>
+    </section>
   </main>
+
+  <!-- ADMIN SCRIPT -->
+  <script src="admin.js"></script>
 
 </body>
 </html>
