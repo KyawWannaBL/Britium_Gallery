@@ -3,34 +3,48 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Dashboard | Britium</title>
+  <title>Admin Dashboard | Britium Gallery</title>
 
+  <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    body{
-      margin:0;
-      font-family:Inter, sans-serif;
-      background:#f8fafc;
-      color:#0f172a;
+    :root{
+      --bg:#f8fafc;
+      --card:#ffffff;
+      --border:#e5e7eb;
+      --text:#0f172a;
+      --muted:#64748b;
     }
 
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family:Inter, system-ui, sans-serif;
+      background:var(--bg);
+      color:var(--text);
+    }
+
+    /* Layout offset for injected admin UI */
     main{
-      margin-left:240px;
-      padding:110px 40px 40px;
+      margin-left:260px;      /* sidebar width */
+      padding:90px 40px 40px; /* header height */
     }
 
     h1{
-      font-size:1.8rem;
-      margin-bottom:10px;
+      font-size:1.9rem;
+      margin:0 0 6px;
+      font-weight:700;
     }
 
     .muted{
-      color:#64748b;
+      color:var(--muted);
       margin-bottom:40px;
+      font-size:.95rem;
     }
 
-    /* DASHBOARD CARDS */
+    /* KPI CARDS */
     .stats{
       display:grid;
       grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
@@ -39,38 +53,39 @@
     }
 
     .card{
-      background:#fff;
+      background:var(--card);
       border-radius:14px;
       padding:24px;
-      border:1px solid #e5e7eb;
-      box-shadow:0 10px 30px rgba(0,0,0,.04);
+      border:1px solid var(--border);
+      box-shadow:0 8px 24px rgba(0,0,0,.04);
     }
 
     .card h3{
-      font-size:.85rem;
+      font-size:.78rem;
       text-transform:uppercase;
-      letter-spacing:.08em;
-      color:#64748b;
+      letter-spacing:.12em;
+      color:var(--muted);
       margin-bottom:10px;
+      font-weight:600;
     }
 
     .card span{
-      font-size:2rem;
+      font-size:2.1rem;
       font-weight:700;
-      color:#0f172a;
     }
 
-    /* ACTIVITY */
+    /* RECENT ORDERS PANEL */
     .panel{
-      background:#fff;
+      background:var(--card);
       border-radius:14px;
-      padding:30px;
-      border:1px solid #e5e7eb;
+      padding:28px;
+      border:1px solid var(--border);
     }
 
     .panel h2{
-      font-size:1.3rem;
-      margin-bottom:20px;
+      font-size:1.25rem;
+      margin:0 0 20px;
+      font-weight:600;
     }
 
     table{
@@ -81,59 +96,87 @@
 
     th, td{
       padding:14px 10px;
-      border-bottom:1px solid #e5e7eb;
+      border-bottom:1px solid var(--border);
       text-align:left;
+      white-space:nowrap;
     }
 
     th{
+      font-size:.72rem;
       text-transform:uppercase;
-      font-size:.75rem;
-      color:#64748b;
-      letter-spacing:.08em;
+      letter-spacing:.12em;
+      color:var(--muted);
+      font-weight:600;
+    }
+
+    tr:last-child td{
+      border-bottom:none;
     }
 
     .status{
-      padding:4px 10px;
+      padding:4px 12px;
       border-radius:999px;
-      font-size:.75rem;
-      font-weight:600;
+      font-size:.72rem;
+      font-weight:700;
+      text-transform:uppercase;
     }
 
     .completed{ background:#dcfce7; color:#166534; }
     .pending{ background:#fef3c7; color:#92400e; }
     .cancelled{ background:#fee2e2; color:#991b1b; }
+
+    /* Responsive */
+    @media(max-width:1024px){
+      main{
+        margin-left:72px; /* collapsed sidebar */
+        padding:90px 24px 40px;
+      }
+    }
+
+    @media(max-width:768px){
+      main{
+        margin-left:0;
+        padding:90px 16px 40px;
+      }
+    }
   </style>
 </head>
 
 <body>
 
-  <!-- ADMIN NAV (AUTO-INJECTED) -->
+  <!-- ADMIN UI (Injected by admin.js) -->
   <div id="adminHeader"></div>
   <div id="adminSidebar"></div>
 
+  <!-- MAIN CONTENT -->
   <main>
     <h1>Dashboard</h1>
-    <p class="muted">Overview of store performance and activity</p>
+    <p class="muted">Overview of store performance and recent activity</p>
 
+    <!-- KPI STATS -->
     <section class="stats">
       <div class="card">
         <h3>Total Orders</h3>
         <span>1,284</span>
       </div>
+
       <div class="card">
         <h3>Total Revenue</h3>
         <span>MMK 385M</span>
       </div>
+
       <div class="card">
         <h3>Products</h3>
         <span>412</span>
       </div>
+
       <div class="card">
         <h3>Customers</h3>
         <span>3,976</span>
       </div>
     </section>
 
+    <!-- RECENT ORDERS -->
     <section class="panel">
       <h2>Recent Orders</h2>
 
@@ -174,8 +217,8 @@
     </section>
   </main>
 
-  <!-- ADMIN SCRIPT -->
-  <script src="admin.js"></script>
+  <!-- ADMIN CONTROLLER -->
+  <script src="../admin.js"></script>
 
 </body>
 </html>
