@@ -1,72 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>About | Britium Gallery</title>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
-<style>
-body{margin:0;background:#120e0b;color:#eee;font-family:Jost}
-header{padding:25px 60px;display:flex;justify-content:space-between}
-nav a{color:#fff;margin:0 20px;text-transform:uppercase}
-.container{max-width:900px;margin:80px auto;text-align:center}
-h1{font-family:Playfair Display;font-size:3rem}
-p{color:#ccc;line-height:1.8}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us | Britium Gallery</title>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #120e0b;
+      --bg-section: #1a120d;
+      --text-light: #f2f2f2;
+      --text-muted: #c9c9c9;
+      --gold: #c6a87c;
+      --gold-dark: #b5904b;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-light);
+      line-height: 1.7;
+    }
+
+    a { text-decoration: none; color: inherit; }
+
+    /* Layout */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 80px 20px;
+    }
+
+    /* Hero */
+    .about-hero {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .about-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      margin-bottom: 20px;
+    }
+
+    .about-hero p {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    /* Content Grid */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      margin-bottom: 25px;
+      color: var(--text-muted);
+      text-align: justify;
+    }
+
+    .values {
+      margin-top: 30px;
+    }
+
+    .value-item {
+      margin-bottom: 15px;
+    }
+
+    .value-title {
+      font-weight: 600;
+      color: var(--text-light);
+    }
+
+    .value-desc {
+      color: var(--text-muted);
+    }
+
+    /* Visual Panel */
+    .about-visual {
+      background: var(--bg-section);
+      border: 1px solid rgba(198,168,124,0.25);
+      padding: 40px;
+      border-radius: 12px;
+    }
+
+    .about-visual h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      margin-bottom: 15px;
+      color: var(--gold);
+    }
+
+    .about-visual p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Signature Section */
+    .signature {
+      margin-top: 100px;
+      text-align: center;
+      padding: 80px 20px;
+      background: linear-gradient(180deg, #1a120d, #120e0b);
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .signature h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--gold);
+      margin-bottom: 10px;
+    }
+
+    .signature h3 {
+      font-size: 1.2rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-hero h1 {
+        font-size: 2.4rem;
+      }
+
+      .signature h2 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
-  <strong>BRITIUM<br><small>GALLERY</small></strong>
-   <nav class="hidden xl:flex gap-6 text-sm font-semibold text-slate-200 items-center">
-      <a href="index.html" class="text-[#FFC700]">Home</a>
-      <a href="express.html" class="hover:text-[#FFC700] transition">Britium Express</a>
-      <a href="about.html" class="hover:text-[#FFC700] transition">About</a>
-      <a href="team.html" class="hover:text-[#FFC700] transition">Team</a>
-      <a href="careers.html" class="hover:text-[#FFC700] transition">Careers</a>
-      <a href="capabilities.html" class="hover:text-[#FFC700] transition">Capabilities</a>
-      <a href="solutions.html" class="hover:text-[#FFC700] transition">Solutions</a>
-      <a href="products.html" class="hover:text-[#FFC700] transition">Products</a>
-      <a href="markets.html" class="hover:text-[#FFC700] transition">Markets</a>
-      <a href="gallery.html" class="hover:text-[#FFC700] transition">Gallery</a>
-      <a href="contact.html" class="hover:text-[#FFC700] transition">Contact</a>
-      <a href="chat.html" class="px-4 py-2 rounded-md bg-[#FFC700]/10 text-[#FFC700] border border-[#FFC700]/20 hover:bg-[#FFC700]/20 transition">Ask AI</a>
-    </nav>
-    <button id="mobile-toggle" class="xl:hidden text-white text-3xl">☰</button>
-  </div>
-</header>
+  <!-- NAV (Injected by nav.js) -->
+  <div id="siteHeader"></div>
 
-<div id="mobile-menu-container" class="fixed inset-0 z-40 xl:hidden hidden">
-  <div id="mobile-menu-overlay" class="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"></div>
-  <nav id="mobile-menu" class="fixed top-0 right-0 h-full w-72 bg-[#0a192f] p-8 border-l border-[#FFC700]/30 transform translate-x-full transition-transform duration-300 overflow-y-auto">
-    <button id="mobile-menu-close" class="absolute top-4 right-4 text-white text-3xl">×</button>
-    <div class="flex flex-col gap-y-6 mt-16 text-lg text-white font-medium">
-      <a href="index.html" class="text-[#FFC700]">Home</a>
-      <a href="express.html">Britium Express</a>
-      <a href="about.html">About</a>
-      <a href="team.html">Team</a>
-      <a href="careers.html">Careers</a>
-      <a href="capabilities.html">Capabilities</a>
-      <a href="solutions.html">Solutions</a>
-      <a href="products.html">Products</a>
-      <a href="markets.html">Markets</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
-      <a href="chat.html" class="bg-[#FFC700] text-black text-center py-2 rounded font-bold">Chat with AI</a>
-    </div>
-  </nav>
-</div>
-</header>
+  <main class="container">
 
-<section class="container">
-  <h1>About Britium Gallery</h1>
-  <p>
-    Britium Gallery curates luxury handbags that merge timeless design
-    with modern sophistication. Every piece reflects craftsmanship,
-    authenticity, and purpose.
-  </p>
-</section>
+    <!-- HERO -->
+    <section class="about-hero">
+      <h1>About Us</h1>
+      <p>
+        Britium Gallery is a curated luxury destination dedicated to timeless design,
+        refined craftsmanship, and modern sophistication. We connect discerning clients
+        with pieces that transcend trends.
+      </p>
+    </section>
+
+    <!-- CONTENT -->
+    <section class="about-grid">
+
+      <div class="about-text">
+        <h2>Our Story</h2>
+        <p>
+          Britium Gallery began as a boutique vision — a desire to bring together elegance,
+          authenticity, and modern accessibility. What started as a carefully curated
+          collection has evolved into a digital-first luxury platform trusted by customers
+          worldwide.
+        </p>
+
+        <p>
+          Every product is selected for its story, craftsmanship, and longevity. We believe
+          luxury should feel personal, effortless, and enduring.
+        </p>
+
+        <div class="values">
+          <div class="value-item">
+            <span class="value-title">Elegance in Simplicity — </span>
+            <span class="value-desc">Luxury without excess.</span>
+          </div>
+
+          <div class="value-item">
+            <span class="value-title">Craftsmanship — </span>
+            <span class="value-desc">Designed with purpose and care.</span>
+          </div>
+
+          <div class="value-item">
+            <span class="value-title">Customer-First — </span>
+            <span class="value-desc">Seamless and personal experiences.</span>
+          </div>
+
+          <div class="value-item">
+            <span class="value-title">Sustainability — </span>
+            <span class="value-desc">Responsible, long-lasting curation.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="about-visual">
+        <h3>Why Britium Gallery</h3>
+        <p>
+          We are not a marketplace — we are a gallery.
+          Every item reflects balance, heritage, and contemporary relevance.
+          Our goal is to deliver luxury with confidence, care, and clarity.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- BRAND SIGNATURE -->
+  <section class="signature">
+    <h2>BRITIUM GALLERY</h2>
+    <h3>Luxury Delivered With Intention</h3>
+  </section>
+
+  <!-- FOOTER (Injected by nav.js) -->
+  <div id="siteFooter"></div>
+
+  <!-- NAV SCRIPT -->
+  <script src="nav.js"></script>
 
 </body>
 </html>
-
