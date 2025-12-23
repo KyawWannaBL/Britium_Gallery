@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Create Account | Britium Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:Jost;background:#fbf6f1}
+.box{max-width:420px;margin:90px auto;background:#fff;padding:36px;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.08)}
+input,button{width:100%;padding:14px;border-radius:10px;border:1px solid #ddd;margin-bottom:14px}
+button{background:#000;color:#fff;font-weight:700;border:none;cursor:pointer}
+.notice{display:none;margin-top:14px;background:#f8fafc;border:1px dashed #cbd5e1;padding:12px}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>Create Account</h2>
+
+<form id="form">
+  <input id="name" placeholder="Full Name" required>
+  <input id="email" type="email" placeholder="Email" required>
+  <input id="password" type="password" placeholder="Password (min 6)" required>
+  <button type="submit">Create Account</button>
+</form>
+
+<div id="notice" class="notice"></div>
+<p><a href="/customer/login.html">Login</a></p>
+</div>
+
+<script src="/assets/js/customer-auth.js"></script>
+<script>
+document.getElementById("form").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const name = name.value.trim();
+  const email = email.value.trim().toLowerCase();
+  const password = password.value;
+
+  if (password.length < 6) return alert("Password too short");
+
+  const users = getUsers();
+  if (users.some(u => u.email === email)) return alert("Email exists");
+
+  users.push({
+    id: uid(),
+    name, email, password,
+    role:"customer",
+    emailVerified:false,
+    createdAt:new Date().toISOString()
+  });
+
+  saveUsers(users);
+
+  const t = createVerifyToken(email);
+  notice.style.display="block";
+  notice.innerHTML = `
+    Account created.<br>
+    <a href="/customer/verify-email.html?token=${t}">
+      Verify Email (Mock)
+    </a>`;
+});
+</script>
+</body>
+</html>
