@@ -175,8 +175,15 @@
   <!-- STANDARD FOOTER -->
   <div id="siteFooter"></div>
 
-  <!-- NAV SCRIPT -->
-  <script src="nav.js"></script>
+<script src="/assets/js/customer-auth.js"></script>
+<script>
+const s = getSession();
+if (!s) location.href="/customer/login.html";
+document.getElementById("hello").textContent = `Welcome ${s.name}`;
+logoutBtn.onclick = () => { logoutCustomer(); location.href="/customer/login.html"; };
+</script>
+
 
 </body>
 </html>
+
