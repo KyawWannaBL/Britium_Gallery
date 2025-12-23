@@ -1,291 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Create Account | Britium Gallery</title>
+<meta charset="UTF-8">
+<title>Create Account | Britium Gallery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Playfair+Display:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --bg-cream: #fbf6f1;
-      --text-black: #111;
-      --text-grey: #666;
-      --border: rgba(0,0,0,0.15);
-      --btn-black: #000;
-    }
-
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Jost', sans-serif;
-      background-color: var(--bg-cream);
-      color: var(--text-black);
-      line-height: 1.6;
-    }
-
-    a { color: inherit; text-decoration: none; }
-
-    /* ---------- HEADER ---------- */
-    header {
-      padding: 25px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-
-    .logo span {
-      display: block;
-      font-size: 0.8rem;
-      font-weight: 400;
-      letter-spacing: 4px;
-      margin-top: 3px;
-    }
-
-    nav ul {
-      display: flex;
-      gap: 40px;
-      list-style: none;
-    }
-
-    nav a {
-      font-size: 0.9rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    /* ---------- REGISTER CONTAINER ---------- */
-    .register-wrapper {
-      max-width: 480px;
-      margin: 80px auto;
-      padding: 45px 35px;
-      background: rgba(255,255,255,0.75);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      backdrop-filter: blur(10px);
-      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
-    }
-
-    .register-header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-
-    .register-header h1 {
-      font-family: 'Playfair Display', serif;
-      font-size: 2.2rem;
-      font-weight: 600;
-      margin-bottom: 10px;
-    }
-
-    .register-header p {
-      font-size: 0.95rem;
-      color: var(--text-grey);
-    }
-
-    /* ---------- FORM ---------- */
-    form {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-
-    label {
-      font-size: 0.9rem;
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    input {
-      width: 100%;
-      padding: 14px;
-      border-radius: 6px;
-      border: 1px solid var(--border);
-      font-family: inherit;
-      font-size: 1rem;
-      background: #fff;
-    }
-
-    input:focus {
-      outline: none;
-      border-color: #000;
-    }
-
-    .form-row {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 15px;
-    }
-
-    .terms {
-      font-size: 0.85rem;
-      color: var(--text-grey);
-    }
-
-    .terms input {
-      width: auto;
-      margin-right: 6px;
-    }
-
-    .terms a {
-      text-decoration: underline;
-      font-weight: 500;
-    }
-
-    .btn-register {
-      background-color: var(--btn-black);
-      color: #fff;
-      border: none;
-      padding: 15px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: 0.3s;
-      margin-top: 10px;
-    }
-
-    .btn-register:hover {
-      background-color: #333;
-    }
-
-    .divider {
-      text-align: center;
-      font-size: 0.85rem;
-      color: var(--text-grey);
-      margin: 10px 0;
-    }
-
-    .btn-google {
-      border: 1px solid var(--border);
-      background: transparent;
-      padding: 14px;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      cursor: pointer;
-    }
-
-    .login-link {
-      text-align: center;
-      font-size: 0.9rem;
-      margin-top: 20px;
-    }
-
-    .login-link a {
-      text-decoration: underline;
-      font-weight: 500;
-    }
-
-    /* ---------- FOOTER ---------- */
-    footer {
-      text-align: center;
-      padding: 40px 20px;
-      font-size: 0.8rem;
-      color: #888;
-    }
-
-    /* ---------- RESPONSIVE ---------- */
-    @media (max-width: 768px) {
-      header {
-        padding: 20px;
-      }
-      nav ul {
-        display: none;
-      }
-      .register-wrapper {
-        margin: 50px 20px;
-      }
-      .form-row {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+<style>
+body{
+  margin:0;
+  font-family:Jost,sans-serif;
+  background:#fbf6f1;
+}
+.container{
+  max-width:420px;
+  margin:100px auto;
+  background:#fff;
+  padding:40px;
+  border-radius:14px;
+  box-shadow:0 20px 50px rgba(0,0,0,.08);
+}
+h1{text-align:center;margin-bottom:8px}
+p{text-align:center;color:#777;margin-bottom:30px}
+input,button{
+  width:100%;
+  padding:14px;
+  margin-bottom:16px;
+  border-radius:10px;
+  border:1px solid #ddd;
+  font-size:1rem;
+}
+button{
+  background:#000;
+  color:#fff;
+  border:none;
+  font-weight:600;
+  cursor:pointer;
+}
+button:hover{opacity:.85}
+.small{text-align:center;font-size:.9rem}
+.notice{
+  display:none;
+  background:#f8fafc;
+  border:1px dashed #cbd5e1;
+  border-radius:10px;
+  padding:12px;
+  margin-top:10px;
+  font-size:.9rem;
+}
+</style>
 </head>
 
 <body>
 
-  <header>
-    <div class="logo">
-      BRITIUM
-      <span>GALLERY</span>
-    </div>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="shop.html">Shop</a></li>
-        <li><a href="about.html">About</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<div class="container">
+  <h1>Create Account</h1>
+  <p>Join Britium Gallery</p>
 
-  <main class="register-wrapper">
-    <div class="register-header">
-      <h1>Create Account</h1>
-      <p>Join Britium Gallery for a personalized luxury experience</p>
-    </div>
+  <form id="registerForm">
+    <input type="text" id="name" placeholder="Full Name" required>
+    <input type="email" id="email" placeholder="Email Address" required>
+    <input type="password" id="password" placeholder="Password" required>
+    <button type="submit">Create Account</button>
+  </form>
 
-    <form action="#" method="POST">
+  <div id="notice" class="notice"></div>
 
-      <div class="form-row">
-        <div>
-          <label>First Name</label>
-          <input type="text" placeholder="First name" required>
-        </div>
-        <div>
-          <label>Last Name</label>
-          <input type="text" placeholder="Last name" required>
-        </div>
-      </div>
+  <div class="small">
+    Already have an account? <a href="login.html">Login</a>
+  </div>
+</div>
 
-      <div>
-        <label>Email Address</label>
-        <input type="email" placeholder="you@example.com" required>
-      </div>
+<script>
+/* =========================
+   CUSTOMER CREATE ACCOUNT
+   (Mock – backend-ready)
+========================= */
 
-      <div>
-        <label>Password</label>
-        <input type="password" placeholder="Create a password" required>
-      </div>
+const USERS_KEY = "britium_users";
 
-      <div>
-        <label>Confirm Password</label>
-        <input type="password" placeholder="Confirm password" required>
-      </div>
+function getUsers(){
+  return JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
+}
+function saveUsers(users){
+  localStorage.setItem(USERS_KEY, JSON.stringify(users));
+}
 
-      <div class="terms">
-        <input type="checkbox" required>
-        I agree to the <a href="#">Terms & Conditions</a> and <a href="#">Privacy Policy</a>
-      </div>
+document.getElementById("registerForm").addEventListener("submit", function(e){
+  e.preventDefault(); // 🔑 REQUIRED
 
-      <button type="submit" class="btn-register">Create Account</button>
+  const name = document.getElementById("name").value.trim();
+  const email = document.getElementById("email").value.trim().toLowerCase();
+  const password = document.getElementById("password").value;
 
-      <div class="divider">or</div>
+  if (!name || !email || !password) {
+    alert("Please fill all fields");
+    return;
+  }
 
-      <button type="button" class="btn-google">Sign up with Google</button>
+  const users = getUsers();
 
-      <div class="login-link">
-        Already have an account?
-        <a href="customer-login.html">Login</a>
-      </div>
-    </form>
-  </main>
+  if (users.find(u => u.email === email)) {
+    alert("Email already registered");
+    return;
+  }
 
-  <footer>
-    © 2025 Britium Gallery. All Rights Reserved.
-  </footer>
+  users.push({
+    id: "CUS-" + Date.now(),
+    name,
+    email,
+    password, // mock only (backend should hash)
+    role: "customer",
+    createdAt: new Date().toISOString()
+  });
+
+  saveUsers(users);
+
+  const notice = document.getElementById("notice");
+  notice.style.display = "block";
+  notice.innerHTML = "<b>Account created successfully!</b><br>Redirecting to login…";
+
+  setTimeout(() => {
+    location.href = "login.html";
+  }, 1200);
+});
+</script>
 
 </body>
 </html>
