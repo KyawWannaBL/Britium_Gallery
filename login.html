@@ -210,8 +210,24 @@
   <!-- FOOTER -->
   <div id="siteFooter"></div>
 
-  <!-- NAV SCRIPT -->
-  <script src="nav.js"></script>
+  <script src="/assets/js/customer-auth.js"></script>
+<script>
+document.getElementById("loginForm").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const email = email.value.trim().toLowerCase();
+  const password = password.value;
+
+  const u = getUsers().find(x => x.email === email);
+  if (!u || u.password !== password) return alert("Invalid login");
+  if (!u.emailVerified) return alert("Verify email first");
+
+  createSession(u);
+  location.href="/customer/dashboard.html";
+});
+</script>
+
 
 </body>
 </html>
+
