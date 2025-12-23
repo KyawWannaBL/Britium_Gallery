@@ -126,42 +126,35 @@
       Authorized staff only
     </div>
   </div>
-<script src="../admin.js"></script>
-  <script>
-    const USERS = {
-      "admin@britium.com":   { password: "admin123", role: "admin" },
-      "manager@britium.com": { password: "manager123", role: "manager" },
-      "staff@britium.com":   { password: "staff123", role: "staff" }
-    };
+<script src="/admin/assets/admin-auth.js"></script>
+<script>
+const ADMINS = {
+  "admin@britium.com":   { password:"admin123", role:"admin" },
+  "manager@britium.com":{ password:"manager123", role:"manager" },
+  "staff@britium.com":  { password:"staff123", role:"staff" }
+};
 
-    // Redirect if already logged in
-    const existing = JSON.parse(localStorage.getItem("adminSession"));
-    if (existing && existing.expires > Date.now()) {
-      location.href = "/admin/dashboard/";
-    }
+document.getElementById("loginForm").addEventListener("submit", e => {
+  e.preventDefault();
 
-    document.getElementById("loginForm").addEventListener("submit", e => {
-      e.preventDefault();
+  const email = email.value.trim().toLowerCase();
+  const password = password.value;
+  const user = ADMINS[email];
 
-      const email = document.getElementById("emailInput").value.trim();
-      const password = document.getElementById("passwordInput").value.trim();
+  if (!user || user.password !== password) {
+    alert("Invalid credentials");
+    return;
+  }
 
-      const user = USERS[email];
+  createAdminSession({
+    email,
+    role: user.role,
+    name: email.split("@")[0]
+  });
 
-      if (!user || user.password !== password) {
-        alert("Invalid credentials");
-        return;
-      }
-
-      localStorage.setItem("adminSession", JSON.stringify({
-        email,
-        role: user.role,
-        expires: Date.now() + (60 * 60 * 1000) // 1 hour
-      }));
-
-      location.href = "/admin/dashboard/";
-    });
-  </script>
+  location.href = "/admin/dashboard/index.html";
+});
+</script>
 
 </body>
 </html>
