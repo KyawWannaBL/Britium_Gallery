@@ -13,9 +13,6 @@ const ADMIN_PERMISSIONS = {
   viewer:  ["dashboard","report"]
 };
 
-/* ---------- helpers ---------- */
-const now = () => Date.now();
-
 function getAdminSession() {
   const s = JSON.parse(localStorage.getItem(ADMIN_SESSION_KEY) || "null");
   if (!s || now() > s.expiresAt) {
@@ -68,11 +65,12 @@ function requireAdmin() {
   return session;
 }
 
-/* ---------- UI helpers ---------- */
-function hideUnauthorizedMenu(role) {
-  document.querySelectorAll("[data-admin-page]").forEach(el => {
-    if (!ADMIN_PERMISSIONS[role]?.includes(el.dataset.adminPage)) {
-      el.style.display = "none";
-    }
+/* ---------- helpers ---------- */
+const now = () => Date.now();
+<script src="/admin/assets/admin-auth.js"></script>
+<script>
+const session = requireAdmin();
+if (session) hideUnauthorizedMenu(session.role);
+</script>
   });
 }
