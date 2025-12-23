@@ -1,103 +1,92 @@
 /* =========================
-   CUSTOMER AUTH (Mock)
-   Backend-ready wrapper:
-   - swap storage calls with API later
+   CUSTOMER AUTH (MOCK)
+   Backend-ready
 ========================= */
 
-const CUSTOMER_USERS_KEY = "britium_users";
-const CUSTOMER_SESSION_KEY = "britium_customer_session";
-const EMAIL_VERIFY_KEY = "britium_email_verification_tokens";
-const RESET_KEY = "britium_password_reset_tokens";
+const USERS_KEY = "britium_customers";
+const SESSION_KEY = "britium_customer_session";
+const VERIFY_KEY = "britium_email_tokens";
+const RESET_KEY  = "britium_reset_tokens";
 
-/** ---- Storage helpers (replace later with API) ---- */
-function getCustomers() {
-  return JSON.parse(localStorage.getItem(CUSTOMER_USERS_KEY) || "[]");
-}
-function saveCustomers(users) {
-  localStorage.setItem(CUSTOMER_USERS_KEY, JSON.stringify(users));
-}
+/* ---------- helpers ---------- */
+const now = () => Date.now();
+const uid = (p="CUS") => `${p}-${now()}`;
+const token = () => Math.random().toString(36).slice(2) + now().toString(36);
 
-function createSession(session, ttlMs) {
-  const payload = {
-    ...session,
-    expiresAt: Date.now() + ttlMs
-  };
-  localStorage.setItem(CUSTOMER_SESSION_KEY, JSON.stringify(payload));
-  return payload;
+/* ---------- storage ---------- */
+const getUsers = () => JSON.parse(localStorage.getItem(USERS_KEY) || "[]");
+const saveUsers = (u) => localStorage.setItem(USERS_KEY, JSON.stringify(u));
+
+/* ---------- session ---------- */
+function createSession(user, ttl = 2 * 60 * 60 * 1000) {
+  localStorage.setItem(SESSION_KEY, JSON.stringify({
+    ...user,
+    expiresAt: now() + ttl
+  }));
 }
 
 function getSession() {
-  const s = JSON.parse(localStorage.getItem(CUSTOMER_SESSION_KEY) || "null");
-  if (!s) return null;
-  if (Date.now() > s.expiresAt) {
-    localStorage.removeItem(CUSTOMER_SESSION_KEY);
+  const s = JSON.parse(localStorage.getItem(SESSION_KEY) || "null");
+  if (!s || now() > s.expiresAt) {
+    localStorage.removeItem(SESSION_KEY);
     return null;
   }
   return s;
 }
 
 function logoutCustomer() {
-  localStorage.removeItem(CUSTOMER_SESSION_KEY);
+  localStorage.removeItem(SESSION_KEY);
 }
 
-/** ---- Email verification mock ---- */
-function makeToken() {
-  return Math.random().toString(36).slice(2) + Date.now().toString(36);
+/* ---------- email verification ---------- */
+function createVerifyToken(email) {
+  const t = token();
+  const map = JSON.parse(localStorage.getItem(VERIFY_KEY) || "{}");
+  map[t] = { email, createdAt: now() };
+  localStorage.setItem(VERIFY_KEY, JSON.stringify(map));
+  return t;
 }
 
-function createEmailVerificationToken(email) {
-  const tokens = JSON.parse(localStorage.getItem(EMAIL_VERIFY_KEY) || "{}");
-  const token = makeToken();
-  tokens[token] = { email, createdAt: Date.now() };
-  localStorage.setItem(EMAIL_VERIFY_KEY, JSON.stringify(tokens));
-  return token;
+function verifyEmail(t) {
+  const map = JSON.parse(localStorage.getItem(VERIFY_KEY) || "{}");
+  if (!map[t]) return "Invalid or expired token.";
+
+  const users = getUsers();
+  const u = users.find(x => x.email === map[t].email);
+  if (!u) return "User not found.";
+
+  u.emailVerified = true;
+  saveUsers(users);
+
+  delete map[t];
+  localStorage.setItem(VERIFY_KEY, JSON.stringify(map));
+  return "Email verified successfully.";
 }
 
-function verifyEmailByToken(token) {
-  const tokens = JSON.parse(localStorage.getItem(EMAIL_VERIFY_KEY) || "{}");
-  const row = tokens[token];
-  if (!row) return { ok: false, message: "Invalid or expired token." };
-
-  const users = getCustomers();
-  const idx = users.findIndex(u => u.email === row.email);
-  if (idx === -1) return { ok: false, message: "User not found." };
-
-  users[idx].emailVerified = true;
-  saveCustomers(users);
-
-  delete tokens[token];
-  localStorage.setItem(EMAIL_VERIFY_KEY, JSON.stringify(tokens));
-
-  return { ok: true, message: "Email verified successfully." };
-}
-
-/** ---- Password reset mock ---- */
+/* ---------- password reset ---------- */
 function createResetToken(email) {
-  const users = getCustomers();
-  const exists = users.find(u => u.email === email);
-  if (!exists) return null;
+  const users = getUsers();
+  if (!users.some(u => u.email === email)) return null;
 
-  const tokens = JSON.parse(localStorage.getItem(RESET_KEY) || "{}");
-  const token = makeToken();
-  tokens[token] = { email, createdAt: Date.now() };
-  localStorage.setItem(RESET_KEY, JSON.stringify(tokens));
-  return token;
+  const t = token();
+  const map = JSON.parse(localStorage.getItem(RESET_KEY) || "{}");
+  map[t] = { email, createdAt: now() };
+  localStorage.setItem(RESET_KEY, JSON.stringify(map));
+  return t;
 }
 
-function resetPasswordByToken(token, newPassword) {
-  const tokens = JSON.parse(localStorage.getItem(RESET_KEY) || "{}");
-  const row = tokens[token];
-  if (!row) return { ok: false, message: "Invalid or expired token." };
+function resetPassword(t, pwd) {
+  const map = JSON.parse(localStorage.getItem(RESET_KEY) || "{}");
+  if (!map[t]) return "Invalid or expired token.";
 
-  const users = getCustomers();
-  const idx = users.findIndex(u => u.email === row.email);
-  if (idx === -1) return { ok: false, message: "User not found." };
+  const users = getUsers();
+  const u = users.find(x => x.email === map[t].email);
+  if (!u) return "User not found.";
 
-  users[idx].password = newPassword; // mock only (backend should hash)
-  saveCustomers(users);
+  u.password = pwd;
+  saveUsers(users);
 
-  delete tokens[token];
-  localStorage.setItem(RESET_KEY, JSON.stringify(tokens));
-
-  return { ok: true, message: "Password updated successfully." };
+  delete map[t];
+  localStorage.setItem(RESET_KEY, JSON.stringify(map));
+  return "Password updated successfully.";
 }
