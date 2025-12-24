@@ -14,7 +14,7 @@
         .sidebar h2 { color: #c6a87c; text-align: center; margin-bottom: 40px; }
         .menu-item { display: block; padding: 15px; color: #aaa; text-decoration: none; margin-bottom: 5px; border-radius: 6px; }
         .menu-item:hover, .menu-item.active { background: #333; color: #fff; }
-        .logout-btn { margin-top: auto; background: #c6a87c; color: #000; text-align: center; font-weight: bold; }
+        .logout-btn { margin-top: auto; background: #c6a87c; color: #000; text-align: center; font-weight: bold; cursor: pointer; }
 
         /* Main Content */
         .main-content { margin-left: 250px; padding: 40px; width: 100%; }
@@ -26,16 +26,11 @@
     </style>
 
     <script>
-        // 1. Check for the specific key we set in the login page
         const session = localStorage.getItem("britium_admin_session");
-
-        // 2. If missing, kick them back to login immediately
         if (!session) {
-            window.location.href = "/admin-login.html"; // Make sure this path points to your actual login file
+            // Use "../../" to go up 2 levels to the root where admin-login.html is
+            window.location.href = "../../admin-login.html"; 
         }
-
-        // 3. Optional: Parse user data to display name
-        const adminUser = JSON.parse(session || '{}');
     </script>
 </head>
 <body>
@@ -46,14 +41,14 @@
         <a href="#" class="menu-item">Orders</a>
         <a href="#" class="menu-item">Products</a>
         <a href="#" class="menu-item">Customers</a>
-        <a href="#" class="menu-item logout-btn" onclick="logout()">Logout</a>
+        <a href="javascript:void(0)" class="menu-item logout-btn" onclick="logout()">Logout</a>
     </div>
 
     <div class="main-content">
         <div class="header">
             <h1>Overview</h1>
             <div>
-                Welcome, <strong id="adminName">Admin</strong>
+                Welcome, <strong id="adminName">...</strong>
             </div>
         </div>
 
@@ -74,15 +69,23 @@
     </div>
 
     <script>
-        // Display Admin Name
-        document.getElementById("adminName").innerText = adminUser.name || "Staff";
+        // 1. Get the session again (we know it exists because of the check in <head>)
+        const currentSession = localStorage.getItem("britium_admin_session");
+        const adminUser = JSON.parse(currentSession || '{}');
 
-        // Logout Function
+        // 2. Display Name
+        const nameElement = document.getElementById("adminName");
+        if (nameElement) {
+            nameElement.innerText = adminUser.name || "Admin";
+        }
+
+        // 3. Logout Function
         function logout() {
-            // Destroy the specific ID card
-            localStorage.removeItem("britium_admin_session");
-            // Redirect to login
-            window.location.href = "/admin-login.html"; 
+            if(confirm("Are you sure you want to logout?")) {
+                localStorage.removeItem("britium_admin_session");
+                // Redirect back to root login page
+                window.location.href = "../../admin-login.html"; 
+            }
         }
     </script>
 
