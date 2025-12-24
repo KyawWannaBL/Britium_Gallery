@@ -1,25 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // 1. Detect Current Page Name
+  // 1. Detect Current Page Name (for "active" highlighting)
   const pathParts = location.pathname.split("/");
   const page = (pathParts.pop() || "index.html").toLowerCase();
 
-  // 2. Detect if we are inside a subfolder (like /customer/ or /admin/)
-  // This logic checks if the "parent" folder is NOT the root project folder
-  // For local files, we check if the URL contains specific folder names
+  // 2. Detect if we are inside a subfolder
+  // If the URL has "/customer/" or "/admin/", we are deep inside.
   const isInSubfolder = location.pathname.includes("/customer/") || 
                         location.pathname.includes("/admin/") || 
                         location.pathname.includes("/dashboard/");
 
   // 3. Set the "Go Up" prefix
-  // If in subfolder, add "../" to links. If not, add nothing.
+  // If we are deep, we need "../" to get back to the main folder.
   const prefix = isInSubfolder ? "../" : "";
 
   // Helper for Active Class
   const isActive = (file) => page === file.toLowerCase() ? "active" : "";
 
   /* =========================
-      HEADER
+      HEADER HTML
   ========================== */
   const headerHTML = `
   <style>
@@ -34,7 +33,12 @@ document.addEventListener("DOMContentLoaded", () => {
     .site-icons{ display:flex; gap:14px; align-items:center; color:var(--gold); font-size:1.1rem; }
     .site-icons a{ text-decoration:none; color:inherit; }
     .site-icons a:hover{ opacity:.85; }
-    @media(max-width:980px){ nav.site-nav ul{ display:none; } header.site-header{ padding:18px 18px; } }
+    
+    /* Mobile Menu Fix */
+    @media(max-width:980px){ 
+      nav.site-nav ul{ display:none; } 
+      header.site-header{ padding:18px 18px; } 
+    }
   </style>
 
   <header class="site-header">
@@ -49,35 +53,42 @@ document.addEventListener("DOMContentLoaded", () => {
         <li><a class="${isActive("new-arrivals.html")}" href="${prefix}new-arrivals.html">New Arrivals</a></li>
         <li><a class="${isActive("luxury-handbags.html")}" href="${prefix}luxury-handbags.html">Handbags</a></li>
         <li><a class="${isActive("gallery.html")}" href="${prefix}gallery.html">Gallery</a></li>
+        
+        <li><a class="${isActive("blog.html")}" href="${prefix}blog.html">Blog</a></li>
+        <li><a class="${isActive("faq.html")}" href="${prefix}faq.html">FAQ</a></li>
         <li><a class="${isActive("about.html")}" href="${prefix}about.html">About</a></li>
         <li><a class="${isActive("contact.html")}" href="${prefix}contact.html">Contact</a></li>
+        
         <li><a class="${isActive("login.html")}" href="${prefix}customer/login.html">Login</a></li>
       </ul>
     </nav>
 
     <div class="site-icons">
-      <a href="${prefix}search-results.html" title="Search">🔍</a>
+      <a href="${prefix}search.html" title="Search">🔍</a>
+      
       <a href="${prefix}customer/login.html" title="Account">👤</a>
+      
       <a href="${prefix}wishlist.html" title="Wishlist">♡</a>
-      <a href="${prefix}shopping-cart.html" title="Cart">🛒</a>
+      <a href="${prefix}cart.html" title="Cart">🛒</a>
     </div>
   </header>
   `;
 
   /* =========================
-      FOOTER
+      FOOTER HTML
   ========================== */
   const footerHTML = `
   <footer style="background:#0d0705; color:#777; text-align:center; padding:34px 20px; font-size:.8rem; border-top:1px solid rgba(255,255,255,.08); font-family:'Lato',sans-serif;">
     <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
     <p style="margin-top:10px;">
       <a href="${prefix}terms.html" style="color:#aaa;text-decoration:none">Terms</a> |
-      <a href="${prefix}privacy.html" style="color:#aaa;text-decoration:none">Privacy</a>
+      <a href="${prefix}privacy.html" style="color:#aaa;text-decoration:none">Privacy</a> |
+      <a href="${prefix}faq.html" style="color:#aaa;text-decoration:none">FAQ</a>
     </p>
   </footer>
   `;
 
-  // Inject
+  // Inject into page
   const headerTarget = document.getElementById("siteHeader");
   const footerTarget = document.getElementById("siteFooter");
 
