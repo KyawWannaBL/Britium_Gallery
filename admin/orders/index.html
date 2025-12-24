@@ -12,7 +12,7 @@
     body { margin:0; font-family:'Inter', sans-serif; background:#f8fafc; color:#0f172a; display:flex; }
     
     /* --- SIDEBAR --- */
-    .sidebar { width: 260px; background: #141414; color: #fff; height: 100vh; position: fixed; left: 0; top: 0; padding: 25px; box-sizing: border-box; display: flex; flex-direction: column; }
+    .sidebar { width: 260px; background: #141414; color: #fff; height: 100vh; position: fixed; left: 0; top: 0; padding: 25px; box-sizing: border-box; display: flex; flex-direction: column; z-index: 100; }
     .sidebar h2 { color: #c6a87c; text-align: center; margin-bottom: 40px; font-family: 'Jost', sans-serif; letter-spacing: 1px; }
     .nav-link { display: block; padding: 12px 15px; color: #aaa; text-decoration: none; margin-bottom: 5px; border-radius: 8px; transition: 0.2s; font-size: 0.95rem; }
     .nav-link:hover, .nav-link.active { background: #333; color: #fff; }
@@ -82,11 +82,15 @@
 
   <div class="sidebar">
     <h2>BRITIUM ADMIN</h2>
-    <a href="../dashboard/index.html" class="nav-link">Dashboard</a>
+    <a href="dashboard/index.html" class="nav-link">Dashboard</a>
+    
     <a href="orders.html" class="nav-link active">Orders</a>
+    
     <a href="products.html" class="nav-link">Products</a>
-    <a href="#" class="nav-link">Customers</a>
-    <a href="#" class="nav-link">Settings</a>
+    <a href="customers.html" class="nav-link">Customers</a>
+    <a href="reports.html" class="nav-link">Analytics</a>
+    <a href="staff.html" class="nav-link">Staff</a>
+    
     <a href="#" class="nav-link mt-auto" onclick="logout()">Logout</a>
   </div>
 
@@ -183,7 +187,6 @@
 
   <script>
     // --- MOCK DATA ---
-    // In a real app, this comes from a database. Here we use LocalStorage simulation.
     let orders = JSON.parse(localStorage.getItem('britium_orders')) || [
       { id: "BG10236", customer: "Min Thu", email: "min@test.com", phone:"0977889900", date: "2025-01-14", total: 168000, status: "Cancelled", items: [{name: "Leather Wallet", price: 168000}] },
       { id: "BG10235", customer: "Aye Myat", email: "aye@test.com", phone:"0911223344", date: "2025-01-13", total: 225000, status: "Pending", items: [{name: "Silk Scarf", price: 225000}] },
@@ -227,7 +230,6 @@
 
       currentOrderId = id;
 
-      // Populate Modal
       document.getElementById("modalOrderId").innerText = `Order #${order.id}`;
       document.getElementById("modalCustomer").innerText = order.customer;
       document.getElementById("modalDate").innerText = order.date;
@@ -235,7 +237,6 @@
       document.getElementById("modalPhone").innerText = order.phone;
       document.getElementById("modalTotal").innerText = `MMK ${order.total.toLocaleString()}`;
 
-      // Populate Items
       const list = document.getElementById("modalItemsList");
       list.innerHTML = "";
       order.items.forEach(item => {
