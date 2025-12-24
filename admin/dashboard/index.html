@@ -1,224 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Admin Dashboard | Britium Gallery</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Britium Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body { margin: 0; font-family: 'Jost', sans-serif; background: #f4f4f4; display: flex; }
+        
+        /* Sidebar */
+        .sidebar { width: 250px; background: #141414; color: #fff; height: 100vh; position: fixed; left: 0; top: 0; padding: 20px; }
+        .sidebar h2 { color: #c6a87c; text-align: center; margin-bottom: 40px; }
+        .menu-item { display: block; padding: 15px; color: #aaa; text-decoration: none; margin-bottom: 5px; border-radius: 6px; }
+        .menu-item:hover, .menu-item.active { background: #333; color: #fff; }
+        .logout-btn { margin-top: auto; background: #c6a87c; color: #000; text-align: center; font-weight: bold; }
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+        /* Main Content */
+        .main-content { margin-left: 250px; padding: 40px; width: 100%; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px; }
+        .card-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
+        .card { background: #fff; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        .card h3 { margin: 0 0 10px 0; color: #777; font-size: 0.9rem; }
+        .card .number { font-size: 2.5rem; font-weight: 600; color: #000; }
+    </style>
 
-  <style>
-    :root{
-      --bg:#f8fafc;
-      --card:#ffffff;
-      --border:#e5e7eb;
-      --text:#0f172a;
-      --muted:#64748b;
-    }
+    <script>
+        // 1. Check for the specific key we set in the login page
+        const session = localStorage.getItem("britium_admin_session");
 
-    *{ box-sizing:border-box; }
+        // 2. If missing, kick them back to login immediately
+        if (!session) {
+            window.location.href = "/admin-login.html"; // Make sure this path points to your actual login file
+        }
 
-    body{
-      margin:0;
-      font-family:Inter, system-ui, sans-serif;
-      background:var(--bg);
-      color:var(--text);
-    }
-
-    /* Layout offset for injected admin UI */
-    main{
-      margin-left:260px;      /* sidebar width */
-      padding:90px 40px 40px; /* header height */
-    }
-
-    h1{
-      font-size:1.9rem;
-      margin:0 0 6px;
-      font-weight:700;
-    }
-
-    .muted{
-      color:var(--muted);
-      margin-bottom:40px;
-      font-size:.95rem;
-    }
-
-    /* KPI CARDS */
-    .stats{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-      gap:24px;
-      margin-bottom:50px;
-    }
-
-    .card{
-      background:var(--card);
-      border-radius:14px;
-      padding:24px;
-      border:1px solid var(--border);
-      box-shadow:0 8px 24px rgba(0,0,0,.04);
-    }
-
-    .card h3{
-      font-size:.78rem;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:var(--muted);
-      margin-bottom:10px;
-      font-weight:600;
-    }
-
-    .card span{
-      font-size:2.1rem;
-      font-weight:700;
-    }
-
-    /* RECENT ORDERS PANEL */
-    .panel{
-      background:var(--card);
-      border-radius:14px;
-      padding:28px;
-      border:1px solid var(--border);
-    }
-
-    .panel h2{
-      font-size:1.25rem;
-      margin:0 0 20px;
-      font-weight:600;
-    }
-
-    table{
-      width:100%;
-      border-collapse:collapse;
-      font-size:.95rem;
-    }
-
-    th, td{
-      padding:14px 10px;
-      border-bottom:1px solid var(--border);
-      text-align:left;
-      white-space:nowrap;
-    }
-
-    th{
-      font-size:.72rem;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      color:var(--muted);
-      font-weight:600;
-    }
-
-    tr:last-child td{
-      border-bottom:none;
-    }
-
-    .status{
-      padding:4px 12px;
-      border-radius:999px;
-      font-size:.72rem;
-      font-weight:700;
-      text-transform:uppercase;
-    }
-
-    .completed{ background:#dcfce7; color:#166534; }
-    .pending{ background:#fef3c7; color:#92400e; }
-    .cancelled{ background:#fee2e2; color:#991b1b; }
-
-    /* Responsive */
-    @media(max-width:1024px){
-      main{
-        margin-left:72px; /* collapsed sidebar */
-        padding:90px 24px 40px;
-      }
-    }
-
-    @media(max-width:768px){
-      main{
-        margin-left:0;
-        padding:90px 16px 40px;
-      }
-    }
-  </style>
+        // 3. Optional: Parse user data to display name
+        const adminUser = JSON.parse(session || '{}');
+    </script>
 </head>
-
 <body>
 
-  <!-- ADMIN UI (Injected by admin.js) -->
-  <div id="adminHeader"></div>
-  <div id="adminSidebar"></div>
+    <div class="sidebar">
+        <h2>Britium Admin</h2>
+        <a href="#" class="menu-item active">Dashboard</a>
+        <a href="#" class="menu-item">Orders</a>
+        <a href="#" class="menu-item">Products</a>
+        <a href="#" class="menu-item">Customers</a>
+        <a href="#" class="menu-item logout-btn" onclick="logout()">Logout</a>
+    </div>
 
-  <!-- MAIN CONTENT -->
-  <main>
-    <h1>Dashboard</h1>
-    <p class="muted">Overview of store performance and recent activity</p>
+    <div class="main-content">
+        <div class="header">
+            <h1>Overview</h1>
+            <div>
+                Welcome, <strong id="adminName">Admin</strong>
+            </div>
+        </div>
 
-    <!-- KPI STATS -->
-    <section class="stats">
-      <div class="card">
-        <h3>Total Orders</h3>
-        <span>1,284</span>
-      </div>
+        <div class="card-grid">
+            <div class="card">
+                <h3>Total Sales</h3>
+                <div class="number">$24,500</div>
+            </div>
+            <div class="card">
+                <h3>Pending Orders</h3>
+                <div class="number">12</div>
+            </div>
+            <div class="card">
+                <h3>Active Users</h3>
+                <div class="number">1,204</div>
+            </div>
+        </div>
+    </div>
 
-      <div class="card">
-        <h3>Total Revenue</h3>
-        <span>MMK 385M</span>
-      </div>
+    <script>
+        // Display Admin Name
+        document.getElementById("adminName").innerText = adminUser.name || "Staff";
 
-      <div class="card">
-        <h3>Products</h3>
-        <span>412</span>
-      </div>
-
-      <div class="card">
-        <h3>Customers</h3>
-        <span>3,976</span>
-      </div>
-    </section>
-
-    <!-- RECENT ORDERS -->
-    <section class="panel">
-      <h2>Recent Orders</h2>
-
-      <table>
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Customer</th>
-            <th>Date</th>
-            <th>Total</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>#BG10236</td>
-            <td>Min Thu</td>
-            <td>14 Jan 2025</td>
-            <td>MMK 168,000</td>
-            <td><span class="status cancelled">Cancelled</span></td>
-          </tr>
-          <tr>
-            <td>#BG10235</td>
-            <td>Aye Myat</td>
-            <td>13 Jan 2025</td>
-            <td>MMK 225,000</td>
-            <td><span class="status pending">Pending</span></td>
-          </tr>
-          <tr>
-            <td>#BG10234</td>
-            <td>Kyaw Wanna</td>
-            <td>12 Jan 2025</td>
-            <td>MMK 485,000</td>
-            <td><span class="status completed">Completed</span></td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-  </main>
-
-  <!-- ADMIN CONTROLLER -->
-<script src="../admin.js"></script>
+        // Logout Function
+        function logout() {
+            // Destroy the specific ID card
+            localStorage.removeItem("britium_admin_session");
+            // Redirect to login
+            window.location.href = "/admin-login.html"; 
+        }
+    </script>
 
 </body>
 </html>
