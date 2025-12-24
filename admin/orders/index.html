@@ -9,42 +9,56 @@
 
   <style>
     /* --- RESET & LAYOUT --- */
-    body { margin:0; font-family:'Inter', sans-serif; background:#f8fafc; color:#0f172a; display:flex; }
+    :root {
+      --bg-dark: #141414;
+      --bg-light: #f4f6f8;
+      --white: #ffffff;
+      --text-dark: #333333;
+      --text-grey: #6b7280;
+      --border-color: #e5e7eb;
+      --primary-gold: #c6a87c;
+      --primary-blue: #1a1a1a; 
+      --status-green-bg: #dcfce7; --status-green-text: #166534;
+      --status-red-bg: #fee2e2; --status-red-text: #991b1b;
+      --status-yellow-bg: #fef3c7; --status-yellow-text: #92400e;
+    }
+
+    body { margin:0; font-family:'Inter', sans-serif; background:var(--bg-light); color:var(--text-dark); display:flex; }
     
     /* --- SIDEBAR --- */
-    .sidebar { width: 260px; background: #141414; color: #fff; height: 100vh; position: fixed; left: 0; top: 0; padding: 25px; box-sizing: border-box; display: flex; flex-direction: column; z-index: 100; }
-    .sidebar h2 { color: #c6a87c; text-align: center; margin-bottom: 40px; font-family: 'Jost', sans-serif; letter-spacing: 1px; }
-    .nav-link { display: block; padding: 12px 15px; color: #aaa; text-decoration: none; margin-bottom: 5px; border-radius: 8px; transition: 0.2s; font-size: 0.95rem; }
+    .sidebar { width: 260px; background: var(--bg-dark); color: #fff; height: 100vh; position: fixed; left: 0; top: 0; padding: 25px; box-sizing: border-box; display: flex; flex-direction: column; z-index: 100; }
+    .sidebar h2 { color: var(--primary-gold); text-align: center; margin-bottom: 40px; font-family: 'Jost', sans-serif; letter-spacing: 1px; }
+    .nav-link { display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: #aaa; text-decoration: none; margin-bottom: 5px; border-radius: 8px; transition: 0.2s; font-size: 0.95rem; }
     .nav-link:hover, .nav-link.active { background: #333; color: #fff; }
-    .nav-link.active { border-left: 3px solid #c6a87c; }
+    .nav-link.active { border-left: 3px solid var(--primary-gold); }
     .mt-auto { margin-top: auto; }
 
     /* --- MAIN CONTENT --- */
     main.main-content { margin-left: 260px; padding: 40px; width: 100%; box-sizing: border-box; }
     
     h1 { font-size:1.8rem; margin:0 0 5px 0; font-family: 'Jost', sans-serif; }
-    .muted { color:#64748b; margin-bottom: 30px; font-size: 0.9rem; }
+    .muted { color:var(--text-grey); margin-bottom: 30px; font-size: 0.9rem; }
 
-    .panel { background:#ffffff; border-radius:12px; padding:25px; border:1px solid #e2e8f0; box-shadow:0 4px 6px -1px rgba(0,0,0,0.05); }
+    .panel { background:var(--white); border-radius:12px; padding:25px; border:1px solid var(--border-color); box-shadow:0 4px 6px -1px rgba(0,0,0,0.05); }
 
     /* --- FILTERS --- */
     .filters { display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:15px; margin-bottom:25px; }
     .field { display:flex; flex-direction:column; gap:5px; }
-    .field label { font-size:.75rem; text-transform:uppercase; font-weight:700; color:#64748b; }
-    .field input, .field select { padding:10px; border-radius:6px; border:1px solid #cbd5e1; outline:none; font-family:inherit; }
+    .field label { font-size:.75rem; text-transform:uppercase; font-weight:700; color:var(--text-grey); }
+    .field input, .field select { padding:10px; border-radius:6px; border:1px solid var(--border-color); outline:none; font-family:inherit; }
 
     /* --- TABLE --- */
     table { width:100%; border-collapse:collapse; font-size:0.9rem; }
-    th { text-align:left; padding:12px; border-bottom:1px solid #e2e8f0; color:#64748b; font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; }
+    th { text-align:left; padding:12px; border-bottom:1px solid var(--border-color); color:var(--text-grey); font-size:0.8rem; text-transform:uppercase; letter-spacing:0.05em; }
     td { padding:16px 12px; border-bottom:1px solid #f1f5f9; vertical-align:middle; }
 
     .status { padding:4px 10px; border-radius:20px; font-size:0.75rem; font-weight:600; text-transform:capitalize; }
-    .completed { background:#dcfce7; color:#166534; }
-    .pending { background:#fef3c7; color:#92400e; }
-    .cancelled { background:#fee2e2; color:#991b1b; }
+    .completed { background:var(--status-green-bg); color:var(--status-green-text); }
+    .pending { background:var(--status-yellow-bg); color:var(--status-yellow-text); }
+    .cancelled { background:var(--status-red-bg); color:var(--status-red-text); }
 
-    .view-btn { background:none; border:none; color:#6366f1; font-weight:600; cursor:pointer; }
-    .view-btn:hover { text-decoration: underline; }
+    .view-btn { background:none; border:none; color:var(--primary-blue); font-weight:600; cursor:pointer; }
+    .view-btn:hover { text-decoration: underline; color: var(--primary-gold); }
 
     /* --- MODAL (POPUP) --- */
     .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; }
@@ -67,8 +81,8 @@
 
     .modal-actions { padding: 20px; background: #f8fafc; border-top: 1px solid #e2e8f0; display: flex; justify-content: space-between; align-items: center; }
     .btn-status { padding: 8px 15px; border-radius: 6px; border: none; font-weight: 600; cursor: pointer; font-size: 0.85rem; margin-right: 5px; }
-    .btn-complete { background: #dcfce7; color: #166534; }
-    .btn-cancel { background: #fee2e2; color: #991b1b; }
+    .btn-complete { background: var(--status-green-bg); color: var(--status-green-text); }
+    .btn-cancel { background: var(--status-red-bg); color: var(--status-red-text); }
     .btn-delete { background: #ef4444; color: white; margin-left: auto; }
   </style>
 
@@ -80,19 +94,16 @@
 
 <body>
 
-  <div class="sidebar">
+  <aside class="sidebar">
     <h2>BRITIUM ADMIN</h2>
-    <a href="dashboard/index.html" class="nav-link">Dashboard</a>
-    
-    <a href="orders.html" class="nav-link active">Orders</a>
-    
-    <a href="products.html" class="nav-link">Products</a>
-    <a href="customers.html" class="nav-link">Customers</a>
-    <a href="reports.html" class="nav-link">Analytics</a>
-    <a href="staff.html" class="nav-link">Staff</a>
-    
-    <a href="#" class="nav-link mt-auto" onclick="logout()">Logout</a>
-  </div>
+    <a href="dashboard/index.html" class="nav-link"><span>🏠</span> Dashboard</a>
+    <a href="orders.html" class="nav-link active"><span>📦</span> Orders</a>
+    <a href="products.html" class="nav-link"><span>👜</span> Products</a>
+    <a href="customers.html" class="nav-link"><span>👤</span> Customers</a>
+    <a href="reports.html" class="nav-link"><span>📈</span> Analytics</a>
+    <a href="staff.html" class="nav-link"><span>🛡️</span> Staff</a>
+    <a href="#" class="nav-link mt-auto" onclick="logout()"><span>🚪</span> Logout</a>
+  </aside>
 
   <main class="main-content">
     <h1>Orders Management</h1>
