@@ -73,7 +73,7 @@
     </div>
 
     <script>
-        // 1. Get the session again (we know it exists because of the check in <head>)
+        // 1. Get the session again
         const currentSession = localStorage.getItem("britium_admin_session");
         const adminUser = JSON.parse(currentSession || '{}');
 
