@@ -2,14 +2,24 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Create Account | Britium Gallery</title>
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:Jost;background:#fbf6f1}
-.box{max-width:420px;margin:90px auto;background:#fff;padding:36px;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.08)}
-input,button{width:100%;padding:14px;border-radius:10px;border:1px solid #ddd;margin-bottom:14px}
-button{background:#000;color:#fff;font-weight:700;border:none;cursor:pointer}
-.notice{display:none;margin-top:14px;background:#f8fafc;border:1px dashed #cbd5e1;padding:12px}
+  body{margin:0;font-family:Jost;background:#fbf6f1}
+  .box{max-width:420px;margin:90px auto;background:#fff;padding:40px;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.08)}
+  h2 { margin-top: 0; text-align: center; }
+  input,button{width:100%;padding:14px;border-radius:10px;border:1px solid #ddd;margin-bottom:14px;box-sizing: border-box;}
+  button{background:#000;color:#fff;font-weight:700;border:none;cursor:pointer}
+  button:hover { background: #333; }
+  
+  .notice{display:none;margin-top:14px;background:#f0fdf4;border:1px solid #bbf7d0;padding:15px;color: #16a34a; text-align: center; border-radius: 8px;}
+  .notice a { color: #16a34a; font-weight: bold; }
+  
+  .error-msg { color: #dc2626; display: none; text-align: center; margin-bottom: 15px; }
+  
+  .link-box { text-align: center; margin-top: 15px; }
+  .link-box a { color: #555; text-decoration: none; }
 </style>
 </head>
 <body>
@@ -17,47 +27,81 @@ button{background:#000;color:#fff;font-weight:700;border:none;cursor:pointer}
 <div class="box">
 <h2>Create Account</h2>
 
+<div id="errorBox" class="error-msg"></div>
+
 <form id="form">
-  <input id="name" placeholder="Full Name" required>
-  <input id="email" type="email" placeholder="Email" required>
-  <input id="password" type="password" placeholder="Password (min 6)" required>
+  <input id="nameInput" placeholder="Full Name" required>
+  <input id="emailInput" type="email" placeholder="Email" required>
+  <input id="passwordInput" type="password" placeholder="Password (min 6)" required>
   <button type="submit">Create Account</button>
 </form>
 
 <div id="notice" class="notice"></div>
-<p><a href="/customer/login.html">Login</a></p>
+<p class="link-box"><a href="login.html">Already have an account? Login</a></p>
 </div>
 
-<script src="/assets/js/customer-auth.js"></script>
 <script>
+// --- Helper Functions ---
+function getLocalUsers() {
+    return JSON.parse(localStorage.getItem('britium_users') || '[]');
+}
+
+function saveLocalUsers(users) {
+    localStorage.setItem('britium_users', JSON.stringify(users));
+}
+// ------------------------
+
 document.getElementById("form").addEventListener("submit", e => {
   e.preventDefault();
 
-  const name = name.value.trim();
-  const email = email.value.trim().toLowerCase();
-  const password = password.value;
+  // 1. Get Elements safely (Fixes the crash)
+  const nameVal = document.getElementById("nameInput").value.trim();
+  const emailVal = document.getElementById("emailInput").value.trim().toLowerCase();
+  const passwordVal = document.getElementById("passwordInput").value;
+  const errorBox = document.getElementById("errorBox");
+  const noticeBox = document.getElementById("notice");
+  const form = document.getElementById("form");
 
-  if (password.length < 6) return alert("Password too short");
+  // Clear errors
+  errorBox.style.display = 'none';
 
-  const users = getUsers();
-  if (users.some(u => u.email === email)) return alert("Email exists");
+  // 2. Validation
+  if (passwordVal.length < 6) {
+    errorBox.innerText = "Password must be at least 6 characters.";
+    errorBox.style.display = 'block';
+    return;
+  }
 
+  const users = getLocalUsers();
+  if (users.some(u => u.email === emailVal)) {
+    errorBox.innerText = "An account with this email already exists.";
+    errorBox.style.display = 'block';
+    return;
+  }
+
+  // 3. Save User
   users.push({
-    id: uid(),
-    name, email, password,
-    role:"customer",
-    emailVerified:false,
-    createdAt:new Date().toISOString()
+    id: 'user_' + Date.now(),
+    name: nameVal, 
+    email: emailVal, 
+    password: passwordVal,
+    role: "customer",
+    emailVerified: false,
+    createdAt: new Date().toISOString()
   });
 
-  saveUsers(users);
+  saveLocalUsers(users);
 
-  const t = createVerifyToken(email);
-  notice.style.display="block";
-  notice.innerHTML = `
-    Account created.<br>
-    <a href="/customer/verify-email.html?token=${t}">
-      Verify Email (Mock)
+  // 4. Create Mock Token
+  const t = btoa(emailVal); 
+
+  // 5. Show Success (Using RELATIVE PATH to fix 404)
+  form.style.display = "none";
+  noticeBox.style.display = "block";
+  noticeBox.innerHTML = `
+    <strong>Account Created!</strong><br><br>
+    <a href="verify-email.html?token=${t}">
+      Click here to Verify Email
     </a>`;
 });
 </script>
