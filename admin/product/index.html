@@ -11,7 +11,7 @@
     body { margin:0; font-family:'Inter', sans-serif; background:#f8fafc; color:#0f172a; display:flex; }
     
     /* --- SIDEBAR (Built-in) --- */
-    .sidebar { width: 260px; background: #141414; color: #fff; height: 100vh; position: fixed; left: 0; top: 0; padding: 25px; box-sizing: border-box; display: flex; flex-direction: column; }
+    .sidebar { width: 260px; background: #141414; color: #fff; height: 100vh; position: fixed; left: 0; top: 0; padding: 25px; box-sizing: border-box; display: flex; flex-direction: column; z-index: 100; }
     .sidebar h2 { color: #c6a87c; text-align: center; margin-bottom: 40px; font-family: 'Jost', sans-serif; letter-spacing: 1px; }
     .nav-link { display: block; padding: 12px 15px; color: #aaa; text-decoration: none; margin-bottom: 5px; border-radius: 8px; transition: 0.2s; font-size: 0.95rem; }
     .nav-link:hover, .nav-link.active { background: #333; color: #fff; }
@@ -74,17 +74,27 @@
     .modal-footer { margin-top: 25px; display: flex; justify-content: flex-end; gap: 10px; }
     .btn-cancel { background: #fff; border: 1px solid #cbd5e1; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
   </style>
+
+  <script>
+    const session = localStorage.getItem("britium_admin_session");
+    if (!session) window.location.href = "../admin-login.html";
+  </script>
 </head>
 
 <body>
 
   <div class="sidebar">
     <h2>BRITIUM ADMIN</h2>
-    <a href="../dashboard/index.html" class="nav-link">Dashboard</a>
-    <a href="#" class="nav-link">Orders</a>
+    <a href="dashboard/index.html" class="nav-link">Dashboard</a>
+    
+    <a href="orders.html" class="nav-link">Orders</a>
+    
     <a href="products.html" class="nav-link active">Products</a>
-    <a href="#" class="nav-link">Customers</a>
-    <a href="#" class="nav-link">Settings</a>
+    
+    <a href="customers.html" class="nav-link">Customers</a>
+    <a href="reports.html" class="nav-link">Analytics</a>
+    <a href="staff.html" class="nav-link">Staff</a>
+    
     <a href="#" class="nav-link mt-auto" onclick="logout()">Logout</a>
   </div>
 
@@ -156,7 +166,7 @@
 
         <div class="form-group full">
           <label>Advertisement Caption / Wording</label>
-          <textarea id="pCaption" placeholder="Write catchy marketing copy here... (e.g., 'The ultimate symbol of elegance for the modern woman.')"></textarea>
+          <textarea id="pCaption" placeholder="Write catchy marketing copy here..."></textarea>
         </div>
 
         <div class="modal-footer">
@@ -169,13 +179,11 @@
 
   <script>
     // --- MOCK DATA SETUP ---
-    // If no products exist in storage, create some defaults
     let products = JSON.parse(localStorage.getItem('britium_products')) || [
       { id: 1, name: "Luxury Leather Tote", sku: "BG-1001", price: 480000, stock: 32, caption: "Timeless elegance.", img: "" },
       { id: 2, name: "Classic Shoulder Bag", sku: "BG-1002", price: 325000, stock: 4, caption: "Perfect for daily use.", img: "" },
     ];
 
-    // Current image data (base64)
     let currentImageBase64 = "";
 
     // --- RENDER FUNCTION ---
@@ -185,10 +193,8 @@
       tbody.innerHTML = '';
 
       products.forEach(p => {
-        // Search Filter
         if (!p.name.toLowerCase().includes(filter) && !p.sku.toLowerCase().includes(filter)) return;
 
-        // Status Logic
         let statusBadge = '<span class="status-badge status-active">Active</span>';
         if (p.stock === 0) statusBadge = '<span class="status-badge status-out">Out of Stock</span>';
         else if (p.stock < 10) statusBadge = '<span class="status-badge status-low">Low Stock</span>';
@@ -219,7 +225,6 @@
         tbody.appendChild(tr);
       });
       
-      // Save to storage every time we render (simple sync)
       localStorage.setItem('britium_products', JSON.stringify(products));
     }
 
@@ -229,7 +234,7 @@
       if (file) {
         const reader = new FileReader();
         reader.onloadend = function() {
-          currentImageBase64 = reader.result; // Store Base64 string
+          currentImageBase64 = reader.result;
           document.getElementById('previewImg').src = currentImageBase64;
           document.getElementById('previewImg').style.display = 'block';
           document.getElementById('previewText').style.display = 'none';
@@ -243,12 +248,9 @@
       document.getElementById('productForm').reset();
       document.getElementById('editId').value = "";
       document.getElementById('modalTitle').innerText = "Add New Product";
-      
-      // Reset Image
       currentImageBase64 = "";
       document.getElementById('previewImg').style.display = 'none';
       document.getElementById('previewText').style.display = 'block';
-      
       document.getElementById('productModal').style.display = 'flex';
     }
 
@@ -268,7 +270,6 @@
       document.getElementById('pCaption').value = p.caption || "";
       document.getElementById('modalTitle').innerText = "Edit Product";
 
-      // Show existing image
       currentImageBase64 = p.img || "";
       if (currentImageBase64) {
         document.getElementById('previewImg').src = currentImageBase64;
@@ -292,17 +293,16 @@
     function logout() {
       if(confirm("Logout?")) {
         localStorage.removeItem("britium_admin_session");
-        window.location.href = "../admin-login.html"; // Go up one folder
+        window.location.href = "../admin-login.html";
       }
     }
 
-    // --- FORM SUBMIT ---
     document.getElementById('productForm').addEventListener('submit', (e) => {
       e.preventDefault();
       
       const id = document.getElementById('editId').value;
       const newProduct = {
-        id: id ? parseInt(id) : Date.now(), // Use timestamp for unique ID
+        id: id ? parseInt(id) : Date.now(),
         name: document.getElementById('pName').value,
         sku: document.getElementById('pSku').value,
         price: document.getElementById('pPrice').value,
@@ -312,11 +312,9 @@
       };
 
       if (id) {
-        // Edit existing
         const index = products.findIndex(p => p.id == id);
         products[index] = newProduct;
       } else {
-        // Add new
         products.push(newProduct);
       }
 
@@ -324,7 +322,6 @@
       renderTable();
     });
 
-    // --- SEARCH LISTENER ---
     document.getElementById('searchInput').addEventListener('keyup', renderTable);
 
     // Initial Load
