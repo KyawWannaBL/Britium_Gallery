@@ -2,62 +2,188 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Create Account | Britium Gallery</title>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-body{margin:0;font-family:Jost;background:#fbf6f1}
-.box{max-width:420px;margin:90px auto;background:#fff;padding:36px;border-radius:12px;box-shadow:0 20px 50px rgba(0,0,0,.08)}
-input,button{width:100%;padding:14px;border-radius:10px;border:1px solid #ddd;margin-bottom:14px}
-button{background:#000;color:#fff;font-weight:700;border:none;cursor:pointer}
-.notice{display:none;margin-top:14px;background:#f8fafc;border:1px dashed #cbd5e1;padding:12px}
+  :root {
+      --bg-cream: #fbf6f1;
+      --text-dark: #111;
+      --gold: #c6a87c;
+      --error: #dc2626;
+      --success: #16a34a;
+  }
+
+  body { margin: 0; font-family: 'Jost', sans-serif; background: var(--bg-cream); color: var(--text-dark); }
+  
+  .box {
+      max-width: 420px;
+      margin: 90px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+  }
+
+  h2 { margin-top: 0; text-align: center; font-weight: 500; font-size: 1.8rem; margin-bottom: 25px; }
+
+  label { display: block; font-size: 0.85rem; color: #666; margin-bottom: 5px; }
+
+  input, button {
+      width: 100%;
+      padding: 14px;
+      border-radius: 8px;
+      border: 1px solid #ddd;
+      margin-bottom: 15px;
+      font-family: inherit;
+      box-sizing: border-box; /* Fixes padding width issues */
+      font-size: 1rem;
+  }
+
+  input:focus { outline: none; border-color: var(--gold); }
+
+  button {
+      background: #000;
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.3s;
+  }
+  
+  button:hover { background: #333; }
+
+  .notice {
+      display: none; /* Hidden by default */
+      margin-top: 20px;
+      background: #f0fdf4; /* Light green */
+      border: 1px solid #bbf7d0;
+      color: var(--success);
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      text-align: center;
+  }
+  
+  .notice a { color: var(--success); font-weight: bold; text-decoration: underline; }
+
+  .error-msg {
+      display: none;
+      color: var(--error);
+      font-size: 0.9rem;
+      text-align: center;
+      margin-bottom: 15px;
+  }
+
+  .login-link { text-align: center; margin-top: 20px; font-size: 0.9rem; }
+  .login-link a { color: #666; text-decoration: none; }
+  .login-link a:hover { color: #000; text-decoration: underline; }
 </style>
 </head>
 <body>
 
 <div class="box">
-<h2>Create Account</h2>
+  <h2>Create Account</h2>
 
-<form id="form">
-  <input id="name" placeholder="Full Name" required>
-  <input id="email" type="email" placeholder="Email" required>
-  <input id="password" type="password" placeholder="Password (min 6)" required>
-  <button type="submit">Create Account</button>
-</form>
+  <div id="errorBox" class="error-msg"></div>
 
-<div id="notice" class="notice"></div>
-<p><a href="/customer/login.html">Login</a></p>
+  <form id="form">
+    <label>Full Name</label>
+    <input id="nameInput" placeholder="e.g. John Doe" required>
+    
+    <label>Email Address</label>
+    <input id="emailInput" type="email" placeholder="e.g. john@example.com" required>
+    
+    <label>Password</label>
+    <input id="passwordInput" type="password" placeholder="Min 6 characters" required>
+    
+    <button type="submit" id="submitBtn">Create Account</button>
+  </form>
+
+  <div id="notice" class="notice"></div>
+
+  <p class="login-link">Already have an account? <a href="/customer/login.html">Login here</a></p>
 </div>
 
-<script src="/assets/js/customer-auth.js"></script>
 <script>
+// --- HELPER FUNCTIONS (Mocking customer-auth.js) ---
+function getLocalUsers() {
+    return JSON.parse(localStorage.getItem('britium_users') || '[]');
+}
+
+function saveLocalUsers(users) {
+    localStorage.setItem('britium_users', JSON.stringify(users));
+}
+
+function generateId() {
+    return 'user_' + Math.random().toString(36).substr(2, 9);
+}
+// ----------------------------------------------------
+
 document.getElementById("form").addEventListener("submit", e => {
   e.preventDefault();
 
-  const name = name.value.trim();
-  const email = email.value.trim().toLowerCase();
-  const password = password.value;
+  // 1. Safe Element Selection (Fixed Variable Conflict)
+  const nameIn = document.getElementById("nameInput");
+  const emailIn = document.getElementById("emailInput");
+  const passIn = document.getElementById("passwordInput");
+  const errorBox = document.getElementById("errorBox");
+  const noticeBox = document.getElementById("notice");
+  const submitBtn = document.getElementById("submitBtn");
 
-  if (password.length < 6) return alert("Password too short");
+  // Reset UI
+  errorBox.style.display = "none";
+  noticeBox.style.display = "none";
+  
+  const nameVal = nameIn.value.trim();
+  const emailVal = emailIn.value.trim().toLowerCase();
+  const passwordVal = passIn.value;
 
-  const users = getUsers();
-  if (users.some(u => u.email === email)) return alert("Email exists");
+  // 2. Validation
+  if (passwordVal.length < 6) {
+      errorBox.textContent = "Password must be at least 6 characters long.";
+      errorBox.style.display = "block";
+      return;
+  }
 
-  users.push({
-    id: uid(),
-    name, email, password,
-    role:"customer",
-    emailVerified:false,
-    createdAt:new Date().toISOString()
-  });
+  // 3. Check for existing user
+  // We use our local helper function here to ensure it works without external files
+  const users = getLocalUsers();
 
-  saveUsers(users);
+  if (users.some(u => u.email === emailVal)) {
+      errorBox.textContent = "An account with this email already exists.";
+      errorBox.style.display = "block";
+      return;
+  }
 
-  const t = createVerifyToken(email);
-  notice.style.display="block";
-  notice.innerHTML = `
-    Account created.<br>
-    <a href="/customer/verify-email.html?token=${t}">
-      Verify Email (Mock)
+  // 4. Create User Object
+  const newUser = {
+    id: generateId(),
+    name: nameVal,
+    email: emailVal,
+    password: passwordVal, // Note: In production, never store passwords in plain text!
+    role: "customer",
+    emailVerified: false, // Set to false so we can test verification
+    createdAt: new Date().toISOString()
+  };
+
+  users.push(newUser);
+  saveLocalUsers(users);
+
+  // 5. Success UI
+  // Generate a fake token for the simulation
+  const mockToken = btoa(emailVal); // Base64 encode email as a fake token
+  
+  document.getElementById("form").style.display = "none"; // Hide form
+  noticeBox.style.display = "block";
+  noticeBox.innerHTML = `
+    <strong>Account created successfully!</strong><br><br>
+    In a real app, check your email.<br>
+    For this demo, click here:<br><br>
+    <a href="/customer/verify-email.html?token=${mockToken}">
+       Verify Email & Continue &rarr;
     </a>`;
 });
 </script>
