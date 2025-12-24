@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logging Out | Britium Gallery</title>
+
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* RESET */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-dark: #1a0f0a;
+            --bg-panel: #231712;
+            --gold-accent: #debb6e;
+            --gold-dark: #b5904b;
+            --text-light: #ffffff;
+            --text-grey: #a0a0a0;
+        }
+
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logout-container {
+            background-color: var(--bg-panel);
+            border: 1px solid rgba(222, 187, 110, 0.2);
+            padding: 50px 40px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.6);
+        }
+
+        .brand {
+            font-family: 'Playfair Display', serif;
+            color: var(--gold-accent);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+        }
+
+        .subtitle {
+            font-size: 0.9rem;
+            color: var(--text-grey);
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .message {
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(222, 187, 110, 0.3);
+            border-top: 3px solid var(--gold-accent);
+            border-radius: 50%;
+            margin: 0 auto 25px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        .redirect-text {
+            font-size: 0.85rem;
+            color: var(--text-grey);
+        }
+
+        .redirect-text a {
+            color: var(--gold-accent);
+            text-decoration: none;
+        }
+
+        .redirect-text a:hover {
+            color: var(--gold-dark);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logout-container">
+        <div class="brand">BRITIUM GALLERY</div>
+        <div class="subtitle">Customer Session</div>
+
+        <div class="spinner"></div>
+
+        <div class="message">
+            You have been securely logged out.<br>
+            Thank you for visiting Britium Gallery.
+        </div>
+
+        <div class="redirect-text">
+            Redirecting to homepage…<br>
+            If not redirected, <a href="index.html">click here</a>.
+        </div>
+    </div>
+
+    <script>
+        /*
+          CUSTOMER LOGOUT LOGIC
+          ---------------------
+          This clears client-side session data.
+          Backend token/session invalidation
+          can be added later.
+        */
+
+        // Clear customer session data
+        localStorage.removeItem('customerLoggedIn');
+        localStorage.removeItem('customerId');
+        localStorage.removeItem('customerEmail');
+        localStorage.removeItem('customerName');
+
+        sessionStorage.clear();
+
+        // Redirect after delay
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 2500);
+    </script>
+
+</body>
+</html>
