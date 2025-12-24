@@ -3,354 +3,308 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Staff | Admin Panel</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+  <title>Staff Management | Britium Admin</title>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
   <style>
-    body{
-      margin:0;
-      font-family:Inter, sans-serif;
-      background:#f8fafc;
-      color:#0f172a;
+    /* --- RESET & VARIABLES --- */
+    :root {
+      --bg-dark: #141414;
+      --bg-light: #f4f6f8;
+      --white: #ffffff;
+      --text-dark: #333333;
+      --text-grey: #6b7280;
+      --border-color: #e5e7eb;
+      --primary-gold: #c6a87c;
+      --primary-blue: #1a1a1a; 
+      --status-green-bg: #dcfce7; --status-green-text: #166534;
+      --status-red-bg: #fee2e2; --status-red-text: #991b1b;
+      --status-grey-bg: #f3f4f6; --status-grey-text: #4b5563;
     }
 
-    main{
-      margin-left:240px;
-      padding:110px 40px 40px;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-light);
+      color: var(--text-dark);
+      display: flex;
     }
 
-    h1{ font-size:1.8rem; margin-bottom:6px; }
-    .muted{ color:#64748b; margin-bottom:26px; }
+    /* --- SIDEBAR --- */
+    .sidebar { width: 260px; background: var(--bg-dark); color: #fff; height: 100vh; position: fixed; left: 0; top: 0; padding: 25px; box-sizing: border-box; display: flex; flex-direction: column; z-index: 100; }
+    .sidebar h2 { color: var(--primary-gold); text-align: center; margin-bottom: 40px; font-family: 'Jost', sans-serif; letter-spacing: 1px; }
+    .nav-link { display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: #aaa; text-decoration: none; margin-bottom: 5px; border-radius: 8px; transition: 0.2s; font-size: 0.95rem; }
+    .nav-link:hover, .nav-link.active { background: #333; color: #fff; }
+    .nav-link.active { border-left: 3px solid var(--primary-gold); }
+    .mt-auto { margin-top: auto; }
 
-    /* TOOLBAR */
-    .toolbar{
-      display:flex;
-      justify-content:space-between;
-      align-items:end;
-      gap:16px;
-      flex-wrap:wrap;
-      margin-bottom:22px;
-    }
+    /* --- MAIN CONTENT --- */
+    main.content-area { margin-left: 260px; padding: 40px; width: 100%; min-height: 100vh; }
 
-    .filters{
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:end;
-    }
+    .page-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+    .page-title { font-family: 'Jost', sans-serif; font-size: 1.8rem; font-weight: 600; color: #111; }
 
-    .field label{
-      display:block;
-      font-size:.78rem;
-      color:#64748b;
-      margin-bottom:6px;
-      text-transform:uppercase;
-      letter-spacing:.08em;
+    .btn-add {
+      background-color: var(--primary-blue); color: #fff; border: none; padding: 12px 24px;
+      border-radius: 6px; font-size: 0.9rem; cursor: pointer; display: flex; align-items: center; gap: 8px; transition: 0.3s;
     }
+    .btn-add:hover { background-color: var(--primary-gold); color: #000; }
 
-    input, select{
-      padding:10px 12px;
-      border-radius:10px;
-      border:1px solid #e5e7eb;
-      background:#fff;
-      font-size:.9rem;
-      outline:none;
-      min-width:220px;
-    }
-    select{ cursor:pointer; min-width:180px; }
+    /* --- FILTERS --- */
+    .filters-bar { display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+    .search-wrapper { position: relative; flex: 1; max-width: 350px; }
+    .search-input { width: 100%; padding: 10px 15px; border: 1px solid var(--border-color); border-radius: 6px; outline: none; }
+    .filter-select { padding: 10px 15px; border: 1px solid var(--border-color); border-radius: 6px; background: #fff; cursor: pointer; }
 
-    .btn{
-      padding:11px 16px;
-      border-radius:10px;
-      border:1px solid #e5e7eb;
-      background:#fff;
-      color:#0f172a;
-      font-weight:700;
-      font-size:.85rem;
-      cursor:pointer;
-      transition:.2s;
-      white-space:nowrap;
-    }
-    .btn:hover{ background:#f1f5f9; }
+    /* --- TABLE --- */
+    .table-card { background-color: var(--white); border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05); overflow: hidden; border: 1px solid var(--border-color); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    thead { background-color: #f9fafb; border-bottom: 1px solid var(--border-color); }
+    th { text-align: left; padding: 15px 20px; font-weight: 600; color: var(--text-grey); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; }
+    td { padding: 15px 20px; border-bottom: 1px solid var(--border-color); vertical-align: middle; }
 
-    .btn.primary{
-      border:1px solid #c7d2fe;
-      background:#eef2ff;
-      color:#1e3a8a;
-    }
-    .btn.primary:hover{ background:#e0e7ff; }
+    .staff-info div { font-weight: 600; color: #111; }
+    .staff-email { font-size: 0.8rem; color: #888; font-weight: 400 !important; }
+    .mono { font-family: monospace; color: #666; font-size: 0.85rem; }
 
-    .btn.danger{
-      border:1px solid #fecaca;
-      background:#fff1f2;
-      color:#9f1239;
-    }
-    .btn.danger:hover{ background:#ffe4e6; }
+    /* Status Badges */
+    .status-badge { padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; text-transform: capitalize; }
+    .status-active { background-color: var(--status-green-bg); color: var(--status-green-text); }
+    .status-inactive { background-color: var(--status-grey-bg); color: var(--status-grey-text); }
+    .status-suspended { background-color: var(--status-red-bg); color: var(--status-red-text); }
 
-    /* PANEL + TABLE */
-    .panel{
-      background:#fff;
-      border-radius:14px;
-      padding:24px;
-      border:1px solid #e5e7eb;
-      box-shadow:0 10px 30px rgba(0,0,0,.04);
-    }
+    .role-badge { border: 1px solid #ddd; padding: 3px 8px; border-radius: 4px; font-size: 0.75rem; background: #fafafa; }
 
-    table{
-      width:100%;
-      border-collapse:collapse;
-      font-size:.95rem;
-    }
+    .action-btn { background: none; border: none; cursor: pointer; margin-right: 10px; font-size: 0.9rem; color: #6b7280; transition: 0.2s; }
+    .action-btn:hover { color: var(--primary-gold); }
+    .action-btn.delete:hover { color: #dc2626; }
 
-    th, td{
-      padding:14px 10px;
-      border-bottom:1px solid #e5e7eb;
-      text-align:left;
-      vertical-align:middle;
-    }
-
-    th{
-      text-transform:uppercase;
-      font-size:.75rem;
-      color:#64748b;
-      letter-spacing:.08em;
-    }
-
-    tr:hover td{ background:#f9fafb; }
-
-    .name{
-      font-weight:800;
-      color:#0f172a;
-    }
-    .mono{
-      font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-      font-size:.85rem;
-      color:#334155;
-      font-weight:700;
-    }
-
-    .badge{
-      display:inline-block;
-      padding:5px 10px;
-      border-radius:999px;
-      font-size:.75rem;
-      font-weight:800;
-    }
-    .active{ background:#dcfce7; color:#166534; }
-    .inactive{ background:#f1f5f9; color:#475569; }
-    .suspended{ background:#fee2e2; color:#991b1b; }
-
-    .role{
-      padding:6px 10px;
-      border-radius:10px;
-      border:1px solid #e5e7eb;
-      background:#fff;
-      font-size:.85rem;
-      font-weight:700;
-      color:#0f172a;
-      cursor:pointer;
-    }
-
-    .actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-    }
-    .link-btn{
-      border:none;
-      background:transparent;
-      color:#2563eb;
-      font-weight:800;
-      cursor:pointer;
-      padding:0;
-      font-size:.9rem;
-    }
-    .link-btn:hover{ text-decoration:underline; }
-
-    /* SMALL HELP BOX */
-    .help{
-      margin-top:16px;
-      padding:14px 16px;
-      background:#f8fafc;
-      border:1px dashed #cbd5e1;
-      border-radius:12px;
-      color:#475569;
-      font-size:.9rem;
-    }
-
-    @media(max-width:980px){
-      main{ margin-left:0; padding:90px 16px 30px; }
-    }
+    /* --- MODAL --- */
+    .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000; }
+    .modal { background: #fff; width: 500px; max-width: 90%; padding: 30px; border-radius: 12px; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1); }
+    .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .form-group { margin-bottom: 15px; }
+    label { display: block; font-size: 0.85rem; margin-bottom: 5px; font-weight: 600; }
+    input, select { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 6px; }
+    
+    .modal-footer { margin-top: 25px; display: flex; justify-content: flex-end; gap: 10px; }
+    .btn-cancel { background: #fff; border: 1px solid #cbd5e1; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
+    .btn-save { background: var(--primary-blue); color: #fff; border: none; padding: 10px 20px; border-radius: 6px; cursor: pointer; }
   </style>
-</head>
 
+  <script>
+    const session = localStorage.getItem("britium_admin_session");
+    if (!session) window.location.href = "../admin-login.html";
+  </script>
+</head>
 <body>
 
-  <!-- ADMIN NAV (AUTO-INJECTED) -->
-  <div id="adminHeader"></div>
-  <div id="adminSidebar"></div>
+  <aside class="sidebar">
+    <h2>BRITIUM ADMIN</h2>
+    <a href="../dashboard/index.html" class="nav-link"><span>🏠</span> Dashboard</a>
+    <a href="orders.html" class="nav-link"><span>📦</span> Orders</a>
+    <a href="products.html" class="nav-link"><span>👜</span> Products</a>
+    <a href="customers.html" class="nav-link"><span>👤</span> Customers</a>
+    <a href="reports.html" class="nav-link"><span>📈</span> Analytics</a>
+    <a href="staff.html" class="nav-link active"><span>🛡️</span> Staff</a>
+    <a href="#" class="nav-link mt-auto" onclick="logout()"><span>🚪</span> Logout</a>
+  </aside>
 
-  <main>
-    <h1>Staff Management</h1>
-    <p class="muted">Manage staff accounts, roles, and access permissions</p>
-
-    <div class="toolbar">
-      <div class="filters">
-        <div class="field">
-          <label>Search</label>
-          <input type="text" placeholder="Search by name / email / staff ID">
-        </div>
-
-        <div class="field">
-          <label>Role</label>
-          <select>
-            <option value="">All Roles</option>
-            <option>Admin</option>
-            <option>Manager</option>
-            <option>Staff</option>
-            <option>Viewer</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label>Status</label>
-          <select>
-            <option value="">All Status</option>
-            <option>Active</option>
-            <option>Inactive</option>
-            <option>Suspended</option>
-          </select>
-        </div>
+  <main class="content-area">
+    
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Staff Management</h1>
+        <p style="color:#666; font-size:0.9rem; margin-top:5px;">Manage access and permissions</p>
       </div>
-
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <button class="btn">Export</button>
-        <button class="btn danger">Suspend Selected</button>
-        <button class="btn primary">Add Staff</button>
-      </div>
+      <button class="btn-add" onclick="openModal()"><span>+</span> Add New Staff</button>
     </div>
 
-    <section class="panel">
+    <div class="filters-bar">
+      <div class="search-wrapper">
+        <input type="text" id="searchInput" class="search-input" placeholder="Search name, email or ID...">
+      </div>
+      <select id="roleFilter" class="filter-select" onchange="renderTable()">
+        <option value="">All Roles</option>
+        <option value="Admin">Admin</option>
+        <option value="Manager">Manager</option>
+        <option value="Staff">Staff</option>
+      </select>
+      <select id="statusFilter" class="filter-select" onchange="renderTable()">
+        <option value="">All Statuses</option>
+        <option value="Active">Active</option>
+        <option value="Inactive">Inactive</option>
+        <option value="Suspended">Suspended</option>
+      </select>
+    </div>
+
+    <div class="table-card">
       <table>
         <thead>
           <tr>
-            <th style="width:48px;">
-              <input type="checkbox" aria-label="Select all">
-            </th>
-            <th>Staff</th>
+            <th>Staff Member</th>
             <th>Staff ID</th>
             <th>Role</th>
             <th>Status</th>
             <th>Last Login</th>
-            <th style="width:170px;">Action</th>
+            <th style="text-align:right">Actions</th>
           </tr>
         </thead>
-
-        <tbody>
-          <tr>
-            <td><input type="checkbox" aria-label="Select row"></td>
-            <td>
-              <div class="name">Kyaw Wanna</div>
-              <div style="color:#64748b; font-size:.88rem;">mgkyawwanna@gmail.com</div>
-            </td>
-            <td class="mono">STF-0001</td>
-            <td>
-              <select class="role" aria-label="Role">
-                <option selected>Admin</option>
-                <option>Manager</option>
-                <option>Staff</option>
-                <option>Viewer</option>
-              </select>
-            </td>
-            <td><span class="badge active">Active</span></td>
-            <td>23 Dec 2025, 10:15</td>
-            <td class="actions">
-              <button class="link-btn">Edit</button>
-              <button class="link-btn">Reset Password</button>
-            </td>
-          </tr>
-
-          <tr>
-            <td><input type="checkbox" aria-label="Select row"></td>
-            <td>
-              <div class="name">Aye Myat</div>
-              <div style="color:#64748b; font-size:.88rem;">ayemyat@britium.com</div>
-            </td>
-            <td class="mono">STF-0007</td>
-            <td>
-              <select class="role" aria-label="Role">
-                <option>Admin</option>
-                <option selected>Manager</option>
-                <option>Staff</option>
-                <option>Viewer</option>
-              </select>
-            </td>
-            <td><span class="badge active">Active</span></td>
-            <td>21 Dec 2025, 18:02</td>
-            <td class="actions">
-              <button class="link-btn">Edit</button>
-              <button class="link-btn">Suspend</button>
-            </td>
-          </tr>
-
-          <tr>
-            <td><input type="checkbox" aria-label="Select row"></td>
-            <td>
-              <div class="name">Min Thu</div>
-              <div style="color:#64748b; font-size:.88rem;">minthu@britium.com</div>
-            </td>
-            <td class="mono">STF-0012</td>
-            <td>
-              <select class="role" aria-label="Role">
-                <option>Admin</option>
-                <option>Manager</option>
-                <option selected>Staff</option>
-                <option>Viewer</option>
-              </select>
-            </td>
-            <td><span class="badge suspended">Suspended</span></td>
-            <td>10 Dec 2025, 09:44</td>
-            <td class="actions">
-              <button class="link-btn">Edit</button>
-              <button class="link-btn">Re-activate</button>
-            </td>
-          </tr>
-
-          <tr>
-            <td><input type="checkbox" aria-label="Select row"></td>
-            <td>
-              <div class="name">Sue Sharp</div>
-              <div style="color:#64748b; font-size:.88rem;">sue@britium.com</div>
-            </td>
-            <td class="mono">STF-0021</td>
-            <td>
-              <select class="role" aria-label="Role">
-                <option>Admin</option>
-                <option>Manager</option>
-                <option>Staff</option>
-                <option selected>Viewer</option>
-              </select>
-            </td>
-            <td><span class="badge inactive">Inactive</span></td>
-            <td>—</td>
-            <td class="actions">
-              <button class="link-btn">Invite Again</button>
-              <button class="link-btn">Remove</button>
-            </td>
-          </tr>
-        </tbody>
+        <tbody id="tableBody">
+          </tbody>
       </table>
-
-      <div class="help">
-        Note: This page is UI-only. If you want real admin authentication + role updates, it must be handled by a backend
-        (database + sessions/JWT). For now, admin.js can keep it protected on the frontend using localStorage.
-      </div>
-    </section>
+    </div>
   </main>
 
-  <!-- ADMIN SCRIPT -->
-<script src="../admin.js"></script>
+  <div class="modal-overlay" id="staffModal">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 id="modalTitle">Add Staff</h2>
+        <button onclick="closeModal()" style="border:none;background:none;font-size:1.5rem;cursor:pointer;">&times;</button>
+      </div>
+      
+      <form id="staffForm">
+        <input type="hidden" id="editId">
+        
+        <div class="form-group">
+          <label>Full Name</label>
+          <input id="sName" required placeholder="e.g. Kyaw Wanna">
+        </div>
+        <div class="form-group">
+          <label>Email Address</label>
+          <input id="sEmail" type="email" required placeholder="e.g. staff@britium.com">
+        </div>
+        <div class="form-group">
+          <label>Staff ID (Auto-Generated if empty)</label>
+          <input id="sStaffId" placeholder="e.g. STF-001">
+        </div>
+        <div class="form-group">
+          <label>Role</label>
+          <select id="sRole">
+            <option value="Admin">Admin</option>
+            <option value="Manager">Manager</option>
+            <option value="Staff">Staff</option>
+            <option value="Viewer">Viewer</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Status</label>
+          <select id="sStatus">
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+            <option value="Suspended">Suspended</option>
+          </select>
+        </div>
 
-</body>
-</html>
+        <div class="modal-footer">
+          <button type="button" class="btn-cancel" onclick="closeModal()">Cancel</button>
+          <button type="submit" class="btn-save">Save Staff</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    // --- DATA SETUP ---
+    // If no data exists, we seed it with the names you provided in your example
+    let staffList = JSON.parse(localStorage.getItem('britium_staff')) || [
+      { id: 1, name: "Kyaw Wanna", email: "mgkyawwanna@gmail.com", staffId: "STF-0001", role: "Admin", status: "Active", lastLogin: "2025-12-23 10:15" },
+      { id: 2, name: "Aye Myat", email: "ayemyat@britium.com", staffId: "STF-0007", role: "Manager", status: "Active", lastLogin: "2025-12-21 18:02" },
+      { id: 3, name: "Min Thu", email: "minthu@britium.com", staffId: "STF-0012", role: "Staff", status: "Suspended", lastLogin: "2025-12-10 09:44" },
+      { id: 4, name: "Sue Sharp", email: "sue@britium.com", staffId: "STF-0021", role: "Viewer", status: "Inactive", lastLogin: "-" },
+    ];
+
+    // --- RENDER TABLE ---
+    function renderTable() {
+      const tbody = document.getElementById("tableBody");
+      const search = document.getElementById("searchInput").value.toLowerCase();
+      const roleFilter = document.getElementById("roleFilter").value;
+      const statusFilter = document.getElementById("statusFilter").value;
+
+      tbody.innerHTML = "";
+
+      staffList.forEach(s => {
+        // Filter Logic
+        if (
+          !s.name.toLowerCase().includes(search) && 
+          !s.email.toLowerCase().includes(search) &&
+          !s.staffId.toLowerCase().includes(search)
+        ) return;
+
+        if (roleFilter && s.role !== roleFilter) return;
+        if (statusFilter && s.status !== statusFilter) return;
+
+        // Badge Styling
+        let badgeClass = "status-active";
+        if(s.status === "Inactive") badgeClass = "status-inactive";
+        if(s.status === "Suspended") badgeClass = "status-suspended";
+
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>
+            <div class="staff-info">
+                <div>${s.name}</div>
+                <div class="staff-email">${s.email}</div>
+            </div>
+          </td>
+          <td class="mono">${s.staffId}</td>
+          <td><span class="role-badge">${s.role}</span></td>
+          <td><span class="status-badge ${badgeClass}">${s.status}</span></td>
+          <td style="color:#666; font-size:0.85rem;">${s.lastLogin}</td>
+          <td style="text-align:right">
+            <button class="action-btn" onclick="editStaff(${s.id})">✎ Edit</button>
+            <button class="action-btn delete" onclick="deleteStaff(${s.id})">🗑</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      localStorage.setItem('britium_staff', JSON.stringify(staffList));
+    }
+
+    // --- MODAL FUNCTIONS ---
+    function openModal() {
+      document.getElementById('staffForm').reset();
+      document.getElementById('editId').value = "";
+      document.getElementById('modalTitle').innerText = "Add Staff Member";
+      
+      // Auto-generate ID suggestion
+      const nextId = staffList.length + 1;
+      document.getElementById('sStaffId').value = `STF-00${nextId < 10 ? '0'+nextId : nextId}`;
+      
+      document.getElementById('staffModal').style.display = 'flex';
+    }
+
+    function closeModal() {
+      document.getElementById('staffModal').style.display = 'none';
+    }
+
+    // --- CRUD ACTIONS ---
+    function editStaff(id) {
+      const s = staffList.find(x => x.id === id);
+      if(!s) return;
+
+      document.getElementById('editId').value = s.id;
+      document.getElementById('sName').value = s.name;
+      document.getElementById('sEmail').value = s.email;
+      document.getElementById('sStaffId').value = s.staffId;
+      document.getElementById('sRole').value = s.role;
+      document.getElementById('sStatus').value = s.status;
+
+      document.getElementById('modalTitle').innerText = "Edit Staff";
+      document.getElementById('staffModal').style.display = 'flex';
+    }
+
+    document.getElementById('staffForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const id = document.getElementById('editId').value;
+      
+      const newStaff = {
+        id: id ? parseInt(id) : Date.now(),
+        name: document.getElementById('sName').value,
+        email: document.getElementById('sEmail').value,
+        staffId: document.getElementById('sStaffId').value,
+        role: document.getElementById('sRole').value,
+        status: document.getElementById('sStatus').value,
+        lastLogin: id ? staffList.find(s => s.id == id).lastLogin : "-"
