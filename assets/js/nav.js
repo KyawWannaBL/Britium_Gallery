@@ -1,43 +1,65 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  // 1. Detect Current Page Name (for "active" highlighting)
+  // --- 1. SMART PATH DETECTION ---
+  
+  // Get current file name (e.g., "index.html" or "login.html")
   const pathParts = location.pathname.split("/");
-  const page = (pathParts.pop() || "index.html").toLowerCase();
+  const currentPage = (pathParts.pop() || "index.html").toLowerCase();
 
-  // 2. Detect if we are inside a subfolder
-  // If the URL has "/customer/" or "/admin/", we are deep inside.
+  // Check if we are deep inside a subfolder (like /customer/ or /admin/)
   const isInSubfolder = location.pathname.includes("/customer/") || 
                         location.pathname.includes("/admin/") || 
                         location.pathname.includes("/dashboard/");
 
-  // 3. Set the "Go Up" prefix
-  // If we are deep, we need "../" to get back to the main folder.
+  // Set the "Go Back Up" prefix
+  // If inside a folder, prefix = "../". If at root, prefix = "".
   const prefix = isInSubfolder ? "../" : "";
 
-  // Helper for Active Class
-  const isActive = (file) => page === file.toLowerCase() ? "active" : "";
+  // Helper to highlight the current page
+  const isActive = (pageName) => currentPage === pageName.toLowerCase() ? "active" : "";
+
 
   /* =========================
-      HEADER HTML
+      HEADER SECTION
   ========================== */
   const headerHTML = `
   <style>
+    /* BASIC MENU STYLES */
     :root{ --bg-dark:#1a0f0a; --gold:#debb6e; --border:rgba(222,187,110,.20); }
-    header.site-header{ padding:18px 50px; display:flex; justify-content:space-between; align-items:center; border-bottom:1px solid var(--border); background:rgba(26,15,10,.92); position:sticky; top:0; z-index:999; backdrop-filter:blur(10px); font-family:'Lato',sans-serif; }
-    .site-logo{ font-family:'Playfair Display',serif; font-size:1.55rem; font-weight:700; color:var(--gold); line-height:1; display:flex; flex-direction:column; text-decoration:none; }
-    .site-logo span{ font-size:.65rem; letter-spacing:3px; margin-top:4px; color:#fff; }
-    nav.site-nav ul{ display:flex; list-style:none; gap:18px; flex-wrap:wrap; justify-content:center; margin:0; padding:0; }
-    nav.site-nav a{ text-decoration:none; color:#e6e6e6; font-size:.82rem; text-transform:uppercase; letter-spacing:1px; padding:8px 10px; border-radius:6px; transition:.25s; }
-    nav.site-nav a:hover{ color:var(--gold); }
-    nav.site-nav a.active{ color:#1a0f0a; background:var(--gold); font-weight:700; }
-    .site-icons{ display:flex; gap:14px; align-items:center; color:var(--gold); font-size:1.1rem; }
-    .site-icons a{ text-decoration:none; color:inherit; }
-    .site-icons a:hover{ opacity:.85; }
     
-    /* Mobile Menu Fix */
-    @media(max-width:980px){ 
-      nav.site-nav ul{ display:none; } 
-      header.site-header{ padding:18px 18px; } 
+    header.site-header{ 
+        padding:18px 50px; 
+        display:flex; 
+        justify-content:space-between; 
+        align-items:center; 
+        border-bottom:1px solid var(--border); 
+        background:rgba(26,15,10,.95); 
+        position:sticky; 
+        top:0; 
+        z-index:999; 
+        backdrop-filter:blur(10px); 
+        font-family:'Lato',sans-serif; 
+    }
+
+    /* LOGO */
+    .site-logo{ font-family:'Playfair Display',serif; font-size:1.5rem; font-weight:700; color:var(--gold); text-decoration:none; display:flex; flex-direction:column; line-height:1; }
+    .site-logo span{ font-size:0.6rem; letter-spacing:3px; color:#fff; margin-top:3px; }
+
+    /* NAV LINKS */
+    nav.site-nav ul{ display:flex; list-style:none; gap:20px; margin:0; padding:0; }
+    nav.site-nav a{ text-decoration:none; color:#ddd; font-size:0.85rem; text-transform:uppercase; letter-spacing:1px; transition:0.3s; padding:5px; }
+    nav.site-nav a:hover{ color:var(--gold); }
+    nav.site-nav a.active{ color:#1a0f0a; background:var(--gold); font-weight:bold; border-radius:4px; padding:5px 10px;}
+
+    /* ICONS */
+    .site-icons{ display:flex; gap:15px; font-size:1.2rem; }
+    .site-icons a{ text-decoration:none; color:var(--gold); transition:0.3s; }
+    .site-icons a:hover{ opacity:0.7; }
+
+    /* MOBILE RESPONSIVE */
+    @media(max-width: 900px){
+        nav.site-nav ul { display:none; } /* Hide menu on small screens for now */
+        header.site-header { padding: 15px 20px; }
     }
   </style>
 
@@ -53,7 +75,6 @@ document.addEventListener("DOMContentLoaded", () => {
         <li><a class="${isActive("new-arrivals.html")}" href="${prefix}new-arrivals.html">New Arrivals</a></li>
         <li><a class="${isActive("luxury-handbags.html")}" href="${prefix}luxury-handbags.html">Handbags</a></li>
         <li><a class="${isActive("gallery.html")}" href="${prefix}gallery.html">Gallery</a></li>
-        
         <li><a class="${isActive("blog.html")}" href="${prefix}blog.html">Blog</a></li>
         <li><a class="${isActive("faq.html")}" href="${prefix}faq.html">FAQ</a></li>
         <li><a class="${isActive("about.html")}" href="${prefix}about.html">About</a></li>
@@ -64,35 +85,39 @@ document.addEventListener("DOMContentLoaded", () => {
     </nav>
 
     <div class="site-icons">
-      <a href="${prefix}search.html" title="Search">🔍</a>
-      
-      <a href="${prefix}customer/login.html" title="Account">👤</a>
-      
-      <a href="${prefix}wishlist.html" title="Wishlist">♡</a>
-      <a href="${prefix}cart.html" title="Cart">🛒</a>
+      <a href="${prefix}search.html">🔍</a>
+      <a href="${prefix}customer/login.html">👤</a> <a href="${prefix}wishlist.html">♡</a>
+      <a href="${prefix}cart.html">🛒</a>
     </div>
   </header>
   `;
 
+
   /* =========================
-      FOOTER HTML
+      FOOTER SECTION
   ========================== */
   const footerHTML = `
-  <footer style="background:#0d0705; color:#777; text-align:center; padding:34px 20px; font-size:.8rem; border-top:1px solid rgba(255,255,255,.08); font-family:'Lato',sans-serif;">
+  <footer style="background:#0d0705; color:#777; text-align:center; padding:40px 20px; font-size:0.8rem; border-top:1px solid #222; font-family:'Lato',sans-serif;">
     <p>&copy; 2025 Britium Gallery. All Rights Reserved.</p>
-    <p style="margin-top:10px;">
-      <a href="${prefix}terms.html" style="color:#aaa;text-decoration:none">Terms</a> |
-      <a href="${prefix}privacy.html" style="color:#aaa;text-decoration:none">Privacy</a> |
-      <a href="${prefix}faq.html" style="color:#aaa;text-decoration:none">FAQ</a>
+    <p style="margin-top:15px;">
+      <a href="${prefix}terms.html" style="color:#888; text-decoration:none; margin:0 10px;">Terms</a> |
+      <a href="${prefix}privacy.html" style="color:#888; text-decoration:none; margin:0 10px;">Privacy</a> |
+      <a href="${prefix}faq.html" style="color:#888; text-decoration:none; margin:0 10px;">FAQ</a> |
+      <a href="${prefix}contact.html" style="color:#888; text-decoration:none; margin:0 10px;">Contact</a>
     </p>
   </footer>
   `;
 
-  // Inject into page
-  const headerTarget = document.getElementById("siteHeader");
-  const footerTarget = document.getElementById("siteFooter");
 
-  if (headerTarget) headerTarget.innerHTML = headerHTML;
-  if (footerTarget) footerTarget.innerHTML = footerHTML;
+  /* =========================
+      INJECT INTO PAGE
+  ========================== */
+  // Find the empty div boxes in your HTML
+  const headerContainer = document.getElementById("siteHeader");
+  const footerContainer = document.getElementById("siteFooter");
+
+  // Put the HTML inside them
+  if (headerContainer) headerContainer.innerHTML = headerHTML;
+  if (footerContainer) footerContainer.innerHTML = footerHTML;
 
 });
