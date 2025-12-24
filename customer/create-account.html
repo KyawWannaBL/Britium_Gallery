@@ -3,82 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Create Account</title>
-<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&display=swap" rel="stylesheet">
+<title>Create Account | Britium Gallery</title>
+<link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;600&family=Lato:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
 <style>
-  body{margin:0;font-family:Jost;background:#fbf6f1;display:flex;align-items:center;justify-content:center;min-height:100vh}
-  .box{width:100%;max-width:420px;background:#fff;padding:40px;border-radius:12px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.08)}
-  input,button{width:100%;padding:14px;border-radius:8px;border:1px solid #ddd;margin-bottom:15px;box-sizing:border-box}
-  button{background:#000;color:#fff;font-weight:700;border:none;cursor:pointer}
-  button:hover{background:#333}
-  .hidden{display:none}
+  /* Reset & Basics */
+  body { margin:0; font-family:'Jost', sans-serif; background:#fbf6f1; min-height:100vh; display:flex; flex-direction:column; }
+  
+  /* Menu Spacing Fix */
+  main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+
+  /* Card Styles */
+  .box { width:100%; max-width:420px; background:#fff; padding:40px; border-radius:12px; text-align:center; box-shadow:0 20px 50px rgba(0,0,0,.08); }
+  
+  h2 { margin-top: 0; margin-bottom: 25px; }
+  
+  input, button { width:100%; padding:14px; border-radius:8px; border:1px solid #ddd; margin-bottom:15px; box-sizing:border-box; font-family:inherit; }
+  
+  button { background:#000; color:#fff; font-weight:700; border:none; cursor:pointer; transition:0.3s; }
+  button:hover { background:#333; }
+  
+  .hidden { display:none; }
+  .error-msg { color: #dc2626; display: none; margin-bottom: 15px; font-size: 0.9rem; }
+  
+  /* Verification Styles */
+  .verify-btn { background-color: #c6a87c; color: #000; }
+  .verify-btn:hover { background-color: #b5904b; }
+  .success-icon { font-size: 3rem; display: block; margin-bottom: 10px; }
 </style>
 </head>
 <body>
 
-<div class="box">
-  
-  <div id="screen1">
-    <h2>Create Account</h2>
-    <form id="myForm">
-      <input id="uName" placeholder="Full Name" required>
-      <input id="uEmail" type="email" placeholder="Email" required>
-      <input id="uPass" type="password" placeholder="Password (min 6)" required>
-      <button type="submit">Create Account</button>
-    </form>
-    <p><a href="login.html" style="color:#555">Login</a></p>
-  </div>
+<div id="siteHeader"></div>
 
-  <div id="screen2" class="hidden">
-    <h2 style="color:green">Account Created!</h2>
-    <p>Please verify your email.</p>
-    <button id="btnVerify" style="background:#c6a87c; color:#000;">Verify Email Now</button>
-  </div>
+<main>
+  <div class="box">
+    
+    <div id="screen1">
+      <h2>Create Account</h2>
+      <div id="errorBox" class="error-msg"></div>
+      
+      <form id="myForm">
+        <input id="uName" placeholder="Full Name" required>
+        <input id="uEmail" type="email" placeholder="Email" required>
+        <input id="uPass" type="password" placeholder="Password (min 6)" required>
+        <button type="submit">Create Account</button>
+      </form>
+      
+      <p style="font-size:0.9rem; color:#666;">
+        Already have an account? <a href="login.html" style="color:#000;">Login</a>
+      </p>
+    </div>
 
-  <div id="screen3" class="hidden">
-    <h1 style="font-size:3rem">✅</h1>
-    <h2>Verified!</h2>
-    <p>You can now login.</p>
-    <a href="login.html"><button>Go to Login</button></a>
-  </div>
+    <div id="screen2" class="hidden">
+      <h2 style="color:#16a34a">Account Created!</h2>
+      <p>For this demo, please verify manually:</p>
+      <button id="btnVerify" class="verify-btn">Verify Email Now</button>
+    </div>
 
-</div>
+    <div id="screen3" class="hidden">
+      <span class="success-icon">✅</span>
+      <h2 style="color:#16a34a">Verified!</h2>
+      <p>You can now login.</p>
+      <a href="login.html"><button>Go to Login</button></a>
+    </div>
+
+  </div>
+</main>
+
+<div id="siteFooter"></div>
+
+<script src="../assets/js/nav.js"></script>
 
 <script>
-// Internal Mock Storage
+// --- Internal Form Logic ---
 function getUsers(){ return JSON.parse(localStorage.getItem('britium_users')||'[]'); }
 function saveUsers(u){ localStorage.setItem('britium_users',JSON.stringify(u)); }
 
-// 1. Handle Form Submit
 document.getElementById("myForm").addEventListener("submit", function(e) {
-  e.preventDefault(); // STOP THE BROWSER FROM RELOADING
+  e.preventDefault();
   
   const email = document.getElementById("uEmail").value.toLowerCase();
   const pass = document.getElementById("uPass").value;
+  const errorBox = document.getElementById("errorBox");
   
-  if(pass.length < 6) return alert("Password too short");
+  errorBox.style.display = 'none';
+
+  if(pass.length < 6) {
+      errorBox.innerText = "Password must be at least 6 characters";
+      errorBox.style.display = 'block';
+      return;
+  }
 
   const users = getUsers();
-  if(users.some(u => u.email === email)) return alert("Email taken");
+  if(users.some(u => u.email === email)) {
+      errorBox.innerText = "Email already exists";
+      errorBox.style.display = 'block';
+      return;
+  }
 
-  users.push({ 
-    email: email, 
-    password: pass, 
-    emailVerified: false 
-  });
+  users.push({ email: email, password: pass, emailVerified: false });
   saveUsers(users);
 
-  // SWAP SCREENS (No URL change, so NO 404 possible)
   document.getElementById("screen1").classList.add("hidden");
   document.getElementById("screen2").classList.remove("hidden");
 });
 
-// 2. Handle Verify Click
 document.getElementById("btnVerify").addEventListener("click", function() {
-  document.getElementById("btnVerify").innerText = "Verifying...";
+  const btn = document.getElementById("btnVerify");
+  btn.innerText = "Verifying...";
   
   setTimeout(function(){
-    // SWAP SCREENS AGAIN
     document.getElementById("screen2").classList.add("hidden");
     document.getElementById("screen3").classList.remove("hidden");
   }, 1000);
