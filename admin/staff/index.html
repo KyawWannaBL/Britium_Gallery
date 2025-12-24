@@ -308,3 +308,39 @@
         role: document.getElementById('sRole').value,
         status: document.getElementById('sStatus').value,
         lastLogin: id ? staffList.find(s => s.id == id).lastLogin : "-"
+      };
+
+      if(id) {
+        const index = staffList.findIndex(s => s.id == id);
+        staffList[index] = newStaff;
+      } else {
+        staffList.push(newStaff);
+      }
+      
+      closeModal();
+      renderTable();
+    });
+
+    function deleteStaff(id) {
+      if(confirm("Are you sure you want to remove this staff member? This cannot be undone.")) {
+        staffList = staffList.filter(s => s.id !== id);
+        renderTable();
+      }
+    }
+
+    function logout() {
+      if(confirm("Logout?")) {
+        localStorage.removeItem("britium_admin_session");
+        window.location.href = "../admin-login.html";
+      }
+    }
+
+    // Listeners for live search
+    document.getElementById('searchInput').addEventListener('keyup', renderTable);
+
+    // Initial Load
+    renderTable();
+
+  </script>
+</body>
+</html>
