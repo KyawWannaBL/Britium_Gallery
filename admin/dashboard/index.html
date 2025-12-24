@@ -12,7 +12,7 @@
         /* Sidebar */
         .sidebar { width: 250px; background: #141414; color: #fff; height: 100vh; position: fixed; left: 0; top: 0; padding: 20px; }
         .sidebar h2 { color: #c6a87c; text-align: center; margin-bottom: 40px; }
-        .menu-item { display: block; padding: 15px; color: #aaa; text-decoration: none; margin-bottom: 5px; border-radius: 6px; }
+        .menu-item { display: block; padding: 15px; color: #aaa; text-decoration: none; margin-bottom: 5px; border-radius: 6px; transition: 0.3s; }
         .menu-item:hover, .menu-item.active { background: #333; color: #fff; }
         .logout-btn { margin-top: auto; background: #c6a87c; color: #000; text-align: center; font-weight: bold; cursor: pointer; }
 
@@ -38,9 +38,13 @@
     <div class="sidebar">
         <h2>Britium Admin</h2>
         <a href="#" class="menu-item active">Dashboard</a>
-        <a href="#" class="menu-item">Orders</a>
-        <a href="#" class="menu-item">Products</a>
-        <a href="#" class="menu-item">Customers</a>
+        
+        <a href="../orders.html" class="menu-item">Orders</a>
+        <a href="../products.html" class="menu-item">Products</a>
+        <a href="../customers.html" class="menu-item">Customers</a>
+        <a href="../reports.html" class="menu-item">Reports</a>
+        <a href="../staff.html" class="menu-item">Staff</a>
+        
         <a href="javascript:void(0)" class="menu-item logout-btn" onclick="logout()">Logout</a>
     </div>
 
